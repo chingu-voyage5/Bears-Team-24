@@ -1,5 +1,7 @@
 # cms.
 
+## Overview
+
 - Landing Page
 
 - Content
@@ -21,6 +23,10 @@
   - images/audio/video
   - list view
   - crud ops
+
+## wireframes
+
+wireframes in dox have codes for site `wireframes.cc/<code>`
 
 
 # TODO
