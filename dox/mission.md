@@ -59,3 +59,4 @@ If something happens and I have to leave for an extended time I will communicate
 member|Date
 --------|-----
 nik|18-feb-2018
+jenovs|19-feb-2018
