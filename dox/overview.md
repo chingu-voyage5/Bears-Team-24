@@ -30,7 +30,7 @@
 
 ## wireframes
 
-wireframes in dox have codes for site `wireframes.cc/<code>`
+wireframes in dox have codes for site `wireframe.cc/<code>`
 
 
 # TODO
