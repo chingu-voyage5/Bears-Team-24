@@ -4,6 +4,10 @@
 
 - Landing Page
 
+- Access Pages
+  - register page
+  - login page
+
 - Content
   - visitor view
   - member view (dashboard) - content creation
