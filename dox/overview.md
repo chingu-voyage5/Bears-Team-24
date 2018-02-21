@@ -2,31 +2,36 @@
 
 ## Overview
 
-- Landing Page
+* Landing Page
 
-- Access Pages
-  - register page
-  - login page
+* Access Pages
 
-- Content
-  - visitor view
-  - member view (dashboard) - content creation
+  * register page
+  * login page
 
 
-- Users (admin)
-  - login/out/register/reset
-  - Roles
-    - visitor(no auth)
-    - member
-    - admin
-  - list view
-  - crud ops
+* Content
+
+  * visitor view
+  * member view (dashboard) - content creation
 
 
-- Assets (members)
-  - images/audio/video
-  - list view
-  - crud ops
+* Users (admin)
+
+  * login/out/register/reset
+  * Roles
+    * visitor(no auth)
+    * member
+    * admin
+  * list view
+  * crud ops
+
+
+* Assets (members)
+
+  * images/audio/video
+  * list view
+  * crud ops
 
 ## wireframes
 
