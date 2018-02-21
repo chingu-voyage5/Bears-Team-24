@@ -1,4 +1,4 @@
-# cms.
+# cms
 
 ## Overview
 
@@ -19,6 +19,7 @@
 * Users (admin)
 
   * login/out/register/reset
+  * profile
   * Roles
     * visitor(no auth)
     * member
