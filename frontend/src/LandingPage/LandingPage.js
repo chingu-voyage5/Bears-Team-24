@@ -12,7 +12,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ContentArea from './ContentArea.js';
+import ContentArea from '../ContentArea/ContentArea.js';
 
 export default class LandingPage extends React.Component {
   // define some state
