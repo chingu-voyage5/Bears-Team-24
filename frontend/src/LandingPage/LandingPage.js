@@ -12,6 +12,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ContentArea from './ContentArea.js';
+
 export default class LandingPage extends React.Component {
   // define some state
   state = {
@@ -29,6 +31,7 @@ export default class LandingPage extends React.Component {
     return (
       <div>
         <Heading>Welcome to chingu CMS</Heading>
+        <ContentArea> </ContentArea>
       </div>
     );
   };
