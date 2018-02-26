@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import LandingPage from './LandingPage';
+import Navbar from './Navbar';
 
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
@@ -9,10 +10,18 @@ import LandingPage from './LandingPage';
 // with the name of your component, e.g. <Sidebar />
 
 class App extends Component {
+  state = {
+    isLoggedIn: true,
+    username: 'fake_user',
+  };
+
   render() {
+    const { isLoggedIn, username } = this.state;
+
     return (
       <Router>
         <React.Fragment>
+          <Navbar isLoggedIn={isLoggedIn} username={username} />
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route path="/pages" render={() => <div>Pages component</div>} />
