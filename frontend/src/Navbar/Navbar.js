@@ -23,9 +23,9 @@ const Navbar = ({ isLoggedIn, username }) => (
         <NavLinkStyled to="/pages">Pages</NavLinkStyled>
         <NavLinkStyled to={`/users/${username}`}>Users</NavLinkStyled>
         <NavLinkStyled to="/assets">Assets</NavLinkStyled>
-        <NavLinkStyled to="/cms">CMS</NavLinkStyled>
       </React.Fragment>
     )}
+    <NavLinkStyled to="/cms">CMS</NavLinkStyled>
     <Greeting>Hi, {isLoggedIn ? username : 'Guest'}</Greeting>
     {isLoggedIn ? (
       <NavLinkStyled to="/logout">Logout</NavLinkStyled>
