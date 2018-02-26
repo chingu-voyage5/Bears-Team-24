@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import LandingPage from './LandingPage';
 import Navbar from './Navbar';
+import StateSetup from './_StateSetup';
 
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
@@ -15,12 +16,26 @@ class App extends Component {
     username: 'fake_user',
   };
 
+  handleLogin = isLoggedIn => {
+    this.setState(() => ({ isLoggedIn }));
+  };
+
+  handleUsername = username => {
+    this.setState(() => ({ username }));
+  };
+
   render() {
     const { isLoggedIn, username } = this.state;
 
     return (
       <Router>
         <React.Fragment>
+          <StateSetup
+            isLoggedIn={isLoggedIn}
+            username={username}
+            handleLogin={this.handleLogin}
+            handleUsername={this.handleUsername}
+          />
           <Navbar isLoggedIn={isLoggedIn} username={username} />
           <Switch>
             <Route exact path="/" component={LandingPage} />
