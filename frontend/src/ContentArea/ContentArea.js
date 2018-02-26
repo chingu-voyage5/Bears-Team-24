@@ -29,15 +29,40 @@ export default class ContentArea extends React.Component{
 		
 		// AJAX example version: 
 		fetch(urlToGrabData)
-						.then(   function(response) {return response.text();}    )
-						.then(   function(responseText) { self.setState( {innerHTML: responseText});     });
+						.then(   function(response) { return response.text();}    )
+						.then(   function(responseText) { 
+						
+										let resultHTML;
+										let keyWithHTML = 'html';   // api response we expect is JSON object where one of props is html string
+										//  { "status" : "ok",   "html" : "<h1>KOOL</h1> <p>This is the response HTML</p>" }
+										
+										try{ 
+											resultHTML = JSON.parse(responseText)[keyWithHTML];
+										}
+										/* example api what i chose does not send data in JSON, only in HTML. so i build JSON object here */
+										catch(error){
+											//alert(error);
+											
+											let jsonObj = {};
+											jsonObj[keyWithHTML] = responseText;
+											
+											let json = JSON.stringify(jsonObj);
+											resultHTML = JSON.parse(json)[keyWithHTML];
+											
+										}
+										
+										
+										self.setState( {innerHTML: resultHTML});
+						     		}		);
+	   // in future: regexp to detect html tags: <(.*?)>(.|\n|\r)*?<\/(\1|)>						     		
+						     		
 		
-		return '<p>loading......</p>';       //line runs immediately, displays text while AJAX request in process
+		return '<p>loading......</p>';       //this line runs immediately, displays loading text while AJAX request is in process
 	}
 	
 	componentWillMount(){
-		let grabbedText = this.fetchData();      //   fetchData(this.props.selectedUrl) ?
-		this.setState({innerHTML: grabbedText});
+		let grabbedHTML = this.fetchData();      //   fetchData(this.props.selectedUrl) ?
+		this.setState({innerHTML: grabbedHTML});
 	}	
 	
 	// componentWillUpdate  (){....}    -- copy/paste?    -if user clicks on another link in sidebar: need reload from new url
