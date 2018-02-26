@@ -1,16 +1,19 @@
 # cms
 
+screen wireframes available at wireframe.cc (wireframes have code in filename)
+
+
 ## Overview
 
-* Landing Page
+* Landing Page (visitor)
 
 * Access Pages
 
-  * register page
-  * login page
+  * register page (visitor)
+  * login page (member)
 
 
-* Content
+* Content (visitors)
 
   * visitor view
   * member view (dashboard) - content creation
@@ -37,10 +40,3 @@
 ## wireframes
 
 wireframes in dox have codes for site `wireframe.cc/<code>`
-
-
-# TODO
-
-* create screen wireframes
-* data shape/erd
-* create backlog
