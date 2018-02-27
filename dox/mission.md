@@ -12,25 +12,24 @@ To achieve our goal we will:
 
 # Coding Standards
 
-Coding standards will follow js recommended structure. e.g. eslint:recommended *If someone has a favourite lint config let's use it*
+Coding standards will follow js recommended structure as per airbnb linter.
 
-Spaces not tabs, 2 space indent. Create pretty code that is easy on the eye and understandable.
+Spaces not tabs, 2 space indent. Create pretty code that is easy on the eye and understandable. We have decided to use prettier.
 
-This is a bit vague, but let's not hold up features for minor infractions. 
 
 # Operating Strategies
 
 ## Stack
 
-MERN. create-react-app. redux? css/sass/aphrodite?
+MERN. create-react-app. no redux yet, styled-components.
 
 Emphasis on working software. Documentation and testing as appropriate to members experience/time.
 
 ## Meetings
 
-There will be one meeting at the start of the project to agree the goals and fix the vague parts of this document.
+There will be one meeting at the start of the project to agree the goals. Other video/voice calls maybe scheduled whne required.
 
-Team members will keep in touch regularly using slack channel. *If someone has a fave tool let's use it*
+Team members will keep in touch regularly using slack channel.
 
 Each team member will submit standups atleast twice a week to facilitate progress monitoring.
 
