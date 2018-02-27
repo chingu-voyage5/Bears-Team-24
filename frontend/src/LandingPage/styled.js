@@ -31,12 +31,12 @@ export const Heading3 = styled.h3`
 
 export const Content = styled.div`
   display: flex;
-  flexWrap: wrap;
-  flexDirection: row;
-  justifyContent: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 export const Section = styled.section`
-  width: calc(50% - 1rem);
-  fontSize: 1.1rem;
+  width: calc(50% - 2rem);
+  font-size: 1.1rem;
 `;
