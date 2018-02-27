@@ -6,6 +6,13 @@ export const Article = styled.article`
   padding: 3em 2rem;
 `;
 
+export const Content = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+`;
+
 export const Heading1 = styled.h1`
   text-align: center;
 `;
@@ -26,13 +33,6 @@ export const Heading3 = styled.h3`
   font-weight: 400;
   margin-bottom: .75rem;
   margin-top: 1rem;
-`;
-
-export const Content = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
 `;
 
 export const Section = styled.section`
