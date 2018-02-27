@@ -11,18 +11,18 @@ Array [
     className="sc-bdVaJa dEZJXY"
 >
     <h2
-        className="sc-bxivhb hpuIUW"
+        className="sc-bxivhb iyYSDG"
     >
         Features
     </h2>
     <div
-        className="sc-bwzfXH gXTtEz"
+        className="sc-bwzfXH gneseq"
     >
         <section
-            className="sc-EHOje eXOidB"
+            className="sc-EHOje lhLgo"
         >
             <h3
-                className="sc-ifAKCX fixLBw"
+                className="sc-ifAKCX hJXiLo"
             >
                 Manage Content
             </h3>
@@ -31,10 +31,10 @@ Array [
             </p>
         </section>
         <section
-            className="sc-EHOje eXOidB"
+            className="sc-EHOje lhLgo"
         >
             <h3
-                className="sc-ifAKCX fixLBw"
+                className="sc-ifAKCX hJXiLo"
             >
                 Search Content
             </h3>
@@ -43,10 +43,10 @@ Array [
             </p>
         </section>
         <section
-            className="sc-EHOje eXOidB"
+            className="sc-EHOje lhLgo"
         >
             <h3
-                className="sc-ifAKCX fixLBw"
+                className="sc-ifAKCX hJXiLo"
             >
                 Some Feature
             </h3>
@@ -55,10 +55,10 @@ Array [
             </p>
         </section>
         <section
-            className="sc-EHOje eXOidB"
+            className="sc-EHOje lhLgo"
         >
             <h3
-                className="sc-ifAKCX fixLBw"
+                className="sc-ifAKCX hJXiLo"
             >
                 Track Changes
             </h3>
