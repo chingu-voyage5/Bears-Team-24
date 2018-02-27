@@ -16,10 +16,10 @@ exports[`renders LandingPage 1`] = `
       Features
     </h2>
     <div
-      className="sc-ifAKCX pScbR"
+      className="sc-ifAKCX bXryrA"
     >
       <section
-        className="sc-EHOje YNinN"
+        className="sc-EHOje eXOidB"
       >
         <h3
           className="sc-bxivhb ddlsNA"
@@ -27,11 +27,11 @@ exports[`renders LandingPage 1`] = `
           Manage Content
         </h3>
         <p>
-          Loren lipsum
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin aliud quid voles, postea.
         </p>
       </section>
       <section
-        className="sc-EHOje YNinN"
+        className="sc-EHOje eXOidB"
       >
         <h3
           className="sc-bxivhb ddlsNA"
@@ -39,11 +39,11 @@ exports[`renders LandingPage 1`] = `
           Search Content
         </h3>
         <p>
-          Loren lipsum
+          Certe nihil nisi quod possit ipsum propter se iure laudari. Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.
         </p>
       </section>
       <section
-        className="sc-EHOje YNinN"
+        className="sc-EHOje eXOidB"
       >
         <h3
           className="sc-bxivhb ddlsNA"
@@ -51,11 +51,11 @@ exports[`renders LandingPage 1`] = `
           Some Feature
         </h3>
         <p>
-          Loren lipsum
+          Omnes enim iucundum motum, quo sensus hilaretur. Duo Reges: constructio interrete. Itaque haec cum illis est dissensio, cum Peripateticis nulla sane. Quis suae urbis conservatorem Codrum, quis Erechthei filias non maxime laudat?
         </p>
       </section>
       <section
-        className="sc-EHOje YNinN"
+        className="sc-EHOje eXOidB"
       >
         <h3
           className="sc-bxivhb ddlsNA"
@@ -63,7 +63,7 @@ exports[`renders LandingPage 1`] = `
           Track Changes
         </h3>
         <p>
-          Loren lipsum
+          Sit, inquam, tam facilis, quam vultis, comparatio voluptatis, quid de dolore dicemus? Non est igitur summum malum dolor.
         </p>
       </section>
     </div>
