@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import ContentArea from './ContentArea/ContentArea.js';
-=======
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import LandingPage from './LandingPage';
 import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
 
+import ContentArea from './ContentArea/ContentArea.js';
+
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
 // still use this to see your component. Simply replace <LandingPage/>
 // with the name of your component, e.g. <Sidebar />
->>>>>>> develop
+
 
 class App extends Component {
   state = {
@@ -32,9 +32,9 @@ class App extends Component {
     const { isLoggedIn, username } = this.state;
 
     return (
-<<<<<<< HEAD
-      <ContentArea />
-=======
+    <ContentArea />
+
+/*
       <Router>
         <React.Fragment>
           <StateSetup
@@ -54,8 +54,9 @@ class App extends Component {
             <Route path="/logout" render={() => <div>Logout component</div>} />
           </Switch>
         </React.Fragment>
+        
       </Router>
->>>>>>> develop
+*/
     );
   }
 }
