@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders LandingPage 1`] = `
+<div>
+  <h1
+    className="sc-bwzfXH gJIwTT"
+  >
+    Welcome to chingu CMS
+  </h1>
+  <article
+    className="sc-bdVaJa dEZJXY"
+  >
+    <h2
+      className="sc-htpNat bgShqm"
+    >
+      Features
+    </h2>
+    <div
+      className="sc-ifAKCX pScbR"
+    >
+      <section
+        className="sc-EHOje YNinN"
+      >
+        <h3
+          className="sc-bxivhb ddlsNA"
+        >
+          Manage Content
+        </h3>
+        <p>
+          Loren lipsum
+        </p>
+      </section>
+      <section
+        className="sc-EHOje YNinN"
+      >
+        <h3
+          className="sc-bxivhb ddlsNA"
+        >
+          Search Content
+        </h3>
+        <p>
+          Loren lipsum
+        </p>
+      </section>
+      <section
+        className="sc-EHOje YNinN"
+      >
+        <h3
+          className="sc-bxivhb ddlsNA"
+        >
+          Some Feature
+        </h3>
+        <p>
+          Loren lipsum
+        </p>
+      </section>
+      <section
+        className="sc-EHOje YNinN"
+      >
+        <h3
+          className="sc-bxivhb ddlsNA"
+        >
+          Track Changes
+        </h3>
+        <p>
+          Loren lipsum
+        </p>
+      </section>
+    </div>
+  </article>
+</div>
+`;
