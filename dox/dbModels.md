@@ -1,16 +1,16 @@
 
 ## Users
 
-name    |type
-----    |----
-_id     |mongo_id
-name    |string
-email   |string
-role    |string
-avatar  |asset._id
-bio     |string
+name    |type       |enum
+----    |----       |----
+_id     |mongo_id   |
+name    |string     |
+email   |string     |
+role    |string     | visitor,member,admin
+avatar  |asset._id  |
+bio     |string     |
 
-## Pages
+## Articles
 
 name              |type
 ----              |----
@@ -26,11 +26,11 @@ content           |String
 
 ## Assets
 
-name            |type
-----            |----
-_id             |mongo_id
-type            |string
-created         |date
-last_updated    |date
-creator         |user._id
-content         |base64 string
+name            |type           |enum
+----            |----           |
+_id             |mongo_id       |
+type            |string         |image,audio,video
+created         |date           |
+last_updated    |date           |
+creator         |user._id       |
+content         |base64 string  |
