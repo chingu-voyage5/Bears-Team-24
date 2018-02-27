@@ -8,8 +8,8 @@ export const Article = styled.article`
 
 export const Content = styled.div`
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
 `;
 
@@ -18,17 +18,17 @@ export const Heading1 = styled.h1`
 `;
 
 export const Heading2 = styled.h2`
-  width: 100%;
-  text-align: center;
-  font-weight: 400;
-  font-size: 2rem;
   color: #ff5a5f;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
 `;
 
 export const Heading3 = styled.h3`
-  display: flex;
   align-items: center;
   color: #7d93aa;
+  display: flex;
   font-size: 1.4em;
   font-weight: 400;
   margin-bottom: .75rem;
@@ -36,6 +36,6 @@ export const Heading3 = styled.h3`
 `;
 
 export const Section = styled.section`
-  width: calc(50% - 2rem);
   font-size: 1.1rem;
+  width: calc(50% - 2rem);
 `;
