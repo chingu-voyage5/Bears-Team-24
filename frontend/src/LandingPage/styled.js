@@ -19,7 +19,6 @@ export const Heading2 = styled.h2`
 `;
 
 export const Heading3 = styled.h3`
-
   display: flex;
   align-items: center;
   color: #7d93aa;
