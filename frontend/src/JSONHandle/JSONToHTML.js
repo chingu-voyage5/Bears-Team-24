@@ -8,6 +8,8 @@ export default function JSONToHTML(tree){
 	return resultHTML;
 }
 
+const NON_ATTRIBUTES = ["tag", "textContent", "children"];
+
 
 function wrapTag(element){
 	
@@ -20,11 +22,18 @@ function wrapTag(element){
 	}
 	
 	let tag = element.tag;
+	let attributes = "";
+	for (let attr of Object.keys(element)){
+		if(NON_ATTRIBUTES.includes(attr)){
+			continue;
+		}
+		attributes += ` ${attr}="${element[attr]}"`;
+	}
 	let textContent = element.textContent || '' ;
 	innerContent += textContent;  	
    
-   let template = `<${tag}>${innerContent}</${tag}>`;
-   // TODO : add attributes (array from db -> string)
+   let template = `<${tag}${attributes}>${innerContent}</${tag}>`;
+   // TODO : add attributes (array from db -> string), support <span> in text content
    
 	//console.log(template);
 	
