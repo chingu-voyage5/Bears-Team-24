@@ -32,9 +32,7 @@ class App extends Component {
     const { isLoggedIn, username } = this.state;
 
     return (
-    <ContentArea />
 
-/*
       <Router>
         <React.Fragment>
           <StateSetup
@@ -56,7 +54,7 @@ class App extends Component {
         </React.Fragment>
         
       </Router>
-*/
+
     );
   }
 }
