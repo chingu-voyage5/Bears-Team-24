@@ -3,7 +3,7 @@
 
 * Create a cms
 * Content will be entered using markdown.
-* Each article will display contributors
+* Each article will display contributors (nice to have)
 
 ## terms
 
@@ -11,8 +11,11 @@
 * member  - authed user can update content
 * admin   - god
 * article - a page of content
+* page    - a specific screen view of the app
 
 ## User Stories
+
+Most of the user stories are split in github issues to address carving up tasks and frontend/backend development separately.
 
 As a dev:
 
