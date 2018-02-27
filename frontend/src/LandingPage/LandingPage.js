@@ -2,7 +2,7 @@ import React from 'react';
 import { Article, Content, Heading1, Heading2, Heading3, Section } from './styled';
 
 const LandingPage = () => (
-  <div>
+  <React.Fragment>
     <Heading1>Welcome to chingu CMS</Heading1>
     <Article>
       <Heading2>Features</Heading2>
@@ -39,7 +39,7 @@ const LandingPage = () => (
         </Section>
       </Content>
     </Article>
-  </div>
+  </React.Fragment>
 );
 
 export default LandingPage;
