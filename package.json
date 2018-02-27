@@ -1,0 +1,58 @@
+{
+  "name": "voyage-4",
+  "version": "0.1.0",
+  "description": "a cms",
+  "main": "backend/index.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "connect-mongo": "^2.0.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "es6-promisify": "^5.0.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "express-validator": "^4.3.0",
+    "http": "0.0.0",
+    "mongoose": "^5.0.7",
+    "mongoose-mongodb-errors": "0.0.2",
+    "morgan": "^1.9.0",
+    "multer": "^1.3.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.4.0",
+    "slug": "^0.9.1",
+    "supervisor": "^0.12.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "concurrently": "^3.5.1",
+    "cross-env": "^5.1.1",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.18.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cross-env NODE_ENV=development supervisor -w backend backend/index.js",
+    "client": "node start-client.js",
+    "lint:fe": "cd frontend && npm run lint",
+    "test:fe": "cd frontend && npm test",
+    "test": "npm run test:fe",
+    "heroku-prebuild": "cd frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyage4/Bears-Team-25"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chingu-voyage4/Bears-Team-25/issues"
+  },
+  "homepage": "https://github.com/chingu-voyage4/Bears-Team-25#readme"
+}
