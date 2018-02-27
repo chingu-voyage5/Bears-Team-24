@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
+import Sidebar from './Sidebar';
 
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
@@ -37,6 +38,7 @@ class App extends Component {
             handleUsername={this.handleUsername}
           />
           <Navbar isLoggedIn={isLoggedIn} username={username} />
+          <Sidebar />
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route path="/pages" render={() => <div>Pages component</div>} />

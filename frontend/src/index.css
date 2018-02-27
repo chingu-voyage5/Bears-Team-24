@@ -3,3 +3,15 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.panel-heading {
+  cursor: pointer;
+}
+
+.panel .panel-body {
+  display: none;
+}
+
+.panel.isExpanded .panel-body { 
+  display: block;
+}
