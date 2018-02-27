@@ -1,0 +1,18 @@
+{
+	"HTMLTree": [		
+		{
+		"tag" : "section", 
+	 	"children": [
+	   	{
+	   	"tag" : "h1" ,
+	    	"textContent" : "Example Heading 1" 
+	   	},
+	   
+	   	{
+	   	"tag" : "p",
+	   	"textContent" : "Text"
+	   	}
+	 	]
+	 	}
+	]
+}

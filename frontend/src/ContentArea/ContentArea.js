@@ -1,7 +1,5 @@
 import React from 'react';
-
-
-// TODO :  figure out how to grab raw text content and/or HTML of github wiki https://github.com/Chingu-cohorts/voyage-wiki/wiki
+import JSONToHTML from '../JSONHandle/JSONToHTML.js';
 
 export default class ContentArea extends React.Component{
 		
@@ -13,55 +11,32 @@ export default class ContentArea extends React.Component{
 		};
 		
 		
-		this.fetchData = this.fetchData.bind(this);
+		this.loadJSON = this.loadJSON.bind(this);
 	}
 	
-	fetchData(selectedUrl){
-		// url which is currently selected in sidebar navigation menu
-		// ....
-		// maybe should extract this function into its own module and update all references  
+	loadJSON(location = './db/content/Example-Page.json'){
 		
-		let urlToGrabData = selectedUrl || 'https://cors-anywhere.herokuapp.com/https://loripsum.net/api';
-		//uses lorem ipsum for example now , later will grab data from github chingu
+				
+		let self = this;	
+		let req = new Request(location);
 		
-		      
-		let self = this;
-		
-		// AJAX example version: 
-		fetch(urlToGrabData)
-						.then(   function(response) { return response.text();}    )
-						.then(   function(responseText) { 
-						
-										let resultHTML;
-										let keyWithHTML = 'html';   // api response we expect is JSON object where one of props is html string
-										//  { "status" : "ok",   "html" : "<h1>KOOL</h1> <p>This is the response HTML</p>" }
-										
-										try{ 
-											resultHTML = JSON.parse(responseText)[keyWithHTML];
-										}
-										/* example api what i chose does not send data in JSON, only in HTML. so i build JSON object here */
-										catch(error){
-											//alert(error);
-											
-											let jsonObj = {};
-											jsonObj[keyWithHTML] = responseText;
-											
-											let json = JSON.stringify(jsonObj);
-											resultHTML = JSON.parse(json)[keyWithHTML];
-											
-										}
+		fetch(req)
+						.then(   function(response) { console.log(response); return response.json();}    )
+						.then(   function(responseJSON) { 
+										let resultHTML = JSONToHTML(responseJSON.HTMLTree);
+										self.setState( {innerHTML : resultHTML} );
+																			
 										
 										
-										self.setState( {innerHTML: resultHTML});
+										
 						     		}		);
-	   // in future: regexp to detect html tags: <(.*?)>(.|\n|\r)*?<\/(\1|)>						     		
-						     		
-		
-		return '<p>loading......</p>';       //this line runs immediately, displays loading text while AJAX request is in process
+		return '<p>loading......</p>';
+		// in future: regexp to detect html tags: <(.*?)>(.|\n|\r)*?<\/(\1|)>	
 	}
+	
 	
 	componentWillMount(){
-		let grabbedHTML = this.fetchData();      //   fetchData(this.props.selectedUrl) ?
+		let grabbedHTML = this.loadJSON();      //   fetchData(this.props.selectedUrl) ?
 		this.setState({innerHTML: grabbedHTML});
 	}	
 	
