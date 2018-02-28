@@ -65,3 +65,5 @@ class Articles extends React.Component {
 Articles.propTypes = propTypes;
 
 export default Articles;
+
+export { renderRows };
