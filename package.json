@@ -42,6 +42,8 @@
     "server": "cross-env NODE_ENV=development supervisor -w backend backend/index.js",
     "client": "node start-client.js",
     "lint:fe": "cd frontend && npm run lint",
+    "lint:be": "node_modules/.bin/eslint backend",
+    "lint": "npm run lint:be && npm run lint:fe",
     "test:fe": "cd frontend && npm test",
     "test:be": "mocha --reporter progress ./backend/test/setup.js ./backend/**/*.test.js",
     "test": "npm run test:be && npm run test:fe",
