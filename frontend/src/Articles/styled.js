@@ -25,6 +25,8 @@ export const Button = styled.button`
   }
 `;
 
+Button.displayName = 'Button';
+
 export const RowWrapper = styled.a`
   align-items: center;
   box-shadow: 0 1px 1px -1px #333;
@@ -41,10 +43,14 @@ export const RowWrapper = styled.a`
   }
 `;
 
+RowWrapper.displayName = 'RowWrapper';
+
 export const Separator = styled.hr`
   border-color: #aaa;
   width: 100%;
 `;
+
+Separator.displayName = 'Separator';
 
 export const TitleRowWrapper = styled.div`
   display: flex;
@@ -54,9 +60,13 @@ export const TitleRowWrapper = styled.div`
   padding-left: 1rem;
 `;
 
+TitleRowWrapper.displayName = 'TitleRowWrapper';
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
   max-width: 60rem;
 `;
+
+Wrapper.displayName = 'Wrapper';
