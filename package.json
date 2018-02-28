@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "chai": "^4.1.2",
     "concurrently": "^3.5.1",
     "cross-env": "^5.1.1",
     "dotenv": "^4.0.0",
@@ -42,7 +43,8 @@
     "client": "node start-client.js",
     "lint:fe": "cd frontend && npm run lint",
     "test:fe": "cd frontend && npm test",
-    "test": "npm run test:fe",
+    "test:be": "mocha --reporter progress ./backend/test/setup.js ./backend/**/*.test.js",
+    "test": "npm run test:be && npm run test:fe",
     "heroku-prebuild": "cd frontend && npm install && npm run build"
   },
   "repository": {
