@@ -1,14 +1,12 @@
-'use strict'
-
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-const config = require('./config');
 
-async function init () {
-  await mongoose.connect(config.uri);
+mongoose.Promise = global.Promise;
+
+async function init() {
+  await mongoose.connect(process.env.MONGO_URI);
 }
 
-async function close () {
+async function close() {
   await mongoose.connection.close();
 }
 
