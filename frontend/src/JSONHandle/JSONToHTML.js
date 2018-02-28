@@ -32,10 +32,11 @@ function wrapTag(element){
 	let textContent = element.textContent || '' ;
 	innerContent += textContent;  	
    
-   let template = `<${tag}${attributes}>${innerContent}</${tag}>`;
-   // TODO : add attributes (array from db -> string), support <span> in text content
+   let template = element.tag ? `<${tag}${attributes}>${innerContent}</${tag}>` : innerContent;
+   // support <span> in text content. Need to rewrite. Any element will have "children" array but some of elements won't have a "tag".
+   // if with "tag" - look one level deeper. if no "tag": the "children" is array with 1 element, text-content.  
    
-	//console.log(template);
+	console.log(template);
 	
 	return template;
 }

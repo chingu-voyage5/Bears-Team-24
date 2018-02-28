@@ -7,8 +7,10 @@
 	   	{
 	   	"tag" : "p",
 	   	"class": "edit-info",
-	   	"textContent": "Jim Medlock edited this page 14 days ago",
 	   	"children": [
+	   		{
+				"textContent": "Jim Medlock edited this page 14 days ago"	   			
+	   		},
 	   		{
 	   		"tag": "a",
 	   		"href": "#",
@@ -91,7 +93,16 @@
 	   			},
 	   			{
 	   			"tag": "td",
-	   			"textContent" : "Onboarding: Get in slack, write intro, make sure everyone is prepared for the team announcement and launch on February 15"
+	   			"children": [
+	   				{
+	   				"tag" : "span",
+	   				"class" : "green-text",
+	   				"textContent" : "Example SPAN mixed with textContent "
+	   				},
+	   				{
+	   				"textContent" : "Onboarding: Get in slack, write intro, make sure everyone is prepared for the team announcement and launch on February 15"
+	   				}
+	   			]
 	   			}
 	   		]
 	   		},

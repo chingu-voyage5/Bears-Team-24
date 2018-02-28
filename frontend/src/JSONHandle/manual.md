@@ -115,6 +115,48 @@ is used key "children" (value type : Array, elements of array are closest nested
 	]
 }
 
+If NO nested tags:
+ JSON for current tag will have ONLY "textContent" key(string) and NO "children" key(array).
+<p>Text</p>
+
+{
+	"tag": "p",
+	"textContent" : "Text"
+} 
+ 
+
+If HAS hested tags:
+ JSON for current tag will have NO "textContent" key(string) and ONLY "children" key(array).
+(no matter if has also text content).
+example.1 
+<p>
+	<span>TEXT</span>
+</p>
+example.2
+<p>
+	TEXT                         //  only text, no tag around
+	<span>TEXT</span>
+	ADDITIONAL TEXT
+	<span>MORE TEXT</span>
+</p>
+
+in ex.1 and 2 JSON structure will be made the same way.
+{
+	"tag": "p",
+	"children": [
+		{
+		"textContent" : "TEXT"           //  textContent without tag
+		},
+		{
+		"tag": "span"
+		"textContent" : "TEXT"           // another element which has tag
+		},
+	
+		....
+		
+	]
+}
+
 
   =HTML Attributes=
   

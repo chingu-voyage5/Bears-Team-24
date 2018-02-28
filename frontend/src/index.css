@@ -12,6 +12,13 @@ a:hover{
 	text-decoration: underline;
 }
 
+
+/* ---- for example.  may remove  ----*/ 
+.green-text {
+	color: #33A223;
+}
+/*-------example over ---------------*/
+
 .edit-info, .edit-info a{
 	font-size: .8rem;
 	color: #889988;
