@@ -46,6 +46,15 @@ class App extends Component {
               path="/pages"
               render={routeProps => <Articles {...routeProps} />}
             />
+            <Route
+              exact
+              path="/pages/new"
+              render={() => <div>Creating New Page</div>}
+            />
+            <Route
+              path="/pages/:id"
+              render={r => <div>Editing Article {r.match.params.id}</div>}
+            />
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route path="/assets" render={() => <div>Assets component</div>} />
             <Route path="/cms" render={() => <div>CMS component</div>} />
