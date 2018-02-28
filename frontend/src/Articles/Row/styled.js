@@ -11,7 +11,11 @@ export const Title = styled.div`
   width: 60%;
 `;
 
+Title.displayName = 'Title';
+
 export const Creator = styled.div`
   align-items: left;
   flex: 1;
 `;
+
+Creator.displayName = 'Creator';
