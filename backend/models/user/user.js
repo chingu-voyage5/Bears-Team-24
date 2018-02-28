@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const { Schema } = mongoose;
 mongoose.Promise = global.Promise;
 const validator = require('validator');
@@ -11,11 +12,11 @@ const passportLocalMongoose = require('passport-local-mongoose');
  * the hashed password and the salt value.
  */
 // email can be anything in dev
-let email_spec;
-if (process.env.NODE_ENV === "development") {
-  email_spec = { email: String };
+let emailSpec;
+if (process.env.NODE_ENV === 'development') {
+  emailSpec = { email: String };
 } else {
-  email_spec = {
+  emailSpec = {
     type: String,
     unique: true,
     lowercase: true,
@@ -26,7 +27,7 @@ if (process.env.NODE_ENV === "development") {
 }
 const userSchema = new Schema({
   active: Boolean,
-  email: email_spec,
+  email: emailSpec,
   name: {
     type: String,
     required: 'Please supply a name',

@@ -3,7 +3,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next(); // carry on! They are logged in!
   }
-  res.sendStatus(401);
+  return res.sendStatus(401);
 }
 
 module.exports = isLoggedIn;
