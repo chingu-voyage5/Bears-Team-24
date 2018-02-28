@@ -1,5 +1,5 @@
 import React from 'react';
-import JSONToHTML from '../JSONHandle/JSONToHTML.js';
+import {JSONToHTML} from '../JSONHandle';
 
 export default class ContentArea extends React.Component{
 		
@@ -21,7 +21,7 @@ export default class ContentArea extends React.Component{
 		let req = new Request(location);
 		
 		fetch(req)
-						.then(   function(response) { console.log(response); return response.json();}    )
+						.then(   function(response) { return response.json(); }    )
 						.then(   function(responseJSON) { 
 										let resultHTML = JSONToHTML(responseJSON.HTMLTree);
 										self.setState( {innerHTML : resultHTML} );
