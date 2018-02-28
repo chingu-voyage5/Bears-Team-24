@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 class Collapsible extends React.Component { 
   state = { isExpanded: false }
+  
   handleToggle = () => {
     this.setState({
       isExpanded: !this.state.isExpanded
