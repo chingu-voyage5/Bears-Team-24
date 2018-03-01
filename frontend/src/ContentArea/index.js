@@ -1,4 +1,4 @@
 // each container uses an index.js file to expose it's reuseable parts
-import LandingPage from './LandingPage';
+import ContentArea from "./ContentArea";
 
-export default LandingPage;
+export default ContentArea;

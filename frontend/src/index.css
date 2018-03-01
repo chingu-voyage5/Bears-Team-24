@@ -3,3 +3,60 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+a {
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+
+/* ---- for example.  may remove  ----*/ 
+.green-text {
+	color: #33A223;
+}
+/*-------example over ---------------*/
+
+.edit-info, .edit-info a{
+	font-size: .8rem;
+	color: #889988;
+}
+
+.edit-info a{
+	padding: 0 .5rem;
+}
+
+
+
+.content-area{
+	padding: 0 10%;
+}
+
+.content-area table{
+	width:100%;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+.content-area td, .content-area th{
+	padding: 1rem;
+	border: .125rem solid #123321;
+}
+
+.content-area table tr:nth-child(2n+1){
+	background-color: #DEDEDD;
+}
+
+.content-area .outer-links{
+	padding: .5rem 0;
+	
+	 
+}
+
+.content-area .outer-links a{
+	color: #4466BB;
+	
+	 
+}
