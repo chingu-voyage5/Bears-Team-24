@@ -14,7 +14,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 // email can be anything in dev
 let emailSpec;
 if (process.env.NODE_ENV === 'development') {
-  emailSpec = { email: String };
+  emailSpec = String;
 } else {
   emailSpec = {
     type: String,
@@ -28,15 +28,15 @@ if (process.env.NODE_ENV === 'development') {
 const userSchema = new Schema({
   active: Boolean,
   email: emailSpec,
-  name: {
+  username: {
     type: String,
-    required: 'Please supply a name',
+    required: 'Please supply a username',
     trim: true
   },
   avatar: String
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(mongodbErrorHandler);
 
 module.exports = mongoose.model('User', userSchema);

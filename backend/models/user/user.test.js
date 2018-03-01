@@ -16,7 +16,7 @@ describe('User model', () => {
     testUser = {
       _id,
       email: 'test@email.com',
-      name: 'test'
+      username: 'test'
     };
   });
   afterEach(async () => {
@@ -28,6 +28,7 @@ describe('User model', () => {
       await user.save();
       const userInDb = await User.findById(_id);
       expect(userInDb._id).to.eql(testUser._id);
+      expect(userInDb.username).to.eql(testUser.username);
       expect(userInDb.email).to.eql(testUser.email);
     });
     it('should register a new user', async () => {
@@ -40,10 +41,11 @@ describe('User model', () => {
       }
       const userInDb = await User.findById(_id);
       expect(userInDb._id).to.eql(testUser._id);
+      expect(userInDb.username).to.eql(testUser.username);
       expect(userInDb.email).to.eql(testUser.email);
       expect(error).to.equal('none');
     });
-    it('should reject duplicate email on registration', async () => {
+    it('should reject duplicate username on registration', async () => {
       const user1 = new User(testUser);
       const user2 = new User(testUser);
       const register = promisify(User.register, User);
