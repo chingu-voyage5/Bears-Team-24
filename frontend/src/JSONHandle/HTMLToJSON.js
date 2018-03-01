@@ -4,7 +4,7 @@ let html =
 //regex101.com
 const TAG_DETECT = /<(\S+?){1}(\s+.*?)?>(.|\s)*?<\/(\1|)>/g;
 
-// TODO : return html tree
+// TODO : return html tree, support auto-closing tags img,input
 
 function HTMLToJSON(HTMLString) {
   /*input: html code, output: JSON structured for reading by ContentArea */

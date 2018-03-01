@@ -1,104 +1,129 @@
-JSON structure which keeps HTML: 
+# JSON structure which keeps HTML: 
 
-----------
-PAGES
 
-Every HTML page is presented as JSON object with key "HTMLTree" (type: Array).
-in filesystem : file "db/content/Example-Page.json"
+-------
+## PAGES
+-------
 
+
+Every HTML page is presented as JSON object **with key "HTMLTree"** (type: *Array*).
+
+
+
+*in filesystem* :
+
+file "db/content/Example-Page.json"
+
+
+
+```
 {
 	"HTMLTree" : [
 	//   all html elements to be here inside array.
 	//
 	]
 }
+```
 
-----------
-ELEMENTS OF PAGE
+------
+## ELEMENTS OF PAGE
+------
 
-Array elements are (type: Object) 1st-level HTML elements.
+Array "HTMLTree" includes elements (type: *Object*) which are **1st-level HTML elements**.
+
                  example1: 
--HTML- 
+_HTML_
+```
  <div>
   <h1>FOO</h1>
   <p>BAR</p>
  </div>
- 
--JSON-
- 
+``` 
+_JSON_
+ ```
  {
  	"HTMLTree": [
  		{
- 			FOO           (detailed structure later, here's the main idea)
+ 			*div*           (detailed structure later, here's the main idea)
  		}
  	]
  }
- 
+``` 
                  example2: 
--HTML-
+_HTML_
+```
   <h1>FOO</h1>
   <p>BAR</p>
   <p>next</p>
-  
--JSON-
- 
+```
+_JSON_
+``` 
  {
  	"HTMLTree": [
  		{
- 			FOO           (detailed structure later, here's the main idea)
+ 			*FOO*           (detailed structure later, here's the main idea)
  		},
  		{
- 			BAR           (this element is also on root level of presented HTML-tree)
+ 			*BAR*           (this element is also on root level of presented HTML-tree)
  		},
  		{
- 			next
+ 			*next*
  		}
  	]
  }
- 
+ ```
  
 ----------
-ELEMENT DETAILS
+## ELEMENT DETAILS
+------
 
-Every HTML element as was spoken before, in JSON is an object.
+Every HTML element as was spoken before, in JSON is an **_object_**.
 
+*inside the "HTMLTree" , e.g HTMLTree[0]* :
+```
 {
-	// there is an object for element
+	// there is an object for element (*Foo* from previous chapter)
 } 
+```
 
-  =Tags, Text content=
-The keys of object are: "tag", "textContent".
+### Tags, Text content
+The keys of **_object_** are: "**tag**", "**textContent**".
 
 		example1:
--JSON-    
+_JSON_
+```
 {
 	"tag" : "p",
 	"textContent" : "Hello"
 	
 }
+```
 
--HTML-
+_HTML_
 
+```
 <p>Hello</p>
+```
 
 
-
-  =Nested elements=
+### Nested elements
   
-If HTML element has nested HTML elements inside, 
-is used key "children" (value type : Array, elements of array are closest nested HTML elements).
+If HTML element **has nested HTML elements** inside, 
 
-	example:
+in **_object_** is used key "**children**"
+(value type : _Array_, elements of array are **closest nested HTML elements**).
+
+         example:
 	
--HTML-
-
+_HTML_
+```
 <div>
 	<h1>First child</h1>
 	<p>Second child</p>
 </div>  
-
--JSON- 
-
+```
+_JSON_
+```
 {
 	"tag": "div",
 	"children": [
@@ -114,33 +139,55 @@ is used key "children" (value type : Array, elements of array are closest nested
 		}	
 	]
 }
+```
+------
+####            !!!! THE MOST IMPORTANT THING ABOUT NESTED ELEMENTS   !!!!
+1) If **NO** nested tags:
 
-If NO nested tags:
- JSON for current tag will have ONLY "textContent" key(string) and NO "children" key(array).
+JSON for current element will have **ONLY "textContent"** key(*string*) and **NO "children"** key(*array*).
+
+_HTML_
+```
 <p>Text</p>
+```
+
+_JSON_
+```
 
 {
 	"tag": "p",
 	"textContent" : "Text"
 } 
- 
+```
 
-If HAS hested tags:
- JSON for current tag will have NO "textContent" key(string) and ONLY "children" key(array).
-(no matter if has also text content).
-example.1 
+2) If **HAS** hested tags:
+
+JSON for current tag will have **NO "textContent"** key(*string*) and **ONLY "children"** key(*array*).
+(if has also text content - some of **"children"** will be without **"tag"**).
+
+       example.1 
+_HTML_
+```
 <p>
 	<span>TEXT</span>
 </p>
-example.2
+```
+          example.2
+
+_HTML_
+```
 <p>
 	TEXT                         //  only text, no tag around
 	<span>TEXT</span>
 	ADDITIONAL TEXT
 	<span>MORE TEXT</span>
 </p>
+```
 
-in ex.1 and 2 JSON structure will be made the same way.
+in **ex.1 and 2** JSON structure will be made the **same way**.
+
+_JSON_
+```
 {
 	"tag": "p",
 	"children": [
@@ -156,29 +203,31 @@ in ex.1 and 2 JSON structure will be made the same way.
 		
 	]
 }
+```
+------
 
-
-  =HTML Attributes=
+### HTML Attributes
   
-The "tag", "textContent", "children" are /reserved keywords/ which will not be recognized as HTML attributes
-Any other object keys of element in JSON will be recognized as attributes.
+The "**tag**", "**textContent**", "**children**" are _reserved keywords_ which will not be recognized as HTML attributes.
+
+Any other object keys of element in JSON will be recognized as **attributes**.
 
 example: 
 
--JSON-
-
+_JSON_
+```
 {
 	"tag" : "p",
 	"textContent" : "Check da microphone",
 	"class" : "intro-text",
-	"myAttribute" : "44"
+	"myAttribute" : "44bc"
 		
 } 
-
--HTML-
-
-<p> class="intro-text" myAttribute="44">Check da microphone</p>
-
+```
+_HTML_
+```
+<p> class="intro-text" myAttribute="44bc">Check da microphone</p>
+```
 
 
 
