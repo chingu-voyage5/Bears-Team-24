@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Articles from './Articles';
+import ArticleEdit from './ArticleEdit';
 import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
@@ -49,12 +50,9 @@ class App extends Component {
             <Route
               exact
               path="/pages/new"
-              render={() => <div>Creating New Page</div>}
+              render={() => <ArticleEdit empty />}
             />
-            <Route
-              path="/pages/:id"
-              render={r => <div>Editing Article {r.match.params.id}</div>}
-            />
+            <Route path="/pages/:id" component={ArticleEdit} />
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route path="/assets" render={() => <div>Assets component</div>} />
             <Route path="/cms" render={() => <div>CMS component</div>} />
