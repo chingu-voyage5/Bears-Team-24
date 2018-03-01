@@ -1,3 +1,3 @@
-import JSONToHTML from './JSONToHTML';
+import JSONToHTML from "./JSONToHTML";
 
 export {JSONToHTML};
