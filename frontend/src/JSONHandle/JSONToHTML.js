@@ -9,6 +9,7 @@ export default function JSONToHTML(tree) {
 }
 
 const NON_ATTRIBUTES = ["tag", "textContent", "children"];
+const VOID_ELEMENTS = ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"];
 
 function wrapTag(element) {
   let innerContent = "";
@@ -26,17 +27,19 @@ function wrapTag(element) {
       continue;
     }
     attributes += ` ${attr}="${element[attr]}"`;
+    // TODO : add support boolean attributes (checked)
   }
   let textContent = element.textContent || "";
   innerContent += textContent;
-
-  let template = element.tag
+	
+  let voidElement = VOID_ELEMENTS.includes(tag)
+ 		
+  let template = voidElement ? `<${tag}${attributes} />` : 
+  		element.tag 
     ? `<${tag}${attributes}>${innerContent}</${tag}>`
     : innerContent;
-  // support <span> in text content. Need to rewrite. Any element will have "children" array but some of elements won't have a "tag".
-  // if with "tag" - look one level deeper. if no "tag": the "children" is array with 1 element, text-content.
-
-  console.log(template);
+  
+  //console.log(template);
 
   return template;
 }
