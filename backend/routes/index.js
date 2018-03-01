@@ -11,8 +11,7 @@ router.get('/api/v1/test', (req, res) => {
 
 router.post('/api/v1/register',
   users.register.validateRegister,
-  users.register.register,
-  auth.login
+  users.register.register
 );
 router.post('/api/v1/login', auth.login);
 router.get('/api/v1/logout', auth.logout);
