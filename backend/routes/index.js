@@ -10,6 +10,7 @@ router.get('/api/v1/test', (req, res) => {
 });
 
 router.get('/api/v1/user/:id*?', users.getDetail);
+router.get('/api/v1/users', users.getAll);
 
 router.post('/api/v1/register',
   users.register.validateRegister,
