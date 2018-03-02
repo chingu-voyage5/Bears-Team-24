@@ -10,6 +10,8 @@ export const InputField = styled.input`
   padding-left: 0.5rem;
 `;
 
+InputField.displayName = 'InputField';
+
 export const Label = styled.label`
   align-items: center;
   display: flex;
@@ -18,3 +20,5 @@ export const Label = styled.label`
   justify-content: flex-end;
   margin-bottom: 2rem;
 `;
+
+Label.displayName = 'Label';
