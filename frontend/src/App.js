@@ -14,11 +14,10 @@ import ContentArea from './ContentArea';
 // still use this to see your component. Simply replace <LandingPage/>
 // with the name of your component, e.g. <Sidebar />
 
-
 class App extends Component {
   state = {
     isLoggedIn: true,
-    username: 'fake_user',
+    username: 'fake_user'
   };
 
   handleLogin = isLoggedIn => {
@@ -31,9 +30,8 @@ class App extends Component {
 
   render() {
     const { isLoggedIn, username } = this.state;
-	
-   return (
-		
+
+    return (
       <Router>
         <React.Fragment>
           <StateSetup
@@ -61,16 +59,13 @@ class App extends Component {
             />
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route path="/assets" render={() => <div>Assets component</div>} />
-            <Route path="/cms"  component={ContentArea} />         
+            <Route path="/cms" component={ContentArea} />
             <Route path="/login" render={() => <div>Login component</div>} />
             <Route path="/logout" render={() => <div>Logout component</div>} />
           </Switch>
-          
         </React.Fragment>
-        
       </Router>
-
-    );     
+    );
   }
 }
 
