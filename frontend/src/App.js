@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Articles from './Articles';
+import ArticleEdit from './ArticleEdit';
 import Assets from './Assets';
 import LandingPage from './LandingPage';
 import Login from './Login';
@@ -50,12 +51,9 @@ class App extends Component {
             <Route
               exact
               path="/pages/new"
-              render={() => <div>Creating New Page</div>}
+              render={() => <ArticleEdit empty />}
             />
-            <Route
-              path="/pages/:id"
-              render={r => <div>Editing Article {r.match.params.id}</div>}
-            />
+            <Route path="/pages/:id" component={ArticleEdit} />
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route exact path="/assets" render={r => <Assets {...r} />} />
             <Route
