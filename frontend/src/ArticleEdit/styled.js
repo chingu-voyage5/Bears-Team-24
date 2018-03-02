@@ -53,11 +53,15 @@ export const Editor = styled.div`
   width: 100%;
 `;
 
+Editor.displayName = 'Editor';
+
 export const Heading1 = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
   text-align: center;
 `;
+
+Heading1.displayName = 'Heading1';
 
 export const Preview = styled.div`
   ${contentStyleMixin()};
@@ -65,9 +69,13 @@ export const Preview = styled.div`
   position: absolute;
 `;
 
+Preview.displayName = 'Preview';
+
 export const Textarea = styled.textarea`
   ${contentStyleMixin()};
 `;
+
+Textarea.displayName = 'Textarea';
 
 export const Wrapper = styled.div`
   box-sizing: border-box;
