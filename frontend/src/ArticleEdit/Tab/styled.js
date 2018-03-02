@@ -25,9 +25,13 @@ export const Label = styled.label`
   z-index: 1;
 `;
 
+Label.displayName = 'Label';
+
 export const Radio = styled.input.attrs({
   type: 'radio',
 })`
   opacity: 0;
   position: absolute;
 `;
+
+Radio.displayName = 'Radio';
