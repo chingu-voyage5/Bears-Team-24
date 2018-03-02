@@ -27,7 +27,7 @@ content           |String
 ## Assets
 
 name            |type           |enum
-----            |----           |
+----            |----           |---
 _id             |mongo_id       |
 type            |string         |image,audio,video
 created         |date           |
