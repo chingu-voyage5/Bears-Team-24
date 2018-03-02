@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Articles from './Articles';
+import Assets from './Assets';
 import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
@@ -56,7 +57,11 @@ class App extends Component {
               render={r => <div>Editing Article {r.match.params.id}</div>}
             />
             <Route path="/users" render={() => <div>Users component</div>} />
-            <Route path="/assets" render={() => <div>Assets component</div>} />
+            <Route exact path="/assets" render={r => <Assets {...r} />} />
+            <Route
+              path="/assets/:id"
+              render={r => <div>Editing asset {r.match.params.id}</div>}
+            />
             <Route path="/cms" render={() => <div>CMS component</div>} />
             <Route path="/login" component={Login} />
             <Route path="/logout" render={() => <div>Logout component</div>} />
