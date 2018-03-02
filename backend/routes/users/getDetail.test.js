@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 describe('User routes', () => {
   let _id;
   let testUser;
-  User.collection.drop();
+  User.remove({});
   beforeEach(async () => {
     _id = mongoose.Types.ObjectId();
     testUser = {
