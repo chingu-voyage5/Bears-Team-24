@@ -29,7 +29,7 @@ describe('User routes', () => {
   });
   it('gets user detail', (done) => {
     chai.request(app)
-      .get(`/api/v1/users/${testUser._id}`)
+      .get(`/api/v1/user/${testUser._id}`)
       .end((err, res) => {
         if (err) throw err;
         expect(res.statusCode).to.equal(200);
