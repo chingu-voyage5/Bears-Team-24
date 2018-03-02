@@ -13,7 +13,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
  */
 // email can be anything in dev
 let emailSpec;
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   emailSpec = String;
 } else {
   emailSpec = {
