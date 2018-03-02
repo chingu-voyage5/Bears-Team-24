@@ -32,8 +32,7 @@ const userSchema = new Schema({
     type: String,
     required: 'Please supply a username',
     trim: true
-  },
-  avatar: String
+  }
 });
 
 userSchema.plugin(passportLocalMongoose);

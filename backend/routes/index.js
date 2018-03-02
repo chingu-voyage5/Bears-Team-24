@@ -9,6 +9,8 @@ router.get('/api/v1/test', (req, res) => {
   res.json('wahoo');
 });
 
+router.get('/api/v1/users/:id*?', users.getDetail);
+
 router.post('/api/v1/register',
   users.register.validateRegister,
   users.register.register
