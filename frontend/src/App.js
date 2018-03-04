@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Articles from './Articles';
 import ArticleEdit from './ArticleEdit';
 import Assets from './Assets';
+import AssetEdit from './AssetEdit';
 import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
@@ -56,10 +57,7 @@ class App extends Component {
             <Route path="/pages/:id" component={ArticleEdit} />
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route exact path="/assets" render={r => <Assets {...r} />} />
-            <Route
-              path="/assets/:id"
-              render={r => <div>Editing asset {r.match.params.id}</div>}
-            />
+            <Route path="/assets/:id" component={AssetEdit} />
             <Route path="/cms" render={() => <div>CMS component</div>} />
             <Route path="/login" component={Login} />
             <Route path="/logout" render={() => <div>Logout component</div>} />
