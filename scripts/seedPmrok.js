@@ -2,6 +2,8 @@
 
 /* eslint-disable */
 
+// Run this script *after* seedDb.js
+
 const db = new Mongo().getDB('cms');
 
 db.articles.insert([

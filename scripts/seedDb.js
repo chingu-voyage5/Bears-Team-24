@@ -2,6 +2,9 @@
 
 /* eslint-disable */
 
+// Run this script first, then run seedPmrok.js to seed the db for both wikis
+// voyage (this file) and pmrok.
+
 const db = new Mongo().getDB('cms');
 
 const sys_id = ObjectId();
