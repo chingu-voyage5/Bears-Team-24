@@ -15,14 +15,12 @@ import {
 import { fileTypes, maxFileSizeMb } from './config';
 import { getFileType, getMediaType, readFile } from './utils';
 
-import data from './MOCK_DATA.json';
-
 const MAX_FILE_SIZE_MB = maxFileSizeMb;
 
 class AssetEdit extends React.Component {
   state = {
-    fileType: getMediaType(data.asset),
-    data64: data.asset,
+    fileType: getMediaType(this.props.asset),
+    data64: this.props.asset,
     scale: false,
   };
 
@@ -106,17 +104,19 @@ class AssetEdit extends React.Component {
   };
 
   render() {
+    const { description, title } = this.props;
+
     return (
       <Wrapper>
         <Input
           innerRef={() => {}}
-          defaultValue={data.title}
+          defaultValue={title || ''}
           label="Title:"
           name="title"
         />
         <Input
           innerRef={() => {}}
-          defaultValue={data.description}
+          defaultValue={description || ''}
           label="Description:"
           name="description"
         />

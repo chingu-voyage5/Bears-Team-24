@@ -10,6 +10,8 @@ import Login from './Login';
 import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
 
+import assetMockData from './_mockData/assetMockData.json';
+
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
 // still use this to see your component. Simply replace <LandingPage/>
@@ -57,7 +59,10 @@ class App extends Component {
             <Route path="/pages/:id" component={ArticleEdit} />
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route exact path="/assets" render={r => <Assets {...r} />} />
-            <Route path="/assets/:id" component={AssetEdit} />
+            <Route
+              path="/assets/:id"
+              render={() => <AssetEdit {...assetMockData} />}
+            />
             <Route path="/cms" render={() => <div>CMS component</div>} />
             <Route path="/login" component={Login} />
             <Route path="/logout" render={() => <div>Logout component</div>} />
