@@ -1,4 +1,6 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Input from '../ArticleEdit/Input';
 import {
@@ -16,6 +18,12 @@ import { fileTypes, maxFileSizeMb } from './config';
 import { getFileType, getMediaType, readFile } from './utils';
 
 const MAX_FILE_SIZE_MB = maxFileSizeMb;
+
+const propTypes = {
+  asset: PropTypes.string,
+  description: PropTypes.string,
+  title: PropTypes.string,
+};
 
 class AssetEdit extends React.Component {
   state = {
@@ -144,5 +152,7 @@ class AssetEdit extends React.Component {
     );
   }
 }
+
+AssetEdit.propTypes = propTypes;
 
 export default AssetEdit;
