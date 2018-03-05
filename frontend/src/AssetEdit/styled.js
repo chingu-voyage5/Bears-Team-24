@@ -55,11 +55,15 @@ export const ImgPreview = styled.img`
   transition: transform 0.15s ease;
 `;
 
+ImgPreview.displayName = 'ImgPreview';
+
 export const InvisibleInput = styled.input.attrs({
   type: 'file',
 })`
   display: none;
 `;
+
+InvisibleInput.displayName = 'InvisibleInput';
 
 export const InputField = styled.p`
   align-items: center;
