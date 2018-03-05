@@ -50,7 +50,7 @@ class AssetEdit extends React.Component {
       file,
     }));
 
-    readFile(file, data64 => this.setState(() => ({ data64 })));
+    readFile(file).then(data64 => this.setState(() => ({ data64 })));
   };
 
   handleDrop = e => {
@@ -72,7 +72,7 @@ class AssetEdit extends React.Component {
       file,
     }));
 
-    readFile(file, data64 => this.setState(() => ({ data64 })));
+    readFile(file).then(data64 => this.setState(() => ({ data64 })));
   };
 
   handleDrag = e => {

@@ -22,14 +22,19 @@ const getMediaType = d64 => {
   return match[2];
 };
 
-const readFile = (file, cb) => {
-  const reader = new FileReader();
+const readFile = file =>
+  new Promise(resolve => {
+    if (!(file instanceof File)) {
+      resolve('');
+    }
 
-  reader.addEventListener('load', () => {
-    cb(reader.result);
+    const reader = new FileReader();
+
+    reader.addEventListener('load', () => {
+      resolve(reader.result);
+    });
+
+    reader.readAsDataURL(file);
   });
-
-  reader.readAsDataURL(file);
-};
 
 export { getFileType, getMediaType, readFile };
