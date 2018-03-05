@@ -4,10 +4,13 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Articles from './Articles';
 import ArticleEdit from './ArticleEdit';
 import Assets from './Assets';
+import AssetEdit from './AssetEdit';
 import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
+
+import assetMockData from './_mockData/assetMockData.json';
 
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
@@ -58,7 +61,7 @@ class App extends Component {
             <Route exact path="/assets" render={r => <Assets {...r} />} />
             <Route
               path="/assets/:id"
-              render={r => <div>Editing asset {r.match.params.id}</div>}
+              render={() => <AssetEdit {...assetMockData} />}
             />
             <Route path="/cms" render={() => <div>CMS component</div>} />
             <Route path="/login" component={Login} />
