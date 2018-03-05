@@ -11,7 +11,7 @@ const sys_id = ObjectId();
 
 db.users.remove({});
 db.users.insert([
-  { _id: sys_id, name: 'sys', email: 'none', role: 'admin', bio: 'sys' }
+  { _id: sys_id, username: 'sys', email: 'none', role: 'admin', bio: 'sys' }
 ]);
 
 db.articles.remove({});

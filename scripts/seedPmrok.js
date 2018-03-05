@@ -6,6 +6,10 @@
 
 const db = new Mongo().getDB('cms');
 
+const c = db.users.find({username: 'sys'});
+const user = c.hasNext() ? c.next() : null;
+const sys_id = user._id;
+
 db.articles.insert([
   // { creator: "1", category: "", sub_category: "", content: "" },
   { creator: sys_id, category: "PMRoK", sub_category: "About this wiki", title: 'The Chingu PMRoK',
