@@ -626,7 +626,7 @@ The best source of examples for how issues are to be defined an labeled is the [
 - [Voyage 4 Handbook](https://medium.com/chingu/the-voyage-4-handbook-33c1c90b855b)
 - [Voyage Projects](https://medium.com/chingu/chingu-voyage-4-team-projects-lineup-320a8bc87701)
     `},
-  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources/FAQ", title: 'Voyage wiki',
+  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources>FAQ", title: 'Voyage wiki',
     content: `## Voyage Wiki
 
 ### I've found an error or omission! How do I request a change?
@@ -636,7 +636,7 @@ We love finding and fixing errors and omissions! We also love hearing your ideas
 To report an issue or to request a new topic open an issue in the [Voyage Wiki Issue Log](https://github.com/Chingu-cohorts/voyage-wiki/issues). Be sure to describe what's needs correction or your topic suggestions in as much detail as possible.
 
     `},
-  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources/FAQ", title: 'Voyage',
+  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources>FAQ", title: 'Voyage',
     content: `## Voyage
 
 ### What's Expected of Me?
@@ -676,7 +676,7 @@ Chingu. As a result please take the time to open an issue [here](https://github.
 suggestion, or correction to report.
 
     `},
-  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources/FAQ", title: 'Your Team',
+  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources>FAQ", title: 'Your Team',
     content: `## Your Team
 
 ### What Makes a Successful Team?
@@ -734,7 +734,7 @@ Disagreement is something that's normal and should be resolved calmly and in a r
 Start by treating a disagreement as you would any other problem. Make sure there's a clear and concise statement of the problem. Then as a team build a list of pros and cons. Weight these if necessary to highlight those that are more important than other. Then discuss and vote. If there's no clear consensus then the PM should choose a solution. Remember, if you choose the wrong solution you will have learned something valuable and you can refactor.
 
     `},
-  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources/FAQ", title: 'Git & GitHub',
+  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources>FAQ", title: 'Git & GitHub',
     content: `## Git & GitHub
 
 ### Why GitHub?
@@ -750,7 +750,7 @@ In other words, **_we are ~~lazy~~ efficient_**.
 At the start of a Voyage your team's repo will be automatically set up and your team members will be authorized for access. If you are having access issues it's most likely due to an authorization issue. Your PM has the admin privileges necessary to correct this type of issue.
 
     `},
-  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources/FAQ", title: 'Slack',
+  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources>FAQ", title: 'Slack',
     content: `## Slack
 
 ### Why Slack?
@@ -776,7 +776,7 @@ Slack supports various ways to format your messages to help in creating clear an
 One formatting option to emphasize is to format any code you include in messages by surrounding it with 3 backticks ('\`') just as you would in Markdown. This makes it far easier to read than normal prose.
 
     `},
-  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources/FAQ", title: 'Project Licence',
+  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources>FAQ", title: 'Project Licence',
     content: `## Project License
 
 ### Why Are Licenses Important?
@@ -793,7 +793,7 @@ Software licenses, regardless of whether they are intended for open source or co
 [Choose a License](https://choosealicense.com/) is one resource that can help you evaluate the differences between the various open source licenses so you can make an informed decision.
 
     `},
-  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources/FAQ", title: 'Glossary',
+  { creator: sys_id, category: "Voyage", sub_category: "Tools and Resources>FAQ", title: 'Glossary',
     content: `**_backlog_** - The main source of information about the project is
 the _Product Backlog_, which defines requirements the application must meet in order to be successful. Requirements are expressed as user stories of the format: “As a: <role> I want to: <function-description> So I can: <value-statement>”
 

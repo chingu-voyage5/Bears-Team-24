@@ -747,7 +747,7 @@ buttons so you can quickly navigate between the different tools without
 blocking up your conversation.
 
     `},
-  { creator: sys_id, category: "PMRoK", sub_category: "Guidance/Situational Guidance", title: 'Building the Project Backlog',
+  { creator: sys_id, category: "PMRoK", sub_category: "Guidance>Situational Guidance", title: 'Building the Project Backlog',
     content: `## Sagas, Epics, & User Stories
 
 It is often helpful to categorize stories as sagas, epics, and stories to reflect differences in their scope and lifespan.
@@ -813,7 +813,7 @@ This has been a very light introduction to Agile project management and has been
 
 Good luck on your projects!
     `},
-  { creator: sys_id, category: "PMRoK", sub_category: "Guidance/Situational Guidance", title: 'Managing Application Secrets',
+  { creator: sys_id, category: "PMRoK", sub_category: "Guidance>Situational Guidance", title: 'Managing Application Secrets',
     content: `Every application has certain secrets, such as build instructions, passwords and SSH keys that could compromise the security and confidentiality of the app if made public. It is the responsibility of the Project Manager to ensure that these are maintained in a secure location and are available to a minimum of two team members. After all, given the fluid nature of team membership you don't want to wake up one day to find that no one on the team has access to the Production server.
 
 Please note that the Guidelines presented below are sufficient to protect most private and commercial secrets, but are NOT sufficient for apps supporting many government departments and agencies such as the U. S. Department of Defense.
@@ -836,7 +836,7 @@ In a production setting, like Heroku, you can set these environment variables th
 
 -----
     `},
-  { creator: sys_id, category: "PMRoK", sub_category: "Guidance/Situational Guidance", title: 'Managing Team Documentation',
+  { creator: sys_id, category: "PMRoK", sub_category: "Guidance>Situational Guidance", title: 'Managing Team Documentation',
     content: `One of the foundations of the [Agile Manifesto](http://agilemanifesto.org/) is that Working software is valued over comprehensive documentation. This has led to the misconception that Agile methodologies, like Scrum, produce only code and not documentation. In fact, Agile methodologies promote the production of documentation at the right point in time and at the right level of detail.
 
 Generally speaking the "right point in time" is when the necessary details are stable enough to produce documentation that will not require later revision. You may need to keep notes as your sprints progress so you'll have the information you need to create usable documentation, but you won't create that documentation until the details have been defined and are stable.
@@ -849,7 +849,7 @@ As an example consider the following diagram produced by @zashishz for the Voyag
 
 This diagram shows the reader everything he or she needs to know regarding how they are expected to conduct their day-to-day development tasks with respect to Git and GitHub.
     `},
-  { creator: sys_id, category: "PMRoK", sub_category: "Guidance/Situational Guidance", title: 'Managing Issues & Requests',
+  { creator: sys_id, category: "PMRoK", sub_category: "Guidance>Situational Guidance", title: 'Managing Issues & Requests',
     content: `# Introduction
 The PMRoK Project uses GitHub not only for source code management, but also for issue reporting. The purpose of the following guidelines is to provide guidance on how to report an issue. You might be asking yourself "How hard can this be?". You might be surprised to find out how often bad issue reports are actually created. Here are some examples:
 
@@ -914,7 +914,7 @@ Issue Type and Priority labels are to be assigned by whoever creates the issue. 
 # Examples
 The best source of examples for how issues are to be defined and labeled is the [PMRoK Issue Log](https://github.com/Chingu-cohorts/pmrok/issues).
     `},
-  { creator: sys_id, category: "PMRoK", sub_category: "Guidance/Situational Guidance", title: 'Dealing with "Analysis Paralysis"',
+  { creator: sys_id, category: "PMRoK", sub_category: "Guidance>Situational Guidance", title: 'Dealing with "Analysis Paralysis"',
     content: `The short duration of Chingu Voyages requires that teams strike a delicate balance between performing quality work, learning new things, and completing the project. This is made even more import by the fact that team members typically have responsibilities outside of their Voyage project such as family obligations, jobs, and school which can create more stress. The objective of the Voyage is to learn and not increase stress.
 
 ## Setting Your Goals & Expectations
@@ -1180,7 +1180,7 @@ I'm trying to find something that isn't business focused for project kickoff mee
 ## Bonus
 Here's another good [short read about not overly planning the project out.](https://hackernoon.com/start-together-finish-together-5b47ca1209b3)  Just getting a good framework and moving through it.
     `},
-  { creator: sys_id, category: "PMRoK", sub_category: "Resources/PM FAQ", title: 'I\'m Nervous!',
+  { creator: sys_id, category: "PMRoK", sub_category: "Resources>PM FAQ", title: 'I\'m Nervous!',
     content: `## Nervous
 
 ### Ok, I'm the PM, but I'm nervous!
@@ -1201,10 +1201,10 @@ This is a question only you can answer.  However, if you've read through this wi
 ### What do I do if I need help?
 Everyone needs help sometimes. Be prepared to ask for it when you need it.  First, look back over this wiki and see if the answer is here. We will be adding to it often as questions arise.  Additionally, you can head to the PM slack and ask the other PMs.  Possibly one of us will have stumbled across that same issue and have the answer.
     `},
-  { creator: sys_id, category: "PMRoK", sub_category: "Resources/PM FAQ", title: 'Your Team',
+  { creator: sys_id, category: "PMRoK", sub_category: "Resources>PM FAQ", title: 'Your Team',
     content: `TBD
     `},
-  { creator: sys_id, category: "PMRoK", sub_category: "Resources/PM FAQ", title: 'Git & Github',
+  { creator: sys_id, category: "PMRoK", sub_category: "Resources>PM FAQ", title: 'Git & Github',
     content: `TBD
     `},
   { creator: sys_id, category: "PMRoK", sub_category: "Resources", title: 'Glossary',
