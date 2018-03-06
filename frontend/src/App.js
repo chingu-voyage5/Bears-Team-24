@@ -45,7 +45,21 @@ class App extends Component {
             <Route path="/assets" render={() => <div>Assets component</div>} />
             <Route path="/cms" render={() => <div>CMS component</div>} />
             <Route path="/login" component={Login} />
-            <Route path="/logout" render={() => <div>Logout component</div>} />
+            <Route
+              path="/logout"
+              render={() => {
+                fetch('/api/v1/logout', {
+                  method: 'post',
+                  headers: { 'content-type': 'application/json' },
+                  credentials: 'same-origin',
+                })
+                  .then(res => res.json())
+                  .then(json => console.log('logout response:', json));
+                return (
+                  <div>Logged out</div>
+                );
+              }}
+            />
           </Switch>
         </React.Fragment>
       </Router>

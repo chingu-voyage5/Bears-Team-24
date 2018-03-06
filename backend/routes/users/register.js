@@ -3,8 +3,18 @@ const User = require('../../models/user');
 
 exports.validateRegister = (req, res, next) => {
   // Below methods are added to req object by express-validator module
-  req.sanitizeBody('username');
-  req.checkBody('username', 'You must supply a name!').notEmpty();
+  req.sanitizeBody('name');
+  req.checkBody('name', 'You must supply a name!').notEmpty();
+  if (process.env.NODE_ENV === 'development') {
+    req.sanitizeBody('email');
+  } else {
+    req.checkBody('email', 'That Email is not valid!').isEmail();
+    req.sanitizeBody('email').normalizeEmail({
+      gmail_remove_dots: false,
+      remove_extension: false,
+      gmail_remove_subaddress: false
+    });
+  }
   req.checkBody('password1', 'Password Cannot be Blank!').notEmpty();
   req.checkBody('password2', 'Confirmed Password cannot be blank!').notEmpty();
   req.checkBody('password2', 'Oops! Your passwords do not match').equals(req.body.password1);
@@ -16,17 +26,16 @@ exports.validateRegister = (req, res, next) => {
       errors: errors.map(err => err.msg)
     });
   }
-  return next(); // there were no errors!
+  return next();
 };
 
-exports.register = async (req, res) => {
-  const { username, password1 } = req.body;
-  const user = new User({ username });
+exports.register = async (req, res, next) => {
+  const user = new User({ email: req.body.email, name: req.body.name });
   const register = promisify(User.register, User);
   try {
-    await register(user, password1);
+    await register(user, req.body.password1);
   } catch (e) {
     return res.json({ error: e.name });
   }
-  return res.json(user);
+  return next();
 };

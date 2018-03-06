@@ -4,8 +4,8 @@ import Input from './Input';
 
 import { ButtonLikeText, Fields, Form, Heading2, Wrapper } from './styled';
 
-const MIN_PASSWORD_LENGTH = 6;
-const MIN_USERNAME_LENGTH = 3;
+const MIN_PASSWORD_LENGTH = 1;
+const MIN_USERNAME_LENGTH = 1;
 
 class Login extends React.Component {
   state = {
@@ -25,8 +25,35 @@ class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    if (this.state.register) {
+      const { username, password1, password2 } = this.state;
+      console.log('register:', this.state);
+      fetch('/api/v1/register', {
+        method: 'post',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ name: username, email: username, password1, password2 })
+      })
+        .then(res => res.json())
+        .then(json => {
+          console.log('register response:', json);
+        });
+    } else {
+      const { username, password1 } = this.state;
+      console.log('login:', this.state);
+      fetch('/api/v1/login', {
+        method: 'post',
+        headers: { 'content-type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({ email: username, password: password1 })
+      })
+        .then(res => res.json())
+        .then(json => {
+          console.log('login response:', json);
+        });
+    }
+
     // eslint-disable-next-line
-    alert(JSON.stringify(this.state));
+    // alert(JSON.stringify(this.state));
     this.setState(() => ({
       username: '',
       password1: '',
