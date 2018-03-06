@@ -11,6 +11,7 @@ import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
 
 import assetMockData from './_mockData/assetMockData.json';
+import assetsMockData from './_mockData/assets.json';
 
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
@@ -19,6 +20,8 @@ import assetMockData from './_mockData/assetMockData.json';
 
 class App extends Component {
   state = {
+    assetData: assetMockData,
+    assets: assetsMockData,
     isLoggedIn: true,
     username: 'fake_user',
   };
@@ -32,7 +35,7 @@ class App extends Component {
   };
 
   render() {
-    const { isLoggedIn, username } = this.state;
+    const { assetData, assets, isLoggedIn, username } = this.state;
 
     return (
       <Router>
@@ -58,11 +61,15 @@ class App extends Component {
             />
             <Route path="/pages/:id" component={ArticleEdit} />
             <Route path="/users" render={() => <div>Users component</div>} />
-            <Route exact path="/assets" render={r => <Assets {...r} />} />
+            <Route
+              exact
+              path="/assets"
+              render={r => <Assets {...r} data={assets} />}
+            />
             <Route exact path="/assets/new" component={AssetEdit} />
             <Route
               path="/assets/:id"
-              render={() => <AssetEdit {...assetMockData} />}
+              render={() => <AssetEdit {...assetData} />}
             />
             <Route path="/cms" render={() => <div>CMS component</div>} />
             <Route path="/login" component={Login} />
