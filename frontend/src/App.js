@@ -59,6 +59,7 @@ class App extends Component {
             <Route path="/pages/:id" component={ArticleEdit} />
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route exact path="/assets" render={r => <Assets {...r} />} />
+            <Route exact path="/assets/new" component={AssetEdit} />
             <Route
               path="/assets/:id"
               render={() => <AssetEdit {...assetMockData} />}

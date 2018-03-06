@@ -20,8 +20,7 @@ const propTypes = {
 
 class Assets extends React.Component {
   handleClick = () => {
-    // eslint-disable-next-line
-    alert('Will navigate to a new asset creation page. Soon...');
+    this.props.history.push(`${this.props.location.pathname}/new`);
   };
 
   handleNavigation = id => {
