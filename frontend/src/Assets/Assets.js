@@ -40,7 +40,8 @@ class Assets extends React.Component {
         <ReactTable
           data={data}
           columns={columns}
-          className="-striped -highlight"
+          noDataText="No data found."
+          className={data.length ? '-striped -highlight' : ''}
           getTdProps={(_, rowInfo) => ({
             onClick: () => this.handleNavigation(rowInfo.row._id),
           })}
