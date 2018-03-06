@@ -4,18 +4,22 @@ import ReactTable from 'react-table';
 
 import { Button, Wrapper } from './styled';
 
-import data from './MOCK_DATA.json';
 import '../react-table.css';
 
 import columns from './columns_config';
 
 const propTypes = {
+  data: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
+};
+
+const defaultProps = {
+  data: [],
 };
 
 class Assets extends React.Component {
@@ -28,6 +32,8 @@ class Assets extends React.Component {
   };
 
   render() {
+    const { data } = this.props;
+
     return (
       <Wrapper>
         <Button onClick={this.handleClick}>New Asset</Button>
@@ -45,5 +51,6 @@ class Assets extends React.Component {
 }
 
 Assets.propTypes = propTypes;
+Assets.defaultProps = defaultProps;
 
 export default Assets;
