@@ -66,6 +66,6 @@ Sub categories need to be flexible as we have no way of knowing (for new content
 
 The [article edit/view page](https://github.com/chingu-voyage4/Bears-Team-25/blob/develop/frontend/src/ArticleEdit/ArticleEdit.js) has title, category and sub-category fields. The title and category are self explanatory.
 
-The sub category will be entered using forward slash delimiters.
+The sub category will be entered using greater than '>' delimiters.
 e.g.
-Tools and Resources/FAQ
+Tools and Resources>FAQ
