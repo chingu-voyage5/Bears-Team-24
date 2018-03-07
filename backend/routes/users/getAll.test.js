@@ -53,6 +53,7 @@ describe('User routes', () => {
         expect(res.body).to.be.a('array');
         expect(res.body.length).to.be.equal(2);
         res.body.forEach((user) => {
+          // eslint-disable-next-line eqeqeq
           const eu = testUsers.filter(u => u._id == user._id)[0];
           expect(eu).to.be.a('object');
           expect(user.username).to.equal(eu.username);

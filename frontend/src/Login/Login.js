@@ -31,7 +31,7 @@ class Login extends React.Component {
       fetch('/api/v1/register', {
         method: 'post',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ name: username, email: username, password1, password2 })
+        body: JSON.stringify({ username, password1, password2 })
       })
         .then(res => res.json())
         .then(json => {
@@ -44,7 +44,7 @@ class Login extends React.Component {
         method: 'post',
         headers: { 'content-type': 'application/json' },
         credentials: 'same-origin',
-        body: JSON.stringify({ email: username, password: password1 })
+        body: JSON.stringify({ username, password: password1 })
       })
         .then(res => res.json())
         .then(json => {

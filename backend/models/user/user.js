@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise;
 const userSchema = new Schema({
   active: Boolean,
   email: String,
-  name: {
+  username: {
     type: String,
     required: 'Please supply a name',
     trim: true
@@ -22,7 +22,7 @@ const userSchema = new Schema({
   avatar: String
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+userSchema.plugin(passportLocalMongoose, { usernameField: 'username' });
 // userSchema.plugin(mongodbErrorHandler);
 
 module.exports = mongoose.model('User', userSchema);

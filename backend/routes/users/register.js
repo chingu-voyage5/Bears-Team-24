@@ -3,8 +3,8 @@ const User = require('../../models/user');
 
 exports.validateRegister = (req, res, next) => {
   // Below methods are added to req object by express-validator module
-  req.sanitizeBody('name');
-  req.checkBody('name', 'You must supply a name!').notEmpty();
+  req.sanitizeBody('username');
+  req.checkBody('username', 'You must supply a name!').notEmpty();
   if (process.env.NODE_ENV === 'development') {
     req.sanitizeBody('email');
   } else {
@@ -30,12 +30,15 @@ exports.validateRegister = (req, res, next) => {
 };
 
 exports.register = async (req, res, next) => {
-  const user = new User({ email: req.body.email, name: req.body.name });
+  const { username } = req.body;
+  const user = new User({ username }); // { email: req.body.email, name: req.body.name });
   const register = promisify(User.register, User);
   try {
     await register(user, req.body.password1);
   } catch (e) {
     return res.json({ error: e.name });
   }
+  // eslint-disable-next-line no-underscore-dangle
+  res.json({ _id: user._id, username: user.username });
   return next();
 };

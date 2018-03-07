@@ -58,11 +58,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  console.log('request user:', req.user);
-  return next();
-});
-
 app.use(routes);
 
 // create a http server from the app (this can be closed properly, unlike the express app)

@@ -13,8 +13,8 @@ function login(req, res, next) {
     }
     req.logIn(user, function (err) {
       if (err) { return next(err); }
-      const { _id, name, email, avatar } = user;
-      res.send({ _id, name, email, avatar });
+      const { _id, username } = user;
+      res.send({ _id, username });
     });
   })(req, res, next);
 }
