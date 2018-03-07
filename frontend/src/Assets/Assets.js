@@ -4,12 +4,12 @@ import ReactTable from 'react-table';
 
 import { Button, Wrapper } from './styled';
 
-import data from './MOCK_DATA.json';
 import '../react-table.css';
 
 import columns from './columns_config';
 
 const propTypes = {
+  data: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
@@ -18,10 +18,13 @@ const propTypes = {
   }).isRequired,
 };
 
+const defaultProps = {
+  data: [],
+};
+
 class Assets extends React.Component {
   handleClick = () => {
-    // eslint-disable-next-line
-    alert('Will navigate to a new asset creation page. Soon...');
+    this.props.history.push(`${this.props.location.pathname}/new`);
   };
 
   handleNavigation = id => {
@@ -29,13 +32,16 @@ class Assets extends React.Component {
   };
 
   render() {
+    const { data } = this.props;
+
     return (
       <Wrapper>
         <Button onClick={this.handleClick}>New Asset</Button>
         <ReactTable
           data={data}
           columns={columns}
-          className="-striped -highlight"
+          noDataText="No data found."
+          className={data.length ? '-striped -highlight' : ''}
           getTdProps={(_, rowInfo) => ({
             onClick: () => this.handleNavigation(rowInfo.row._id),
           })}
@@ -46,5 +52,6 @@ class Assets extends React.Component {
 }
 
 Assets.propTypes = propTypes;
+Assets.defaultProps = defaultProps;
 
 export default Assets;
