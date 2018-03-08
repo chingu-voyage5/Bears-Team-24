@@ -13,7 +13,7 @@ import StateSetup from './_StateSetup';
 
 class App extends Component {
   state = {
-    isLoggedIn: true,
+    isLoggedIn: false,
     username: 'fake_user',
   };
 

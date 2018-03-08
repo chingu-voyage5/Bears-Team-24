@@ -78,6 +78,10 @@ class Login extends React.Component {
       username.length < MIN_USERNAME_LENGTH ||
       (register && password1 !== password2);
 
+    const loginGithubUrl = process.env.NODE_ENV === 'production'
+      ? '/auth/github'
+      : 'http://localhost:3000/auth/github';
+
     return (
       <Wrapper>
         <Form onSubmit={this.handleSubmit}>
@@ -129,12 +133,7 @@ class Login extends React.Component {
             : 'Click to login as an existing user'}
         </ButtonLikeText>
         <a
-          href="/"
-          onClick={e => {
-            e.preventDefault();
-            // eslint-disable-next-line
-            alert('Redirect to GitHub login');
-          }}
+          href="http://localhost:3000/auth/github"
         >
           Login using GitHub
         </a>
