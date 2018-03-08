@@ -7,10 +7,14 @@ import ArticleEdit from './ArticleEdit';
 import Assets from './Assets';
 import AssetEdit from './AssetEdit';
 import LandingPage from './LandingPage';
+import Login from './Login';
 import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
 
 import ContentArea from './ContentArea';
+
+import assetMockData from './_mockData/assetMockData.json';
+import assetsMockData from './_mockData/assets.json';
 
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
@@ -22,7 +26,7 @@ class App extends Component {
     assetData: assetMockData,
     assets: assetsMockData,
     isLoggedIn: true,
-    username: 'fake_user'
+    username: 'fake_user',
   };
 
   handleLogin = isLoggedIn => {
@@ -73,7 +77,7 @@ class App extends Component {
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route path="/assets" render={() => <div>Assets component</div>} />
             <Route path="/cms" component={ContentArea} />
-            <Route path="/login" render={() => <div>Login component</div>} />
+            <Route path="/login" component={Login} />
             <Route path="/logout" render={() => <div>Logout component</div>} />
           </Switch>
         </React.Fragment>
