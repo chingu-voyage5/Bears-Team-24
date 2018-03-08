@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Articles from './Articles';
+import ArticleEdit from './ArticleEdit';
+import Assets from './Assets';
+import AssetEdit from './AssetEdit';
 import LandingPage from './LandingPage';
 import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
@@ -16,6 +19,8 @@ import ContentArea from './ContentArea';
 
 class App extends Component {
   state = {
+    assetData: assetMockData,
+    assets: assetsMockData,
     isLoggedIn: true,
     username: 'fake_user'
   };
@@ -29,7 +34,7 @@ class App extends Component {
   };
 
   render() {
-    const { isLoggedIn, username } = this.state;
+    const { assetData, assets, isLoggedIn, username } = this.state;
 
     return (
       <Router>
@@ -51,11 +56,19 @@ class App extends Component {
             <Route
               exact
               path="/pages/new"
-              render={() => <div>Creating New Page</div>}
+              render={() => <ArticleEdit empty />}
             />
+            <Route path="/pages/:id" component={ArticleEdit} />
+            <Route path="/users" render={() => <div>Users component</div>} />
             <Route
-              path="/pages/:id"
-              render={r => <div>Editing Article {r.match.params.id}</div>}
+              exact
+              path="/assets"
+              render={r => <Assets {...r} data={assets} />}
+            />
+            <Route exact path="/assets/new" component={AssetEdit} />
+            <Route
+              path="/assets/:id"
+              render={() => <AssetEdit {...assetData} />}
             />
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route path="/assets" render={() => <div>Assets component</div>} />
