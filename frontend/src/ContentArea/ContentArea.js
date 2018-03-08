@@ -6,7 +6,7 @@ export default class ContentArea extends React.Component {
     super(props);
 
     this.state = {
-      innerHTML: undefined
+      innerHTML: undefined,
     };
 
     this.loadJSON = this.loadJSON.bind(this);
@@ -20,8 +20,8 @@ export default class ContentArea extends React.Component {
     const req = new Request(location);
 
     fetch(req)
-      .then((response) => response.json())
-      .then((responseJSON) => {
+      .then(response => response.json())
+      .then(responseJSON => {
         const resultHTML = JSONToHTML(responseJSON.HTMLTree);
         self.setState({ innerHTML: resultHTML });
       });

@@ -13,7 +13,7 @@ const VOID_ELEMENTS = [
   'param',
   'source',
   'track',
-  'wbr'
+  'wbr',
 ];
 
 function wrapTag(element) {
