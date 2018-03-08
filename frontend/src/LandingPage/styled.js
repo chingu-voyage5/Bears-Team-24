@@ -31,7 +31,7 @@ export const Heading3 = styled.h3`
   display: flex;
   font-size: 1.4em;
   font-weight: 400;
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
   margin-top: 1rem;
 `;
 

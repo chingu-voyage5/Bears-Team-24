@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Articles from './Articles';
@@ -9,6 +10,8 @@ import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
+
+import ContentArea from './ContentArea';
 
 import assetMockData from './_mockData/assetMockData.json';
 import assetsMockData from './_mockData/assets.json';
@@ -71,7 +74,9 @@ class App extends Component {
               path="/assets/:id"
               render={() => <AssetEdit {...assetData} />}
             />
-            <Route path="/cms" render={() => <div>CMS component</div>} />
+            <Route path="/users" render={() => <div>Users component</div>} />
+            <Route path="/assets" render={() => <div>Assets component</div>} />
+            <Route path="/cms" component={ContentArea} />
             <Route path="/login" component={Login} />
             <Route path="/logout" render={() => <div>Logout component</div>} />
           </Switch>
