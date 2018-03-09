@@ -1,3 +1,4 @@
 import UserList from './UserList';
+import UserPage from './UserPage';
 
-export default UserList;
+export {UserList,UserPage};

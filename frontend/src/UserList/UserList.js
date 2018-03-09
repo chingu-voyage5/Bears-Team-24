@@ -17,15 +17,17 @@ export default class UserList extends React.Component{
 						{mockUsers.map(function(d,i) {
 							return (
 							<tr key={i}>
-								<td></td>
-								<td>{d.name}</td>
+								<td>
+									<img className="avatar" src={d.avatar} alt="avatar" />
+								</td>
+								<td><a target="_blank" href={"/users/"+d._id}>{d.name}</a></td>
 								<td>{d.role}</td>
 							</tr>
 							);
 							}
 							)
 						
-						}
+						
 							
 						
 						}
