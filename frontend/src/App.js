@@ -64,7 +64,7 @@ class App extends Component {
               render={() => <ArticleEdit empty />}
             />
             <Route path="/pages/:id" component={ArticleEdit} />
-            <Route path="/users" component={UserList} />
+            <Route path="/users" render={()=><UserList test="1" />} />
             <Route
               exact
               path="/assets"
