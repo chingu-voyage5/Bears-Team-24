@@ -12,8 +12,7 @@ import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
 
 import ContentArea from './ContentArea';
-import {UserList, UserPage} from './UserList';
-
+import { UserList, UserPage } from './UserList';
 
 import assetMockData from './_mockData/assetMockData.json';
 import assetsMockData from './_mockData/assets.json';
@@ -65,8 +64,11 @@ class App extends Component {
               render={() => <ArticleEdit empty />}
             />
             <Route path="/pages/:id" component={ArticleEdit} />
-            <Route exact path="/users" render={()=><UserList />} />
-            <Route path="/users/:id" render={(props)=><UserPage userId={props.match.params.id}/>} />
+            <Route exact path="/users" render={() => <UserList />} />
+            <Route
+              path="/users/:id"
+              render={props => <UserPage userId={props.match.params.id} />}
+            />
             <Route
               exact
               path="/assets"
@@ -77,7 +79,7 @@ class App extends Component {
               path="/assets/:id"
               render={() => <AssetEdit {...assetData} />}
             />
-            
+
             <Route path="/assets" render={() => <div>Assets component</div>} />
             <Route path="/cms" component={ContentArea} />
             <Route path="/login" component={Login} />
