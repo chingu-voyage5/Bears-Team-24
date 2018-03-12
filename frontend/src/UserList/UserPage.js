@@ -13,7 +13,7 @@ export default class UserPage extends React.Component {
     let userInfo = (
       <p>
         User ID {this.props.userId} not found. Type &apos;/users&apos; in
-        address bar and hit Enter to see all registered users
+        address bar and hit Enter (or click the button below) to see all registered users
       </p>
     );
 
