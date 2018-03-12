@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 import mockUsers from './MOCK_DATA.json';
 
 export default class UserPage extends React.Component {
@@ -53,7 +55,12 @@ export default class UserPage extends React.Component {
       );
     }
 
-    return <section className="user-page">{userInfo}</section>;
+    return (
+    <section className="user-page">
+	    {userInfo}
+    <Link to='/users'><button>Back to users list</button></Link>
+    </section>
+    );
   }
 }
 

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import mockUsers from './MOCK_DATA.json';
 
 export default class UserList extends React.Component {
@@ -19,15 +21,16 @@ export default class UserList extends React.Component {
                   <img className="avatar" src={d.avatar} alt="avatar" />
                 </td>
                 <td>
-                  <a target="_blank" href={`/users/${d._id}`}>
+                  <Link to={`/users/${d._id}`}>
                     {d.name}
-                  </a>
+                  </Link>
                 </td>
                 <td>{d.role}</td>
               </tr>
             ))}
           </tbody>
         </table>
+        
       </section>
     );
   }

@@ -79,7 +79,6 @@ class App extends Component {
               path="/assets/:id"
               render={() => <AssetEdit {...assetData} />}
             />
-
             <Route path="/assets" render={() => <div>Assets component</div>} />
             <Route path="/cms" component={ContentArea} />
             <Route path="/login" component={Login} />
