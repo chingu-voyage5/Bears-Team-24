@@ -23,36 +23,36 @@ export default class UserPage extends React.Component {
 
       userInfo = (
         <table>
-        <tbody>
-          <tr>
-            <td className="avatar" colSpan="2">
-              <img src={d.avatar} alt="avatar" />
-            </td>
-          </tr>
-          <tr>
-            <td> Name</td>
-            <td> {d.name}</td>
-          </tr>
-          <tr>
-            <td> ID</td>
-            <td> {d._id}</td>
-          </tr>
-          <tr>
-            <td> Email</td>
-            <td> {d.email}</td>
-          </tr>
-          <tr>
-            <td> Role</td>
-            <td> {d.role}</td>
-          </tr>
-          <tr>
-            <td> Avatar</td>
-            <td> {d.avatar}</td>
-          </tr>
-          <tr>
-            <td> Bio</td>
-            <td> {d.bio}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td className="avatar" colSpan="2">
+                <img src={d.avatar} alt="avatar" />
+              </td>
+            </tr>
+            <tr>
+              <td> Name</td>
+              <td> {d.name}</td>
+            </tr>
+            <tr>
+              <td> ID</td>
+              <td> {d._id}</td>
+            </tr>
+            <tr>
+              <td> Email</td>
+              <td> {d.email}</td>
+            </tr>
+            <tr>
+              <td> Role</td>
+              <td> {d.role}</td>
+            </tr>
+            <tr>
+              <td> Avatar</td>
+              <td> {d.avatar}</td>
+            </tr>
+            <tr>
+              <td> Bio</td>
+              <td> {d.bio}</td>
+            </tr>
           </tbody>
         </table>
       );
