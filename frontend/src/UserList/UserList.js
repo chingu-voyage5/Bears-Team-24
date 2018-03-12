@@ -21,16 +21,13 @@ export default class UserList extends React.Component {
                   <img className="avatar" src={d.avatar} alt="avatar" />
                 </td>
                 <td>
-                  <Link to={`/users/${d._id}`}>
-                    {d.name}
-                  </Link>
+                  <Link to={`/users/${d._id}`}>{d.name}</Link>
                 </td>
                 <td>{d.role}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        
       </section>
     );
   }
