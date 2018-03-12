@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { Link } from 'react-router-dom';
-
 import mockUsers from './MOCK_DATA.json';
-
 export default class UserPage extends React.Component {
   render() {
     const ids = mockUsers.map(a => a._id);
     const number = ids.indexOf(this.props.userId);
-
     let userInfo = (
       <p>
         User ID {this.props.userId} not found. Type &apos;/users&apos; in
@@ -17,10 +13,8 @@ export default class UserPage extends React.Component {
         registered users
       </p>
     );
-
     if (number !== -1) {
       const d = mockUsers[number];
-
       userInfo = (
         <table>
           <tbody>
@@ -57,7 +51,6 @@ export default class UserPage extends React.Component {
         </table>
       );
     }
-
     return (
       <section className="user-page">
         {userInfo}
@@ -68,7 +61,6 @@ export default class UserPage extends React.Component {
     );
   }
 }
-
 UserPage.propTypes = {
   userId: PropTypes.string.isRequired,
 };
