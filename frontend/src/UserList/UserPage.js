@@ -23,6 +23,7 @@ export default class UserPage extends React.Component {
 
       userInfo = (
         <table>
+        <tbody>
           <tr>
             <td className="avatar" colSpan="2">
               <img src={d.avatar} alt="avatar" />
@@ -52,6 +53,7 @@ export default class UserPage extends React.Component {
             <td> Bio</td>
             <td> {d.bio}</td>
           </tr>
+          </tbody>
         </table>
       );
     }
