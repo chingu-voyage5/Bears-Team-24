@@ -6,15 +6,15 @@ passport.use(
   new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: '/auth/github/callback'
+    callbackURL: `${process.env.APP_URL}/auth/github/callback`
   },
   /* eslint-disable func-names, prefer-arrow-callback */
   function (accessToken, refreshToken, profile, done) {
     const searchQuery = {
-      githubId: profile.id
+      'github.id': profile.id
     };
     const update = {
-      githubId: profile.id,
+      'github.id': profile.id,
       username: profile.displayName,
       email: profile.email
     };
