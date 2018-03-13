@@ -49,7 +49,12 @@ Items with '+' are category and sub_categories. The rest are article titles.
     Project Closure
     Using the Wizard
   + Guidance
-    Situational Guidance
+    + Situational Guidance
+      Building the Project Backlog
+      Managing Application Secrets
+      Managing Team Documentation
+      Managing Issues & Requests
+      Dealing with "Analysis Paralysis
     Managing Conflict
   + Resources
     Tools & Resources
