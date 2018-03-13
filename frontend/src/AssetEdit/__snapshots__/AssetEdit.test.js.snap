@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssetEdit component matches snapshot 1`] = `
+.c2 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: 1.1rem;
+  height: 100%;
+  margin-left: 2rem;
+  margin-right: 30%;
+  max-width: 50%;
+  padding-left: 0.5rem;
+}
+
+.c1 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bold;
+  height: 2rem;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.c8 {
+  background-color: #15df89;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px #aaa;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  height: auto;
+  margin: 1rem;
+  max-width: 10rem;
+  padding: 0.5rem 1.2rem;
+  position: relative;
+}
+
+.c8:hover {
+  background-color: #08d27c;
+}
+
+.c8:active {
+  box-shadow: none;
+  top: 1px;
+}
+
+.c6 {
+  background-color: #e2e2e2;
+  border: none;
+  box-shadow: 0 0 2px #333;
+  height: 30vh;
+  margin: auto;
+  padding: 0;
+  padding-top: 1rem;
+  position: relative;
+  width: 40%;
+}
+
+.c7 {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.c5 {
+  display: none;
+}
+
+.c4 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #e2e2e2;
+  border: 1px solid gray;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: normal;
+  height: 100%;
+  line-height: 1.1rem;
+  margin-left: 2rem;
+  margin-right: 30%;
+  max-width: 50%;
+  padding-left: 0.5rem;
+}
+
+.c3 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bold;
+  height: 2rem;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: auto;
+  max-width: 75rem;
+  padding: 2rem 0;
+}
+
+<div
+  className="c0"
+>
+  <label
+    className="c1"
+    htmlFor="title"
+  >
+    Title:
+    <input
+      className="c2"
+      defaultValue=""
+      id="title"
+    />
+  </label>
+  <label
+    className="c1"
+    htmlFor="description"
+  >
+    Description:
+    <input
+      className="c2"
+      defaultValue=""
+      id="description"
+    />
+  </label>
+  <label
+    className="c3"
+    htmlFor="asset"
+  >
+    Asset type:
+    <p
+      className="c4"
+    >
+      
+    </p>
+  </label>
+  <input
+    className="c5"
+    onChange={[Function]}
+    type="file"
+  />
+  <button
+    className="c6"
+    onClick={[Function]}
+    onDragOver={[Function]}
+    onDrop={[Function]}
+  >
+    <p
+      className="c7"
+    >
+      Drop file or click area to select from disk
+    </p>
+  </button>
+  <button
+    className="c8"
+  >
+    Save
+  </button>
+</div>
+`;

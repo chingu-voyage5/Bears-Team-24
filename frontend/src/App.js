@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import Articles from './Articles';
+import ArticleEdit from './ArticleEdit';
+import Assets from './Assets';
+import AssetEdit from './AssetEdit';
 import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
 import Sidebar from './Sidebar';
+
+import ContentArea from './ContentArea';
+
+import assetMockData from './_mockData/assetMockData.json';
+import assetsMockData from './_mockData/assets.json';
 
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
@@ -14,6 +24,8 @@ import Sidebar from './Sidebar';
 
 class App extends Component {
   state = {
+    assetData: assetMockData,
+    assets: assetsMockData,
     isLoggedIn: true,
     username: 'fake_user',
   };
@@ -27,7 +39,7 @@ class App extends Component {
   };
 
   render() {
-    const { isLoggedIn, username } = this.state;
+    const { assetData, assets, isLoggedIn, username } = this.state;
 
     return (
       <Router>
@@ -42,10 +54,31 @@ class App extends Component {
           <Sidebar />
           <Switch>
             <Route exact path="/" component={LandingPage} />
-            <Route path="/pages" render={() => <div>Pages component</div>} />
+            <Route
+              exact
+              path="/pages"
+              render={routeProps => <Articles {...routeProps} />}
+            />
+            <Route
+              exact
+              path="/pages/new"
+              render={() => <ArticleEdit empty />}
+            />
+            <Route path="/pages/:id" component={ArticleEdit} />
+            <Route path="/users" render={() => <div>Users component</div>} />
+            <Route
+              exact
+              path="/assets"
+              render={r => <Assets {...r} data={assets} />}
+            />
+            <Route exact path="/assets/new" component={AssetEdit} />
+            <Route
+              path="/assets/:id"
+              render={() => <AssetEdit {...assetData} />}
+            />
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route path="/assets" render={() => <div>Assets component</div>} />
-            <Route path="/cms" render={() => <div>CMS component</div>} />
+            <Route path="/cms" component={ContentArea} />
             <Route path="/login" component={Login} />
             <Route path="/logout" render={() => <div>Logout component</div>} />
           </Switch>
