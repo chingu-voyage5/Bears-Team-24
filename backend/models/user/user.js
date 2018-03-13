@@ -13,6 +13,11 @@ mongoose.Promise = global.Promise;
  */
 const userSchema = new Schema({
   active: Boolean,
+  github: {
+    id: String,
+    displayName: String,
+    username: String
+  },
   email: String,
   username: {
     type: String,
@@ -20,6 +25,13 @@ const userSchema = new Schema({
     trim: true
   },
   avatar: String
+});
+
+userSchema.pre('save', function preSaveHook(next) {
+  if (typeof this.username === 'undefined') {
+    this.username = this.github.username;
+  }
+  next();
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'username' });
