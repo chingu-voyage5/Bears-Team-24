@@ -1,8 +1,7 @@
 import React from 'react';
-
 import Input from './Input';
-
 import { ButtonLikeText, Fields, Form, Heading2, Wrapper } from './styled';
+import actions from './actions';
 
 const MIN_PASSWORD_LENGTH = 1;
 const MIN_USERNAME_LENGTH = 1;
@@ -28,25 +27,14 @@ class Login extends React.Component {
     if (this.state.register) {
       const { username, password1, password2 } = this.state;
       console.log('register:', this.state);
-      fetch('/api/v1/register', {
-        method: 'post',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ username, password1, password2 })
-      })
-        .then(res => res.json())
+      actions.register({ username, password1, password2 })
         .then(json => {
           console.log('register response:', json);
         });
     } else {
       const { username, password1 } = this.state;
       console.log('login:', this.state);
-      fetch('/api/v1/login', {
-        method: 'post',
-        headers: { 'content-type': 'application/json' },
-        credentials: 'same-origin',
-        body: JSON.stringify({ username, password: password1 })
-      })
-        .then(res => res.json())
+      actions.login({ username, password: password1 })
         .then(json => {
           console.log('login response:', json);
         });
@@ -78,9 +66,7 @@ class Login extends React.Component {
       username.length < MIN_USERNAME_LENGTH ||
       (register && password1 !== password2);
 
-    const loginGithubUrl = process.env.NODE_ENV === 'production'
-      ? '/auth/github'
-      : 'http://localhost:3000/auth/github';
+    const loginGithubUrl = 'http://localhost:3001/auth/github';
 
     return (
       <Wrapper>
@@ -133,7 +119,7 @@ class Login extends React.Component {
             : 'Click to login as an existing user'}
         </ButtonLikeText>
         <a
-          href="http://localhost:3000/auth/github"
+          href={loginGithubUrl}
         >
           Login using GitHub
         </a>
