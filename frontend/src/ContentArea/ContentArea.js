@@ -9,7 +9,7 @@ export default class ContentArea extends React.Component {
       innerHTML: undefined,
     };
 
-    this.loadJSON = this.loadJSON.bind(this);
+    this.loadJSON = this.loadJSON.bind(this); 
   }
   componentWillMount() {
     const grabbedHTML = this.loadJSON(); //   fetchData(this.props.selectedUrl) ?
@@ -32,10 +32,12 @@ export default class ContentArea extends React.Component {
 
   render() {
     return (
-      <section
-        className="content-area"
-        dangerouslySetInnerHTML={{ __html: this.state.innerHTML }}
-      />
+      <div>
+        <section
+          className="content-area"
+          dangerouslySetInnerHTML={{ __html: this.state.innerHTML }}
+        />
+      </div>
     );
   }
 }

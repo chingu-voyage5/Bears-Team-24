@@ -5,17 +5,12 @@ body {
   font-family: sans-serif;
 }
 
+/*** Sidebar Component ***/
 .panel-heading {
   cursor: pointer;
 }
 
-.panel .panel-body {
-  display: none;
-}
-
-.panel.isExpanded .panel-body { 
-  display: block;
-}
+/*** ***/
 
 a {
   text-decoration: none;

@@ -10,9 +10,7 @@ import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
-import Sidebar from './Sidebar';
-
-import ContentArea from './ContentArea';
+import CMSContainer from './CMSContainer';
 
 import assetMockData from './_mockData/assetMockData.json';
 import assetsMockData from './_mockData/assets.json';
@@ -51,7 +49,6 @@ class App extends Component {
             handleUsername={this.handleUsername}
           />
           <Navbar isLoggedIn={isLoggedIn} username={username} />
-          <Sidebar />
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route
@@ -78,7 +75,7 @@ class App extends Component {
             />
             <Route path="/users" render={() => <div>Users component</div>} />
             <Route path="/assets" render={() => <div>Assets component</div>} />
-            <Route path="/cms" component={ContentArea} />
+            <Route path="/cms" component={CMSContainer} />
             <Route path="/login" component={Login} />
             <Route path="/logout" render={() => <div>Logout component</div>} />
           </Switch>
