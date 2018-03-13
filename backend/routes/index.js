@@ -26,10 +26,10 @@ router.get('/auth/github',
 
 router.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
-  // eslint-disable-next-line func-names, prefer-arrow-callback
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.send({ success: true });
+  (req, res) => {
+    // req.user gets populated by passport
+    console.log('/auth/github/callback', req.user);
+    res.redirect('http://localhost:3000');
   });
 
 router.post('/api/v1/register',
