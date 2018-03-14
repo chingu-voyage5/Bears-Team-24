@@ -4,22 +4,22 @@ import {Wrapper} from './styled';
 const Sidebar = () => (
   <Wrapper>
     <Collapsible title="About this wiki">
-      <a>Lorem ipsum dolor sit </a>
+     Lorem ipsum dolor sit 
     </Collapsible>
     <Collapsible title="About Voyages">
-      <a>Lorem ipsum dolor sit </a>
+     Lorem ipsum dolor sit 
     </Collapsible>
     <Collapsible title="Project Setup">
-      <a>Lorem ipsum dolor sit </a>
+     Lorem ipsum dolor sit 
     </Collapsible>
     <Collapsible title="Development Sprints">
-      <a>Lorem ipsum dolor sit </a>
+     Lorem ipsum dolor sit 
     </Collapsible>
     <Collapsible title="Project Closure">
-      <a>Lorem ipsum dolor sit </a>
+     Lorem ipsum dolor sit 
     </Collapsible>
     <Collapsible title="Tools & Resources">
-      <a>Lorem ipsum dolor sit </a>
+     Lorem ipsum dolor sit 
     </Collapsible>
   </Wrapper>  
 );
