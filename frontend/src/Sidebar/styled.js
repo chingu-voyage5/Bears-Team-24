@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const $sidebarBackground = '#e2e2e2';
 
-
 export const Wrapper = styled.nav`
   padding: 2em 2em;
   background-color: ${$sidebarBackground};
@@ -10,5 +9,5 @@ export const Wrapper = styled.nav`
   flex-direction: column;
   height: 100%;
   flex-basis: 200px;
-  font-size:14px;
-`
+  font-size: 14px;
+`;

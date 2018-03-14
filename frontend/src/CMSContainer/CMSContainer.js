@@ -1,13 +1,13 @@
 import React from 'react';
 import ContentArea from '../ContentArea';
 import Sidebar from '../Sidebar';
-import {Wrapper} from './styled';
+import { Wrapper } from './styled';
 
 const CMSContainer = () => (
   <Wrapper>
     <Sidebar />
     <ContentArea />
-  </Wrapper>  
-)
+  </Wrapper>
+);
 
 export default CMSContainer;

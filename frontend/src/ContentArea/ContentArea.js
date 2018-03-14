@@ -9,7 +9,7 @@ export default class ContentArea extends React.Component {
       innerHTML: undefined,
     };
 
-    this.loadJSON = this.loadJSON.bind(this); 
+    this.loadJSON = this.loadJSON.bind(this);
   }
   componentWillMount() {
     const grabbedHTML = this.loadJSON(); //   fetchData(this.props.selectedUrl) ?
