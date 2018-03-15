@@ -8,16 +8,15 @@ class Collapsible extends React.Component {
     return (
       <details>
         <summary className="panel-heading">{title}</summary>
-        <p className="panel-body">
-          <a>{children}</a>
-        </p>
+        <p className="panel-body">{children}</p>
       </details>
     );
   }
 }
 
 Collapsible.propTypes = {
-  title: PropTypes.string,
+  children: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Collapsible;

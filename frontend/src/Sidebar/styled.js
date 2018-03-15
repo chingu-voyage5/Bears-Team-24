@@ -11,3 +11,5 @@ export const Wrapper = styled.nav`
   flex-basis: 200px;
   font-size: 14px;
 `;
+
+export default Wrapper;
