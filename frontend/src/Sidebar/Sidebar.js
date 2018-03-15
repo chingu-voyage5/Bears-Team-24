@@ -1,6 +1,7 @@
 import React from 'react';
 import Collapsible from './Collapsible';
 import { Wrapper } from './styled';
+
 const Sidebar = () => (
   <Wrapper>
     <Collapsible title="About this wiki">Lorem ipsum dolor sit</Collapsible>
