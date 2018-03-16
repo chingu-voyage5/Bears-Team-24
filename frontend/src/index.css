@@ -5,6 +5,13 @@ body {
   font-family: sans-serif;
 }
 
+/*** Sidebar Component ***/
+.panel-heading {
+  cursor: pointer;
+}
+
+/*** ***/
+
 a {
   text-decoration: none;
 }
