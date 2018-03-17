@@ -16,7 +16,8 @@ passport.use(
     const update = {
       'github.id': profile.id,
       username: profile.displayName,
-      email: profile.email
+      // eslint-disable-next-line no-underscore-dangle
+      email: profile._json.email
     };
     const updateOptions = {
       upsert: true
