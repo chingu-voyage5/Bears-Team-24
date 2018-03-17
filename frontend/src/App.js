@@ -1,29 +1,47 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import actions from './actions';
 import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
-import StateSetup from './_StateSetup';
-
-// This is just a mock showing a simple react component included.
-// Viktor may remove this file when he does the routing, but you can
-// still use this to see your component. Simply replace <LandingPage/>
-// with the name of your component, e.g. <Sidebar />
 
 class App extends Component {
   state = {
     isLoggedIn: false,
-    username: 'fake_user',
+    username: 'Guest',
   };
 
-  handleLogin = isLoggedIn => {
-    this.setState(() => ({ isLoggedIn }));
+  componentDidMount = () => {
+    actions.getUser()
+      .then(res => {
+        if (res.success) {
+          this.setState({ isLoggedIn: true, username: res.username });
+        } else {
+          this.setState({ isLoggedIn: false, username: 'Guest' });
+        }
+      })
+      .catch(() => {
+        this.setState({ isLoggedIn: false, username: 'Guest' });
+      });
   };
 
-  handleUsername = username => {
-    this.setState(() => ({ username }));
+  logout = () => {
+    actions.logout()
+      .then(() => {
+        this.setState({ isLoggedIn: false, username: 'Guest' });
+      });
+    return (
+      <Redirect to="/" />
+    );
   };
+
+  // handleLogin = isLoggedIn => {
+  //   this.setState(() => ({ isLoggedIn }));
+  // };
+  //
+  // handleUsername = username => {
+  //   this.setState(() => ({ username }));
+  // };
 
   render() {
     const { isLoggedIn, username } = this.state;
@@ -31,12 +49,6 @@ class App extends Component {
     return (
       <Router>
         <React.Fragment>
-          <StateSetup
-            isLoggedIn={isLoggedIn}
-            username={username}
-            handleLogin={this.handleLogin}
-            handleUsername={this.handleUsername}
-          />
           <Navbar isLoggedIn={isLoggedIn} username={username} />
           <Switch>
             <Route exact path="/" component={LandingPage} />
@@ -45,25 +57,18 @@ class App extends Component {
             <Route path="/assets" render={() => <div>Assets component</div>} />
             <Route path="/cms" render={() => <div>CMS component</div>} />
             <Route path="/login" component={Login} />
-            <Route
-              path="/logout"
-              render={() => {
-                fetch('/api/v1/logout', {
-                  method: 'post',
-                  headers: { 'content-type': 'application/json' },
-                  credentials: 'same-origin',
-                })
-                  .then(res => res.json())
-                  .then(json => console.log('logout response:', json));
-                return (
-                  <div>Logged out</div>
-                );
-              }}
-            />
+            <Route path="/logout" render={this.logout} />
           </Switch>
         </React.Fragment>
       </Router>
     );
+
+    // <StateSetup
+    //   isLoggedIn={isLoggedIn}
+    //   username={username}
+    //   handleLogin={this.handleLogin}
+    //   handleUsername={this.handleUsername}
+    // />
   }
 }
 
