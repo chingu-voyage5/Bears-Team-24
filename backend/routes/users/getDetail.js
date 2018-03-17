@@ -6,7 +6,7 @@ async function getDetail(req, res) {
   const userId = req.params.id || req.user._id;
   const user = await User.findById(userId);
   const { _id, username, email } = user;
-  res.json({ _id, username, email });
+  res.json({ success: true, _id, username, email });
 }
 
 module.exports = getDetail;
