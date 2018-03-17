@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import mockUsers from './MOCK_DATA.json';
+
 export default class UserPage extends React.Component {
   render() {
     const ids = mockUsers.map(a => a._id);

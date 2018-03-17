@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import mockUsers from './MOCK_DATA.json';
+
 export default class UserList extends React.Component {
   render() {
     return (
