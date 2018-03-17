@@ -66,7 +66,9 @@ class Login extends React.Component {
       username.length < MIN_USERNAME_LENGTH ||
       (register && password1 !== password2);
 
-    const loginGithubUrl = 'http://localhost:3001/auth/github';
+    const loginGithubUrl = process.env.NODE_END === 'production'
+      ? '/auth/github'
+      : 'http://127.0.0.1:3001/auth/github';
 
     return (
       <Wrapper>
@@ -118,9 +120,7 @@ class Login extends React.Component {
             ? 'Click to register new user'
             : 'Click to login as an existing user'}
         </ButtonLikeText>
-        <a
-          href={loginGithubUrl}
-        >
+        <a href={loginGithubUrl} >
           Login using GitHub
         </a>
       </Wrapper>
