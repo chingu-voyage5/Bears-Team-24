@@ -36,7 +36,10 @@ a:hover {
   padding: 0 0.5rem;
 }
 
-.content-area,
+.content-area {
+  padding: 0 5%;
+}
+
 .user-list,
 .user-page {
   padding: 0 20%;
