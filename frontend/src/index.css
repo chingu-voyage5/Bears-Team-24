@@ -37,10 +37,17 @@ a:hover {
 }
 
 .content-area {
-  padding: 0 10%;
+  padding: 0 5%;
 }
 
-.content-area table {
+.user-list,
+.user-page {
+  padding: 0 20%;
+}
+
+.content-area table,
+.user-list table,
+.user-page table {
   width: 100%;
   text-align: center;
   border-collapse: collapse;
@@ -62,6 +69,42 @@ a:hover {
 
 .content-area .outer-links a {
   color: #4466bb;
+}
+
+.user-list table {
+  padding: 0 1rem;
+  border: 0.0625rem solid #123321;
+}
+
+.user-list .avatar {
+  height: 4rem;
+  width: auto;
+}
+
+.user-page table {
+  padding: 0 1rem;
+  border: 0.0625rem solid #123321;
+}
+
+.user-page .avatar img {
+  height: 8rem;
+  width: auto;
+}
+
+.user-list table tr:nth-child(2n + 1) {
+  background-color: #dededd;
+}
+
+.user-page table td {
+  padding: 0.5rem 1rem;
+}
+
+.user-page table td:first-child {
+  font-weight: bold;
+}
+
+.user-page table tr:nth-child(2n + 1) {
+  background-color: #dededd;
 }
 
 #root {
