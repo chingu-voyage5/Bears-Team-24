@@ -10,8 +10,7 @@ import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
 import StateSetup from './_StateSetup';
-
-import ContentArea from './ContentArea';
+import CMSContainer from './CMSContainer';
 import { UserList, UserPage } from './UserList';
 
 import assetMockData from './_mockData/assetMockData.json';
@@ -80,7 +79,7 @@ class App extends Component {
               render={() => <AssetEdit {...assetData} />}
             />
             <Route path="/assets" render={() => <div>Assets component</div>} />
-            <Route path="/cms" component={ContentArea} />
+            <Route path="/cms" component={CMSContainer} />
             <Route path="/login" component={Login} />
             <Route path="/logout" render={() => <div>Logout component</div>} />
           </Switch>

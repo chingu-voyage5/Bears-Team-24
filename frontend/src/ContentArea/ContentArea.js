@@ -32,10 +32,12 @@ export default class ContentArea extends React.Component {
 
   render() {
     return (
-      <section
-        className="content-area"
-        dangerouslySetInnerHTML={{ __html: this.state.innerHTML }}
-      />
+      <div>
+        <section
+          className="content-area"
+          dangerouslySetInnerHTML={{ __html: this.state.innerHTML }}
+        />
+      </div>
     );
   }
 }
