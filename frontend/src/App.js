@@ -13,8 +13,11 @@ import StateSetup from './_StateSetup';
 import CMSContainer from './CMSContainer';
 import { UserList, UserPage } from './UserList';
 
+import articleMockData from './_mockData/article.json';
+import articlesMockData from './_mockData/articles.json';
 import assetMockData from './_mockData/assetMockData.json';
 import assetsMockData from './_mockData/assets.json';
+import usersMockData from './_mockData/users.json';
 
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
@@ -23,10 +26,13 @@ import assetsMockData from './_mockData/assets.json';
 
 class App extends Component {
   state = {
+    article: articleMockData,
+    articles: articlesMockData,
     assetData: assetMockData,
     assets: assetsMockData,
     isLoggedIn: true,
     username: 'fake_user',
+    users: usersMockData,
   };
 
   handleLogin = isLoggedIn => {
@@ -38,7 +44,15 @@ class App extends Component {
   };
 
   render() {
-    const { assetData, assets, isLoggedIn, username } = this.state;
+    const {
+      article,
+      articles,
+      assetData,
+      assets,
+      isLoggedIn,
+      username,
+      users,
+    } = this.state;
 
     return (
       <Router>
@@ -55,18 +69,29 @@ class App extends Component {
             <Route
               exact
               path="/pages"
-              render={routeProps => <Articles {...routeProps} />}
+              render={routeProps => (
+                <Articles {...routeProps} data={articles} />
+              )}
             />
             <Route
               exact
               path="/pages/new"
               render={() => <ArticleEdit empty />}
             />
-            <Route path="/pages/:id" component={ArticleEdit} />
-            <Route exact path="/users" render={() => <UserList />} />
+            <Route
+              path="/pages/:id"
+              render={() => <ArticleEdit data={article} />}
+            />
+            <Route
+              exact
+              path="/users"
+              render={() => <UserList data={users} />}
+            />
             <Route
               path="/users/:id"
-              render={props => <UserPage userId={props.match.params.id} />}
+              render={props => (
+                <UserPage userId={props.match.params.id} data={users} />
+              )}
             />
             <Route
               exact

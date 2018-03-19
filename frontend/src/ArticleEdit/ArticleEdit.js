@@ -6,20 +6,25 @@ import Input from './Input';
 import Tab from './Tab';
 import { Button, Editor, Heading1, Preview, Textarea, Wrapper } from './styled';
 
-import data from './MOCK_DATA.json';
-
 const propTypes = {
+  data: PropTypes.shape({
+    category: PropTypes.string,
+    content: PropTypes.string,
+    sub_category: PropTypes.array,
+    title: PropTypes.string,
+  }),
   empty: PropTypes.bool,
 };
 
 const defaultProps = {
+  data: { category: '', content: '', sub_category: [], title: '' },
   empty: false,
 };
 
 class ArticleEdit extends React.Component {
   state = {
     edit: true,
-    content: this.props.empty ? '' : data.content,
+    content: this.props.empty ? '' : this.props.data.content,
   };
 
   handleChange = e => {
@@ -44,7 +49,7 @@ class ArticleEdit extends React.Component {
 
   render() {
     const { content, edit } = this.state;
-    const { empty } = this.props;
+    const { data, empty } = this.props;
 
     return (
       <Wrapper>
