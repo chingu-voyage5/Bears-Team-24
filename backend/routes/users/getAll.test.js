@@ -44,7 +44,7 @@ describe('User routes', () => {
   afterEach(async () => {
     await User.remove({ _id: { $in: ids } });
   });
-  it('gets user detail', (done) => {
+  it('gets users\' details', (done) => {
     chai.request(app)
       .get('/api/v1/users')
       .end((err, res) => {
