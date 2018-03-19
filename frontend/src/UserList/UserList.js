@@ -1,8 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import mockUsers from './MOCK_DATA.json';
 
-export default class UserList extends React.Component {
+const propTypes = {
+  data: PropTypes.array,
+};
+
+const defaultProps = {
+  data: [],
+};
+
+class UserList extends React.Component {
   render() {
     return (
       <section className="user-list">
@@ -13,7 +21,7 @@ export default class UserList extends React.Component {
               <th>Name</th>
               <th>Role</th>
             </tr>
-            {mockUsers.map(d => (
+            {this.props.data.map(d => (
               <tr key={d._id}>
                 <td>
                   <img className="avatar" src={d.avatar} alt="avatar" />
@@ -30,3 +38,8 @@ export default class UserList extends React.Component {
     );
   }
 }
+
+UserList.propTypes = propTypes;
+UserList.defaultProps = defaultProps;
+
+export default UserList;

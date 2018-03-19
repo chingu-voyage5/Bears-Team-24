@@ -10,15 +10,18 @@ import {
   Wrapper,
 } from './styled';
 
-import data from './MOCK_DATA.json';
-
 const propTypes = {
+  data: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
+};
+
+const defaultProps = {
+  data: [],
 };
 
 const renderRows = (arr, onClick) =>
@@ -56,13 +59,14 @@ class Articles extends React.Component {
           <Row title="Title" creator="Owner" />
         </TitleRowWrapper>
         <Separator />
-        {renderRows(data, this.handleClick)}
+        {renderRows(this.props.data, this.handleClick)}
       </Wrapper>
     );
   }
 }
 
 Articles.propTypes = propTypes;
+Articles.defaultProps = defaultProps;
 
 export default Articles;
 

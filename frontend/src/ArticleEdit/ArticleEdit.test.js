@@ -5,7 +5,15 @@ import ArticleEdit from '.';
 
 describe('ArticleEdit component', () => {
   it('renders edit article page', () => {
-    const wrapper = shallow(<ArticleEdit />);
+    const props = {
+      data: {
+        content: 'Markdown',
+        title: 'Title',
+        category: 'Category',
+        sub_category: ['Sub Category'],
+      },
+    };
+    const wrapper = shallow(<ArticleEdit {...props} />);
 
     expect(
       wrapper

@@ -25,11 +25,19 @@ const data = [
   },
 ];
 
+const noop = () => {};
+
 describe('Articles Component', () => {
   it('should renderRows', () => {
-    const wrapper = renderRows(data, f => f);
+    const wrapper = renderRows(data, noop);
 
     expect(wrapper.length).toEqual(2);
+  });
+
+  it('should handle empty data', () => {
+    const wrapper = renderRows([], noop);
+
+    expect(wrapper.length).toEqual(0);
   });
 
   it('should render Button', () => {
