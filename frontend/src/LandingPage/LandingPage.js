@@ -2,6 +2,7 @@ import React from 'react';
 import { Article, Content, Heading1, Heading2, Heading3, Section } from './styled';
 
 const test = () => {
+  // TODO: remove example auth route and the button rendered  below
   fetch('/api/v1/test', {
     method: 'post',
     headers: {
@@ -13,6 +14,7 @@ const test = () => {
   })
     .then(res => res.json())
     .then(json => {
+      // eslint-disable-next-line no-console
       console.log('test response:', json);
     });
 };
