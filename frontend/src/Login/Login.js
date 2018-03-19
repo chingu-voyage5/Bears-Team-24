@@ -24,6 +24,7 @@ class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    /* eslint-disable no-console */
     if (this.state.register) {
       const { username, password1, password2 } = this.state;
       console.log('register:', this.state);
@@ -39,9 +40,8 @@ class Login extends React.Component {
           console.log('login response:', json);
         });
     }
+    /* eslint-enable */
 
-    // eslint-disable-next-line
-    // alert(JSON.stringify(this.state));
     this.setState(() => ({
       username: '',
       password1: '',
@@ -66,7 +66,7 @@ class Login extends React.Component {
       username.length < MIN_USERNAME_LENGTH ||
       (register && password1 !== password2);
 
-    const loginGithubUrl = process.env.NODE_END === 'production'
+    const loginGithubUrl = process.env.NODE_ENV === 'production'
       ? '/auth/github'
       : 'http://127.0.0.1:3001/auth/github';
 
