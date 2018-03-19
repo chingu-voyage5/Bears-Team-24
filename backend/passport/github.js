@@ -28,5 +28,5 @@ passport.use(
     // User.findOrCreate({ githubId: profile.id }, function (err, user) {
     //   return done(err, user);
     // });
-  }
-));
+  })
+);
