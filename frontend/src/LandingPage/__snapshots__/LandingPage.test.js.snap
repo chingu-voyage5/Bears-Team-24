@@ -7,6 +7,12 @@ Array [
 >
     Welcome to chingu CMS
 </h1>,
+  <button
+    onClick={[Function]}
+    type="button"
+>
+    Test
+</button>,
   <article
     className="sc-bdVaJa dEZJXY"
 >
