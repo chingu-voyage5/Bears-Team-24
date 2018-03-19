@@ -1,3 +1,4 @@
+/* eslint-disable */
 const html =
   '<p>text</p><div class="area"><p>tex<span>t</span>1</p><p>text2</p></div><div><p>text3</p><p>text4</p></div>';
 
