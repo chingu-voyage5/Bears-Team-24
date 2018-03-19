@@ -7,11 +7,6 @@ const passport = require('passport');
 
 const router = new Router();
 
-// FIXME: needs mocking correctly
-if (process.env.NODE_ENV === 'test') {
-  auth.isLoggedIn = (req, res, next) => next();
-}
-
 // TODO: remove example auth route
 router.post('/api/v1/test',
   auth.isLoggedIn,
