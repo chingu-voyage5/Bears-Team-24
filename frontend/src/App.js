@@ -49,7 +49,11 @@ class App extends Component {
             handleLogin={this.handleLogin}
             handleUsername={this.handleUsername}
           />
-          <Navbar isLoggedIn={isLoggedIn} username={username} />
+          <Route
+            render={r => (
+              <Navbar isLoggedIn={isLoggedIn} username={username} {...r} />
+            )}
+          />
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route
