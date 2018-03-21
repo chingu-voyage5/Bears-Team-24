@@ -15,7 +15,7 @@ passport.use(
     };
     const update = {
       'github.id': profile.id,
-      username: profile.displayName,
+      username: profile.username,
       // eslint-disable-next-line no-underscore-dangle
       email: profile._json.email
     };
