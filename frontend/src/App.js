@@ -17,7 +17,6 @@ import articleMockData from './_mockData/article.json';
 import articlesMockData from './_mockData/articles.json';
 import assetMockData from './_mockData/assetMockData.json';
 import assetsMockData from './_mockData/assets.json';
-import usersMockData from './_mockData/users.json';
 
 // This is just a mock showing a simple react component included.
 // Viktor may remove this file when he does the routing, but you can
@@ -32,7 +31,6 @@ class App extends Component {
     assets: assetsMockData,
     isLoggedIn: true,
     username: 'fake_user',
-    users: usersMockData,
   };
 
   handleLogin = isLoggedIn => {
@@ -51,7 +49,6 @@ class App extends Component {
       assets,
       isLoggedIn,
       username,
-      users,
     } = this.state;
 
     return (
@@ -82,16 +79,10 @@ class App extends Component {
               path="/pages/:id"
               render={() => <ArticleEdit data={article} />}
             />
-            <Route
-              exact
-              path="/users"
-              render={() => <UserList data={users} />}
-            />
+            <Route exact path="/users" render={() => <UserList />} />
             <Route
               path="/users/:id"
-              render={props => (
-                <UserPage userId={props.match.params.id} data={users} />
-              )}
+              render={props => <UserPage userId={props.match.params.id} />}
             />
             <Route
               exact
