@@ -9,7 +9,9 @@ function login(req, res, next) {
       return res.status(401).json({ error: info.message });
     }
     req.logIn(user, function cb(e) {
-      if (e) { return next(e); }
+      if (e) {
+        return next(e);
+      }
       const { _id, name, email, avatar } = user;
       res.send({ _id, name, email, avatar });
     });
