@@ -3,8 +3,8 @@ import Input from './Input';
 import { ButtonLikeText, Fields, Form, Heading2, Wrapper } from './styled';
 import actions from './actions';
 
-const MIN_PASSWORD_LENGTH = 1;
-const MIN_USERNAME_LENGTH = 1;
+const MIN_PASSWORD_LENGTH = process.env.NODE_ENV === 'development' ? 1 : 6;
+const MIN_USERNAME_LENGTH = process.env.NODE_ENV === 'development' ? 1 : 6;
 
 class Login extends React.Component {
   state = {
