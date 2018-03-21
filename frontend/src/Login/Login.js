@@ -28,17 +28,15 @@ class Login extends React.Component {
     if (this.state.register) {
       const { username, password1, password2 } = this.state;
       console.log('register:', this.state);
-      actions.register({ username, password1, password2 })
-        .then(json => {
-          console.log('register response:', json);
-        });
+      actions.register({ username, password1, password2 }).then(json => {
+        console.log('register response:', json);
+      });
     } else {
       const { username, password1 } = this.state;
       console.log('login:', this.state);
-      actions.login({ username, password: password1 })
-        .then(json => {
-          console.log('login response:', json);
-        });
+      actions.login({ username, password: password1 }).then(json => {
+        console.log('login response:', json);
+      });
     }
     /* eslint-enable */
 
@@ -66,9 +64,10 @@ class Login extends React.Component {
       username.length < MIN_USERNAME_LENGTH ||
       (register && password1 !== password2);
 
-    const loginGithubUrl = process.env.NODE_ENV === 'production'
-      ? '/auth/github'
-      : 'http://127.0.0.1:3001/auth/github';
+    const loginGithubUrl =
+      process.env.NODE_ENV === 'production'
+        ? '/auth/github'
+        : 'http://127.0.0.1:3001/auth/github';
 
     return (
       <Wrapper>
@@ -120,9 +119,7 @@ class Login extends React.Component {
             ? 'Click to register new user'
             : 'Click to login as an existing user'}
         </ButtonLikeText>
-        <a href={loginGithubUrl} >
-          Login using GitHub
-        </a>
+        <a href={loginGithubUrl}>Login using GitHub</a>
       </Wrapper>
     );
   }

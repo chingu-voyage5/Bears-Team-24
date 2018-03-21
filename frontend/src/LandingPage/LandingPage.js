@@ -15,10 +15,10 @@ const test = () => {
     method: 'post',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     credentials: 'same-origin',
-    body: JSON.stringify({ test: 'testing 1,2,3' })
+    body: JSON.stringify({ test: 'testing 1,2,3' }),
   })
     .then(res => res.json())
     .then(json => {
@@ -30,7 +30,9 @@ const test = () => {
 const LandingPage = () => (
   <React.Fragment>
     <Heading1>Welcome to chingu CMS</Heading1>
-    <button type="button" onClick={test} >Test</button>
+    <button type="button" onClick={test}>
+      Test
+    </button>
     <Article>
       <Heading2>Features</Heading2>
       <Content>
