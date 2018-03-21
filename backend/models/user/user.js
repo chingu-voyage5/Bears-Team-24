@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
     lowercase: true,
     trim: true,
     validate: [validator.isEmail, 'Invalid Email Address'],
-    required: 'Please Supply an email address'
+    required: 'Please Supply an email address',
   };
 }
 const userSchema = new Schema({
@@ -31,8 +31,10 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: 'Please supply a username',
-    trim: true
-  }
+    trim: true,
+  },
+  role: { type: String, enum: ['admin', 'member'] },
+  bio: String,
 });
 
 userSchema.plugin(passportLocalMongoose);

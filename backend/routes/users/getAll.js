@@ -3,11 +3,12 @@
 const User = require('../../models/user');
 
 async function getAll(req, res) {
-  const users = await User.find({}, { email: 1, username: 1 });
+  const users = await User.find({}, { email: 1, username: 1, role: 1 });
   const list = users.map(user => ({
     _id: user._id,
     username: user.username,
-    email: user.email
+    role: user.role,
+    email: user.email,
   }));
   res.json(list);
 }
