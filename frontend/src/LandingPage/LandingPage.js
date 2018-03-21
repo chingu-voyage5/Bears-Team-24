@@ -1,5 +1,13 @@
 import React from 'react';
-import { Article, Content, Heading1, Heading2, Heading3, Section } from './styled';
+
+import {
+  Article,
+  Content,
+  Heading1,
+  Heading2,
+  Heading3,
+  Section,
+} from './styled';
 
 const test = () => {
   // TODO: remove example auth route and the button rendered  below
@@ -36,23 +44,23 @@ const LandingPage = () => (
         <Section>
           <Heading3>Search Content</Heading3>
           <p>
-            Certe nihil nisi quod possit ipsum propter se
-           iure laudari. Mihi vero, inquit, placet agi subtilius et, ut ipse
-           dixisti, pressius.
+            Certe nihil nisi quod possit ipsum propter se iure laudari. Mihi
+            vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.
           </p>
         </Section>
         <Section>
           <Heading3>Some Feature</Heading3>
           <p>
-            Omnes enim iucundum motum, quo sensus hilaretur.
-            Duo Reges: constructio interrete. Itaque haec cum illis est
-            dissensio, cum Peripateticis nulla sane. Quis suae urbis
-            conservatorem Codrum, quis Erechthei filias non maxime laudat?
+            Omnes enim iucundum motum, quo sensus hilaretur. Duo Reges:
+            constructio interrete. Itaque haec cum illis est dissensio, cum
+            Peripateticis nulla sane. Quis suae urbis conservatorem Codrum, quis
+            Erechthei filias non maxime laudat?
           </p>
         </Section>
         <Section>
           <Heading3>Track Changes</Heading3>
-          <p>Sit, inquam, tam facilis, quam vultis, comparatio voluptatis, quid
+          <p>
+            Sit, inquam, tam facilis, quam vultis, comparatio voluptatis, quid
             de dolore dicemus? Non est igitur summum malum dolor.
           </p>
         </Section>

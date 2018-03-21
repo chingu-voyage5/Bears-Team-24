@@ -17,7 +17,7 @@ describe('Navbar', () => {
       </MemoryRouter>
     );
 
-    expect(wrapper.find('a')).toHaveLength(6);
+    expect(wrapper.find('a')).toHaveLength(7);
   });
 
   it('should render limited Navbar for a guest', () => {

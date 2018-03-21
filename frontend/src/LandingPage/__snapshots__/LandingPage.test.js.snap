@@ -2,8 +2,12 @@
 
 exports[`renders LandingPage 1`] = `
 Array [
-  <h1
-    className="sc-htpNat dEQUjC"
+  .c0 {
+  text-align: center;
+}
+
+<h1
+    className="c0"
 >
     Welcome to chingu CMS
 </h1>,
@@ -13,22 +17,74 @@ Array [
 >
     Test
 </button>,
-  <article
-    className="sc-bdVaJa dEZJXY"
+  .c0 {
+  margin: 0 auto auto;
+  max-width: 60rem;
+  padding: 3em 2rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c1 {
+  color: #ff5a5f;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
+}
+
+.c4 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #7d93aa;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.4em;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  margin-top: 1rem;
+}
+
+.c3 {
+  font-size: 1.1rem;
+  width: calc(50% - 2rem);
+}
+
+<article
+    className="c0"
 >
     <h2
-        className="sc-bxivhb iyYSDG"
+        className="c1"
     >
         Features
     </h2>
     <div
-        className="sc-bwzfXH gneseq"
+        className="c2"
     >
         <section
-            className="sc-EHOje lhLgo"
+            className="c3"
         >
             <h3
-                className="sc-ifAKCX hJXiLo"
+                className="c4"
             >
                 Manage Content
             </h3>
@@ -37,10 +93,10 @@ Array [
             </p>
         </section>
         <section
-            className="sc-EHOje lhLgo"
+            className="c3"
         >
             <h3
-                className="sc-ifAKCX hJXiLo"
+                className="c4"
             >
                 Search Content
             </h3>
@@ -49,10 +105,10 @@ Array [
             </p>
         </section>
         <section
-            className="sc-EHOje lhLgo"
+            className="c3"
         >
             <h3
-                className="sc-ifAKCX hJXiLo"
+                className="c4"
             >
                 Some Feature
             </h3>
@@ -61,10 +117,10 @@ Array [
             </p>
         </section>
         <section
-            className="sc-EHOje lhLgo"
+            className="c3"
         >
             <h3
-                className="sc-ifAKCX hJXiLo"
+                className="c4"
             >
                 Track Changes
             </h3>

@@ -21,13 +21,14 @@ creator           |user._id
 contributor_list  |[user._id]
 category          |string
 sub_category      |[string]
+title             |string
 content           |String
 
 
 ## Assets
 
 name            |type           |enum
-----            |----           |
+----            |----           |---
 _id             |mongo_id       |
 type            |string         |image,audio,video
 created         |date           |

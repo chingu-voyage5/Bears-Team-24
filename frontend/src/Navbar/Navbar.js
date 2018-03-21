@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
 import { Greeting, NavLinkStyled, Wrapper } from './styled';
 
 const propTypes = {
@@ -21,12 +22,15 @@ const Navbar = ({ isLoggedIn, username }) => (
     {isLoggedIn && (
       <React.Fragment>
         <NavLinkStyled to="/pages">Pages</NavLinkStyled>
-        <NavLinkStyled to={`/users/${username}`}>Users</NavLinkStyled>
+        <NavLinkStyled to="/users/">Users</NavLinkStyled>
         <NavLinkStyled to="/assets">Assets</NavLinkStyled>
       </React.Fragment>
     )}
     <NavLinkStyled to="/cms">CMS</NavLinkStyled>
-    <Greeting>Hi, {isLoggedIn ? username : 'Guest'}</Greeting>
+    <Greeting>
+      Hi,{' '}
+      {isLoggedIn ? <Link to={`/users/${username}`}>{username}</Link> : 'Guest'}
+    </Greeting>
     {isLoggedIn ? (
       <NavLinkStyled to="/logout">Logout</NavLinkStyled>
     ) : (
