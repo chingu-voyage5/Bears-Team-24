@@ -7,6 +7,7 @@ import Navbar from '.';
 describe('Navbar', () => {
   it('should render full Navbar for a logged-in user', () => {
     const props = {
+      history: { location: { pathname: '' } },
       isLoggedIn: true,
       username: 'foo',
       userId: '1',
@@ -72,6 +73,12 @@ describe('Navbar', () => {
 
     expect(wrapper.find('Navbar').props().isLoggedIn).toBe(false);
 
-    expect(wrapper.find('span').text()).toEqual(GREETING);
+    // FIXME: wrapper.find('span') should only have length one?
+    expect(
+      wrapper
+        .find('span')
+        .at(7)
+        .text()
+    ).toEqual(GREETING);
   });
 });

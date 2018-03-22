@@ -65,17 +65,22 @@ class App extends Component {
     } = this.state;
     return (
       <React.Fragment>
-        <Navbar
-          isLoggedIn={isLoggedIn}
-          userId={user._id}
-          username={user.username}
+        <Route
+          render={r => (
+            <Navbar
+              isLoggedIn={isLoggedIn}
+              userId={user._id}
+              username={user.username}
+              {...r}
+            />
+          )}
         />
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route
             exact
             path="/pages"
-            render={routeProps => <Articles {...routeProps} data={articles} />}
+            render={r => <Articles {...r} data={articles} />}
           />
           <Route exact path="/pages/new" render={() => <ArticleEdit empty />} />
           <Route
@@ -99,13 +104,12 @@ class App extends Component {
             path="/assets/:id"
             render={() => <AssetEdit {...assetData} />}
           />
-          <Route path="/assets" render={() => <div>Assets component</div>} />
           <Route path="/cms" component={CMSContainer} />
           <Route
             path="/login"
             render={() => <Login setUser={this.setUser} />}
           />
-          <Route path="/logout" render={this.logout} />
+          <Route path="/logout" render={() => <div>Logout component</div>} />
         </Switch>
       </React.Fragment>
     );
