@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Tabs from 'material-ui/Tabs';
@@ -21,7 +20,6 @@ const propTypes = {
   }),
   isLoggedIn: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
