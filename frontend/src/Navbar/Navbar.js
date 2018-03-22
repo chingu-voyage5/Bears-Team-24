@@ -63,7 +63,7 @@ class Navbar extends React.Component {
 
   render() {
     const { value } = this.state;
-    const { classes, isLoggedIn, username, userId } = this.props;
+    const { classes, isLoggedIn, username } = this.props;
 
     return (
       <Wrapper>
@@ -82,7 +82,7 @@ class Navbar extends React.Component {
               {isLoggedIn && <TabMod idx={3} classes={classes} />}
               <TabMod idx={4} classes={classes} />
             </Tabs>
-            <Greeting>Hi,{` ${username}`}</Greeting>
+            <Greeting>Hi, {username}</Greeting>
             {isLoggedIn ? (
               <NavLinkStyled to="/logout" onClick={this.hideIndicator}>
                 <Typography variant="button">Logout</Typography>
