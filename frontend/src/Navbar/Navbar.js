@@ -5,13 +5,9 @@ import { Link } from 'react-router-dom';
 import { Greeting, NavLinkStyled, Wrapper } from './styled';
 
 const propTypes = {
-  isLoggedIn: PropTypes.bool,
+  isLoggedIn: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
-};
-
-const defaultProps = {
-  isLoggedIn: false,
 };
 
 const Navbar = ({ isLoggedIn, username, userId }) => (
@@ -40,6 +36,5 @@ const Navbar = ({ isLoggedIn, username, userId }) => (
 );
 
 Navbar.propTypes = propTypes;
-Navbar.defaultProps = defaultProps;
 
 export default Navbar;
