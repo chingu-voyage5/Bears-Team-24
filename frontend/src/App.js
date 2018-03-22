@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import actions from './actions';
 import LandingPage from './LandingPage';
 import Login from './Login';
@@ -64,54 +64,64 @@ class App extends Component {
       user = this.guestUser,
     } = this.state;
     return (
-      <React.Fragment>
-        <Route
-          render={r => (
-            <Navbar
-              isLoggedIn={isLoggedIn}
-              userId={user._id}
-              username={user.username}
-              {...r}
-            />
-          )}
-        />
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
+      <BrowserRouter>
+        <React.Fragment>
           <Route
-            exact
-            path="/pages"
-            render={r => <Articles {...r} data={articles} />}
-          />
-          <Route exact path="/pages/new" render={() => <ArticleEdit empty />} />
-          <Route
-            path="/pages/:id"
-            render={() => <ArticleEdit data={article} />}
-          />
-          <Route exact path="/users" render={() => <UserList data={users} />} />
-          <Route
-            path="/users/:id"
-            render={props => (
-              <UserPage userId={props.match.params.id} data={users} />
+            render={r => (
+              <Navbar
+                isLoggedIn={isLoggedIn}
+                userId={user._id}
+                username={user.username}
+                {...r}
+              />
             )}
           />
-          <Route
-            exact
-            path="/assets"
-            render={r => <Assets {...r} data={assets} />}
-          />
-          <Route exact path="/assets/new" component={AssetEdit} />
-          <Route
-            path="/assets/:id"
-            render={() => <AssetEdit {...assetData} />}
-          />
-          <Route path="/cms" component={CMSContainer} />
-          <Route
-            path="/login"
-            render={() => <Login setUser={this.setUser} />}
-          />
-          <Route path="/logout" render={this.logout} />
-        </Switch>
-      </React.Fragment>
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route
+              exact
+              path="/pages"
+              render={r => <Articles {...r} data={articles} />}
+            />
+            <Route
+              exact
+              path="/pages/new"
+              render={() => <ArticleEdit empty />}
+            />
+            <Route
+              path="/pages/:id"
+              render={() => <ArticleEdit data={article} />}
+            />
+            <Route
+              exact
+              path="/users"
+              render={() => <UserList data={users} />}
+            />
+            <Route
+              path="/users/:id"
+              render={props => (
+                <UserPage userId={props.match.params.id} data={users} />
+              )}
+            />
+            <Route
+              exact
+              path="/assets"
+              render={r => <Assets {...r} data={assets} />}
+            />
+            <Route exact path="/assets/new" component={AssetEdit} />
+            <Route
+              path="/assets/:id"
+              render={() => <AssetEdit {...assetData} />}
+            />
+            <Route path="/cms" component={CMSContainer} />
+            <Route
+              path="/login"
+              render={() => <Login setUser={this.setUser} />}
+            />
+            <Route path="/logout" render={this.logout} />
+          </Switch>
+        </React.Fragment>
+      </BrowserRouter>
     );
   }
 }
