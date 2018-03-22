@@ -44,7 +44,11 @@ class App extends Component {
       });
   };
   setUser = user => {
-    this.setState({ user, isLoggedIn: true });
+    if (user === null) {
+      this.setState({ user: this.guestUser, isLoggedIn: false });
+    } else {
+      this.setState({ user, isLoggedIn: true });
+    }
   };
   logout = () => {
     actions.logout().then(() => {
