@@ -12,7 +12,7 @@ async function getDetail(req, res) {
   if (userId) {
     const user = await User.findById(userId);
     const { _id, username, email } = user;
-    res.json({ success: true, _id, username, email });
+    res.json({ success: true, user: { _id, username, email } });
   } else {
     res.json({ success: false });
   }
