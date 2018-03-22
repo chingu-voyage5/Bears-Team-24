@@ -36,7 +36,7 @@ exports.register = async (req, res, next) => {
   try {
     await register(user, req.body.password1);
   } catch (e) {
-    return res.json({ error: e.name });
+    return res.json({ error: e.message });
   }
   // eslint-disable-next-line no-underscore-dangle
   res.json({ _id: user._id, username: user.username });
