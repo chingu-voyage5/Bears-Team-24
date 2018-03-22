@@ -109,7 +109,7 @@ class App extends Component {
             path="/login"
             render={() => <Login setUser={this.setUser} />}
           />
-          <Route path="/logout" render={() => <div>Logout component</div>} />
+          <Route path="/logout" render={this.logout} />
         </Switch>
       </React.Fragment>
     );
