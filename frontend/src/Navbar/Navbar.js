@@ -6,15 +6,15 @@ import { Greeting, NavLinkStyled, Wrapper } from './styled';
 
 const propTypes = {
   isLoggedIn: PropTypes.bool,
-  username: PropTypes.string,
+  username: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
   isLoggedIn: false,
-  username: 'Guest',
 };
 
-const Navbar = ({ isLoggedIn, username }) => (
+const Navbar = ({ isLoggedIn, username, userId }) => (
   <Wrapper>
     <NavLinkStyled exact to="/">
       Home
@@ -29,7 +29,7 @@ const Navbar = ({ isLoggedIn, username }) => (
     <NavLinkStyled to="/cms">CMS</NavLinkStyled>
     <Greeting>
       Hi,{' '}
-      {isLoggedIn ? <Link to={`/users/${username}`}>{username}</Link> : 'Guest'}
+      {isLoggedIn ? <Link to={`/users/${userId}`}>{username}</Link> : 'Guest'}
     </Greeting>
     {isLoggedIn ? (
       <NavLinkStyled to="/logout">Logout</NavLinkStyled>

@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import actions from './actions';
 import LandingPage from './LandingPage';
 import Login from './Login';
@@ -20,46 +15,43 @@ import articleMockData from './_mockData/article.json';
 import articlesMockData from './_mockData/articles.json';
 import assetMockData from './_mockData/assetMockData.json';
 import assetsMockData from './_mockData/assets.json';
+import usersMockData from './_mockData/users.json';
 
 class App extends Component {
+  // eslint-disable-next-line react/sort-comp
+  guestUser = { _id: '0', username: 'Guest' };
   state = {
     article: articleMockData,
     articles: articlesMockData,
     assetData: assetMockData,
     assets: assetsMockData,
+    users: usersMockData,
     isLoggedIn: true,
-    username: 'Guest',
+    user: this.guestUser,
   };
-
   componentDidMount = () => {
     actions
       .getUser()
       .then(res => {
         if (res.success) {
-          this.setState({ isLoggedIn: true, username: res.username });
+          this.setState({ isLoggedIn: true, user: res.user });
         } else {
-          this.setState({ isLoggedIn: false, username: 'Guest' });
+          this.setState({ isLoggedIn: false, user: this.guestUser });
         }
       })
       .catch(() => {
-        this.setState({ isLoggedIn: false, username: 'Guest' });
+        this.setState({ isLoggedIn: false, user: this.guestUser });
       });
   };
-
+  setUser = user => {
+    this.setState({ user, isLoggedIn: true });
+  };
   logout = () => {
     actions.logout().then(() => {
-      this.setState({ isLoggedIn: false, username: 'Guest' });
+      this.setState({ isLoggedIn: false, user: this.guestUser });
     });
     return <Redirect to="/" />;
   };
-
-  // handleLogin = isLoggedIn => {
-  //   this.setState(() => ({ isLoggedIn }));
-  // };
-  //
-  // handleUsername = username => {
-  //   this.setState(() => ({ username }));
-  // };
 
   render() {
     const {
@@ -68,68 +60,55 @@ class App extends Component {
       assetData,
       assets,
       isLoggedIn,
-      username,
       users,
+      user = this.guestUser,
     } = this.state;
-
     return (
-      <Router>
-        <React.Fragment>
-          <Navbar isLoggedIn={isLoggedIn} username={username} />
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route
-              exact
-              path="/pages"
-              render={routeProps => (
-                <Articles {...routeProps} data={articles} />
-              )}
-            />
-            <Route
-              exact
-              path="/pages/new"
-              render={() => <ArticleEdit empty />}
-            />
-            <Route
-              path="/pages/:id"
-              render={() => <ArticleEdit data={article} />}
-            />
-            <Route
-              exact
-              path="/users"
-              render={() => <UserList data={users} />}
-            />
-            <Route
-              path="/users/:id"
-              render={props => (
-                <UserPage userId={props.match.params.id} data={users} />
-              )}
-            />
-            <Route
-              exact
-              path="/assets"
-              render={r => <Assets {...r} data={assets} />}
-            />
-            <Route exact path="/assets/new" component={AssetEdit} />
-            <Route
-              path="/assets/:id"
-              render={() => <AssetEdit {...assetData} />}
-            />
-            <Route path="/assets" render={() => <div>Assets component</div>} />
-            <Route path="/cms" component={CMSContainer} />
-            <Route path="/login" component={Login} />
-            <Route path="/logout" render={this.logout} />
-          </Switch>
-        </React.Fragment>
-      </Router>
+      <React.Fragment>
+        <Navbar
+          isLoggedIn={isLoggedIn}
+          userId={user._id}
+          username={user.username}
+        />
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route
+            exact
+            path="/pages"
+            render={routeProps => <Articles {...routeProps} data={articles} />}
+          />
+          <Route exact path="/pages/new" render={() => <ArticleEdit empty />} />
+          <Route
+            path="/pages/:id"
+            render={() => <ArticleEdit data={article} />}
+          />
+          <Route exact path="/users" render={() => <UserList data={users} />} />
+          <Route
+            path="/users/:id"
+            render={props => (
+              <UserPage userId={props.match.params.id} data={users} />
+            )}
+          />
+          <Route
+            exact
+            path="/assets"
+            render={r => <Assets {...r} data={assets} />}
+          />
+          <Route exact path="/assets/new" component={AssetEdit} />
+          <Route
+            path="/assets/:id"
+            render={() => <AssetEdit {...assetData} />}
+          />
+          <Route path="/assets" render={() => <div>Assets component</div>} />
+          <Route path="/cms" component={CMSContainer} />
+          <Route
+            path="/login"
+            render={() => <Login setUser={this.setUser} />}
+          />
+          <Route path="/logout" render={this.logout} />
+        </Switch>
+      </React.Fragment>
     );
-
-    // <StateSetup
-    //   isLoggedIn={isLoggedIn}
-    //   username={username}
-    //   handleLogin={this.handleLogin}
-    //   handleUsername={this.handleUsername}
-    // />
   }
 }
 

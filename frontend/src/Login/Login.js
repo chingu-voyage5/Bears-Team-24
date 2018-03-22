@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import Input from './Input';
 import { ButtonLikeText, Fields, Form, Heading2, Wrapper } from './styled';
 import actions from './actions';
@@ -7,13 +9,16 @@ const MIN_PASSWORD_LENGTH = process.env.NODE_ENV === 'development' ? 1 : 6;
 const MIN_USERNAME_LENGTH = process.env.NODE_ENV === 'development' ? 1 : 6;
 
 class Login extends React.Component {
+  static propTypes = {
+    setUser: PropTypes.func.isRequired,
+  };
   state = {
     register: false,
     username: '',
     password1: '',
     password2: '',
+    redirect: false,
   };
-
   handleChange = e => {
     const { name, value } = e.target;
     this.setState(() => ({
@@ -30,12 +35,15 @@ class Login extends React.Component {
       console.log('register:', this.state);
       actions.register({ username, password1, password2 }).then(json => {
         console.log('register response:', json);
+        this.setState({ register: false });
       });
     } else {
       const { username, password1 } = this.state;
       console.log('login:', this.state);
       actions.login({ username, password: password1 }).then(json => {
         console.log('login response:', json);
+        this.props.setUser(json);
+        this.setState({ redirect: '/' });
       });
     }
     /* eslint-enable */
@@ -57,6 +65,9 @@ class Login extends React.Component {
   };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     const { password1, password2, register, username } = this.state;
 
     const isSubmitDisabled =
