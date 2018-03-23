@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
+import actions from './actions';
 
 import { Button, Wrapper } from './styled';
 
@@ -9,7 +10,6 @@ import '../react-table.css';
 import columns from './columns_config';
 
 const propTypes = {
-  data: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
@@ -18,11 +18,15 @@ const propTypes = {
   }).isRequired,
 };
 
-const defaultProps = {
-  data: [],
-};
-
 class Assets extends React.Component {
+  state = {
+    data: [],
+  };
+  componentDidMount = () => {
+    actions.getAll().then(data => {
+      this.setState({ data });
+    });
+  };
   handleClick = () => {
     this.props.history.push(`${this.props.location.pathname}/new`);
   };
@@ -32,8 +36,7 @@ class Assets extends React.Component {
   };
 
   render() {
-    const { data } = this.props;
-
+    const { data } = this.state;
     return (
       <Wrapper>
         <Button onClick={this.handleClick}>New Asset</Button>
@@ -43,7 +46,11 @@ class Assets extends React.Component {
           noDataText="No data found."
           className={data.length ? '-striped -highlight' : ''}
           getTdProps={(_, rowInfo) => ({
-            onClick: () => this.handleNavigation(rowInfo.row._id),
+            onClick: () => {
+              if (rowInfo) {
+                this.handleNavigation(rowInfo.row._id);
+              }
+            },
           })}
         />
       </Wrapper>
@@ -52,6 +59,5 @@ class Assets extends React.Component {
 }
 
 Assets.propTypes = propTypes;
-Assets.defaultProps = defaultProps;
 
 export default Assets;
