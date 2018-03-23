@@ -24,14 +24,8 @@ class App extends Component {
     articles: articlesMockData,
     assetData: assetMockData,
     assets: assetsMockData,
-<<<<<<< HEAD
-    isLoggedIn: true,
-    username: 'fake_user',
-=======
-    users: usersMockData,
     isLoggedIn: true,
     user: this.guestUser,
->>>>>>> develop
   };
   componentDidMount = () => {
     actions
