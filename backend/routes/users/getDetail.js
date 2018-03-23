@@ -11,8 +11,11 @@ async function getDetail(req, res) {
   }
   if (userId) {
     const user = await User.findById(userId);
-    const { _id, username, email } = user;
-    res.json({ success: true, user: { _id, username, email } });
+    const { _id, username, role, email, bio, avatar } = user;
+    res.json({
+      success: true,
+      user: { _id, username, role, email, bio, avatar },
+    });
   } else {
     res.json({ success: false });
   }
