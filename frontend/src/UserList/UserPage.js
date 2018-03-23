@@ -12,7 +12,7 @@ export default class UserPage extends React.Component {
   };
   componentDidMount = () => {
     actions.getUser(this.props.userId).then(json => {
-      this.setState({ user: json });
+      this.setState({ user: json.user });
     });
   };
   render() {
