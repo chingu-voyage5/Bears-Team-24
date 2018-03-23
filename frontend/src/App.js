@@ -62,12 +62,7 @@ class App extends Component {
       assetData,
       assets,
       isLoggedIn,
-<<<<<<< HEAD
-      username,
-=======
-      users,
       user = this.guestUser,
->>>>>>> develop
     } = this.state;
     return (
       <BrowserRouter>
