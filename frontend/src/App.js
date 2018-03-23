@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import actions from './actions';
+import LandingPage from './LandingPage';
+import Login from './Login';
+import Navbar from './Navbar';
 import Articles from './Articles';
 import ArticleEdit from './ArticleEdit';
 import Assets from './Assets';
 import AssetEdit from './AssetEdit';
-import LandingPage from './LandingPage';
-import Login from './Login';
-import Navbar from './Navbar';
-import StateSetup from './_StateSetup';
 import CMSContainer from './CMSContainer';
 import { UserList, UserPage } from './UserList';
 
@@ -19,28 +17,44 @@ import assetMockData from './_mockData/assetMockData.json';
 import assetsMockData from './_mockData/assets.json';
 import usersMockData from './_mockData/users.json';
 
-// This is just a mock showing a simple react component included.
-// Viktor may remove this file when he does the routing, but you can
-// still use this to see your component. Simply replace <LandingPage/>
-// with the name of your component, e.g. <Sidebar />
-
 class App extends Component {
+  // eslint-disable-next-line react/sort-comp
+  guestUser = { _id: '0', username: 'Guest' };
   state = {
     article: articleMockData,
     articles: articlesMockData,
     assetData: assetMockData,
     assets: assetsMockData,
-    isLoggedIn: true,
-    username: 'fake_user',
     users: usersMockData,
+    isLoggedIn: true,
+    user: this.guestUser,
   };
-
-  handleLogin = isLoggedIn => {
-    this.setState(() => ({ isLoggedIn }));
+  componentDidMount = () => {
+    actions
+      .getUser()
+      .then(res => {
+        if (res.success) {
+          this.setState({ isLoggedIn: true, user: res.user });
+        } else {
+          this.setState({ isLoggedIn: false, user: this.guestUser });
+        }
+      })
+      .catch(() => {
+        this.setState({ isLoggedIn: false, user: this.guestUser });
+      });
   };
-
-  handleUsername = username => {
-    this.setState(() => ({ username }));
+  setUser = user => {
+    if (user === null) {
+      this.setState({ user: this.guestUser, isLoggedIn: false });
+    } else {
+      this.setState({ user, isLoggedIn: true });
+    }
+  };
+  logout = () => {
+    actions.logout().then(() => {
+      this.setState({ isLoggedIn: false, user: this.guestUser });
+    });
+    return <Redirect to="/" />;
   };
 
   render() {
@@ -50,22 +64,20 @@ class App extends Component {
       assetData,
       assets,
       isLoggedIn,
-      username,
       users,
+      user = this.guestUser,
     } = this.state;
-
     return (
-      <Router>
+      <BrowserRouter>
         <React.Fragment>
-          <StateSetup
-            isLoggedIn={isLoggedIn}
-            username={username}
-            handleLogin={this.handleLogin}
-            handleUsername={this.handleUsername}
-          />
           <Route
             render={r => (
-              <Navbar isLoggedIn={isLoggedIn} username={username} {...r} />
+              <Navbar
+                isLoggedIn={isLoggedIn}
+                userId={user._id}
+                username={user.username}
+                {...r}
+              />
             )}
           />
           <Switch>
@@ -73,9 +85,7 @@ class App extends Component {
             <Route
               exact
               path="/pages"
-              render={routeProps => (
-                <Articles {...routeProps} data={articles} />
-              )}
+              render={r => <Articles {...r} data={articles} />}
             />
             <Route
               exact
@@ -107,13 +117,15 @@ class App extends Component {
               path="/assets/:id"
               render={() => <AssetEdit {...assetData} />}
             />
-            <Route path="/assets" render={() => <div>Assets component</div>} />
             <Route path="/cms" component={CMSContainer} />
-            <Route path="/login" component={Login} />
-            <Route path="/logout" render={() => <div>Logout component</div>} />
+            <Route
+              path="/login"
+              render={() => <Login setUser={this.setUser} />}
+            />
+            <Route path="/logout" render={this.logout} />
           </Switch>
         </React.Fragment>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

@@ -33,9 +33,10 @@ describe('User routes', () => {
       .end((err, res) => {
         if (err) throw err;
         expect(res.statusCode).to.equal(200);
-        expect(res.body._id).to.equal(testUser._id.toHexString());
-        expect(res.body.username).to.equal(testUser.username);
-        expect(res.body.email).to.equal(testUser.email);
+        expect(res.body.success).to.equal(true);
+        expect(res.body.user._id).to.equal(testUser._id.toHexString());
+        expect(res.body.user.username).to.equal(testUser.username);
+        expect(res.body.user.email).to.equal(testUser.email);
         done();
       });
   });

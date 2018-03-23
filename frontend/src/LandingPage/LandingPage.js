@@ -9,9 +9,30 @@ import {
   Section,
 } from './styled';
 
+const test = () => {
+  // TODO: remove example auth route and the button rendered  below
+  fetch('/api/v1/test', {
+    method: 'post',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify({ test: 'testing 1,2,3' }),
+  })
+    .then(res => res.json())
+    .then(json => {
+      // eslint-disable-next-line no-console
+      console.log('test response:', json);
+    });
+};
+
 const LandingPage = () => (
   <React.Fragment>
     <Heading1>Welcome to chingu CMS</Heading1>
+    <button type="button" onClick={test}>
+      Test
+    </button>
     <Article>
       <Heading2>Features</Heading2>
       <Content>

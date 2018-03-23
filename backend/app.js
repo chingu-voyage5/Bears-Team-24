@@ -41,7 +41,7 @@ app.use(session({
   keys: ['secretkey'],
   // at some point?
   // cookie: { maxAge: 1000 }
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
@@ -51,6 +51,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./passport/passport');
+require('./passport/github');
 
 // promisify some callback based APIs
 app.use((req, res, next) => {
