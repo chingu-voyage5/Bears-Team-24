@@ -3,7 +3,6 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 const { Schema } = mongoose;
 mongoose.Promise = global.Promise;
-// const validator = require('validator');
 // const mongodbErrorHandler = require('mongoose-mongodb-errors');
 
 /**
@@ -11,26 +10,13 @@ mongoose.Promise = global.Promise;
  * hash and salt field to store the username,
  * the hashed password and the salt value.
  */
-// email can be anything in dev
-let emailSpec;
-if (process.env.NODE_ENV !== 'production') {
-  emailSpec = String;
-} else {
-  emailSpec = {
-    type: String,
-    unique: true,
-    lowercase: true,
-    trim: true,
-    validate: [validator.isEmail, 'Invalid Email Address'],
-    required: 'Please Supply an email address',
-  };
-}
 const userSchema = new Schema({
-  active: Boolean,
+  active: { type: Boolean, default: true },
+  created: { type: Date, default: Date.now },
   github: {
     id: String,
     displayName: String,
-    username: String
+    username: String,
   },
   email: String,
   username: {
@@ -38,7 +24,7 @@ const userSchema = new Schema({
     required: 'Please supply a username',
     trim: true,
   },
-  role: { type: String, enum: ['admin', 'member'] },
+  role: { type: String, enum: ['admin', 'member'], default: 'member' },
   bio: String,
 });
 
