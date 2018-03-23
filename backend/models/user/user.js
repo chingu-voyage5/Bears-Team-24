@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const { Schema } = mongoose;
 mongoose.Promise = global.Promise;
-const validator = require('validator');
-const mongodbErrorHandler = require('mongoose-mongodb-errors');
-const passportLocalMongoose = require('passport-local-mongoose');
+// const validator = require('validator');
+// const mongodbErrorHandler = require('mongoose-mongodb-errors');
 
 /**
  * Passport-Local Mongoose will add a username,
@@ -27,7 +27,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const userSchema = new Schema({
   active: Boolean,
-  email: emailSpec,
+  github: {
+    id: String,
+    displayName: String,
+    username: String
+  },
+  email: String,
   username: {
     type: String,
     required: 'Please supply a username',
@@ -37,7 +42,7 @@ const userSchema = new Schema({
   bio: String,
 });
 
-userSchema.plugin(passportLocalMongoose);
-userSchema.plugin(mongodbErrorHandler);
+userSchema.plugin(passportLocalMongoose, { usernameField: 'username' });
+// userSchema.plugin(mongodbErrorHandler);
 
 module.exports = mongoose.model('User', userSchema);

@@ -53,6 +53,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./passport/passport');
+require('./passport/github');
 
 // promisify some callback based APIs
 app.use((req, res, next) => {
