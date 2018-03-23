@@ -46,7 +46,12 @@ class Navbar extends React.Component {
       value: idx < 0 ? false : idx,
     }));
   }
-
+  componentWillReceiveProps(nextProps) {
+    // eslint-disable-next-line
+    if (nextProps.location.pathname === '/') {
+      this.handleIndicator(null, 0);
+    }
+  }
   handleIndicator = (e, value) => {
     this.setState(() => ({
       value,
