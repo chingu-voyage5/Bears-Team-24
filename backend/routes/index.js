@@ -2,6 +2,7 @@ const { Router } = require('express');
 
 const auth = require('./auth');
 const users = require('./users');
+const assets = require('./assets');
 
 const router = new Router();
 
@@ -11,6 +12,10 @@ router.get('/api/v1/test', (req, res) => {
 
 router.get('/api/v1/user/:id*?', users.getDetail);
 router.get('/api/v1/users', users.getAll);
+
+router.get('/api/v1/assets', assets.getAll);
+router.get('/api/v1/asset/:id', assets.getDetail);
+router.post('/api/v1/asset', assets.upsert);
 
 router.post('/api/v1/register',
   users.register.validateRegister,
