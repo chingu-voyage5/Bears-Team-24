@@ -1,8 +1,9 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
+import actions from './actions';
 
-import Input from '../ArticleEdit/Input';
+import Input from './Input';
 import {
   Button,
   DropArea,
@@ -19,17 +20,26 @@ import { getFileType, getMediaType, readFile } from './utils';
 
 const MAX_FILE_SIZE_MB = maxFileSizeMb;
 
-const propTypes = {
-  asset: PropTypes.string,
-  description: PropTypes.string,
-  title: PropTypes.string,
-};
-
 class AssetEdit extends React.Component {
+  static propTypes = {
+    id: PropTypes.string,
+  };
   state = {
-    fileType: getMediaType(this.props.asset),
-    data64: this.props.asset,
+    // fileType: getMediaType(this.props.asset),
+    fileType: null,
+    file: null,
+    data64: null,
     scale: false,
+    description: '',
+    title: '',
+    _id: false,
+  };
+  componentDidMount = () => {
+    if (this.props.id) {
+      actions.get(`/api/v1/asset/${this.props.id}`).then(json => {
+        console.log('get asset:', json);
+      });
+    }
   };
 
   handleSelect = e => {
@@ -95,6 +105,26 @@ class AssetEdit extends React.Component {
       scale: !s.scale,
     }));
   };
+  handleFieldChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  packageData = () => {
+    const { file, title, description } = this.state;
+    const payload = new FormData();
+    payload.append('title', title);
+    payload.append('description', description);
+    payload.append('blob', file);
+    return payload;
+  };
+  handleSave = () => {
+    const payload = this.packageData();
+    actions.save(payload).then(json => {
+      console.log('asset response keys:');
+      Object.keys(json).forEach(k => {
+        console.log(k);
+      });
+    });
+  };
 
   renderAsset = (type, src) => {
     switch (true) {
@@ -110,23 +140,22 @@ class AssetEdit extends React.Component {
         return <div>No preview available</div>;
     }
   };
-
   render() {
-    const { description, title } = this.props;
+    const { description, title } = this.state;
 
     return (
       <Wrapper>
         <Input
-          innerRef={() => {}}
-          defaultValue={title || ''}
+          value={title}
           label="Title:"
           name="title"
+          onChange={this.handleFieldChange}
         />
         <Input
-          innerRef={() => {}}
-          defaultValue={description || ''}
+          value={description}
           label="Description:"
           name="description"
+          onChange={this.handleFieldChange}
         />
         <Label htmlFor="asset">
           Asset type:
@@ -147,12 +176,10 @@ class AssetEdit extends React.Component {
           {this.state.data64 &&
             this.renderAsset(this.state.fileType, this.state.data64)}
         </DropArea>
-        <Button>Save</Button>
+        <Button onClick={this.handleSave}>Save</Button>
       </Wrapper>
     );
   }
 }
-
-AssetEdit.propTypes = propTypes;
 
 export default AssetEdit;
