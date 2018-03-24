@@ -1,52 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import actions from './actions';
 
 export default class UserPage extends React.Component {
+  static propTypes = {
+    userId: PropTypes.string.isRequired,
+  };
+  state = {
+    user: {},
+  };
+  componentDidMount = () => {
+    actions.getUser(this.props.userId).then(json => {
+      this.setState({ user: json.user });
+    });
+  };
   render() {
-    const { data } = this.props;
-    const ids = data.map(a => a._id);
-    const number = ids.indexOf(this.props.userId);
+    const { user } = this.state;
     let userInfo = (
       <p>
-        User ID {this.props.userId} not found. Type &apos;/users&apos; in
-        address bar and hit Enter (or click the button below) to see all
-        registered users
+        User not found. Type &apos;/users&apos; in address bar and hit Enter (or
+        click the button below) to see all registered users
       </p>
     );
-    if (number !== -1) {
-      const d = data[number];
+    if (user) {
+      const { _id, username, role, email, avatar, bio } = user;
       userInfo = (
         <table>
           <tbody>
             <tr>
               <td className="avatar" colSpan="2">
-                <img src={d.avatar} alt="avatar" />
+                <img src={avatar} alt="avatar" />
               </td>
             </tr>
             <tr>
               <td> Name</td>
-              <td> {d.name}</td>
+              <td> {username}</td>
             </tr>
             <tr>
               <td> ID</td>
-              <td> {d._id}</td>
+              <td> {_id}</td>
             </tr>
             <tr>
               <td> Email</td>
-              <td> {d.email}</td>
+              <td> {email}</td>
             </tr>
             <tr>
               <td> Role</td>
-              <td> {d.role}</td>
+              <td> {role}</td>
             </tr>
             <tr>
               <td> Avatar</td>
-              <td> {d.avatar}</td>
+              <td> {avatar}</td>
             </tr>
             <tr>
               <td> Bio</td>
-              <td> {d.bio}</td>
+              <td> {bio}</td>
             </tr>
           </tbody>
         </table>
@@ -62,11 +71,3 @@ export default class UserPage extends React.Component {
     );
   }
 }
-UserPage.propTypes = {
-  data: PropTypes.array,
-  userId: PropTypes.string.isRequired,
-};
-
-UserPage.defaultProps = {
-  data: [],
-};

@@ -12,18 +12,20 @@ exports.validateRegister = (req, res, next) => {
     req.sanitizeBody('email').normalizeEmail({
       gmail_remove_dots: false,
       remove_extension: false,
-      gmail_remove_subaddress: false
+      gmail_remove_subaddress: false,
     });
   }
   req.checkBody('password1', 'Password Cannot be Blank!').notEmpty();
   req.checkBody('password2', 'Confirmed Password cannot be blank!').notEmpty();
-  req.checkBody('password2', 'Oops! Your passwords do not match').equals(req.body.password1);
+  req
+    .checkBody('password2', 'Oops! Your passwords do not match')
+    .equals(req.body.password1);
 
   const errors = req.validationErrors();
   if (errors) {
     // stop the fn from running
     return res.status(400).json({
-      errors: errors.map(err => err.msg)
+      errors: errors.map(err => err.msg),
     });
   }
   return next();

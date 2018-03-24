@@ -3,7 +3,6 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 const { Schema } = mongoose;
 mongoose.Promise = global.Promise;
-// const validator = require('validator');
 // const mongodbErrorHandler = require('mongoose-mongodb-errors');
 
 /**
@@ -12,26 +11,21 @@ mongoose.Promise = global.Promise;
  * the hashed password and the salt value.
  */
 const userSchema = new Schema({
-  active: Boolean,
+  active: { type: Boolean, default: true },
+  created: { type: Date, default: Date.now },
   github: {
     id: String,
     displayName: String,
-    username: String
+    username: String,
   },
   email: String,
   username: {
     type: String,
-    required: 'Please supply a name',
-    trim: true
+    required: 'Please supply a username',
+    trim: true,
   },
-  avatar: String
-});
-
-userSchema.pre('save', function preSaveHook(next) {
-  if (typeof this.username === 'undefined') {
-    this.username = this.github.username;
-  }
-  next();
+  role: { type: String, enum: ['admin', 'member'], default: 'member' },
+  bio: String,
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'username' });

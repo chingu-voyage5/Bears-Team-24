@@ -15,7 +15,6 @@ import articleMockData from './_mockData/article.json';
 import articlesMockData from './_mockData/articles.json';
 import assetMockData from './_mockData/assetMockData.json';
 import assetsMockData from './_mockData/assets.json';
-import usersMockData from './_mockData/users.json';
 
 class App extends Component {
   // eslint-disable-next-line react/sort-comp
@@ -25,7 +24,6 @@ class App extends Component {
     articles: articlesMockData,
     assetData: assetMockData,
     assets: assetsMockData,
-    users: usersMockData,
     isLoggedIn: true,
     user: this.guestUser,
   };
@@ -64,7 +62,6 @@ class App extends Component {
       assetData,
       assets,
       isLoggedIn,
-      users,
       user = this.guestUser,
     } = this.state;
     return (
@@ -96,16 +93,10 @@ class App extends Component {
               path="/pages/:id"
               render={() => <ArticleEdit data={article} />}
             />
-            <Route
-              exact
-              path="/users"
-              render={() => <UserList data={users} />}
-            />
+            <Route exact path="/users" render={() => <UserList />} />
             <Route
               path="/users/:id"
-              render={props => (
-                <UserPage userId={props.match.params.id} data={users} />
-              )}
+              render={props => <UserPage userId={props.match.params.id} />}
             />
             <Route
               exact

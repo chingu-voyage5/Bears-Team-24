@@ -12,5 +12,5 @@ async function close() {
 
 module.exports = {
   init,
-  close
+  close,
 };

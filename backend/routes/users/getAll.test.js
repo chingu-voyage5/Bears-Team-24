@@ -25,7 +25,7 @@ describe('User routes', () => {
     testUser = {
       _id,
       email: 'test1@email.com',
-      username: 'test1'
+      username: 'test1',
     };
     testUsers.push(testUser);
     let user = new User(testUser);
@@ -35,7 +35,7 @@ describe('User routes', () => {
     testUser = {
       _id,
       email: 'test2@email.com',
-      username: 'test2'
+      username: 'test2',
     };
     testUsers.push(testUser);
     user = new User(testUser);
@@ -44,15 +44,16 @@ describe('User routes', () => {
   afterEach(async () => {
     await User.remove({ _id: { $in: ids } });
   });
-  it('gets users\' details', (done) => {
-    chai.request(app)
+  it('gets user detail', done => {
+    chai
+      .request(app)
       .get('/api/v1/users')
       .end((err, res) => {
         if (err) throw err;
         expect(res.statusCode).to.equal(200);
         expect(res.body).to.be.a('array');
         expect(res.body.length).to.be.equal(2);
-        res.body.forEach((user) => {
+        res.body.forEach(user => {
           // eslint-disable-next-line eqeqeq
           const eu = testUsers.filter(u => u._id == user._id)[0];
           expect(eu).to.be.a('object');
