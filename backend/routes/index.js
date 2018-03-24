@@ -7,11 +7,16 @@ const passport = require('passport');
 
 const router = new Router();
 
-function catchAsyncErrors (middleware) {
-  return (req, res, next) => Promise.resolve(middleware(req, res, next)).catch(next);
+function catchAsyncErrors(middleware) {
+  return (req, res, next) =>
+    Promise.resolve(middleware(req, res, next)).catch(next);
 }
 
-router.get('/api/v1/user/:id*?', auth.isLoggedIn, catchAsyncErrors(users.getDetail));
+router.get(
+  '/api/v1/user/:id*?',
+  auth.isLoggedIn,
+  catchAsyncErrors(users.getDetail)
+);
 router.get('/api/v1/users', auth.isLoggedIn, catchAsyncErrors(users.getAll));
 
 router.get('/auth/github', passport.authenticate('github'));
