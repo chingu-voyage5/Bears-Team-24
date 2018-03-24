@@ -5,12 +5,13 @@ mongoose.Promise = global.Promise;
 
 const assetSchema = new Schema({
   active: Boolean,
-  type: { type: String, enum: ['image', 'audio', 'video']},
-  created: Date,
-  last_updated: Date,
+  created: { type: Date, default: Date.now },
+  last_updated: { type: Date, default: Date.now },
   creator: { type: Schema.Types.ObjectId, ref: 'User' },
+  title: String,
+  description: String,
   content_type: String,
-  content: Buffer
+  content: Buffer,
 });
 
 module.exports = mongoose.model('Asset', assetSchema);
