@@ -1,4 +1,7 @@
 const { Router } = require('express');
+const multer = require('multer');
+
+const upload = multer({ dest: process.env.IMAGE_UPLOAD_DIR});
 
 const auth = require('./auth');
 const users = require('./users');
@@ -15,10 +18,10 @@ router.get('/api/v1/users', users.getAll);
 
 router.get('/api/v1/assets', assets.getAll);
 router.get('/api/v1/asset/:id', assets.getDetail);
-router.post('/api/v1/asset', assets.upsert);
+router.post('/api/v1/asset', upload.single('blob'), assets.upsert);
 
 router.post('/api/v1/register',
-  users.register.validateRegister,
+  // users.register.validateRegister,
   users.register.register
 );
 router.post('/api/v1/login', auth.login);

@@ -2,23 +2,21 @@ const fs = require('fs');
 const Asset = require('../../models/asset');
 
 const upsert = async (req, res) => {
-  const create = req.body._id ? true : false;
   let asset;
-  if (create) {
-    asset = new Asset();
-  } else {
+  if (req.body._id) {
     asset = await Asset.findById(req.body._id);
+  } else {
+    asset = new Asset();
+    // asset.creator = req.user._id;
   }
-  asset.active = true;
-  asset.type = req.body.type;
-  asset.creator = req.body.creator;
-  asset.last_updated = new Date();
-  const fd = req.files[0];
-  const data = fs.readFileSync();
+  asset.title = req.body.title;
+  asset.description = req.body.description;
+  const fd = req.file;
+  const data = fs.readFileSync(fd.path);
   asset.content_type = fd.mimetype;
   asset.content = data;
   await asset.save();
-  res.json(asset);
+  res.json({ success: true });
 };
 
 module.exports = upsert;
