@@ -145,8 +145,9 @@ exports[`AssetEdit component matches snapshot 1`] = `
     Title:
     <input
       className="c2"
-      defaultValue=""
-      id="title"
+      name="title"
+      onChange={[Function]}
+      value=""
     />
   </label>
   <label
@@ -156,8 +157,9 @@ exports[`AssetEdit component matches snapshot 1`] = `
     Description:
     <input
       className="c2"
-      defaultValue=""
-      id="description"
+      name="description"
+      onChange={[Function]}
+      value=""
     />
   </label>
   <label
@@ -167,15 +169,24 @@ exports[`AssetEdit component matches snapshot 1`] = `
     Asset type:
     <p
       className="c4"
-    >
-      
-    </p>
+    />
   </label>
   <input
     className="c5"
     onChange={[Function]}
     type="file"
   />
+  <label
+    className="c3"
+    htmlFor="embed url"
+  >
+    Embed Url:
+    <p
+      className="c4"
+    >
+      //api/v1/asset/content/null
+    </p>
+  </label>
   <button
     className="c6"
     onClick={[Function]}
@@ -190,6 +201,7 @@ exports[`AssetEdit component matches snapshot 1`] = `
   </button>
   <button
     className="c8"
+    onClick={[Function]}
   >
     Save
   </button>
