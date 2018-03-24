@@ -11,12 +11,14 @@ const upsert = async (req, res) => {
   }
   asset.title = req.body.title;
   asset.description = req.body.description;
-  const fd = req.file;
-  const data = fs.readFileSync(fd.path);
-  asset.content_type = fd.mimetype;
-  asset.content = data;
+  if (req.file) {
+    const fd = req.file;
+    const data = fs.readFileSync(fd.path);
+    asset.content_type = fd.mimetype;
+    asset.content = data;
+  }
   await asset.save();
-  res.json({ success: true });
+  res.json({ success: true, _id: asset._id });
 };
 
 module.exports = upsert;
