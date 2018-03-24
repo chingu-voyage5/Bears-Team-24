@@ -7,16 +7,14 @@ const passport = require('passport');
 
 const router = new Router();
 
-// TODO: remove example auth route
-router.post('/api/v1/test', auth.isLoggedIn, (req, res) => {
-  res.json({ success: true, data: 'waaaaahoo', test: req.body.test });
-});
+function catchAsyncErrors (middleware) {
+  return (req, res, next) => Promise.resolve(middleware(req, res, next)).catch(next);
+}
 
-router.get('/api/v1/user/:id*?', auth.isLoggedIn, users.getDetail);
-router.get('/api/v1/users', auth.isLoggedIn, users.getAll);
+router.get('/api/v1/user/:id*?', auth.isLoggedIn, catchAsyncErrors(users.getDetail));
+router.get('/api/v1/users', auth.isLoggedIn, catchAsyncErrors(users.getAll));
 
 router.get('/auth/github', passport.authenticate('github'));
-
 router.get(
   '/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
