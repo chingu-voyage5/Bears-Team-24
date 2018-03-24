@@ -16,7 +16,7 @@ import {
 } from './styled';
 
 import { fileTypes, maxFileSizeMb } from './config';
-import { getFileType, getMediaType, readFile } from './utils';
+import { getFileType, readFile } from './utils';
 
 const MAX_FILE_SIZE_MB = maxFileSizeMb;
 
@@ -25,19 +25,40 @@ class AssetEdit extends React.Component {
     id: PropTypes.string,
   };
   state = {
-    // fileType: getMediaType(this.props.asset),
     fileType: null,
     file: null,
     data64: null,
     scale: false,
     description: '',
     title: '',
-    _id: false,
+    localUrl: null,
+    _id: null,
+  };
+  // eslint-disable-next-line react/sort-comp
+  getAsset = id => {
+    const promises = [];
+    promises.push(
+      actions.get(id).then(json => {
+        const { title, description, content_type: type } = json;
+        const fileType = getFileType({ type }, fileTypes);
+        return { title, description, fileType };
+      })
+    );
+    promises.push(actions.getContent(this.props.id).then(localUrl => localUrl));
+    return promises;
   };
   componentDidMount = () => {
     if (this.props.id) {
-      actions.get(`/api/v1/asset/${this.props.id}`).then(json => {
-        console.log('get asset:', json);
+      Promise.all(this.getAsset(this.props.id)).then(results => {
+        const [detail, localUrl] = results;
+        this.setState({
+          _id: this.props.id,
+          scale: false,
+          ...detail,
+          localUrl,
+          file: null,
+          data64: null,
+        });
       });
     }
   };
@@ -65,8 +86,13 @@ class AssetEdit extends React.Component {
       fileType: getFileType(file, fileTypes),
       file,
     }));
+    this.set64(file);
+  };
 
-    readFile(file).then(data64 => this.setState(() => ({ data64 })));
+  set64 = file => {
+    readFile(file).then(data64 =>
+      this.setState(() => ({ data64, localUrl: null }))
+    );
   };
 
   handleDrop = e => {
@@ -87,8 +113,7 @@ class AssetEdit extends React.Component {
       fileType: getFileType(file, fileTypes),
       file,
     }));
-
-    readFile(file).then(data64 => this.setState(() => ({ data64 })));
+    this.set64(file);
   };
 
   handleDrag = e => {
@@ -109,20 +134,22 @@ class AssetEdit extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   packageData = () => {
-    const { file, title, description } = this.state;
+    const { file, _id, title, description } = this.state;
     const payload = new FormData();
+    if (_id) {
+      payload.append('_id', _id);
+    }
     payload.append('title', title);
     payload.append('description', description);
-    payload.append('blob', file);
+    if (file) {
+      payload.append('blob', file);
+    }
     return payload;
   };
   handleSave = () => {
     const payload = this.packageData();
     actions.save(payload).then(json => {
-      console.log('asset response keys:');
-      Object.keys(json).forEach(k => {
-        console.log(k);
-      });
+      this.setState({ _id: json._id });
     });
   };
 
@@ -141,8 +168,8 @@ class AssetEdit extends React.Component {
     }
   };
   render() {
-    const { description, title } = this.state;
-
+    const { description, title, localUrl, fileType, data64 } = this.state;
+    const embedUrl = `//api/v1/asset/content/${this.state._id}`;
     return (
       <Wrapper>
         <Input
@@ -159,7 +186,7 @@ class AssetEdit extends React.Component {
         />
         <Label htmlFor="asset">
           Asset type:
-          <InputField>{this.state.fileType}</InputField>
+          <InputField>{fileType}</InputField>
         </Label>
         <InvisibleInput
           innerRef={ref => {
@@ -167,14 +194,18 @@ class AssetEdit extends React.Component {
           }}
           onChange={this.handleChange}
         />
+        <Label htmlFor="embed url">
+          Embed Url:
+          <InputField>{embedUrl}</InputField>
+        </Label>
         <DropArea
           onClick={this.handleDropAreaClick}
           onDrop={this.handleDrop}
           onDragOver={this.handleDrag}
         >
           <Hint>Drop file or click area to select from disk</Hint>
-          {this.state.data64 &&
-            this.renderAsset(this.state.fileType, this.state.data64)}
+          {data64 && this.renderAsset(fileType, data64)}
+          {localUrl && this.renderAsset(fileType, localUrl)}
         </DropArea>
         <Button onClick={this.handleSave}>Save</Button>
       </Wrapper>

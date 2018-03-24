@@ -47,4 +47,10 @@ const readFile = file =>
     reader.readAsDataURL(file);
   });
 
-export { getFileType, getMediaType, readFile };
+const getLocalUrl = res =>
+  res.blob().then(blob => {
+    const url = URL.createObjectURL(blob);
+    return url;
+  });
+
+export { getFileType, getMediaType, readFile, getLocalUrl };
