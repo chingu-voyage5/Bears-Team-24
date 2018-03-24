@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Tabs from 'material-ui/Tabs';
@@ -19,14 +18,12 @@ const propTypes = {
       pathname: PropTypes.string,
     }),
   }),
-  isLoggedIn: PropTypes.bool,
-  username: PropTypes.string,
+  isLoggedIn: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
   history: { location: { pathname: '' } },
-  isLoggedIn: false,
-  username: 'Guest',
 };
 
 // https://stackoverflow.com/a/48934864/6696407
@@ -49,7 +46,12 @@ class Navbar extends React.Component {
       value: idx < 0 ? false : idx,
     }));
   }
-
+  componentWillReceiveProps(nextProps) {
+    // eslint-disable-next-line
+    if (nextProps.location.pathname === '/') {
+      this.handleIndicator(null, 0);
+    }
+  }
   handleIndicator = (e, value) => {
     this.setState(() => ({
       value,
@@ -83,14 +85,7 @@ class Navbar extends React.Component {
               {isLoggedIn && <TabMod idx={3} classes={classes} />}
               <TabMod idx={4} classes={classes} />
             </Tabs>
-            <Greeting>
-              Hi,{' '}
-              {isLoggedIn ? (
-                <Link to={`/users/${username}`}>{username}</Link>
-              ) : (
-                'Guest'
-              )}
-            </Greeting>
+            <Greeting>Hi, {username}</Greeting>
             {isLoggedIn ? (
               <NavLinkStyled to="/logout" onClick={this.hideIndicator}>
                 <Typography variant="button">Logout</Typography>

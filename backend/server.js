@@ -44,5 +44,5 @@ async function stop() {
 
 module.exports = {
   init,
-  stop
+  stop,
 };

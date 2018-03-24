@@ -16,7 +16,7 @@ describe('User model', () => {
     testUser = {
       _id,
       email: 'test@email.com',
-      username: 'test'
+      username: 'test',
     };
   });
   afterEach(async () => {

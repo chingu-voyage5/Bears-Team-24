@@ -2,5 +2,5 @@
 module.exports = {
   login: require('./login'),
   logout: require('./logout'),
-  isLoggedIn: require('./isLoggedIn')
+  isLoggedIn: require('./isLoggedIn'),
 };

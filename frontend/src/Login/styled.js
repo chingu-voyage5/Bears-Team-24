@@ -38,3 +38,8 @@ export const Wrapper = styled.div`
   padding: 2rem;
   width: 100%;
 `;
+
+export const Message = styled.div`
+  visibility: ${props => (props.show ? 'visible' : 'hidden')};
+  color: ${props => (props.error ? 'tomato' : 'gold')};
+`;

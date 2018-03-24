@@ -19,7 +19,7 @@ describe('User routes', () => {
     testUser = {
       _id,
       email: 'test@email.com',
-      username: 'test'
+      username: 'test',
     };
     const user = new User(testUser);
     await user.save();
@@ -27,15 +27,17 @@ describe('User routes', () => {
   afterEach(async () => {
     await User.remove({ _id });
   });
-  it('gets user detail', (done) => {
-    chai.request(app)
+  it('gets user detail', done => {
+    chai
+      .request(app)
       .get(`/api/v1/user/${testUser._id}`)
       .end((err, res) => {
         if (err) throw err;
         expect(res.statusCode).to.equal(200);
-        expect(res.body._id).to.equal(testUser._id.toHexString());
-        expect(res.body.username).to.equal(testUser.username);
-        expect(res.body.email).to.equal(testUser.email);
+        expect(res.body.success).to.equal(true);
+        expect(res.body.user._id).to.equal(testUser._id.toHexString());
+        expect(res.body.user.username).to.equal(testUser.username);
+        expect(res.body.user.email).to.equal(testUser.email);
         done();
       });
   });
