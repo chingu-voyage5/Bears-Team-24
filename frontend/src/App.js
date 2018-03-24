@@ -40,13 +40,7 @@ class App extends Component {
   };
 
   render() {
-    const {
-      article,
-      articles,
-      isLoggedIn,
-      username,
-      users,
-    } = this.state;
+    const { article, articles, isLoggedIn, username, users } = this.state;
 
     return (
       <Router>
