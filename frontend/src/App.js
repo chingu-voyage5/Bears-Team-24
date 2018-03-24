@@ -15,8 +15,6 @@ import { UserList, UserPage } from './UserList';
 
 import articleMockData from './_mockData/article.json';
 import articlesMockData from './_mockData/articles.json';
-import assetMockData from './_mockData/assetMockData.json';
-import assetsMockData from './_mockData/assets.json';
 import usersMockData from './_mockData/users.json';
 
 // This is just a mock showing a simple react component included.
@@ -28,8 +26,6 @@ class App extends Component {
   state = {
     article: articleMockData,
     articles: articlesMockData,
-    assetData: assetMockData,
-    assets: assetsMockData,
     isLoggedIn: true,
     username: 'fake_user',
     users: usersMockData,
@@ -47,8 +43,6 @@ class App extends Component {
     const {
       article,
       articles,
-      assetData,
-      assets,
       isLoggedIn,
       username,
       users,
@@ -97,17 +91,12 @@ class App extends Component {
                 <UserPage userId={props.match.params.id} data={users} />
               )}
             />
-            <Route
-              exact
-              path="/assets"
-              render={r => <Assets {...r} data={assets} />}
-            />
+            <Route exact path="/assets" render={r => <Assets {...r} />} />
             <Route exact path="/assets/new" component={AssetEdit} />
             <Route
               path="/assets/:id"
-              render={() => <AssetEdit {...assetData} />}
+              render={props => <AssetEdit id={props.match.params.id} />}
             />
-            <Route path="/assets" render={() => <div>Assets component</div>} />
             <Route path="/cms" component={CMSContainer} />
             <Route path="/login" component={Login} />
             <Route path="/logout" render={() => <div>Logout component</div>} />
