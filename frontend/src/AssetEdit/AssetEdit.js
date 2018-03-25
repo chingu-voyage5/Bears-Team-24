@@ -51,7 +51,7 @@ class AssetEdit extends React.Component {
         return { title, description, fileType, creator };
       })
     );
-    promises.push(actions.getContent(this.props.id).then(localUrl => localUrl));
+    promises.push(actions.getContent(id).then(localUrl => localUrl));
     return promises;
   };
   componentDidMount = () => {
