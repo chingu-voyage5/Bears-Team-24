@@ -24,7 +24,9 @@ const test = () => {
     .then(json => {
       // eslint-disable-next-line no-console
       console.log('test response:', json);
-    });
+    })
+    // eslint-disable-next-line no-console
+    .catch(err => console.log(err));
 };
 
 const LandingPage = () => (

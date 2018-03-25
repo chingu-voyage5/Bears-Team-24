@@ -23,6 +23,7 @@ class App extends Component {
     isLoggedIn: true,
     user: this.guestUser,
   };
+
   componentDidMount = () => {
     actions
       .getUser()
@@ -37,6 +38,7 @@ class App extends Component {
         this.setState({ isLoggedIn: false, user: this.guestUser });
       });
   };
+
   setUser = user => {
     if (user === null) {
       this.setState({ user: this.guestUser, isLoggedIn: false });
@@ -44,10 +46,15 @@ class App extends Component {
       this.setState({ user, isLoggedIn: true });
     }
   };
+
   logout = () => {
-    actions.logout().then(() => {
-      this.setState({ isLoggedIn: false, user: this.guestUser });
-    });
+    actions
+      .logout()
+      .then(() => {
+        this.setState({ isLoggedIn: false, user: this.guestUser });
+      })
+      // eslint-disable-next-line no-console
+      .catch(err => console.log(err));
     return <Redirect to="/" />;
   };
 
