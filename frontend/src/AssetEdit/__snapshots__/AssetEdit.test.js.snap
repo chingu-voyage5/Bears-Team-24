@@ -195,7 +195,7 @@ exports[`AssetEdit component matches snapshot 1`] = `
     <p
       className="c2"
     >
-      //api/v1/asset/content/null
+      
     </p>
   </label>
   <button
