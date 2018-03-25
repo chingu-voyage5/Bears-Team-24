@@ -49,8 +49,10 @@ class App extends Component {
     }
   };
   logout = () => {
-    actions.logout().then(() => {
-      this.setState({ isLoggedIn: false, user: this.guestUser });
+    actions
+      .logout()
+      .then(() => {
+        this.setState({ isLoggedIn: false, user: this.guestUser });
       })
       // eslint-disable-next-line no-console
       .catch(err => console.log(err));
