@@ -9,7 +9,9 @@ class UserList extends React.Component {
   componentDidMount = () => {
     actions.getUserList().then(json => {
       this.setState({ data: json });
-    });
+      })
+      // eslint-disable-next-line no-console
+      .catch(err => console.log(err));
   };
   render() {
     const { data } = this.state;
