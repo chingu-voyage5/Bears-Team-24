@@ -5,11 +5,11 @@ async function getAll(req, res) {
     {},
     {
       content_type: 1,
-      owner: 1,
+      creator: 1,
       title: 1,
       created: 1,
     }
-  );
+  ).populate('creator', 'username');
   res.json(assets);
 }
 
