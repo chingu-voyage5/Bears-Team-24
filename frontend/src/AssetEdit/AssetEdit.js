@@ -35,7 +35,7 @@ class AssetEdit extends React.Component {
     title: '',
     localUrl: null,
     _id: null,
-    creator: null,
+    creator: {},
   };
   // eslint-disable-next-line react/sort-comp
   getAsset = id => {
@@ -188,11 +188,7 @@ class AssetEdit extends React.Component {
       creator,
       _id,
     } = this.state;
-    let username = '';
-    if (creator) {
-      // eslint-disable-next-line prefer-destructuring
-      username = creator.username;
-    }
+    const { username = '' } = creator;
     const embedUrl = _id ? `//api/v1/asset/content/${_id}` : '';
     return (
       <Wrapper>
