@@ -33,14 +33,14 @@ router.get(
   }
 );
 
-router.get('/api/v1/assets', auth.isLoggedIn, assets.getAll);
-router.get('/api/v1/asset/:id', assets.getDetail);
-router.get('/api/v1/asset/content/:id', assets.getContent);
+router.get('/api/v1/assets', auth.isLoggedIn, catchAsyncErrors(assets.getAll));
+router.get('/api/v1/asset/:id', catchAsyncErrors(assets.getDetail));
+router.get('/api/v1/asset/content/:id', catchAsyncErrors(assets.getContent));
 router.post(
   '/api/v1/asset',
   auth.isLoggedIn,
   upload.single('blob'),
-  assets.upsert
+  catchAsyncErrors(assets.upsert)
 );
 
 router.post(
