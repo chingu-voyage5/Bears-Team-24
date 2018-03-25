@@ -20,8 +20,9 @@ export default [
     accessor: 'content_type',
   },
   {
+    id: 'creatorname',
     Header: 'Owner',
-    accessor: 'creator',
+    accessor: d => d.creator.username,
   },
   {
     Header: 'Title',
