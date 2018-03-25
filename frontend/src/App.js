@@ -88,7 +88,11 @@ class App extends Component {
               render={props => <UserPage userId={props.match.params.id} />}
             />
             <Route exact path="/assets" render={r => <Assets {...r} />} />
-            <Route exact path="/assets/new" component={AssetEdit} />
+            <Route
+              exact
+              path="/assets/new"
+              render={r => <AssetEdit {...r} user={user} />}
+            />
             <Route
               path="/assets/:id"
               render={props => <AssetEdit id={props.match.params.id} />}
