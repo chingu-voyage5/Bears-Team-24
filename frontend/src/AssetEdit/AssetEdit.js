@@ -25,6 +25,7 @@ class AssetEdit extends React.Component {
     id: PropTypes.string,
     user: PropTypes.object,
   };
+
   state = {
     fileType: null,
     file: null,
@@ -49,6 +50,7 @@ class AssetEdit extends React.Component {
     promises.push(actions.getContent(id).then(localUrl => localUrl));
     return promises;
   };
+
   componentDidMount = () => {
     if (this.props.id) {
       Promise.all(this.getAsset(this.props.id)).then(results => {
@@ -135,9 +137,11 @@ class AssetEdit extends React.Component {
       scale: !s.scale,
     }));
   };
+
   handleFieldChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   packageData = () => {
     const { file, _id, title, description } = this.state;
     const payload = new FormData();
@@ -151,6 +155,7 @@ class AssetEdit extends React.Component {
     }
     return payload;
   };
+
   handleSave = () => {
     const payload = this.packageData();
     actions.save(payload).then(json => {
@@ -172,6 +177,7 @@ class AssetEdit extends React.Component {
         return <div>No preview available</div>;
     }
   };
+
   render() {
     const {
       description,
