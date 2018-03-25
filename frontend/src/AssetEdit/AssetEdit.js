@@ -40,7 +40,6 @@ class AssetEdit extends React.Component {
     const promises = [];
     promises.push(
       actions.get(id).then(json => {
-        console.log('asset edit json:', json);
         const { title, description, content_type: type, creator } = json;
         const fileType = getFileType({ type }, fileTypes);
         return { title, description, fileType, creator };
