@@ -38,6 +38,11 @@ class UserPage extends React.Component {
     const { user } = this.state;
     // eslint-disable-next-line
     alert(`Saving edited user ${user.username}`);
+
+    this.setState(() => ({
+      edited: false,
+      initUser: { ...user },
+    }));
   };
 
   handleCancel = () => {
