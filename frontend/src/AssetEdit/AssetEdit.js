@@ -23,6 +23,7 @@ const MAX_FILE_SIZE_MB = maxFileSizeMb;
 class AssetEdit extends React.Component {
   static propTypes = {
     id: PropTypes.string,
+    user: PropTypes.object,
   };
   state = {
     fileType: null,
@@ -34,6 +35,11 @@ class AssetEdit extends React.Component {
     localUrl: null,
     _id: null,
     creator: null,
+  };
+  componentWillMount = () => {
+    if (this.props.user) {
+      this.setState({ creator: this.props.user });
+    }
   };
   // eslint-disable-next-line react/sort-comp
   getAsset = id => {
@@ -150,7 +156,7 @@ class AssetEdit extends React.Component {
   handleSave = () => {
     const payload = this.packageData();
     actions.save(payload).then(json => {
-      this.setState({ _id: json._id });
+      this.setState({ _id: json._id, creator: json.creator });
     });
   };
 
@@ -176,13 +182,14 @@ class AssetEdit extends React.Component {
       fileType,
       data64,
       creator,
+      _id,
     } = this.state;
     let username = '';
     if (creator) {
       // eslint-disable-next-line prefer-destructuring
       username = creator.username;
     }
-    const embedUrl = `//api/v1/asset/content/${this.state._id}`;
+    const embedUrl = _id ? `//api/v1/asset/content/${_id}` : '';
     return (
       <Wrapper>
         <Label htmlFor="creator">
