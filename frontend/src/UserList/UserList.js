@@ -6,6 +6,7 @@ class UserList extends React.Component {
   state = {
     data: [],
   };
+
   componentDidMount = () => {
     actions
       .getUserList()
@@ -15,6 +16,7 @@ class UserList extends React.Component {
       // eslint-disable-next-line no-console
       .catch(err => console.log(err));
   };
+
   render() {
     const { data } = this.state;
     return (
