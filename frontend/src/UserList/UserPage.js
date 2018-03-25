@@ -1,73 +1,157 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import actions from './actions';
 
-export default class UserPage extends React.Component {
-  static propTypes = {
-    userId: PropTypes.string.isRequired,
-  };
+// Material-UI components
+import Button from 'material-ui/Button';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Paper from 'material-ui/Paper';
+import Select from 'material-ui/Select';
+import TextField from 'material-ui/TextField';
+
+import { Avatar, AvatarWrapper, Buttons, Label, Wrapper } from './styled';
+
+import actions from './actions';
+import roles from './roles';
+
+const propTypes = {
+  isAdmin: PropTypes.bool,
+  userId: PropTypes.string.isRequired,
+};
+
+const defaultProps = {
+  isAdmin: true,
+};
+
+class UserPage extends React.Component {
   state = {
     user: {},
+    isAdmin: this.props.isAdmin,
   };
+
   componentDidMount = () => {
-    actions.getUser(this.props.userId).then(json => {
-      this.setState({ user: json.user });
+    actions.getUser(this.props.userId).then(({ user }) => {
+      this.setState(() => ({ user, initUser: { ...user } }));
     });
   };
-  render() {
+
+  handleSave = () => {
     const { user } = this.state;
-    let userInfo = (
-      <p>
-        User not found. Type &apos;/users&apos; in address bar and hit Enter (or
-        click the button below) to see all registered users
-      </p>
-    );
-    if (user) {
-      const { _id, username, role, email, avatar, bio } = user;
-      userInfo = (
-        <table>
-          <tbody>
-            <tr>
-              <td className="avatar" colSpan="2">
-                <img src={avatar} alt="avatar" />
-              </td>
-            </tr>
-            <tr>
-              <td> Name</td>
-              <td> {username}</td>
-            </tr>
-            <tr>
-              <td> ID</td>
-              <td> {_id}</td>
-            </tr>
-            <tr>
-              <td> Email</td>
-              <td> {email}</td>
-            </tr>
-            <tr>
-              <td> Role</td>
-              <td> {role}</td>
-            </tr>
-            <tr>
-              <td> Avatar</td>
-              <td> {avatar}</td>
-            </tr>
-            <tr>
-              <td> Bio</td>
-              <td> {bio}</td>
-            </tr>
-          </tbody>
-        </table>
-      );
+    // eslint-disable-next-line
+    alert(`Saving edited user ${user.username}`);
+  };
+
+  handleCancel = () => {
+    this.setState(({ initUser }) => ({
+      user: { ...initUser },
+      edited: false,
+    }));
+  };
+
+  handleChange = e => {
+    const { user, initUser } = this.state;
+    const { name, value } = e.target;
+    user[name] = value;
+
+    let edited;
+    if (user[name] !== initUser[name]) {
+      edited = true;
     }
+
+    this.setState(() => ({
+      user,
+      edited,
+    }));
+  };
+
+  render() {
+    const { isAdmin, edited, user } = this.state;
+    const { _id, avatar, role, username, email, bio } = user;
+
     return (
-      <section className="user-page">
-        {userInfo}
-        <Link to="/users">
-          <button>Back to users list</button>
-        </Link>
-      </section>
+      <Wrapper>
+        <Paper elevation={4}>
+          <AvatarWrapper>
+            <Avatar src={avatar} alt={username} />
+          </AvatarWrapper>
+          <List>
+            <ListItem />
+            <ListItem>
+              <Label>Id:</Label>
+              <ListItemText primary={_id} />
+            </ListItem>
+            <ListItem>
+              <Label>Username:</Label>
+              <ListItemText primary={username} />
+            </ListItem>
+            <ListItem>
+              <Label>Role:</Label>
+              {isAdmin ? (
+                <ListItemText>
+                  <Select
+                    native
+                    value={user.role}
+                    inputRef={ref => {
+                      this.select = ref;
+                    }}
+                    name="role"
+                    onChange={this.handleChange}
+                  >
+                    {roles.map(r => <option key={r}>{r}</option>)}
+                  </Select>
+                </ListItemText>
+              ) : (
+                <ListItemText primary={role} />
+              )}
+            </ListItem>
+            <ListItem>
+              <Label>Email:</Label>
+              <ListItemText primary={email} />
+            </ListItem>
+            <ListItem>
+              <Label>Bio:</Label>
+              {isAdmin ? (
+                <ListItemText>
+                  <TextField
+                    value={bio}
+                    multiline
+                    fullWidth
+                    onChange={this.handleChange}
+                    name="bio"
+                  />
+                </ListItemText>
+              ) : (
+                <ListItemText primary={bio} />
+              )}
+            </ListItem>
+          </List>
+        </Paper>
+        {isAdmin && (
+          <Buttons>
+            <Button
+              variant="raised"
+              color="primary"
+              disabled={!edited}
+              onClick={this.handleSave}
+            >
+              Save
+            </Button>
+            <Button
+              variant="flat"
+              color="default"
+              disabled={!edited}
+              onClick={this.handleCancel}
+            >
+              Discard
+            </Button>
+          </Buttons>
+        )}
+      </Wrapper>
     );
   }
 }
+
+UserPage.propTypes = propTypes;
+
+UserPage.defaultProps = defaultProps;
+
+export default UserPage;
