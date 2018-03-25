@@ -33,15 +33,17 @@ class AssetEdit extends React.Component {
     title: '',
     localUrl: null,
     _id: null,
+    creator: null,
   };
   // eslint-disable-next-line react/sort-comp
   getAsset = id => {
     const promises = [];
     promises.push(
       actions.get(id).then(json => {
-        const { title, description, content_type: type } = json;
+        console.log('asset edit json:', json);
+        const { title, description, content_type: type, creator } = json;
         const fileType = getFileType({ type }, fileTypes);
-        return { title, description, fileType };
+        return { title, description, fileType, creator };
       })
     );
     promises.push(actions.getContent(this.props.id).then(localUrl => localUrl));
@@ -168,10 +170,19 @@ class AssetEdit extends React.Component {
     }
   };
   render() {
-    const { description, title, localUrl, fileType, data64 } = this.state;
+    const { description, title, localUrl, fileType, data64, creator } = this.state;
+    let username = '';
+    if (creator) {
+      // eslint-disable-next-line prefer-destructuring
+      username = creator.username;
+    }
     const embedUrl = `//api/v1/asset/content/${this.state._id}`;
     return (
       <Wrapper>
+        <Label htmlFor="creator">
+          Owner:
+          <InputField>{username}</InputField>
+        </Label>
         <Input
           value={title}
           label="Title:"
