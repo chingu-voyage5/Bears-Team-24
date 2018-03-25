@@ -20,7 +20,8 @@
     "lint": "prettier \"src/**/*\" --write && eslint src",
     "test:watch": "react-scripts test --env=jsdom",
     "test": "CI=TRUE react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "alone": "REACT_APP_ALONE=true react-scripts start"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
