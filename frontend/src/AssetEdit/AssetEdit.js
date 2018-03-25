@@ -170,7 +170,14 @@ class AssetEdit extends React.Component {
     }
   };
   render() {
-    const { description, title, localUrl, fileType, data64, creator } = this.state;
+    const {
+      description,
+      title,
+      localUrl,
+      fileType,
+      data64,
+      creator,
+    } = this.state;
     let username = '';
     if (creator) {
       // eslint-disable-next-line prefer-destructuring
