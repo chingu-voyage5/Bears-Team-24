@@ -36,11 +36,6 @@ class AssetEdit extends React.Component {
     _id: null,
     creator: null,
   };
-  componentWillMount = () => {
-    if (this.props.user) {
-      this.setState({ creator: this.props.user });
-    }
-  };
   // eslint-disable-next-line react/sort-comp
   getAsset = id => {
     const promises = [];
@@ -67,6 +62,9 @@ class AssetEdit extends React.Component {
           data64: null,
         });
       });
+    }
+    if (this.props.user) {
+      this.setState({ creator: this.props.user });
     }
   };
 
