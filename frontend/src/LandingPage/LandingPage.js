@@ -1,13 +1,10 @@
 import React from 'react';
 
-import {
-  Article,
-  Content,
-  Heading1,
-  Heading2,
-  Heading3,
-  Section,
-} from './styled';
+// Material UI components
+import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
+
+import { Heading1, Heading2, Heading3, P, Paper, Wrapper } from './styled';
 
 const test = () => {
   // TODO: remove example auth route and the button rendered  below
@@ -24,51 +21,60 @@ const test = () => {
     .then(json => {
       // eslint-disable-next-line no-console
       console.log('test response:', json);
-    });
+    })
+    // eslint-disable-next-line
+    .catch(err => console.log(err));
 };
 
 const LandingPage = () => (
-  <React.Fragment>
+  <Wrapper>
     <Heading1>Welcome to chingu CMS</Heading1>
-    <button type="button" onClick={test}>
+    <Button variant="raised" color="default" onClick={test}>
       Test
-    </button>
-    <Article>
-      <Heading2>Features</Heading2>
-      <Content>
-        <Section>
+    </Button>
+    <Heading2>Features</Heading2>
+    <Grid container>
+      <Grid item xs={12} sm={6}>
+        <Paper>
           <Heading3>Manage Content</Heading3>
-          <p>
+          <P>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin aliud
-            quid voles, postea.
-          </p>
-        </Section>
-        <Section>
+            quid voles, postea. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Sin aliud quid voles, postea.
+          </P>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Paper>
           <Heading3>Search Content</Heading3>
-          <p>
+          <P>
             Certe nihil nisi quod possit ipsum propter se iure laudari. Mihi
             vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.
-          </p>
-        </Section>
-        <Section>
+          </P>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Paper>
           <Heading3>Some Feature</Heading3>
-          <p>
+          <P>
             Omnes enim iucundum motum, quo sensus hilaretur. Duo Reges:
             constructio interrete. Itaque haec cum illis est dissensio, cum
             Peripateticis nulla sane. Quis suae urbis conservatorem Codrum, quis
             Erechthei filias non maxime laudat?
-          </p>
-        </Section>
-        <Section>
+          </P>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Paper>
           <Heading3>Track Changes</Heading3>
-          <p>
+          <P>
             Sit, inquam, tam facilis, quam vultis, comparatio voluptatis, quid
             de dolore dicemus? Non est igitur summum malum dolor.
-          </p>
-        </Section>
-      </Content>
-    </Article>
-  </React.Fragment>
+          </P>
+        </Paper>
+      </Grid>
+    </Grid>
+  </Wrapper>
 );
 
 export default LandingPage;
