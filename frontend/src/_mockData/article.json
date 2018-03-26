@@ -9,8 +9,8 @@
     "ee2686b1d7e84c3dae4db8bd00ea8d2a"
   ],
   "title": "Bradypus variegatus",
-  "category": "Pilosa",
-  "sub_category": ["Folivora", "Lent"],
+  "topic": "Pilosa",
+  "sub_topic": ["Folivora", "Lent"],
   "content":
     "## Lorem\n**ipsum** dolor _sit amet_, ~~consectetuer~~ adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
 }

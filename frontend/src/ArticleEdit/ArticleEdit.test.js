@@ -9,8 +9,8 @@ describe('ArticleEdit component', () => {
       data: {
         content: 'Markdown',
         title: 'Title',
-        category: 'Category',
-        sub_category: ['Sub Category'],
+        topic: 'Topic',
+        sub_topic: ['Sub Topic'],
       },
     };
     const wrapper = shallow(<ArticleEdit {...props} />);
