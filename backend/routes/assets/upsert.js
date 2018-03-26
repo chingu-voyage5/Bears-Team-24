@@ -20,6 +20,7 @@ const upsert = async (req, res) => {
     const data = fs.readFileSync(fd.path);
     asset.content_type = fd.mimetype;
     asset.content = data;
+    fs.unlinkSync(fd.path);
   }
   await asset.save();
   res.json({
