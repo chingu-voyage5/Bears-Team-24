@@ -1,51 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders LandingPage 1`] = `
-Array [
-  .c0 {
+.c1 {
   text-align: center;
-}
-
-<h1
-    className="c0"
->
-    Welcome to chingu CMS
-</h1>,
-  <button
-    onClick={[Function]}
-    type="button"
->
-    Test
-</button>,
-  .c0 {
-  margin: 0 auto auto;
-  max-width: 60rem;
-  padding: 3em 2rem;
 }
 
 .c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  text-align: center;
 }
 
-.c1 {
-  color: #ff5a5f;
-  font-size: 2rem;
-  font-weight: 400;
-  text-align: center;
-  width: 100%;
+.c2.c2 {
+  margin: 2rem;
 }
 
 .c4 {
@@ -53,82 +18,144 @@ Array [
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #7d93aa;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 1.4em;
-  font-weight: 400;
   margin-bottom: 0.75rem;
   margin-top: 1rem;
 }
 
-.c3 {
-  font-size: 1.1rem;
-  width: calc(50% - 2rem);
+.c4.c4 {
+  color: #7d93aa;
 }
 
-<article
-    className="c0"
+.c5.c5 {
+  font-size: 15px;
+  margin-top: 0.8rem;
+}
+
+.c3 {
+  padding: 1rem;
+}
+
+.c0 {
+  margin: auto;
+  margin-top: 2rem;
+  max-width: 60rem;
+  padding: 0 1rem;
+}
+
+<div
+  className="c0"
 >
-    <h2
-        className="c1"
+  <h1
+    className="MuiTypography-root-1 MuiTypography-display2-4 c1"
+  >
+    Welcome to chingu CMS
+  </h1>
+  <button
+    className="MuiButtonBase-root-40 MuiButton-root-25 MuiButton-raised-30"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="button"
+  >
+    <span
+      className="MuiButton-label-26"
     >
-        Features
-    </h2>
+      Test
+    </span>
+    <span
+      className="MuiTouchRipple-root-43"
+    />
+  </button>
+  <h1
+    className="MuiTypography-root-1 MuiTypography-display1-5 MuiTypography-colorSecondary-22 c2"
+  >
+    Features
+  </h1>
+  <div
+    className="MuiGrid-typeContainer-50 MuiGrid-spacing-xs-16-72"
+  >
     <div
-        className="c2"
+      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
     >
-        <section
-            className="c3"
+      <div
+        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+      >
+        <h1
+          className="MuiTypography-root-1 MuiTypography-headline-6 c4"
         >
-            <h3
-                className="c4"
-            >
-                Manage Content
-            </h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin aliud quid voles, postea.
-            </p>
-        </section>
-        <section
-            className="c3"
+          Manage Content
+        </h1>
+        <p
+          className="MuiTypography-root-1 MuiTypography-body1-10 MuiTypography-gutterBottom-18 c5"
         >
-            <h3
-                className="c4"
-            >
-                Search Content
-            </h3>
-            <p>
-                Certe nihil nisi quod possit ipsum propter se iure laudari. Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.
-            </p>
-        </section>
-        <section
-            className="c3"
-        >
-            <h3
-                className="c4"
-            >
-                Some Feature
-            </h3>
-            <p>
-                Omnes enim iucundum motum, quo sensus hilaretur. Duo Reges: constructio interrete. Itaque haec cum illis est dissensio, cum Peripateticis nulla sane. Quis suae urbis conservatorem Codrum, quis Erechthei filias non maxime laudat?
-            </p>
-        </section>
-        <section
-            className="c3"
-        >
-            <h3
-                className="c4"
-            >
-                Track Changes
-            </h3>
-            <p>
-                Sit, inquam, tam facilis, quam vultis, comparatio voluptatis, quid de dolore dicemus? Non est igitur summum malum dolor.
-            </p>
-        </section>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin aliud quid voles, postea. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin aliud quid voles, postea.
+        </p>
+      </div>
     </div>
-</article>,
-]
+    <div
+      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+    >
+      <div
+        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+      >
+        <h1
+          className="MuiTypography-root-1 MuiTypography-headline-6 c4"
+        >
+          Search Content
+        </h1>
+        <p
+          className="MuiTypography-root-1 MuiTypography-body1-10 MuiTypography-gutterBottom-18 c5"
+        >
+          Certe nihil nisi quod possit ipsum propter se iure laudari. Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.
+        </p>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+    >
+      <div
+        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+      >
+        <h1
+          className="MuiTypography-root-1 MuiTypography-headline-6 c4"
+        >
+          Some Feature
+        </h1>
+        <p
+          className="MuiTypography-root-1 MuiTypography-body1-10 MuiTypography-gutterBottom-18 c5"
+        >
+          Omnes enim iucundum motum, quo sensus hilaretur. Duo Reges: constructio interrete. Itaque haec cum illis est dissensio, cum Peripateticis nulla sane. Quis suae urbis conservatorem Codrum, quis Erechthei filias non maxime laudat?
+        </p>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+    >
+      <div
+        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+      >
+        <h1
+          className="MuiTypography-root-1 MuiTypography-headline-6 c4"
+        >
+          Track Changes
+        </h1>
+        <p
+          className="MuiTypography-root-1 MuiTypography-body1-10 MuiTypography-gutterBottom-18 c5"
+        >
+          Sit, inquam, tam facilis, quam vultis, comparatio voluptatis, quid de dolore dicemus? Non est igitur summum malum dolor.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 `;

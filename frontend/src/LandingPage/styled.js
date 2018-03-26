@@ -1,41 +1,50 @@
 import styled from 'styled-components';
+import PaperMUI from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 
-export const Article = styled.article`
-  margin: 0 auto auto;
-  max-width: 60rem;
-  padding: 3em 2rem;
-`;
-
-export const Content = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
-
-export const Heading1 = styled.h1`
+export const Heading1 = styled(Typography).attrs({
+  variant: 'display2',
+})`
   text-align: center;
 `;
 
-export const Heading2 = styled.h2`
-  color: #ff5a5f;
-  font-size: 2rem;
-  font-weight: 400;
+export const Heading2 = styled(Typography).attrs({
+  variant: 'display1',
+  color: 'secondary',
+})`
+  && {
+    margin: 2rem;
+  }
   text-align: center;
-  width: 100%;
 `;
 
-export const Heading3 = styled.h3`
+export const Heading3 = styled(Typography).attrs({
+  variant: 'headline',
+})`
+  && {
+    color: #7d93aa;
+  }
   align-items: center;
-  color: #7d93aa;
-  display: flex;
-  font-size: 1.4em;
-  font-weight: 400;
   margin-bottom: 0.75rem;
   margin-top: 1rem;
 `;
 
-export const Section = styled.section`
-  font-size: 1.1rem;
-  width: calc(50% - 2rem);
+export const P = styled(Typography).attrs({
+  gutterBottom: true,
+})`
+  && {
+    font-size: 15px;
+    margin-top: 0.8rem;
+  }
+`;
+
+export const Paper = styled(PaperMUI)`
+  padding: 1rem;
+`;
+
+export const Wrapper = styled.div`
+  margin: auto;
+  margin-top: 2rem;
+  max-width: 60rem;
+  padding: 0 1rem;
 `;
