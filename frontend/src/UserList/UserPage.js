@@ -12,6 +12,7 @@ import { Avatar, AvatarWrapper, Buttons, Label, Wrapper } from './styled';
 
 import actions from './actions';
 import roles from './roles';
+import avatarPlaceholder from './avatar_placeholder.png';
 
 const propTypes = {
   isAdmin: PropTypes.bool,
@@ -76,7 +77,7 @@ class UserPage extends React.Component {
       <Wrapper>
         <Paper elevation={4}>
           <AvatarWrapper>
-            <Avatar src={avatar} alt={username} />
+            <Avatar src={avatar || avatarPlaceholder} alt={username} />
           </AvatarWrapper>
           <List>
             <ListItem />
