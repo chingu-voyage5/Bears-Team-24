@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
 const promisify = require('es6-promisify');
+const fs = require('fs');
 const { db } = require('./models');
 const app = require('./app');
 
@@ -8,6 +9,21 @@ const app = require('./app');
 const initDb = db.init;
 const initServer = promisify(app.listen, app);
 async function init() {
+  // check image upload dir
+  const uploadDir = process.env.IMAGE_UPLOAD_DIR;
+  if (fs.existsSync(uploadDir)) {
+    console.info('image upload directory present');
+  } else {
+    try {
+      // decimal 484 is octal 744
+      fs.mkdirSync(uploadDir, 484);
+      console.info(`created image upload directory: ${uploadDir}`);
+    } catch (err) {
+      // we can't get error EEXIST here so bail
+      console.error(`Couldn't init file upload dir: ${err}`);
+      process.exit(1);
+    }
+  }
   try {
     await initDb();
     console.log('Connected to database');
