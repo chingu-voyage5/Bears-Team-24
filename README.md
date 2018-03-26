@@ -38,6 +38,12 @@ cd ..
 npm install
 ```
 
+4. Populate db:
+```
+./scripts/seedDb.js
+./scripts/seedPmrok.js
+```
+
 4. npm run dev
 
 
