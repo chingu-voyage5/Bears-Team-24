@@ -1,6 +1,6 @@
-# Category Tree
+# Topic Tree
 
-Items with '+' are category and sub_categories. The rest are article titles.
+Items with '+' are topic and sub_topic. The rest are article titles.
 
 ```
 + Voyage
@@ -65,12 +65,12 @@ Items with '+' are category and sub_categories. The rest are article titles.
     Glossary
 ```
 
-## Sub Categories
+## Sub Topics
 
-Sub categories need to be flexible as we have no way of knowing (for new content) how deep articles will be nested.
+Sub topics need to be flexible as we have no way of knowing (for new content) how deep articles will be nested.
 
-The [article edit/view page](https://github.com/chingu-voyage4/Bears-Team-25/blob/develop/frontend/src/ArticleEdit/ArticleEdit.js) has title, category and sub-category fields. The title and category are self explanatory.
+The [article edit/view page](https://github.com/chingu-voyage4/Bears-Team-25/blob/develop/frontend/src/ArticleEdit/ArticleEdit.js) has title, topic and sub-topic fields. The title and topic are self explanatory.
 
-The sub category will be entered using greater than '>' delimiters.
+The sub topic will be entered using greater than '>' delimiters.
 e.g.
 Tools and Resources>FAQ

@@ -19,8 +19,8 @@ created           |date
 last_updated      |date
 creator           |user._id
 contributor_list  |[user._id]
-category          |string
-sub_category      |[string]
+topic             |string
+sub_topic         |[string]
 title             |string
 content           |String
 

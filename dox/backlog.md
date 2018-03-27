@@ -25,11 +25,11 @@ As a dev:
 As a visitor:
 
 * I can navigate the content so that I can find what I'm looking for
-  * test sidebar categories can be expanded/collapsed
+  * test sidebar topics can be expanded/collapsed
   * test sidebar nav allows all docs to be selected
   * test doc selection displays correct content
 * I can search all the dox so that I can find things quickly
-  * I can search by categories
+  * I can search by topics
   * I can search by body text
 * I can register
   * test user role is member
@@ -42,7 +42,7 @@ As a member
 * I can view the profile of users that contribute to any article
 * I can edit my own profile
 * I can select navbar items to view pages and assets
-  * I can see a list of pages by category
+  * I can see a list of pages by topic
   * I can see a list of assets by type
 * I can amend content
   * I can click on a page and see an editable version of the page so I can amend content
