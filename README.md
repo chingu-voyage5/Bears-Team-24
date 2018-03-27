@@ -38,6 +38,8 @@ cd ..
 npm install
 ```
 
+4. seed db `npm run seed`
+
 4. npm run dev
 
 
