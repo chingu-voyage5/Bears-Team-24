@@ -8,16 +8,16 @@ import { Button, Editor, Heading1, Preview, Textarea, Wrapper } from './styled';
 
 const propTypes = {
   data: PropTypes.shape({
-    category: PropTypes.string,
+    topic: PropTypes.string,
     content: PropTypes.string,
-    sub_category: PropTypes.array,
+    sub_topic: PropTypes.array,
     title: PropTypes.string,
   }),
   empty: PropTypes.bool,
 };
 
 const defaultProps = {
-  data: { category: '', content: '', sub_category: [], title: '' },
+  data: { topic: '', content: '', sub_topic: [], title: '' },
   empty: false,
 };
 
@@ -40,8 +40,8 @@ class ArticleEdit extends React.Component {
     // TEMP
     /* eslint-disable */
     console.log('Title:\n', this.inputTitle.value);
-    console.log('Category:\n', this.inputCategory.value);
-    console.log('Sub category:\n', this.inputSubCategory.value);
+    console.log('Topic:\n', this.inputTopic.value);
+    console.log('Sub topic:\n', this.inputSubTopic.value);
     console.log('Content:\n', this.state.content);
     alert('Check console');
     /* eslint-enable */
@@ -63,19 +63,19 @@ class ArticleEdit extends React.Component {
           }}
         />
         <Input
-          defaultValue={!empty ? data.category : ''}
-          label="Category:"
-          name="category"
+          defaultValue={!empty ? data.topic : ''}
+          label="Topic:"
+          name="topic"
           innerRef={ref => {
-            this.inputCategory = ref;
+            this.inputTopic = ref;
           }}
         />
         <Input
-          defaultValue={!empty ? data.sub_category.join(', ') : ''}
-          label="Sub category:"
-          name="sub-category"
+          defaultValue={!empty ? data.sub_topic.join(', ') : ''}
+          label="Sub topic:"
+          name="sub-topic"
           innerRef={ref => {
-            this.inputSubCategory = ref;
+            this.inputSubTopic = ref;
           }}
         />
         <Editor>

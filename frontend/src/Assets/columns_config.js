@@ -17,11 +17,12 @@ export default [
   },
   {
     Header: 'Type',
-    accessor: 'type',
+    accessor: 'content_type',
   },
   {
+    id: 'creatorname',
     Header: 'Owner',
-    accessor: 'creator',
+    accessor: d => d.creator.username,
   },
   {
     Header: 'Title',
@@ -30,6 +31,6 @@ export default [
   {
     id: 'created',
     Header: 'Date created',
-    accessor: d => new Date(d.created * 1000).toLocaleString(),
+    accessor: d => new Date(d.created).toLocaleString(),
   },
 ];

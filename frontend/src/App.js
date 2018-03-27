@@ -13,8 +13,6 @@ import { UserList, UserPage } from './UserList';
 
 import articleMockData from './_mockData/article.json';
 import articlesMockData from './_mockData/articles.json';
-import assetMockData from './_mockData/assetMockData.json';
-import assetsMockData from './_mockData/assets.json';
 
 class App extends Component {
   // eslint-disable-next-line react/sort-comp
@@ -22,8 +20,6 @@ class App extends Component {
   state = {
     article: articleMockData,
     articles: articlesMockData,
-    assetData: assetMockData,
-    assets: assetsMockData,
     isLoggedIn: true,
     user: this.guestUser,
   };
@@ -63,14 +59,7 @@ class App extends Component {
   };
 
   render() {
-    const {
-      article,
-      articles,
-      assetData,
-      assets,
-      isLoggedIn,
-      user = this.guestUser,
-    } = this.state;
+    const { article, articles, isLoggedIn, user = this.guestUser } = this.state;
     return (
       <BrowserRouter>
         <React.Fragment>
@@ -105,15 +94,15 @@ class App extends Component {
               path="/users/:id"
               render={props => <UserPage userId={props.match.params.id} />}
             />
+            <Route exact path="/assets" render={r => <Assets {...r} />} />
             <Route
               exact
-              path="/assets"
-              render={r => <Assets {...r} data={assets} />}
+              path="/assets/new"
+              render={r => <AssetEdit {...r} user={user} />}
             />
-            <Route exact path="/assets/new" component={AssetEdit} />
             <Route
               path="/assets/:id"
-              render={() => <AssetEdit {...assetData} />}
+              render={props => <AssetEdit id={props.match.params.id} />}
             />
             <Route path="/cms" component={CMSContainer} />
             <Route
