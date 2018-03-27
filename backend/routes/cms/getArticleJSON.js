@@ -18,8 +18,8 @@ async function getArticleJSON(req,res){
 			res.redirect('/api/v1/articles/');
 			return;
 		}		
-		
-			res.send(found);
+			
+			res.json(found);
 		
 		
 		});

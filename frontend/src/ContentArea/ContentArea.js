@@ -1,42 +1,49 @@
 import React from 'react';
-import JSONToHTML from '../JSONHandle';
+import { Redirect } from 'react-router';
 
 export default class ContentArea extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      innerHTML: undefined,
-    };
-
-    this.loadJSON = this.loadJSON.bind(this);
-  }
+  
   componentWillMount() {
-    const grabbedHTML = this.loadJSON(); //   fetchData(this.props.selectedUrl) ?
-    this.setState({ innerHTML: grabbedHTML });
+    
   }
-  loadJSON(location = './db/content/Example-Page.json') {
-    const self = this;
-    const req = new Request(location);
-
-    fetch(req)
-      .then(response => response.json())
-      .then(responseJSON => {
-        const resultHTML = JSONToHTML(responseJSON.HTMLTree);
-        self.setState({ innerHTML: resultHTML });
-      });
-    return '<p>loading......</p>';
-  }
-  // componentWillUpdate  (){....}    -- copy/paste?
-  //   -if user clicks on another link in sidebar: need reload from new url
-
+  
   render() {
+  	 let path = this.props.path;
+  	 let view = 'none';
+  	 let id = JSON.parse(localStorage.getItem('pathTable'))[path] || '';
+  	 let articles = JSON.parse(localStorage.getItem('allArticles'));
+  	 if(id){
+  	 	// exists id for that path
+  	 	let index = JSON.parse(localStorage.getItem('articleIndex'));
+  	 	view = articles[index[id]].content;
+  	 	
+  	 }else if(path){
+  	 	// illegal path - id not found
+  	 	view = <Redirect to='/cms' />;
+  	 }else{
+  	 	// no additional path - we are at /cms page
+  	 	let topics = [];
+  	 	let subtopics = [];
+  	 	articles.map(a => {
+  	 		if(!topics.includes(a.topic)){
+  	 			topics.push(a.topic)
+  	 			};
+  	 		if(!subtopics.includes(a.sub_topic)){
+  	 			subtopics.push(a.sub_topic)
+  	 			};
+  	 	});
+  	 	
+  	 	view = `topics: ${topics}  , subtopics: ${subtopics}`;
+  	 	
+  	 }
+  	
+  	
     return (
       <div>
         <section
-          className="content-area"
-          dangerouslySetInnerHTML={{ __html: this.state.innerHTML }}
-        />
+          className="content-area">
+          {view}
+        </section>
       </div>
     );
   }
