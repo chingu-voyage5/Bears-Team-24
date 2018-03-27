@@ -1,7 +1,11 @@
 const { Router } = require('express');
+const multer = require('multer');
+
+const upload = multer({ dest: process.env.IMAGE_UPLOAD_DIR });
 
 const auth = require('./auth');
 const users = require('./users');
+const assets = require('./assets');
 
 const passport = require('passport');
 
@@ -27,6 +31,16 @@ router.get(
     // req.user gets populated by passport
     res.redirect('http://127.0.0.1:3000');
   }
+);
+
+router.get('/api/v1/assets', auth.isLoggedIn, catchAsyncErrors(assets.getAll));
+router.get('/api/v1/asset/:id', catchAsyncErrors(assets.getDetail));
+router.get('/api/v1/asset/content/:id', catchAsyncErrors(assets.getContent));
+router.post(
+  '/api/v1/asset',
+  auth.isLoggedIn,
+  upload.single('blob'),
+  catchAsyncErrors(assets.upsert)
 );
 
 router.post(
