@@ -43,6 +43,7 @@
     "prettier": "^1.11.1"
   },
   "scripts": {
+    "seed": "node scripts/seed.js",
     "start": "node index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cross-env NODE_ENV=development supervisor -w backend backend/index.js",
