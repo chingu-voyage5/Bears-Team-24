@@ -6,6 +6,7 @@ const upload = multer({ dest: process.env.IMAGE_UPLOAD_DIR });
 const auth = require('./auth');
 const users = require('./users');
 const assets = require('./assets');
+const cms = require('./cms');
 
 const passport = require('passport');
 
@@ -42,6 +43,8 @@ router.post(
   upload.single('blob'),
   catchAsyncErrors(assets.upsert)
 );
+
+router.get('/api/v1/articles/:id*?', cms.getArticleJSON);
 
 router.post(
   '/api/v1/register',
