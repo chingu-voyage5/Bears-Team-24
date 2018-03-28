@@ -55,7 +55,7 @@
     "test:fe": "cd frontend && npm test",
     "test:be": "mocha --reporter progress ./backend/test/setup.js ./backend/**/*.test.js",
     "test": "npm run test:be && npm run test:fe",
-    "heroku-prebuild": "cd frontend && npm install && npm run build"
+    "heroku-postbuild": "cd frontend/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
   },
   "repository": {
     "type": "git",
