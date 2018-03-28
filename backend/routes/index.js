@@ -28,8 +28,9 @@ router.get(
   '/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => {
-    // req.user gets populated by passport
-    res.redirect('http://127.0.0.1:3000');
+    const redir =
+      process.env.NODE_ENV === 'production' ? '/' : 'http://127.0.0.1:3000';
+    res.redirect(redir);
   }
 );
 
