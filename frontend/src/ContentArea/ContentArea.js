@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import marked from 'marked';
 
 export default class ContentArea extends React.Component {
   
@@ -16,7 +17,9 @@ export default class ContentArea extends React.Component {
   	 if(id){
   	 	// exists id for that path
   	 	let index = JSON.parse(localStorage.getItem('articleIndex'));
-  	 	view = articles[index[id]].content;
+  	 	let options = {__html: marked(articles[index[id]].content)};
+  	 	
+  	 	view = <div dangerouslySetInnerHTML={options}></div>;
   	 	
   	 }else if(path){
   	 	// illegal path - id not found
