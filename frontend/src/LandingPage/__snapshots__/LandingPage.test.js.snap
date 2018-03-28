@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders LandingPage 1`] = `
+.c1 {
+  text-align: center;
+}
+
+.c2 {
+  text-align: center;
+}
+
+.c2.c2 {
+  margin: 2rem;
+}
+
+.c4 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  margin-top: 1rem;
+}
+
+.c4.c4 {
+  color: #7d93aa;
+}
+
+.c5.c5 {
+  font-size: 15px;
+  margin-top: 0.8rem;
+}
+
+.c3 {
+  padding: 1rem;
+}
+
+.c0 {
+  margin: auto;
+  margin-top: 2rem;
+  max-width: 60rem;
+  padding: 0 1rem;
+}
+
+<div
+  className="c0"
+>
+  <h1
+    className="MuiTypography-root-1 MuiTypography-display2-4 c1"
+  >
+    Welcome to chingu CMS
+  </h1>
+  <button
+    className="MuiButtonBase-root-40 MuiButton-root-25 MuiButton-raised-30"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="button"
+  >
+    <span
+      className="MuiButton-label-26"
+    >
+      Test
+    </span>
+    <span
+      className="MuiTouchRipple-root-43"
+    />
+  </button>
+  <h1
+    className="MuiTypography-root-1 MuiTypography-display1-5 MuiTypography-colorSecondary-22 c2"
+  >
+    Features
+  </h1>
+  <div
+    className="MuiGrid-typeContainer-50 MuiGrid-spacing-xs-16-72"
+  >
+    <div
+      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+    >
+      <div
+        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+      >
+        <h1
+          className="MuiTypography-root-1 MuiTypography-headline-6 c4"
+        >
+          Manage Content
+        </h1>
+        <p
+          className="MuiTypography-root-1 MuiTypography-body1-10 MuiTypography-gutterBottom-18 c5"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin aliud quid voles, postea. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sin aliud quid voles, postea.
+        </p>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+    >
+      <div
+        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+      >
+        <h1
+          className="MuiTypography-root-1 MuiTypography-headline-6 c4"
+        >
+          Search Content
+        </h1>
+        <p
+          className="MuiTypography-root-1 MuiTypography-body1-10 MuiTypography-gutterBottom-18 c5"
+        >
+          Certe nihil nisi quod possit ipsum propter se iure laudari. Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.
+        </p>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+    >
+      <div
+        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+      >
+        <h1
+          className="MuiTypography-root-1 MuiTypography-headline-6 c4"
+        >
+          Some Feature
+        </h1>
+        <p
+          className="MuiTypography-root-1 MuiTypography-body1-10 MuiTypography-gutterBottom-18 c5"
+        >
+          Omnes enim iucundum motum, quo sensus hilaretur. Duo Reges: constructio interrete. Itaque haec cum illis est dissensio, cum Peripateticis nulla sane. Quis suae urbis conservatorem Codrum, quis Erechthei filias non maxime laudat?
+        </p>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+    >
+      <div
+        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+      >
+        <h1
+          className="MuiTypography-root-1 MuiTypography-headline-6 c4"
+        >
+          Track Changes
+        </h1>
+        <p
+          className="MuiTypography-root-1 MuiTypography-body1-10 MuiTypography-gutterBottom-18 c5"
+        >
+          Sit, inquam, tam facilis, quam vultis, comparatio voluptatis, quid de dolore dicemus? Non est igitur summum malum dolor.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
