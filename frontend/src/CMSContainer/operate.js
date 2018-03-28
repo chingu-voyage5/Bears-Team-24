@@ -1,5 +1,5 @@
 export function checkLocalStorage(){
-	if (!localStorage.getItem('allArticles')){
+	if (localStorage.getItem('allArticles')){
 		console.log('request articles from backend');
 		fetch('/api/v1/articles/')
 		.then(res => res.json())
@@ -10,8 +10,10 @@ export function checkLocalStorage(){
 		localStorage.setItem('pathTable', JSON.stringify(pathTable));
 		let articleIndex = buildArticleNumbers(articles);
 		localStorage.setItem('articleIndex', JSON.stringify(articleIndex));
+		let tree = buildTopicTree(articles);
+		localStorage.setItem('tree', JSON.stringify(tree));
 	}
-	
+		
 	
 }
 
@@ -43,3 +45,22 @@ function slug(fullPath){
 	return fullPath.toLowerCase().replace(/[^A-Za-z0-9-| ]/g, '').replace(/\s/g, '-');
 }
 
+
+function buildTopicTree(articles){
+	let arr = JSON.parse(articles);
+	let tree = {}; 
+	
+	for(let i=0; i<arr.length;i++){
+		let c = arr[i];
+		if(!tree[c.topic]){
+			tree[c.topic] = {};
+		}
+		if(!tree[c.topic][c.sub_topic]){
+			tree[c.topic][c.sub_topic] = {};
+		}
+		if(!tree[c.topic][c.sub_topic][c.title]){
+			tree[c.topic][c.sub_topic][c.title] = "article";
+		}
+	}	
+	return tree;
+}
