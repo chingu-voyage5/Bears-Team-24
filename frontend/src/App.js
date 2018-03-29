@@ -54,7 +54,7 @@ class App extends Component {
   };
 
   render() {
-    const { article, isLoggedIn, user = this.guestUser } = this.state;
+    const { isLoggedIn, user = this.guestUser } = this.state;
     return (
       <BrowserRouter>
         <React.Fragment>
@@ -74,11 +74,11 @@ class App extends Component {
             <Route
               exact
               path="/articles/new"
-              render={() => <ArticleEdit empty />}
+              render={r => <ArticleEdit {...r} empty user={user} />}
             />
             <Route
               path="/articles/:id"
-              render={() => <ArticleEdit data={article} />}
+              render={props => <ArticleEdit id={props.match.params.id} />}
             />
             <Route exact path="/users" render={() => <UserList />} />
             <Route

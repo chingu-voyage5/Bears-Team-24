@@ -43,7 +43,7 @@ router.get(
 router.get(
   '/api/v1/articles/:id',
   auth.isLoggedIn,
-  catchAsyncErrors(articles.getDetail)
+  articles.getDetail
 );
 router.post(
   '/api/v1/article',
