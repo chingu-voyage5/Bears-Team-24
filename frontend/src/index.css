@@ -37,6 +37,8 @@ a:hover {
 }
 
 .content-area {
+  box-sizing: border-box;
+  max-width: calc(100vw - 200px);
   padding: 0 5%;
 }
 
