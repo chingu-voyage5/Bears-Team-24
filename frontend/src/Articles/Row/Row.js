@@ -23,16 +23,18 @@ const dataNames = {
 
 const Row = ({ topic, subTopic, title, creator }) => (
   <React.Fragment>
-    <Title data-names={dataNames.topic} title="Topic">
+    <Title data-name={dataNames.topic} title="Click to edit">
       {topic}
     </Title>
-    <Title data-names={dataNames.subTopic} title="SubTopic">
+    <Title data-name={dataNames.subTopic} title="Click to edit">
       {subTopic}
     </Title>
     <Title data-name={dataNames.title} title="Click to edit">
       {title}
     </Title>
-    <Creator data-name={dataNames.creator}>{creator}</Creator>
+    <Creator data-name={dataNames.creator} title="Click to view Creator">
+      {creator}
+    </Creator>
   </React.Fragment>
 );
 
