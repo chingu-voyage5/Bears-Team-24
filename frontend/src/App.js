@@ -11,15 +11,10 @@ import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';
 import { UserList, UserPage } from './UserList';
 
-import articleMockData from './_mockData/article.json';
-import articlesMockData from './_mockData/articles.json';
-
 class App extends Component {
   // eslint-disable-next-line react/sort-comp
   guestUser = { _id: '0', username: 'Guest' };
   state = {
-    article: articleMockData,
-    articles: articlesMockData,
     isLoggedIn: true,
     user: this.guestUser,
   };
@@ -59,7 +54,7 @@ class App extends Component {
   };
 
   render() {
-    const { article, articles, isLoggedIn, user = this.guestUser } = this.state;
+    const { article, isLoggedIn, user = this.guestUser } = this.state;
     return (
       <BrowserRouter>
         <React.Fragment>
@@ -75,18 +70,14 @@ class App extends Component {
           />
           <Switch>
             <Route exact path="/" component={LandingPage} />
+            <Route exact path="/articles" render={r => <Articles {...r} />} />
             <Route
               exact
-              path="/pages"
-              render={r => <Articles {...r} data={articles} />}
-            />
-            <Route
-              exact
-              path="/pages/new"
+              path="/articles/new"
               render={() => <ArticleEdit empty />}
             />
             <Route
-              path="/pages/:id"
+              path="/articles/:id"
               render={() => <ArticleEdit data={article} />}
             />
             <Route exact path="/users" render={() => <UserList />} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import actions from './actions';
 import Row, { dataNames } from './Row';
 import {
   Button,
@@ -11,7 +12,6 @@ import {
 } from './styled';
 
 const propTypes = {
-  data: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
@@ -20,22 +20,29 @@ const propTypes = {
   }).isRequired,
 };
 
-const defaultProps = {
-  data: [],
-};
-
 const renderRows = (arr, onClick) =>
   arr.map(d => (
     <RowWrapper
-      href={`pages/${d._id}`}
+      href={`articles/${d._id}`}
       key={d._id}
       onClick={e => onClick(e, d._id)}
     >
-      <Row title={d.content} creator={d.creator} />
+      <Row
+        topic={d.topic}
+        subTopic={d.sub_topic}
+        title={d.title}
+        creator={d.creator.username}
+      />
     </RowWrapper>
   ));
 
 class Articles extends React.Component {
+  state = {
+    data: [],
+  };
+  componentDidMount = () => {
+    actions.getAll().then(data => this.setState({ data }));
+  };
   handleClick = (e, id) => {
     e.preventDefault();
     const { name } = e.target.dataset;
@@ -56,17 +63,21 @@ class Articles extends React.Component {
       <Wrapper>
         <Button onClick={this.handleNewPage}>New Page</Button>
         <TitleRowWrapper>
-          <Row title="Title" creator="Owner" />
+          <Row
+            topic="Topic"
+            subTopic="Sub Topic"
+            title="Title"
+            creator="Owner"
+          />
         </TitleRowWrapper>
         <Separator />
-        {renderRows(this.props.data, this.handleClick)}
+        {renderRows(this.state.data, this.handleClick)}
       </Wrapper>
     );
   }
 }
 
 Articles.propTypes = propTypes;
-Articles.defaultProps = defaultProps;
 
 export default Articles;
 

@@ -6,6 +6,7 @@ const upload = multer({ dest: process.env.IMAGE_UPLOAD_DIR });
 const auth = require('./auth');
 const users = require('./users');
 const assets = require('./assets');
+const articles = require('./articles');
 
 const passport = require('passport');
 
@@ -32,6 +33,22 @@ router.get(
       process.env.NODE_ENV === 'production' ? '/' : 'http://127.0.0.1:3000';
     res.redirect(redir);
   }
+);
+
+router.get(
+  '/api/v1/articles',
+  auth.isLoggedIn,
+  catchAsyncErrors(articles.getAll)
+);
+router.get(
+  '/api/v1/articles/:id',
+  auth.isLoggedIn,
+  catchAsyncErrors(articles.getDetail)
+);
+router.post(
+  '/api/v1/article',
+  auth.isLoggedIn,
+  catchAsyncErrors(articles.upsert)
 );
 
 router.get('/api/v1/assets', auth.isLoggedIn, catchAsyncErrors(assets.getAll));
