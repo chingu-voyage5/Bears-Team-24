@@ -46,11 +46,12 @@ class Articles extends React.Component {
   handleClick = (e, id) => {
     e.preventDefault();
     const { name } = e.target.dataset;
-    if (name === dataNames.title) {
+    if (name === dataNames.creator) {
+      const articles = this.state.data.filter(row => row._id === id);
+      const uid = articles[0].creator._id;
+      this.props.history.push(`/users/${uid}`);
+    } else {
       this.props.history.push(`${this.props.location.pathname}/${id}`);
-    } else if (name === dataNames.creator) {
-      // eslint-disable-next-line
-      alert('Creator clicked');
     }
   };
 
