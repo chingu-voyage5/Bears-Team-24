@@ -14,7 +14,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  id: false,
+  id: '0',
   empty: false,
 };
 
@@ -25,7 +25,7 @@ class ArticleEdit extends React.Component {
   };
 
   componentDidMount = () => {
-    if (this.props.id) {
+    if (this.props.id && this.props.id !== '0') {
       actions.get(this.props.id).then(article => this.setState({ article }));
     }
   };
@@ -55,11 +55,16 @@ class ArticleEdit extends React.Component {
   };
 
   handleSave = () => {
-    // TEMP
-    /* eslint-disable */
-    console.log('article:', this.state.article);
-    alert('Check console');
-    /* eslint-enable */
+    const { article } = this.state;
+    actions.save(article).then(json => {
+      if (json.success) {
+        this.setState({
+          article: { ...article, _id: json._id },
+        });
+      } else {
+        console.error('article save failed:', json.error);
+      }
+    });
   };
 
   render() {
