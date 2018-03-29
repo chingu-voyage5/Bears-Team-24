@@ -5,9 +5,13 @@ import { Creator, Title } from './styled';
 
 const propTypes = {
   topic: PropTypes.string.isRequired,
-  subTopic: PropTypes.string.isRequired,
+  subTopic: PropTypes.string,
   title: PropTypes.string.isRequired,
   creator: PropTypes.string.isRequired,
+};
+
+const defaultProps = {
+  subTopic: '',
 };
 
 const dataNames = {
@@ -33,6 +37,7 @@ const Row = ({ topic, subTopic, title, creator }) => (
 );
 
 Row.propTypes = propTypes;
+Row.defaultProps = defaultProps;
 
 export default Row;
 
