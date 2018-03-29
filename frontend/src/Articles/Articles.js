@@ -54,14 +54,14 @@ class Articles extends React.Component {
     }
   };
 
-  handleNewPage = () => {
+  handleNewArticle = () => {
     this.props.history.push(`${this.props.location.pathname}/new`);
   };
 
   render() {
     return (
       <Wrapper>
-        <Button onClick={this.handleNewPage}>New Page</Button>
+        <Button onClick={this.handleNewArticle}>New Article</Button>
         <TitleRowWrapper>
           <Row
             topic="Topic"
