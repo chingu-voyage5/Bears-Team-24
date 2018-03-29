@@ -87,3 +87,8 @@ export const Wrapper = styled.div`
   max-height: calc(100vh - 60px);
   max-width: 60rem;
 `;
+
+export const Message = styled.div`
+  visibility: ${props => (props.show ? 'visible' : 'hidden')};
+  color: ${props => (props.error ? 'tomato' : 'gold')};
+`;
