@@ -5,15 +5,7 @@ import ArticleEdit from '.';
 
 describe('ArticleEdit component', () => {
   it('renders edit article page', () => {
-    const props = {
-      data: {
-        content: 'Markdown',
-        title: 'Title',
-        topic: 'Topic',
-        sub_topic: ['Sub Topic'],
-      },
-    };
-    const wrapper = shallow(<ArticleEdit {...props} />);
+    const wrapper = shallow(<ArticleEdit />);
 
     expect(
       wrapper
@@ -28,11 +20,13 @@ describe('ArticleEdit component', () => {
     expect(wrapper.find('Textarea').length).toBe(1);
     expect(wrapper.find('Preview').length).toBe(0);
 
+    wrapper.setState({ article: { title: 'some title' } });
+
     expect(
       wrapper
         .find('Input')
         .at(0)
-        .props().defaultValue.length
+        .props().value.length
     ).not.toBe(0);
   });
 
@@ -42,7 +36,7 @@ describe('ArticleEdit component', () => {
     expect(wrapper.find('Textarea').length).toBe(1);
     expect(wrapper.find('Preview').length).toBe(0);
 
-    wrapper.setState({ edit: false });
+    wrapper.setState({ edit: false, article: { content: 'some content' } });
 
     expect(wrapper.find('Textarea').length).toBe(0);
     expect(wrapper.find('Preview').length).toBe(1);
