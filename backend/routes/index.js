@@ -42,7 +42,7 @@ router.get(
 );
 router.get('/api/v0/articles/:id', auth.isLoggedIn, articles.getDetail);
 router.post(
-  '/api/v0/article',
+  '/api/v0/articles/:id*?',
   auth.isLoggedIn,
   catchAsyncErrors(articles.upsert)
 );
