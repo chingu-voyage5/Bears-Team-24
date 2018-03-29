@@ -36,17 +36,13 @@ router.get(
 );
 
 router.get(
-  '/api/v1/articles',
+  '/api/v0/articles',
   auth.isLoggedIn,
   catchAsyncErrors(articles.getAll)
 );
-router.get(
-  '/api/v1/articles/:id',
-  auth.isLoggedIn,
-  articles.getDetail
-);
+router.get('/api/v0/articles/:id', auth.isLoggedIn, articles.getDetail);
 router.post(
-  '/api/v1/article',
+  '/api/v0/article',
   auth.isLoggedIn,
   catchAsyncErrors(articles.upsert)
 );

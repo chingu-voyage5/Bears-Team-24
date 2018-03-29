@@ -1,5 +1,5 @@
 const getAll = () =>
-  fetch('/api/v1/articles', {
+  fetch('/api/v0/articles', {
     method: 'get',
     headers: { accept: 'application/json', 'content-type': 'application/json' },
     credentials: 'same-origin',
