@@ -40,6 +40,7 @@ export const RowWrapper = styled.a`
 
   &:hover {
     background-color: #e2e2e2;
+    text-decoration: none;
   }
 `;
 

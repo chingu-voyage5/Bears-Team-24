@@ -16,6 +16,10 @@ Title.displayName = 'Title';
 export const Creator = styled.div`
   align-items: left;
   flex: 1;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 Creator.displayName = 'Creator';
