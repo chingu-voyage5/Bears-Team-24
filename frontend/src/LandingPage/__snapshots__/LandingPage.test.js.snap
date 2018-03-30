@@ -50,45 +50,19 @@ exports[`renders LandingPage 1`] = `
   >
     Welcome to chingu CMS
   </h1>
-  <button
-    className="MuiButtonBase-root-40 MuiButton-root-25 MuiButton-raised-30"
-    disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    onTouchStart={[Function]}
-    tabIndex="0"
-    type="button"
-  >
-    <span
-      className="MuiButton-label-26"
-    >
-      Test
-    </span>
-    <span
-      className="MuiTouchRipple-root-43"
-    />
-  </button>
   <h1
     className="MuiTypography-root-1 MuiTypography-display1-5 MuiTypography-colorSecondary-22 c2"
   >
     Features
   </h1>
   <div
-    className="MuiGrid-typeContainer-50 MuiGrid-spacing-xs-16-72"
+    className="MuiGrid-typeContainer-25 MuiGrid-spacing-xs-16-47"
   >
     <div
-      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+      className="MuiGrid-typeItem-26 MuiGrid-grid-xs-12-62 MuiGrid-grid-sm-6-69"
     >
       <div
-        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+        className="MuiPaper-root-115 MuiPaper-elevation2-119 MuiPaper-rounded-116 c3"
       >
         <h1
           className="MuiTypography-root-1 MuiTypography-headline-6 c4"
@@ -103,10 +77,10 @@ exports[`renders LandingPage 1`] = `
       </div>
     </div>
     <div
-      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+      className="MuiGrid-typeItem-26 MuiGrid-grid-xs-12-62 MuiGrid-grid-sm-6-69"
     >
       <div
-        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+        className="MuiPaper-root-115 MuiPaper-elevation2-119 MuiPaper-rounded-116 c3"
       >
         <h1
           className="MuiTypography-root-1 MuiTypography-headline-6 c4"
@@ -121,10 +95,10 @@ exports[`renders LandingPage 1`] = `
       </div>
     </div>
     <div
-      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+      className="MuiGrid-typeItem-26 MuiGrid-grid-xs-12-62 MuiGrid-grid-sm-6-69"
     >
       <div
-        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+        className="MuiPaper-root-115 MuiPaper-elevation2-119 MuiPaper-rounded-116 c3"
       >
         <h1
           className="MuiTypography-root-1 MuiTypography-headline-6 c4"
@@ -139,10 +113,10 @@ exports[`renders LandingPage 1`] = `
       </div>
     </div>
     <div
-      className="MuiGrid-typeItem-51 MuiGrid-grid-xs-12-87 MuiGrid-grid-sm-6-94"
+      className="MuiGrid-typeItem-26 MuiGrid-grid-xs-12-62 MuiGrid-grid-sm-6-69"
     >
       <div
-        className="MuiPaper-root-140 MuiPaper-elevation2-144 MuiPaper-rounded-141 c3"
+        className="MuiPaper-root-115 MuiPaper-elevation2-119 MuiPaper-rounded-116 c3"
       >
         <h1
           className="MuiTypography-root-1 MuiTypography-headline-6 c4"
