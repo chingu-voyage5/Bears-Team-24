@@ -6,6 +6,7 @@ import Row from '.';
 const data = {
   creator: 'Foo',
   title: 'Lorem ipsum',
+  topic: 'topic',
 };
 
 describe('Row Component', () => {
@@ -15,6 +16,7 @@ describe('Row Component', () => {
       wrapper
         .find('Title')
         .children()
+        .at(1)
         .text()
     ).toEqual(data.title);
 

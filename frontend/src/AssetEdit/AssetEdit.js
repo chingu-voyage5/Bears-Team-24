@@ -189,7 +189,7 @@ class AssetEdit extends React.Component {
       _id,
     } = this.state;
     const { username = '' } = creator;
-    const embedUrl = _id ? `//api/v1/asset/content/${_id}` : '';
+    const embedUrl = _id ? `/api/v1/asset/content/${_id}` : '';
     return (
       <Wrapper>
         <Label htmlFor="creator">
