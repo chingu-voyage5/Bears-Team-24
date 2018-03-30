@@ -22,11 +22,14 @@ class App extends Component {
     articles: articlesMockData,
     isLoggedIn: true,
     user: this.guestUser,
+    cmsReady: !!localStorage.getItem('allArticles')
   };
 
-  componentWillMount = () => {
-    actions.checkLocalStorage();
-  };
+	
+  componentWillMount () {
+  	  actions.checkLocalStorage.call(this);
+     
+  }
 
   componentDidMount = () => {
     actions
@@ -111,7 +114,7 @@ class App extends Component {
             <Route exact path="/cms" component={CMSContainer} />
             <Route
               path="/cms/:path"
-              render={props => <CMSContainer {...props} />}
+              render={props => <CMSContainer {...props} cmsReady={this.state.cmsReady}/>}
             />
             <Route
               path="/login"

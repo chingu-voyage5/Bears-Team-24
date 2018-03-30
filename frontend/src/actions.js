@@ -49,7 +49,7 @@ const buildArticleNumbers = articles => {
 const buildTopicTree = articles => {
   const arr = JSON.parse(articles);
   const tree = {};
-
+	console.log(arr);
   for (let i = 0; i < arr.length; i += 1) {
     const c = arr[i];
     const slugTopic = slug(c.topic);
@@ -69,7 +69,7 @@ const buildTopicTree = articles => {
   return tree;
 };
 
-const checkLocalStorage = () => {
+function checkLocalStorage () {
   // production version :
   // if (!localStorage.getItem('allArticles'))
 
@@ -90,8 +90,12 @@ const checkLocalStorage = () => {
         localStorage.setItem('articleIndex', JSON.stringify(articleIndex));
         const tree = buildTopicTree(articles);
         localStorage.setItem('tree', JSON.stringify(tree));
-      });
+			// this == <App />     
+        	this.setState({cmsReady: true});
+        
+        }
+    );
   }
-};
+}
 
 export default { getUser, logout, checkLocalStorage };

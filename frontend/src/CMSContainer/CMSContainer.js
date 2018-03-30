@@ -6,11 +6,15 @@ import { Wrapper } from './styled';
 
 const CMSContainer = props => {
   const { path } = props.match.params;
-
+	let content = 'loading';	
+	console.log(props.cmsReady);
+	if(props.cmsReady){
+		content = <ContentArea path={path} />
+	}
   return (
     <Wrapper>
       <Sidebar />
-      <ContentArea path={path} />
+      {content}
     </Wrapper>
   );
 };
