@@ -1,7 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import marked from 'marked';
 
 export default class ContentArea extends React.Component {
