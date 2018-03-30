@@ -67,18 +67,29 @@ class ArticleEdit extends React.Component {
 
   handleSave = () => {
     const { article } = this.state;
-    actions.save(article).then(json => {
-      if (json.success) {
+    actions
+      .save(article)
+      .then(json => {
+        if (json.success) {
+          this.setState({
+            message: { show: true, error: false, text: 'Saved Successfully' },
+            article: { ...article, _id: json._id },
+          });
+        } else {
+          this.setState({
+            message: { show: true, error: true, text: json.error },
+          });
+        }
+      })
+      .catch(() => {
         this.setState({
-          message: { show: true, error: false, text: 'Saved Successfully' },
-          article: { ...article, _id: json._id },
+          message: {
+            show: true,
+            error: true,
+            text: 'Save Unsuccessful',
+          },
         });
-      } else {
-        this.setState({
-          message: { show: true, error: true, text: json.error },
-        });
-      }
-    });
+      });
   };
 
   render() {
