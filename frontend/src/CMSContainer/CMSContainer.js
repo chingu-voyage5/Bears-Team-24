@@ -5,7 +5,6 @@ import Sidebar from '../Sidebar';
 import { Wrapper } from './styled';
 
 const CMSContainer = props => {
-  
   const { path } = props.match.params;
 
   return (

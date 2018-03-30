@@ -16,16 +16,14 @@ const logout = () =>
     headers: { 'content-type': 'application/json' },
     credentials: 'same-origin',
   }).then(res => res.json());
-  
-  
-const slug= (fullPath) => {
-  return fullPath
+
+const slug = fullPath =>
+  fullPath
     .toLowerCase()
     .replace(/[^A-Za-z0-9-| ]/g, '')
     .replace(/\s/g, '-');
-};
 
-const buildPathTable = (articles) => {
+const buildPathTable = articles => {
   // with pathtable i can find id of article at specific path
   const arr = JSON.parse(articles);
   const obj = {};
@@ -37,7 +35,7 @@ const buildPathTable = (articles) => {
   return obj;
 };
 
-const buildArticleNumbers = (articles) => {
+const buildArticleNumbers = articles => {
   // with this table i can quickly find element in allArticles if i know id
   const arr = JSON.parse(articles);
   const obj = {};
@@ -48,7 +46,7 @@ const buildArticleNumbers = (articles) => {
   return obj;
 };
 
-const buildTopicTree = (articles) => {
+const buildTopicTree = articles => {
   const arr = JSON.parse(articles);
   const tree = {};
 
@@ -72,29 +70,27 @@ const buildTopicTree = (articles) => {
 };
 
 const checkLocalStorage = () => {
-	// production version :
-	// if (!localStorage.getItem('allArticles'))	
-	
-	// development version:
+  // production version :
+  // if (!localStorage.getItem('allArticles'))
+
+  // development version:
   if (true) {
     console.log('request articles from backend');
     console.time('load-cms');
     fetch('/api/v1/articles/')
       .then(res => res.json())
       .then(data => {
-      localStorage.setItem('allArticles', JSON.stringify(data));
-    console.log('articles data received');
-    console.timeEnd('load-cms');
-    const articles = localStorage.getItem('allArticles');
-    const pathTable = buildPathTable(articles);
-    localStorage.setItem('pathTable', JSON.stringify(pathTable));
-    const articleIndex = buildArticleNumbers(articles);
-    localStorage.setItem('articleIndex', JSON.stringify(articleIndex));
-    const tree = buildTopicTree(articles);
-    localStorage.setItem('tree', JSON.stringify(tree));
-      
+        localStorage.setItem('allArticles', JSON.stringify(data));
+        console.log('articles data received');
+        console.timeEnd('load-cms');
+        const articles = localStorage.getItem('allArticles');
+        const pathTable = buildPathTable(articles);
+        localStorage.setItem('pathTable', JSON.stringify(pathTable));
+        const articleIndex = buildArticleNumbers(articles);
+        localStorage.setItem('articleIndex', JSON.stringify(articleIndex));
+        const tree = buildTopicTree(articles);
+        localStorage.setItem('tree', JSON.stringify(tree));
       });
-    
   }
 };
 
