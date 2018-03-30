@@ -22,7 +22,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  id: '0',
+  id: '',
   empty: false,
 };
 
@@ -34,7 +34,7 @@ class ArticleEdit extends React.Component {
   };
 
   componentDidMount = () => {
-    if (this.props.id && this.props.id !== '0') {
+    if (this.props.id) {
       actions.get(this.props.id).then(article => this.setState({ article }));
     }
   };
