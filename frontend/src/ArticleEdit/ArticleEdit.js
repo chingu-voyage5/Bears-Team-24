@@ -42,12 +42,12 @@ class ArticleEdit extends React.Component {
   handleChange = e => {
     const { edit } = this.state;
     if (e.target.id === 'radio-preview' && edit) {
-      this.setState(() => ({
+      this.setState(({ message, article }) => ({
         edit: false,
-        message: { ...this.state.message, show: false },
+        message: { ...message, show: false },
         article: {
-          ...this.state.article,
-          content: this.state.article.content,
+          ...article,
+          content: article.content,
         },
       }));
     } else if (e.target.id === 'radio-edit' && !edit) {
@@ -56,25 +56,25 @@ class ArticleEdit extends React.Component {
   };
 
   handleFieldChange = e => {
+    const { message, article } = this.state;
     this.setState({
-      message: { ...this.state.message, show: false },
+      message: { ...message, show: false },
       article: {
-        ...this.state.article,
+        ...article,
         [e.target.name]: e.target.value,
       },
     });
   };
 
   handleSave = () => {
-    const { article } = this.state;
     actions
-      .save(article)
+      .save(this.state.article)
       .then(json => {
         if (json.success) {
-          this.setState({
+          this.setState(({ article }) => ({
             message: { show: true, error: false, text: 'Saved Successfully' },
             article: { ...article, _id: json._id },
-          });
+          }));
         } else {
           this.setState({
             message: { show: true, error: true, text: json.error },
