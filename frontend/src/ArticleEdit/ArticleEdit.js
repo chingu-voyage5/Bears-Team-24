@@ -102,7 +102,6 @@ class ArticleEdit extends React.Component {
         <Message show={message.show} error={message.error}>
           {message.text}
         </Message>
-        <Button onClick={this.handleSave}>Save</Button>
         <Input
           value={article.title}
           label="Title:"
