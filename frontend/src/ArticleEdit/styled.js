@@ -90,5 +90,5 @@ export const Wrapper = styled.div`
 
 export const Message = styled.div`
   visibility: ${p => (p.show ? 'visible' : 'hidden')};
-  color: ${p => (p.error ? 'tomato' : 'gold')};
+  color: ${p => (p.error ? 'tomato' : 'limegreen')};
 `;
