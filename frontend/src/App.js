@@ -24,6 +24,10 @@ class App extends Component {
     user: this.guestUser,
   };
 
+	componentWillMount = () => {
+		actions.checkLocalStorage();
+	}
+
   componentDidMount = () => {
     actions
       .getUser()
