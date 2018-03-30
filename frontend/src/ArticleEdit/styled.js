@@ -89,6 +89,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Message = styled.div`
-  visibility: ${props => (props.show ? 'visible' : 'hidden')};
-  color: ${props => (props.error ? 'tomato' : 'gold')};
+  visibility: ${p => (p.show ? 'visible' : 'hidden')};
+  color: ${p => (p.error ? 'tomato' : 'gold')};
 `;
