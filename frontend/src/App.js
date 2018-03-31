@@ -111,7 +111,7 @@ class App extends Component {
               path="/assets/:id"
               render={props => <AssetEdit id={props.match.params.id} />}
             />
-            <Route exact path="/cms" component={CMSContainer} />
+            <Route exact path="/cms" render={props => <CMSContainer {...props} cmsReady={this.state.cmsReady}/> } />
             <Route
               path="/cms/:path"
               render={props => <CMSContainer {...props} cmsReady={this.state.cmsReady}/>}

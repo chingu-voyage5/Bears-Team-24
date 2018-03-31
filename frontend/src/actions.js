@@ -23,15 +23,35 @@ const slug = fullPath =>
     .replace(/[^A-Za-z0-9-| ]/g, '')
     .replace(/\s/g, '-');
 
+
+const DEFAULT_DISPLAY_SUBTOPIC = 'Uncategorized Articles';
+
+  
 const buildPathTable = articles => {
   // with pathtable i can find id of article at specific path
   const arr = JSON.parse(articles);
+ 
   const obj = {};
+  let uniqueCounter = {};
+  
+  
+  
   for (let i = 0; i < arr.length; i += 1) {
     const c = arr[i]; // current element
-    const path = `${c.topic}|${c.sub_topic}|${c.title}`;
-    obj[slug(path)] = c._id;
+    if(c.title){
+    let path = `${c.topic}|${c.sub_topic ||DEFAULT_DISPLAY_SUBTOPIC }|${c.title}`;
+    const key = slug(path);
+    let finalPath = key;
+    if(!obj[key]){
+	   uniqueCounter[key] = 1;
+    } else {
+    	finalPath += `-${uniqueCounter[key]}`
+    	uniqueCounter[key]++;
+    }
+    obj[finalPath] = c._id;
   }
+  }
+    
   return obj;
 };
 
@@ -43,29 +63,36 @@ const buildArticleNumbers = articles => {
     const c = arr[i]; // current element
     obj[c._id] = i;
   }
+  
   return obj;
 };
 
 const buildTopicTree = articles => {
   const arr = JSON.parse(articles);
   const tree = {};
-	console.log(arr);
+  let uniqueCounter= {};
   for (let i = 0; i < arr.length; i += 1) {
+  	
     const c = arr[i];
     const slugTopic = slug(c.topic);
     if (!tree[slugTopic]) {
       tree[slugTopic] = { titleDisplay: c.topic };
     }
-    const slugSubtopic = slug(c.sub_topic);
-    if (!tree[slugTopic][c.slugSubtopic]) {
-      tree[slugTopic][slugSubtopic] = { titleDisplay: c.sub_topic };
+    const slugSubtopic = slug(c.sub_topic || DEFAULT_DISPLAY_SUBTOPIC);
+    if (!tree[slugTopic][slugSubtopic]) {
+      tree[slugTopic][slugSubtopic] = { titleDisplay: c.sub_topic || DEFAULT_DISPLAY_SUBTOPIC};
     }
     const slugTitle = slug(c.title);
+    let uniqueKey = `${slugTopic}|${slugSubtopic}|${slugTitle}`;
     if (!tree[slugTopic][slugSubtopic][slugTitle]) {
-      tree[slugTopic][slugSubtopic][slugTitle] = { titleDisplay: c.title };
+    	tree[slugTopic][slugSubtopic][slugTitle] = { titleDisplay: c.title};
+    	uniqueCounter[`${slugTopic}|${slugSubtopic}|${slugTitle}`] = 1;
+    } else{
+    	tree[slugTopic][slugSubtopic][`${slugTitle}-${uniqueCounter[uniqueKey]}`] = { titleDisplay: c.title};
+    	uniqueCounter[uniqueKey]++;
     }
   }
-
+  
   return tree;
 };
 
@@ -90,8 +117,8 @@ function checkLocalStorage () {
         localStorage.setItem('articleIndex', JSON.stringify(articleIndex));
         const tree = buildTopicTree(articles);
         localStorage.setItem('tree', JSON.stringify(tree));
-			// this == <App />     
-        	this.setState({cmsReady: true});
+			// this == <App />   
+			this.setState({cmsReady: true});
         
         }
     );

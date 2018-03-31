@@ -5,9 +5,8 @@ import Sidebar from '../Sidebar';
 import { Wrapper } from './styled';
 
 const CMSContainer = props => {
-  const { path } = props.match.params;
+  const path = props.match.params.path || '';
 	let content = 'loading';	
-	console.log(props.cmsReady);
 	if(props.cmsReady){
 		content = <ContentArea path={path} />
 	}
