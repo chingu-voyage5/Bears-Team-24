@@ -75,27 +75,23 @@ class App extends Component {
               exact
               isLoggedIn={isLoggedIn}
               path="/articles"
-              redirect="/login"
               render={r => <Articles {...r} />}
             />
             <AuthRoute
               exact
               isLoggedIn={isLoggedIn}
               path="/articles/new"
-              redirect="/login"
               render={r => <ArticleEdit {...r} empty user={user} />}
             />
             <AuthRoute
               isLoggedIn={isLoggedIn}
               path="/articles/:id"
-              redirect="/login"
               render={props => <ArticleEdit id={props.match.params.id} />}
             />
             <AuthRoute
               exact
               isLoggedIn={isLoggedIn}
               path="/users"
-              redirect="/login"
               render={() => <UserList />}
             />
             <Route
@@ -106,20 +102,17 @@ class App extends Component {
               exact
               isLoggedIn={isLoggedIn}
               path="/assets"
-              redirect="/login"
               render={r => <Assets {...r} />}
             />
             <AuthRoute
               exact
               isLoggedIn={isLoggedIn}
               path="/assets/new"
-              redirect="/login"
               render={r => <AssetEdit {...r} user={user} />}
             />
             <AuthRoute
               isLoggedIn={isLoggedIn}
               path="/assets/:id"
-              redirect="/login"
               render={props => <AssetEdit id={props.match.params.id} />}
             />
             <Route path="/cms" component={CMSContainer} />

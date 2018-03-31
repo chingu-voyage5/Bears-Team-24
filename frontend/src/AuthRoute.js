@@ -8,9 +8,10 @@ const propTypes = {
   redirect: PropTypes.string,
   render: PropTypes.func,
 };
+
 const defaultProps = {
   component: null,
-  redirect: '',
+  redirect: '/login',
   render: null,
 };
 
@@ -24,6 +25,7 @@ const AuthRoute = ({
   if (renderer && isLoggedIn) {
     return <Route {...rest} render={renderer} />;
   }
+
   return (
     <Route
       {...rest}
