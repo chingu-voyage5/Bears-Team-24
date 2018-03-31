@@ -1,9 +1,27 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import 'jest-styled-components';
 
-import Articles, { renderRows } from './Articles';
+import Articles from './Articles';
 
-const routerProps = {
+const articles = [
+  {
+    _id: '5abe00d98c3fc76f593741e0',
+    creator: { _id: '5abe00d98c3fc76f593741df', username: 'sys' },
+    topic: 'Voyage',
+    sub_topic: 'About this wiki',
+    title: 'Home',
+  },
+  {
+    _id: '5abe00d98c3fc76f593741e2',
+    creator: { _id: '5abe00d98c3fc76f593741df', username: 'sys' },
+    topic: 'Voyage',
+    sub_topic: 'About Voyages',
+    title: 'About Voyages',
+  },
+];
+
+const props = {
   history: {
     push: jest.fn(),
   },
@@ -12,58 +30,14 @@ const routerProps = {
   },
 };
 
-const data = [
-  {
-    _id: '123abc',
-    content: 'Lorem ipsum',
-    creator: { _id: '1', username: 'Foo' },
-    title: 'title1',
-    topic: 'topic 1',
-  },
-  {
-    _id: '456def',
-    content: 'Dolor sit',
-    creator: { _id: '2', username: 'Baz' },
-    title: 'title2',
-    topic: 'topic 2',
-  },
-];
+describe('Articles list', () => {
+  it('should match snapshot', () => {
+    jest
+      .spyOn(Articles.prototype, 'fetchData')
+      .mockImplementation(() => new Promise(resolve => resolve(articles)));
 
-const noop = () => {};
+    const wrapper = shallow(<Articles {...props} />);
 
-describe('Articles list rows', () => {
-  it('should renderRows', () => {
-    const wrapper = renderRows(data, noop);
-
-    expect(wrapper.length).toEqual(2);
-  });
-
-  it('should handle empty data', () => {
-    const wrapper = renderRows([], noop);
-
-    expect(wrapper.length).toEqual(0);
-  });
-});
-describe('Articles Component', () => {
-  beforeEach(() => {
-    fetch.resetMocks();
-  });
-  it('should render Button', () => {
-    fetch.mockResponseOnce(JSON.stringify([]));
-    const wrapper = shallow(<Articles {...routerProps} />);
-
-    const button = wrapper.find('Button');
-    expect(button.length).toEqual(1);
-  });
-
-  it('should navigate to article create page', () => {
-    fetch.mockResponseOnce(JSON.stringify([]));
-    const wrapper = shallow(<Articles {...routerProps} />);
-
-    wrapper.instance().handleNewArticle();
-
-    expect(wrapper.instance().props.history.push.mock.calls[0][0]).toEqual(
-      `${routerProps.location.pathname}/new`
-    );
+    expect(wrapper).toMatchSnapshot();
   });
 });
