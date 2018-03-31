@@ -26,12 +26,9 @@ class App extends Component {
   };
 
 	
-  componentWillMount () {
-  	  actions.checkLocalStorage.call(this);
-     
-  }
-
   componentDidMount = () => {
+		
+  	
     actions
       .getUser()
       .then(res => {
@@ -44,6 +41,8 @@ class App extends Component {
       .catch(() => {
         this.setState({ isLoggedIn: false, user: this.guestUser });
       });
+      
+      actions.checkLocalStorage.call(this);  
   };
 
   setUser = user => {
