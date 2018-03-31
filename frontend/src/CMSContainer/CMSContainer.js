@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import ContentArea from '../ContentArea';
 import Sidebar from '../Sidebar';
 import { Wrapper } from './styled';
+import Loading from './Loading';
 
 const CMSContainer = props => {
   const path = props.match.params.path || '';
-	let content = 'loading';	
+	let content = <Loading />;	
 	if(props.cmsReady){
 		content = <ContentArea path={path} />
 	}
