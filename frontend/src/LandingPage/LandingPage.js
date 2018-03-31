@@ -9,7 +9,7 @@ const LandingPage = () => (
   <Wrapper>
     <Heading1>Welcome to chingu CMS</Heading1>
     <Heading2>Features</Heading2>
-    <Grid container>
+    <Grid spacing={16} container>
       <Grid item xs={12} sm={6}>
         <Paper>
           <Heading3>Manage Content</Heading3>
