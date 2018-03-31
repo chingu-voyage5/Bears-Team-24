@@ -22,13 +22,10 @@ class App extends Component {
     articles: articlesMockData,
     isLoggedIn: true,
     user: this.guestUser,
-    cmsReady: !!localStorage.getItem('allArticles')
+    cmsReady: !!localStorage.getItem('allArticles'),
   };
 
-	
   componentDidMount = () => {
-		
-  	
     actions
       .getUser()
       .then(res => {
@@ -41,8 +38,8 @@ class App extends Component {
       .catch(() => {
         this.setState({ isLoggedIn: false, user: this.guestUser });
       });
-      
-      actions.checkLocalStorage.call(this);  
+
+    actions.checkLocalStorage.call(this);
   };
 
   setUser = user => {
@@ -110,10 +107,18 @@ class App extends Component {
               path="/assets/:id"
               render={props => <AssetEdit id={props.match.params.id} />}
             />
-            <Route exact path="/cms" render={props => <CMSContainer {...props} cmsReady={this.state.cmsReady}/> } />
+            <Route
+              exact
+              path="/cms"
+              render={props => (
+                <CMSContainer {...props} cmsReady={this.state.cmsReady} />
+              )}
+            />
             <Route
               path="/cms/:path"
-              render={props => <CMSContainer {...props} cmsReady={this.state.cmsReady}/>}
+              render={props => (
+                <CMSContainer {...props} cmsReady={this.state.cmsReady} />
+              )}
             />
             <Route
               path="/login"

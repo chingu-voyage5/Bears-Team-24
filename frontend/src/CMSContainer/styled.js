@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -11,13 +11,13 @@ const spin = keyframes`
 `;
 
 export const LoadingPic = styled.div`
-	background-image: url('./images/wait.png');
-	background-size: auto 40px;
-	background-repeat: no-repeat;
-	background-position: center;
-	flex-basis: 100px;
-	width:100vw;
-	animation: ${spin} .5s infinite;
+  background-image: url('./images/wait.png');
+  background-size: auto 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-basis: 100px;
+  width: 100vw;
+  animation: ${spin} 0.5s infinite;
 `;
 
 export default Wrapper;

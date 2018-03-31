@@ -4,7 +4,6 @@ import SingleArticle from './SingleArticle';
 import Topic from './Topic';
 import Root from './Root';
 
-
 export default class ContentArea extends React.Component {
   render() {
     const { path } = this.props;

@@ -7,10 +7,10 @@ import Loading from './Loading';
 
 const CMSContainer = props => {
   const path = props.match.params.path || '';
-	let content = <Loading />;	
-	if(props.cmsReady){
-		content = <ContentArea path={path} />
-	}
+  let content = <Loading />;
+  if (props.cmsReady) {
+    content = <ContentArea path={path} />;
+  }
   return (
     <Wrapper>
       <Sidebar />
@@ -23,4 +23,9 @@ export default CMSContainer;
 
 CMSContainer.propTypes = {
   match: PropTypes.object.isRequired,
+  cmsReady: PropTypes.bool,
+};
+
+CMSContainer.defaultProps = {
+  cmsReady: false,
 };
