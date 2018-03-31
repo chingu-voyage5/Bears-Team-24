@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 // Material-UI components
 import Button from 'material-ui/Button';
@@ -160,4 +161,4 @@ UserPage.propTypes = propTypes;
 
 UserPage.defaultProps = defaultProps;
 
-export default UserPage;
+export default withRouter(UserPage);
