@@ -38,12 +38,9 @@ class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    /* eslint-disable no-console */
     if (this.state.register) {
       const { username, password1, password2 } = this.state;
-      console.log('register:', this.state);
       actions.register({ username, password1, password2 }).then(json => {
-        console.log('register response:', json);
         if (json.error) {
           this.setState({
             message: { show: true, error: true, text: json.error },
@@ -61,9 +58,7 @@ class Login extends React.Component {
       });
     } else {
       const { username, password1 } = this.state;
-      console.log('login:', this.state);
       actions.login({ username, password: password1 }).then(json => {
-        console.log('login response:', json);
         if (json.error) {
           this.setState({
             message: {
@@ -79,7 +74,6 @@ class Login extends React.Component {
         }
       });
     }
-    /* eslint-enable */
 
     this.setState(() => ({
       username: '',
