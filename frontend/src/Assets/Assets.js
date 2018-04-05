@@ -40,14 +40,16 @@ class Assets extends React.Component {
   };
 
   componentDidMount = () => {
-    actions
-      .getAll()
-      .then(data => {
-        this.setState({ data });
-      })
+    this.fetchData()
+      .then(data => this.setState({ data }))
       // eslint-disable-next-line
       .catch(err => console.log(err));
   };
+
+  // eslint-disable-next-line
+  fetchData() {
+    return actions.getAll();
+  }
 
   handleClick = (e, assetId, creatorId) => {
     e.preventDefault();
