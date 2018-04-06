@@ -6,10 +6,10 @@ class Collapsible extends React.Component {
     const { title, children } = this.props;
 
     return (
-      <details style={{marginLeft: '1rem'}}>
+      <details style={{ marginLeft: '1rem' }}>
         <summary>{title}</summary>
         {children}
-		</details>
+      </details>
     );
   }
 }

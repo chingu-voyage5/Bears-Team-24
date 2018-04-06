@@ -7,10 +7,12 @@ import Loading from './Loading';
 
 const CMSContainer = props => {
   const articleId = props.match.params.articleId || '';
-  let content = <Loading />;
-  if (props.cmsReady) {
-    content = <ContentArea articleId={articleId} />;
-  }
+  let content = props.cmsReady ? (
+    <ContentArea articleId={articleId} />
+  ) : (
+    <Loading />
+  );
+
   return (
     <Wrapper>
       <Sidebar />

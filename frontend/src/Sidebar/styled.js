@@ -17,5 +17,4 @@ export const LI = styled.li`
   margin-left: 1rem;
 `;
 
-
 export default Wrapper;
