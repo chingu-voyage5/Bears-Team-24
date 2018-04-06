@@ -6,22 +6,15 @@ import Root from './Root';
 
 export default class ContentArea extends React.Component {
   render() {
-    const { path } = this.props;
+    const { articleId } = this.props;
     let view = 'none';
-    const id = JSON.parse(localStorage.getItem('pathTable'))[path] || '';
+    const number = JSON.parse(localStorage.getItem('articleIndex'))[articleId] || '';
 
-    if (id) {
-      // exists id for that path
-
-      view = <SingleArticle id={id} />;
-    } else if (path) {
-      // illegal path - article id not found, check one level up topic
-      view = <Topic path={path} />;
+	 if (number) {
+      view = <SingleArticle index={number-1} />;
     } else {
-      // no additional path - we are at /cms page
-      view = <Root />;
+      view = <p>Article not found</p>;
     }
-
     return (
       <div>
         <section className="content-area">{view}</section>
@@ -30,10 +23,11 @@ export default class ContentArea extends React.Component {
   }
 }
 
+
 ContentArea.propTypes = {
-  path: PropTypes.string,
+  articleId: PropTypes.string,
 };
 
 ContentArea.defaultProps = {
-  path: '',
+  articleId: '',
 };

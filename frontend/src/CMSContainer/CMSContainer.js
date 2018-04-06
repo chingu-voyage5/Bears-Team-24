@@ -6,10 +6,10 @@ import { Wrapper } from './styled';
 import Loading from './Loading';
 
 const CMSContainer = props => {
-  const path = props.match.params.path || '';
+  const articleId = props.match.params.articleId || '';
   let content = <Loading />;
   if (props.cmsReady) {
-    content = <ContentArea path={path} />;
+    content = <ContentArea articleId={articleId} />;
   }
   return (
     <Wrapper>

@@ -115,7 +115,7 @@ class App extends Component {
               )}
             />
             <Route
-              path="/cms/:path"
+              path="/cms/:articleId"
               render={props => (
                 <CMSContainer {...props} cmsReady={this.state.cmsReady} />
               )}

@@ -59,7 +59,7 @@ const buildArticleNumbers = articles => {
   const obj = {};
   for (let i = 0; i < arr.length; i += 1) {
     const c = arr[i]; // current element
-    obj[c._id] = i;
+    obj[c._id] = i + 1;
   }
 
   return obj;
@@ -112,12 +112,9 @@ function checkLocalStorage() {
         console.log('articles data received');
         console.timeEnd('load-cms');
         const articles = localStorage.getItem('allArticles');
-        const pathTable = buildPathTable(articles);
-        localStorage.setItem('pathTable', JSON.stringify(pathTable));
         const articleIndex = buildArticleNumbers(articles);
         localStorage.setItem('articleIndex', JSON.stringify(articleIndex));
-        const tree = buildTopicTree(articles);
-        localStorage.setItem('tree', JSON.stringify(tree));
+        
         // this == <App />
         this.setState({ cmsReady: true });
       });
