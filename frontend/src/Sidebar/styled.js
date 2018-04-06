@@ -12,4 +12,10 @@ export const Wrapper = styled.nav`
   font-size: 14px;
 `;
 
+export const LI = styled.li`
+  list-style-type: none;
+  margin-left: 1rem;
+`;
+
+
 export default Wrapper;
