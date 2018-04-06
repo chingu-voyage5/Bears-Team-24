@@ -41,7 +41,12 @@ class App extends Component {
 
     actions
       .checkLocalStorage()
-      .then(loaded => this.setState({ cmsReady: loaded }));
+      .then(loaded => {
+      	this.setState({ cmsReady: loaded });
+      	if(loaded){
+      		this.setState({articles: JSON.parse(localStorage.getItem('allArticles'))})
+      	}
+      });
   };
 
   setUser = user => {
@@ -113,13 +118,13 @@ class App extends Component {
               exact
               path="/cms"
               render={props => (
-                <CMSContainer {...props} cmsReady={this.state.cmsReady} />
+                <CMSContainer {...props} articles={this.state.articles} cmsReady={this.state.cmsReady} />
               )}
             />
             <Route
               path="/cms/:articleId"
               render={props => (
-                <CMSContainer {...props} cmsReady={this.state.cmsReady} />
+                <CMSContainer {...props} articles={this.state.articles} cmsReady={this.state.cmsReady} />
               )}
             />
             <Route

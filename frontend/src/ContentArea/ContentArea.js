@@ -12,13 +12,13 @@ export default class ContentArea extends React.Component {
       JSON.parse(localStorage.getItem('articleIndex'))[articleId] || 0;
 
     if (articleId && number) {
-      view = <SingleArticle index={number - 1} />;
+      view = <SingleArticle articles={this.props.articles} index={number - 1} />;
     } else if (articleId) {
       //  cms/.....
       view = <p>Article not found</p>;
     } else {
       // cms/
-      view = <SingleArticle index={0} />;
+      view = <SingleArticle articles={this.props.articles} index={0} />;
     }
     return (
       <div>

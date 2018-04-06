@@ -8,7 +8,7 @@ import Loading from './Loading';
 const CMSContainer = props => {
   const articleId = props.match.params.articleId || '';
   let content = props.cmsReady ? (
-    <ContentArea articleId={articleId} />
+    <ContentArea articles={props.articles} articleId={articleId} />
   ) : (
     <Loading />
   );
