@@ -6,9 +6,7 @@ async function getArticleJSON(req, res) {
   let query = {};
 
   // valid or not Mongo ObjectID
-  if (id && id.match(/^[0-9a-fA-F]{24}$/)) {
-    query = { _id: id };
-  }
+  
 
   await Article.find(query).then(found => {
     if (found.length === 0) {
