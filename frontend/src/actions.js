@@ -99,13 +99,15 @@ const buildTopicTree = articles => {
 
 function checkLocalStorage() {
   // production version :
-  // if (!localStorage.getItem('allArticles'))
-
+  // if(localStorage.getItem('allArticles')){
+  //  console.log('local database found');	
+  //	return Promise.resolve(true);
+  // }
+  //	
   // development version:
-  if (true) {
     console.log('request articles from backend');
     console.time('load-cms');
-    fetch('/api/v1/articles/')
+    return fetch('/api/v1/articles/')
       .then(res => res.json())
       .then(data => {
         localStorage.setItem('allArticles', JSON.stringify(data));
@@ -114,11 +116,13 @@ function checkLocalStorage() {
         const articles = localStorage.getItem('allArticles');
         const articleIndex = buildArticleNumbers(articles);
         localStorage.setItem('articleIndex', JSON.stringify(articleIndex));
-        
-        // this == <App />
-        this.setState({ cmsReady: true });
-      });
-  }
+        return true;
+    })
+    .catch(err=> {
+    	console.log(err);
+    	return false;
+    });
+  
 }
 
 export default { getUser, logout, checkLocalStorage };

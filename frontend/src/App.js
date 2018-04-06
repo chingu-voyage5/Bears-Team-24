@@ -22,7 +22,7 @@ class App extends Component {
     articles: articlesMockData,
     isLoggedIn: true,
     user: this.guestUser,
-    cmsReady: !!localStorage.getItem('allArticles'),
+    cmsReady: false,
   };
 
   componentDidMount = () => {
@@ -39,8 +39,13 @@ class App extends Component {
         this.setState({ isLoggedIn: false, user: this.guestUser });
       });
 
-    actions.checkLocalStorage.call(this);
+    actions.checkLocalStorage()
+    	.then( loaded=> this.setState({cmsReady:loaded}));
+    
+    
+        
   };
+    
 
   setUser = user => {
     if (user === null) {
@@ -60,7 +65,7 @@ class App extends Component {
       .catch(err => console.log(err));
     return <Redirect to="/" />;
   };
-
+    	
   render() {
     const { article, articles, isLoggedIn, user = this.guestUser } = this.state;
     return (

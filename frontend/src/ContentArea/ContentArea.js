@@ -8,12 +8,16 @@ export default class ContentArea extends React.Component {
   render() {
     const { articleId } = this.props;
     let view = 'none';
-    const number = JSON.parse(localStorage.getItem('articleIndex'))[articleId] || '';
+    const number = JSON.parse(localStorage.getItem('articleIndex'))[articleId] || 0;
 
-	 if (number) {
+	 if (articleId && number) {
       view = <SingleArticle index={number-1} />;
-    } else {
+    } else if(articleId){
+    	//  cms/.....
       view = <p>Article not found</p>;
+    } else{
+    	// cms/
+    	view = <SingleArticle index={0} />;
     }
     return (
       <div>
