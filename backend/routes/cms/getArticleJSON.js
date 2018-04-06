@@ -8,7 +8,8 @@ async function getArticleJSON(req, res) {
   // valid or not Mongo ObjectID
   
 
-  await Article.find(query).then(found => {
+  await Article.find(query)
+  .then(found => {
     if (found.length === 0) {
       // not found specified id - show all
       res.redirect('/api/v1/articles/');
@@ -16,7 +17,8 @@ async function getArticleJSON(req, res) {
     }
 
     res.json(found);
-  });
+  })
+  .catch(err => console.log(err));
 }
 
 module.exports = getArticleJSON;
