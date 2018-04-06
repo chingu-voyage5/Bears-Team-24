@@ -40,16 +40,15 @@ class App extends Component {
         this.setState({ isLoggedIn: false, user: this.guestUser });
       });
 
-    actions
-      .checkLocalStorage()
-      .then(loaded => {
-      	this.setState({ cmsReady: loaded });
-      	if(loaded){
-      		this.setState(
-      		{articles: JSON.parse(localStorage.getItem('allArticles')),
-      		 articleIndex: JSON.parse(localStorage.getItem('articleIndex'))});
-      	}
-      });
+    actions.checkLocalStorage().then(loaded => {
+      this.setState({ cmsReady: loaded });
+      if (loaded) {
+        this.setState({
+          articles: JSON.parse(localStorage.getItem('allArticles')),
+          articleIndex: JSON.parse(localStorage.getItem('articleIndex')),
+        });
+      }
+    });
   };
 
   setUser = user => {
@@ -72,7 +71,14 @@ class App extends Component {
   };
 
   render() {
-    const { article, articles, articleIndex, cmsReady, isLoggedIn, user = this.guestUser } = this.state;
+    const {
+      article,
+      articles,
+      articleIndex,
+      cmsReady,
+      isLoggedIn,
+      user = this.guestUser,
+    } = this.state;
     return (
       <BrowserRouter>
         <React.Fragment>
@@ -121,13 +127,23 @@ class App extends Component {
               exact
               path="/cms"
               render={props => (
-                <CMSContainer {...props} articles={articles} articleIndex={articleIndex} cmsReady={cmsReady} />
+                <CMSContainer
+                  {...props}
+                  articles={articles}
+                  articleIndex={articleIndex}
+                  cmsReady={cmsReady}
+                />
               )}
             />
             <Route
               path="/cms/:articleId"
               render={props => (
-                <CMSContainer {...props} articles={articles} articleIndex={articleIndex} cmsReady={cmsReady} />
+                <CMSContainer
+                  {...props}
+                  articles={articles}
+                  articleIndex={articleIndex}
+                  cmsReady={cmsReady}
+                />
               )}
             />
             <Route

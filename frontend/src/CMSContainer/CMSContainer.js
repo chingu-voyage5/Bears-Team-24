@@ -7,9 +7,13 @@ import Loading from './Loading';
 
 const CMSContainer = props => {
   const articleId = props.match.params.articleId || '';
-  const articleIndex = props.articleIndex;
-  let content = props.cmsReady ? (
-    <ContentArea articles={props.articles} articleId={articleId} articleIndex={articleIndex} />
+  const { articleIndex } = props;
+  const content = props.cmsReady ? (
+    <ContentArea
+      articles={props.articles}
+      articleId={articleId}
+      articleIndex={articleIndex}
+    />
   ) : (
     <Loading />
   );
@@ -27,8 +31,12 @@ export default CMSContainer;
 CMSContainer.propTypes = {
   match: PropTypes.object.isRequired,
   cmsReady: PropTypes.bool,
+  articleIndex: PropTypes.object,
+  articles: PropTypes.array,
 };
 
 CMSContainer.defaultProps = {
   cmsReady: false,
+  articleIndex: {},
+  articles: [],
 };

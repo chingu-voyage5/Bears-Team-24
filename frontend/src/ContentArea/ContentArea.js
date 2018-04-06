@@ -6,11 +6,12 @@ export default class ContentArea extends React.Component {
   render() {
     const { articleId, articleIndex } = this.props;
     let view = 'none';
-    const number =
-      articleIndex[articleId] || 0;
+    const number = articleIndex[articleId] || 0;
 
     if (articleId && number) {
-      view = <SingleArticle articles={this.props.articles} index={number - 1} />;
+      view = (
+        <SingleArticle articles={this.props.articles} index={number - 1} />
+      );
     } else if (articleId) {
       //  cms/.....
       view = <p>Article not found</p>;
@@ -28,8 +29,12 @@ export default class ContentArea extends React.Component {
 
 ContentArea.propTypes = {
   articleId: PropTypes.string,
+  articleIndex: PropTypes.object,
+  articles: PropTypes.array,
 };
 
 ContentArea.defaultProps = {
   articleId: '',
+  articleIndex: {},
+  articles: [],
 };

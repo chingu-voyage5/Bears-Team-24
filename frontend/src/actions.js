@@ -29,7 +29,6 @@ const buildArticleNumbers = articles => {
   return obj;
 };
 
-
 function checkLocalStorage() {
   // production version :
   // if(localStorage.getItem('allArticles')){
