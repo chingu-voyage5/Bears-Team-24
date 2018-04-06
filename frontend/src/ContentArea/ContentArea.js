@@ -6,10 +6,10 @@ import Root from './Root';
 
 export default class ContentArea extends React.Component {
   render() {
-    const { articleId } = this.props;
+    const { articleId, articleIndex } = this.props;
     let view = 'none';
     const number =
-      JSON.parse(localStorage.getItem('articleIndex'))[articleId] || 0;
+      articleIndex[articleId] || 0;
 
     if (articleId && number) {
       view = <SingleArticle articles={this.props.articles} index={number - 1} />;

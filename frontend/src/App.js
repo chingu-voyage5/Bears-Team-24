@@ -20,6 +20,7 @@ class App extends Component {
   state = {
     article: articleMockData,
     articles: articlesMockData,
+    articleIndex: {},
     isLoggedIn: true,
     user: this.guestUser,
     cmsReady: false,
@@ -44,7 +45,9 @@ class App extends Component {
       .then(loaded => {
       	this.setState({ cmsReady: loaded });
       	if(loaded){
-      		this.setState({articles: JSON.parse(localStorage.getItem('allArticles'))})
+      		this.setState(
+      		{articles: JSON.parse(localStorage.getItem('allArticles')),
+      		 articleIndex: JSON.parse(localStorage.getItem('articleIndex'))});
       	}
       });
   };
@@ -69,7 +72,7 @@ class App extends Component {
   };
 
   render() {
-    const { article, articles, isLoggedIn, user = this.guestUser } = this.state;
+    const { article, articles, articleIndex, cmsReady, isLoggedIn, user = this.guestUser } = this.state;
     return (
       <BrowserRouter>
         <React.Fragment>
@@ -118,13 +121,13 @@ class App extends Component {
               exact
               path="/cms"
               render={props => (
-                <CMSContainer {...props} articles={this.state.articles} cmsReady={this.state.cmsReady} />
+                <CMSContainer {...props} articles={articles} articleIndex={articleIndex} cmsReady={cmsReady} />
               )}
             />
             <Route
               path="/cms/:articleId"
               render={props => (
-                <CMSContainer {...props} articles={this.state.articles} cmsReady={this.state.cmsReady} />
+                <CMSContainer {...props} articles={articles} articleIndex={articleIndex} cmsReady={cmsReady} />
               )}
             />
             <Route
