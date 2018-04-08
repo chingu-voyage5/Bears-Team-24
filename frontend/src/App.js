@@ -16,8 +16,8 @@ class App extends Component {
   // eslint-disable-next-line react/sort-comp
   guestUser = { _id: '0', username: 'Guest' };
   state = {
-    article: articleMockData,
-    articles: articlesMockData,
+    article: {},
+    articles: {},
     articleIndex: {},
     isLoggedIn: false,
     user: this.guestUser,
