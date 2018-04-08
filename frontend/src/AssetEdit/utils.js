@@ -47,10 +47,6 @@ const readFile = file =>
     reader.readAsDataURL(file);
   });
 
-const getLocalUrl = res =>
-  res.blob().then(blob => {
-    const url = URL.createObjectURL(blob);
-    return url;
-  });
+const getLocalUrl = blob => URL.createObjectURL(blob);
 
 export { getFileType, getMediaType, readFile, getLocalUrl };

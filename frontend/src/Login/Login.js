@@ -40,39 +40,47 @@ class Login extends React.Component {
 
     if (this.state.register) {
       const { username, password1, password2 } = this.state;
-      actions.register({ username, password1, password2 }).then(json => {
-        if (json.error) {
-          this.setState({
-            message: { show: true, error: true, text: json.error },
-          });
-        } else {
-          this.setState({
-            register: false,
-            message: {
-              show: true,
-              error: false,
-              text: 'Successfully Registered',
-            },
-          });
-        }
-      });
+      actions
+        .register({ username, password1, password2 })
+        .then(json => {
+          if (json.error) {
+            this.setState({
+              message: { show: true, error: true, text: json.error },
+            });
+          } else {
+            this.setState({
+              register: false,
+              message: {
+                show: true,
+                error: false,
+                text: 'Successfully Registered',
+              },
+            });
+          }
+        })
+        // eslint-disable-next-line no-console
+        .catch(err => console.error('register failed:', err));
     } else {
       const { username, password1 } = this.state;
-      actions.login({ username, password: password1 }).then(json => {
-        if (json.error) {
-          this.setState({
-            message: {
-              show: true,
-              error: true,
-              text: json.error,
-            },
-          });
-          this.props.setUser(null);
-        } else {
-          this.props.setUser(json);
-          this.setState({ redirect: '/' });
-        }
-      });
+      actions
+        .login({ username, password: password1 })
+        .then(json => {
+          if (json.error) {
+            this.setState({
+              message: {
+                show: true,
+                error: true,
+                text: json.error,
+              },
+            });
+            this.props.setUser(null);
+          } else {
+            this.props.setUser(json);
+            this.setState({ redirect: '/' });
+          }
+        })
+        // eslint-disable-next-line no-console
+        .catch(err => console.error('login failed:', err));
     }
 
     this.setState(() => ({
