@@ -68,24 +68,14 @@ or
 ### heroku
 
 
-Create a new mongodb on mLab and clone project.
+Create a new mongodb on mLab, clone project and push to heroku.
 
 ```
-git clone https://github.com/nikrb/auth-redux-react-base.git
-cd auth-redux-react-base/
-heroku create
+git clone https://github.com/chingu-voyage4/Bears-Team-25.git
+cd Bears-Team-25
+heroku create <YOUR-APP-NAME>
+setup heroku environment using dashboard. Don't set PORT.
 git push heroku master
-```
-
-After creating the heroku app (```heroku create```) setup the environment using
-the heroku dashboard. Don't set PORT.
-
-`heroku create` creates a random name for the heroku app, so it's better to use
-heroku dashboard to create the app, then set the git remote manually, in place
-of the heroku create above.
-```
-git remote rm heroku
-heroku git:remote -a newname
 ```
 
 

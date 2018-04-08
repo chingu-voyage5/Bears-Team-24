@@ -7,6 +7,8 @@ const auth = require('./auth');
 const users = require('./users');
 const assets = require('./assets');
 const cms = require('./cms');
+const articles = require('./articles');
+
 
 const passport = require('passport');
 
@@ -29,9 +31,22 @@ router.get(
   '/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => {
-    // req.user gets populated by passport
-    res.redirect('http://127.0.0.1:3000');
+    const redir =
+      process.env.NODE_ENV === 'production' ? '/' : 'http://127.0.0.1:3000';
+    res.redirect(redir);
   }
+);
+
+router.get(
+  '/api/v0/articles',
+  auth.isLoggedIn,
+  catchAsyncErrors(articles.getAll)
+);
+router.get('/api/v0/articles/:id', auth.isLoggedIn, articles.getDetail);
+router.post(
+  '/api/v0/articles/:id*?',
+  auth.isLoggedIn,
+  catchAsyncErrors(articles.upsert)
 );
 
 router.get('/api/v1/assets', auth.isLoggedIn, catchAsyncErrors(assets.getAll));

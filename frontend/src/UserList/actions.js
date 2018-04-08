@@ -10,7 +10,7 @@ if (process.env.REACT_APP_ALONE) {
 
   user.avatar = avatar;
 
-  getUserList = () => users;
+  getUserList = () => new Promise(resolve => resolve(users));
 
   getUser = () => new Promise(resolve => resolve({ user }));
 } else {

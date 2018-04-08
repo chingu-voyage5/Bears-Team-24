@@ -1,39 +1,15 @@
 import React from 'react';
 
 // Material UI components
-import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 
 import { Heading1, Heading2, Heading3, P, Paper, Wrapper } from './styled';
 
-const test = () => {
-  // TODO: remove example auth route and the button rendered  below
-  fetch('/api/v1/test', {
-    method: 'post',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    credentials: 'same-origin',
-    body: JSON.stringify({ test: 'testing 1,2,3' }),
-  })
-    .then(res => res.json())
-    .then(json => {
-      // eslint-disable-next-line no-console
-      console.log('test response:', json);
-    })
-    // eslint-disable-next-line
-    .catch(err => console.log(err));
-};
-
 const LandingPage = () => (
   <Wrapper>
     <Heading1>Welcome to chingu CMS</Heading1>
-    <Button variant="raised" color="default" onClick={test}>
-      Test
-    </Button>
     <Heading2>Features</Heading2>
-    <Grid container>
+    <Grid spacing={16} container>
       <Grid item xs={12} sm={6}>
         <Paper>
           <Heading3>Manage Content</Heading3>

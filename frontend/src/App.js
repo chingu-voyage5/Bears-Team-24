@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import AuthRoute from './AuthRoute';
 import actions from './actions';
 import LandingPage from './LandingPage';
 import Login from './Login';
@@ -11,9 +12,6 @@ import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';
 import { UserList, UserPage } from './UserList';
 
-import articleMockData from './_mockData/article.json';
-import articlesMockData from './_mockData/articles.json';
-
 class App extends Component {
   // eslint-disable-next-line react/sort-comp
   guestUser = { _id: '0', username: 'Guest' };
@@ -21,7 +19,7 @@ class App extends Component {
     article: articleMockData,
     articles: articlesMockData,
     articleIndex: {},
-    isLoggedIn: true,
+    isLoggedIn: false,
     user: this.guestUser,
     cmsReady: false,
   };
@@ -94,32 +92,47 @@ class App extends Component {
           />
           <Switch>
             <Route exact path="/" component={LandingPage} />
-            <Route
+            <AuthRoute
               exact
-              path="/pages"
-              render={r => <Articles {...r} data={articles} />}
+              isLoggedIn={isLoggedIn}
+              path="/articles"
+              render={r => <Articles {...r} />}
             />
-            <Route
+            <AuthRoute
               exact
-              path="/pages/new"
-              render={() => <ArticleEdit empty />}
+              isLoggedIn={isLoggedIn}
+              path="/articles/new"
+              render={r => <ArticleEdit {...r} empty user={user} />}
             />
-            <Route
-              path="/pages/:id"
-              render={() => <ArticleEdit data={article} />}
+            <AuthRoute
+              isLoggedIn={isLoggedIn}
+              path="/articles/:id"
+              render={props => <ArticleEdit id={props.match.params.id} />}
             />
-            <Route exact path="/users" render={() => <UserList />} />
+            <AuthRoute
+              exact
+              isLoggedIn={isLoggedIn}
+              path="/users"
+              render={() => <UserList />}
+            />
             <Route
               path="/users/:id"
               render={props => <UserPage userId={props.match.params.id} />}
             />
-            <Route exact path="/assets" render={r => <Assets {...r} />} />
-            <Route
+            <AuthRoute
               exact
+              isLoggedIn={isLoggedIn}
+              path="/assets"
+              render={r => <Assets {...r} />}
+            />
+            <AuthRoute
+              exact
+              isLoggedIn={isLoggedIn}
               path="/assets/new"
               render={r => <AssetEdit {...r} user={user} />}
             />
-            <Route
+            <AuthRoute
+              isLoggedIn={isLoggedIn}
               path="/assets/:id"
               render={props => <AssetEdit id={props.match.params.id} />}
             />

@@ -4,10 +4,10 @@ import { shallow } from 'enzyme';
 import Input from '.';
 
 const props = {
-  defaultValue: 'Bradypus variegatus',
-  innerRef: () => {},
+  value: 'Bradypus variegatus',
   label: 'pilosa',
   name: 'paresseux',
+  onChange: () => {},
 };
 
 describe('Input component', () => {

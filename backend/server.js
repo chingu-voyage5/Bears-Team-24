@@ -27,13 +27,13 @@ async function init() {
   try {
     await initDb();
     console.log('Connected to database');
-    await initServer(process.env.port || 3001);
+    await initServer(process.env.PORT || 3001);
   } catch (err) {
     console.error(`Couldn't init the app: ${err.message}`);
     // exit code for fatal exception
     process.exit(1);
   }
-  console.log('server started port:', app.address().port);
+  console.log('server started PORT:', app.address().port);
 }
 
 const closeDb = db.close;
