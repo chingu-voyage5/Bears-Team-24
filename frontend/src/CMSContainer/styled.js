@@ -11,7 +11,7 @@ const spin = keyframes`
 `;
 
 export const LoadingPic = styled.div`
-  background-image: url('./images/wait.png');
+  background-image: url('/images/wait.png');
   background-size: auto 40px;
   background-repeat: no-repeat;
   background-position: center;

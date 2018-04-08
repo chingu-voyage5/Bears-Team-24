@@ -5,6 +5,10 @@ body {
   font-family: sans-serif;
 }
 
+img {
+	max-width: 100%;
+}
+
 /*** Sidebar Component ***/
 .panel-heading {
   cursor: pointer;
