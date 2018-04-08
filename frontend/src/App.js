@@ -17,7 +17,7 @@ class App extends Component {
   guestUser = { _id: '0', username: 'Guest' };
   state = {
     article: {},
-    articles: {},
+    articles: [],
     articleIndex: {},
     isLoggedIn: false,
     user: this.guestUser,
