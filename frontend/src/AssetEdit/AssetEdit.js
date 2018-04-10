@@ -53,17 +53,20 @@ class AssetEdit extends React.Component {
 
   componentDidMount = () => {
     if (this.props.id) {
-      Promise.all(this.getAsset(this.props.id)).then(results => {
-        const [detail, localUrl] = results;
-        this.setState({
-          _id: this.props.id,
-          scale: false,
-          ...detail,
-          localUrl,
-          file: null,
-          data64: null,
-        });
-      });
+      Promise.all(this.getAsset(this.props.id))
+        .then(results => {
+          const [detail, localUrl] = results;
+          this.setState({
+            _id: this.props.id,
+            scale: false,
+            ...detail,
+            localUrl,
+            file: null,
+            data64: null,
+          });
+        })
+        // eslint-disable-next-line no-console
+        .catch(e => console.error('get asset failed:', e));
     }
     if (this.props.user) {
       this.setState({ creator: this.props.user });
