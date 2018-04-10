@@ -1,94 +1,68 @@
 import styled from 'styled-components';
+import PaperMUI from 'material-ui/Paper';
+import TextFieldMUI from 'material-ui/TextField';
+import AppBarMUI from 'material-ui/AppBar';
+import Typography from 'material-ui/Typography';
 
-const contentStyleMixin = () => `
-  background-color: #fff;
-  border: 0 solid rgb(169, 169, 169);
-  border-top: none;
-  box-shadow: 0 0 2px black;
-  box-sizing: border-box;
-  grid-area: content;
-  height: 100%;
-  max-height: 100%;
-  padding: 1rem;
-  width: 100%;
-`;
+export const AppBar = styled(AppBarMUI)`
+  && {
+    background-color: transparent;
+    color: #333;
+  }
+  max-width: 320px;
 
-export const Button = styled.button`
-  background-color: #15df89;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 1px 2px #aaa;
-  color: #fff;
-  cursor: pointer;
-  display: block;
-  font-size: 1.2rem;
-  font-weight: bold;
-  height: auto;
-  margin: 1rem;
-  max-width: 10rem;
-  padding: 0.5rem 1.2rem;
-  position: relative;
-
-  &:hover {
-    background-color: #08d27c;
+  @media (max-width: 960px) and (min-width: 401px) {
+    max-width: 187px;
   }
 
-  &:active {
-    box-shadow: none;
-    top: 1px;
+  @media (max-width: 400px) {
+    max-width: 100%;
   }
 `;
 
-Button.displayName = 'Button';
-
-export const Editor = styled.div`
-  display: grid;
-  flex: 1;
-  grid-template-areas: 'markdown preview .' 'content content content';
-  grid-template-columns: 1fr 1fr 2fr;
-  grid-template-rows: 50px auto;
-  height: 100%;
-  margin: auto;
-  position: relative;
-  width: 100%;
+export const ContentWrapper = styled.div`
+  margin-top: 2rem;
 `;
 
-Editor.displayName = 'Editor';
+export const EditorWrapper = styled(PaperMUI)`
+  margin-bottom: 1rem;
+`;
 
-export const Heading1 = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 2rem;
+export const Heading1 = styled(Typography).attrs({
+  variant: 'display1',
+})`
   text-align: center;
 `;
-
 Heading1.displayName = 'Heading1';
 
-export const Preview = styled.div`
-  ${contentStyleMixin()};
-  overflow: auto;
-  position: absolute;
+export const Label = styled.div`
+  font-weight: bold;
+  min-width: 20%;
+
+  @media (max-width: 768px) {
+    min-width: 25%;
+  }
 `;
 
+export const Preview = styled(PaperMUI)`
+  padding: 1rem;
+`;
 Preview.displayName = 'Preview';
 
-export const Textarea = styled.textarea`
-  ${contentStyleMixin()};
+export const Textarea = styled(TextFieldMUI)`
+  && {
+    padding: 1rem;
+  }
+  width: calc(100% - 2rem);
 `;
-
 Textarea.displayName = 'Textarea';
 
 export const Wrapper = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 60px);
   justify-content: space-between;
   margin: auto;
-  max-height: calc(100vh - 60px);
   max-width: 60rem;
-`;
-
-export const Message = styled.div`
-  visibility: ${p => (p.show ? 'visible' : 'hidden')};
-  color: ${p => (p.error ? 'tomato' : 'limegreen')};
+  padding: 1rem;
 `;

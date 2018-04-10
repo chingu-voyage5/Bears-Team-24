@@ -1,3 +1,5 @@
+import handleResponse from '../common/ErrorHandler';
+
 let getUser;
 let getUserList;
 
@@ -19,20 +21,14 @@ if (process.env.REACT_APP_ALONE) {
       method: 'get',
       headers: { 'content-type': 'application/json' },
       credentials: 'same-origin',
-    })
-      .then(res => res.json())
-      // eslint-disable-next-line
-      .catch(err => console.log(err));
+    }).then(handleResponse);
 
   getUser = userId =>
     fetch(`/api/v1/user/${userId}`, {
       method: 'get',
       headers: { 'content-type': 'application/json' },
       credentials: 'same-origin',
-    })
-      .then(res => res.json())
-      // eslint-disable-next-line
-      .catch(err => console.log(err));
+    }).then(handleResponse);
 }
 
 export default { getUser, getUserList };

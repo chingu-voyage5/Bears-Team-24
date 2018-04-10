@@ -12,30 +12,60 @@ import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';
 import { UserList, UserPage } from './UserList';
 
+/**
+ * authing routes entered into address bar.
+    1. We can't go to auth route whilst we're waiting for auto login. If we do
+        AuthRoute is triggered before we're logged in and sends us to login page.
+    2. Additionally, on startup, waitingForLogin is false, so AuthRoute is
+        So we use startup flag to prevent AuthRoute being called until we're sure
+        auto login has run.
+ */
 class App extends Component {
-  // eslint-disable-next-line react/sort-comp
+  /* eslint-disable react/sort-comp */
   guestUser = { _id: '0', username: 'Guest' };
   state = {
     article: {},
     articles: [],
     articleIndex: {},
+    startup: true,
     isLoggedIn: false,
+    waitingForLogin: false,
     user: this.guestUser,
     cmsReady: false,
   };
-
   componentDidMount = () => {
+    if (this.state.waitingForLogin) {
+      return;
+    }
+    this.setState({ waitingForLogin: true });
     actions
       .getUser()
       .then(res => {
         if (res.success) {
-          this.setState({ isLoggedIn: true, user: res.user });
+          this.setState({
+            startup: false,
+            waitingForLogin: false,
+            isLoggedIn: true,
+            user: res.user,
+          });
         } else {
-          this.setState({ isLoggedIn: false, user: this.guestUser });
+          this.setState({
+            startup: false,
+            waitingForLogin: false,
+            isLoggedIn: false,
+            user: this.guestUser,
+          });
         }
       })
-      .catch(() => {
-        this.setState({ isLoggedIn: false, user: this.guestUser });
+      .catch(e => {
+        // eslint-disable-next-line no-console
+        console.log('auto login error:', e);
+        this.setState({
+          startup: false,
+          waitingForLogin: false,
+          isLoggedIn: false,
+          user: this.guestUser,
+        });
       });
 
     actions.checkLocalStorage().then(loaded => {
@@ -75,8 +105,13 @@ class App extends Component {
       articleIndex,
       cmsReady,
       isLoggedIn,
+      startup,
+      waitingForLogin,
       user = this.guestUser,
     } = this.state;
+    if (waitingForLogin || startup) {
+      return <h1>Loading ...</h1>;
+    }
     return (
       <BrowserRouter>
         <React.Fragment>

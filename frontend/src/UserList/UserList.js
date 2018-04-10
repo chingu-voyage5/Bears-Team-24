@@ -35,7 +35,7 @@ class UserList extends React.Component {
         this.setState({ data: json });
       })
       // eslint-disable-next-line no-console
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   };
 
   handleSort = id => {

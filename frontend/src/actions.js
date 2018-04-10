@@ -1,21 +1,18 @@
+import handleResponse from './common/ErrorHandler';
+
 const getUser = () =>
   fetch('/api/v1/user', {
     method: 'get',
     headers: { 'content-type': 'application/json' },
     credentials: 'same-origin',
-  }).then(res => {
-    if (res.ok) {
-      return Promise.resolve(res.json());
-    }
-    return Promise.reject(res);
-  });
+  }).then(handleResponse);
 
 const logout = () =>
   fetch('/api/v1/logout', {
     method: 'post',
     headers: { 'content-type': 'application/json' },
     credentials: 'same-origin',
-  }).then(res => res.json());
+  }).then(handleResponse);
 
 const buildArticleNumbers = articles => {
   // with this table i can quickly find element in allArticles if i know id
