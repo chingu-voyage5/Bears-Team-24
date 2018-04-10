@@ -1,3 +1,5 @@
+import handleResponse from '../common/ErrorHandler';
+
 let get;
 let save;
 
@@ -18,7 +20,7 @@ if (process.env.REACT_APP_ALONE) {
         'content-type': 'application/json',
       },
       credentials: 'same-origin',
-    }).then(res => res.json());
+    }).then(handleResponse);
 
   save = payload =>
     fetch('/api/v0/articles', {
@@ -29,7 +31,7 @@ if (process.env.REACT_APP_ALONE) {
       },
       credentials: 'same-origin',
       body: JSON.stringify(payload),
-    }).then(res => res.json());
+    }).then(handleResponse);
 }
 
 export default { get, save };

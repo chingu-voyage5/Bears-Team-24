@@ -48,7 +48,11 @@ class ArticleEdit extends React.Component {
 
   componentDidMount = () => {
     if (this.props.id) {
-      this.fetchData(this.props.id).then(article => this.setState({ article }));
+      actions
+        .get(this.props.id)
+        .then(article => this.setState({ article }))
+        // eslint-disable-next-line no-console
+        .catch(e => console.error('get article for edit failed:', e));
     }
   };
 

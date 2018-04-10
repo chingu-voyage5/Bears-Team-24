@@ -39,13 +39,13 @@ class Articles extends React.Component {
   };
 
   componentDidMount = () => {
-    this.fetchData().then(data => this.setState({ data }));
+    this.fetchData()
+      .then(data => this.setState({ data }))
+      // eslint-disable-next-line no-console
+      .catch(e => console.error('mounted error:', e));
   };
 
-  // eslint-disable-next-line
-  fetchData() {
-    return actions.getAll();
-  }
+  fetchData = () => actions.getAll();
 
   handleSort = id => {
     const { data, sortedBy } = this.state;

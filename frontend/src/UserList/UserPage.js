@@ -31,9 +31,13 @@ class UserPage extends React.Component {
   };
 
   componentDidMount = () => {
-    actions.getUser(this.props.userId).then(({ user }) => {
-      this.setState(() => ({ user, initUser: { ...user } }));
-    });
+    actions
+      .getUser(this.props.userId)
+      .then(({ user }) => {
+        this.setState(() => ({ user, initUser: { ...user } }));
+      })
+      // eslint-disable-next-line no-console
+      .catch(e => console.error('getUser failed:', e));
   };
 
   handleSave = () => {

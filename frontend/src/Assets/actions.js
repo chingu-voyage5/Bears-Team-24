@@ -1,3 +1,5 @@
+import handleResponse from '../common/ErrorHandler';
+
 let getAll;
 
 if (process.env.REACT_APP_ALONE) {
@@ -15,7 +17,7 @@ if (process.env.REACT_APP_ALONE) {
         'content-type': 'application/json',
       },
       credentials: 'same-origin',
-    }).then(res => res.json());
+    }).then(handleResponse);
 }
 
 export default { getAll };
