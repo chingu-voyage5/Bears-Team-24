@@ -39,14 +39,13 @@ class App extends Component {
       });
 
     actions.checkLocalStorage().then(loaded => {
-      this.setState({ cmsReady: loaded });
-      if (loaded) {
         this.setState({
-          articles: JSON.parse(localStorage.getItem('allArticles')),
-          articleIndex: JSON.parse(localStorage.getItem('articleIndex')),
+        	 cmsReady: loaded,
+          articles: loaded ? JSON.parse(localStorage.getItem('allArticles')) : [],
+          articleIndex: loaded ? JSON.parse(localStorage.getItem('articleIndex')) : {},
         });
       }
-    });
+    );
   };
 
   setUser = user => {
