@@ -8,22 +8,19 @@ import Loading from './Loading';
 const CMSContainer = props => {
   const articleId = props.match.params.articleId || '';
   const { articleIndex } = props;
-  
+
   return (
     <Wrapper>
       <Sidebar />
-      {props.cmsReady ? 
-      (
-    		<ContentArea
-      		articles={props.articles}
-      		articleId={articleId}
-      		articleIndex={articleIndex}
-    		/>
-  		) : 
-  		(
-    		<Loading />
-  		)
-  		}
+      {props.cmsReady ? (
+        <ContentArea
+          articles={props.articles}
+          articleId={articleId}
+          articleIndex={articleIndex}
+        />
+      ) : (
+        <Loading />
+      )}
     </Wrapper>
   );
 };

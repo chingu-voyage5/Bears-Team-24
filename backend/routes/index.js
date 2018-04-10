@@ -9,7 +9,6 @@ const assets = require('./assets');
 const cms = require('./cms');
 const articles = require('./articles');
 
-
 const passport = require('passport');
 
 const router = new Router();
