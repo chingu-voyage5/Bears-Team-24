@@ -45,7 +45,10 @@ class Articles extends React.Component {
       .catch(e => console.error('mounted error:', e));
   };
 
-  fetchData = () => actions.getAll();
+  // eslint-disable-next-line class-methods-use-this
+  fetchData() {
+    return actions.getAll();
+  }
 
   handleSort = id => {
     const { data, sortedBy } = this.state;

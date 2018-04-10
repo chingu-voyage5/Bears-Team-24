@@ -1,7 +1,7 @@
 {
   "_id": "43039ac8d0a244719d9d31e0731bcbe8",
+  "active": true,
   "created": "1498771528",
-  "last_updated": "1517850102",
   "creator": "85e026bbd79b46ce990dbb956490e8d0",
   "contributor_list": [
     "7326fe8cff7242d094815c184aa725dd",
@@ -10,7 +10,7 @@
   ],
   "title": "Bradypus variegatus",
   "topic": "Pilosa",
-  "sub_topic": ["Folivora", "Lent"],
+  "sub_topic": "Folivora",
   "content":
     "## Lorem\n**ipsum** dolor _sit amet_, ~~consectetuer~~ adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
 }
