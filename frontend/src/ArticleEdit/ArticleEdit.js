@@ -48,9 +48,14 @@ class ArticleEdit extends React.Component {
 
   componentDidMount = () => {
     if (this.props.id) {
-      actions.get(this.props.id).then(article => this.setState({ article }));
+      this.fetchData(this.props.id).then(article => this.setState({ article }));
     }
   };
+
+  // eslint-disable-next-line
+  fetchData(id) {
+    return actions.get(id);
+  }
 
   handleTabSwitch = (e, value) => {
     this.setState(() => ({
