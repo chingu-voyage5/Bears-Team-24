@@ -9,7 +9,8 @@ async function getArticleJSON(req, res) {
     .then(found => {
       res.json(found);
     })
-    .catch(err => console.log(err));
+    // eslint-disable-next-line no-console
+    .catch(err => console.error('getArticleJSON failed:', err));
 }
 
 module.exports = getArticleJSON;

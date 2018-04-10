@@ -24,7 +24,6 @@ class App extends Component {
   /* eslint-disable react/sort-comp */
   guestUser = { _id: '0', username: 'Guest' };
   state = {
-    article: {},
     articles: [],
     articleIndex: {},
     startup: true,
@@ -100,7 +99,6 @@ class App extends Component {
 
   render() {
     const {
-      article,
       articles,
       articleIndex,
       cmsReady,

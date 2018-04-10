@@ -34,21 +34,18 @@ function checkLocalStorage() {
   // }
   //
   // development version:
-  console.log('request articles from backend');
-  console.time('load-cms');
   return fetch('/api/v1/articles/')
     .then(res => res.json())
     .then(data => {
       localStorage.setItem('allArticles', JSON.stringify(data));
-      console.log('articles data received');
-      console.timeEnd('load-cms');
       const articles = localStorage.getItem('allArticles');
       const articleIndex = buildArticleNumbers(articles);
       localStorage.setItem('articleIndex', JSON.stringify(articleIndex));
       return true;
     })
     .catch(err => {
-      console.log(err);
+      // eslint-disable-next-line no-console
+      console.error('checkLocalStorage fetch articles failed', err);
       return false;
     });
 }
