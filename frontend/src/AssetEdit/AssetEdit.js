@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
-// import Snackbar from 'material-ui/Snackbar';
+import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
 
 import {
@@ -42,6 +42,11 @@ class AssetEdit extends React.Component {
     localUrl: null,
     _id: null,
     creator: {},
+    message: {
+      show: false,
+    },
+    horizontal: 'right',
+    vertical: 'top',
   };
   // eslint-disable-next-line react/sort-comp
   getAsset = id => {
@@ -98,8 +103,13 @@ class AssetEdit extends React.Component {
     const file = e.target.files[0];
 
     if (file.size >= MAX_FILE_SIZE_MB * 1e6) {
-      // eslint-disable-next-line
-      return alert(`File too big. Max.file size: ${MAX_FILE_SIZE_MB}MB`);
+      this.setState(() => ({
+        message: {
+          show: true,
+          text: `File too big. Max.file size: ${MAX_FILE_SIZE_MB}MB`,
+        },
+      }));
+      return;
     }
 
     this.setState(() => ({
@@ -162,6 +172,12 @@ class AssetEdit extends React.Component {
     });
   };
 
+  handleClose = () => {
+    this.setState(() => ({
+      message: { show: false },
+    }));
+  };
+
   renderAsset = (type, src) => {
     switch (true) {
       case type === 'image':
@@ -187,6 +203,9 @@ class AssetEdit extends React.Component {
       creator,
       _id,
       mobile,
+      message,
+      horizontal,
+      vertical,
     } = this.state;
     const { username = '' } = creator;
     const embedUrl = _id ? `/api/v1/asset/content/${_id}` : '';
@@ -324,6 +343,20 @@ class AssetEdit extends React.Component {
             Save
           </Button>
         </div>
+        <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          open={message.show}
+          onClose={this.handleClose}
+          autoHideDuration={message.error ? null : 3000}
+          SnackbarContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={
+            <span id="message-id">
+              {message.text || 'Something went wrong :('}
+            </span>
+          }
+        />
       </Wrapper>
     );
   }
