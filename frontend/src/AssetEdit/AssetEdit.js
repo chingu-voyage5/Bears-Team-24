@@ -174,7 +174,7 @@ class AssetEdit extends React.Component {
 
   handleClose = () => {
     this.setState(() => ({
-      message: { show: false },
+      message: { show: false, text: '' },
     }));
   };
 
