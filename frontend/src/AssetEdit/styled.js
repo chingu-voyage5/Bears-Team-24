@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Typography from 'material-ui/Typography';
 
 export const Button = styled.button`
   background-color: #15df89;
@@ -49,6 +50,13 @@ export const Hint = styled.p`
   right: 0;
   top: 0;
 `;
+
+export const Heading1 = styled(Typography).attrs({
+  variant: 'display1',
+})`
+  text-align: center;
+`;
+Heading1.displayName = 'Heading1';
 
 export const ImgPreview = styled.img`
   height: 75%;

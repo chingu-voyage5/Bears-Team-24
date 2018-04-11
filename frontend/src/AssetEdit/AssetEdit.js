@@ -11,6 +11,7 @@ import TextField from 'material-ui/TextField';
 
 import {
   DropArea,
+  Heading1,
   Hint,
   ImgPreview,
   InvisibleInput,
@@ -207,6 +208,7 @@ class AssetEdit extends React.Component {
     return (
       <Wrapper>
         <Paper>
+          <Heading1>{!_id ? 'Create new asset' : 'Edit asset'}</Heading1>
           <List>
             <ListItem>
               {mobile ? (
