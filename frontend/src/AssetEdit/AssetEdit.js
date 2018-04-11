@@ -257,8 +257,6 @@ class AssetEdit extends React.Component {
                 </React.Fragment>
               )}
             </ListItem>
-          </List>
-          <List>
             <ListItem>
               {mobile ? (
                 <TextField
