@@ -4,18 +4,26 @@ import PropTypes from 'prop-types';
 
 // Material-UI components
 import Button from 'material-ui/Button';
-import List, { ListItem } from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 // import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
 
-import { DropArea, Hint, ImgPreview, InvisibleInput, Wrapper } from './styled';
+import {
+  DropArea,
+  Hint,
+  ImgPreview,
+  InvisibleInput,
+  Label,
+  Wrapper,
+} from './styled';
 
 import actions from './actions';
 import { fileTypes, maxFileSizeMb } from './config';
 import { getFileType, readFile } from './utils';
 
 const MAX_FILE_SIZE_MB = maxFileSizeMb;
+const SMALL_WINDOW = 768;
 
 class AssetEdit extends React.Component {
   static propTypes = {
@@ -68,6 +76,10 @@ class AssetEdit extends React.Component {
     if (this.props.user) {
       this.setState({ creator: this.props.user });
     }
+
+    this.setState(() => ({
+      mobile: window.innerWidth <= SMALL_WINDOW,
+    }));
   };
 
   handleSelect = e => {
@@ -187,6 +199,7 @@ class AssetEdit extends React.Component {
       data64,
       creator,
       _id,
+      mobile,
     } = this.state;
     const { username = '' } = creator;
     const embedUrl = _id ? `/api/v1/asset/content/${_id}` : '';
@@ -196,53 +209,108 @@ class AssetEdit extends React.Component {
         <Paper>
           <List>
             <ListItem>
-              <TextField
-                id="owner"
-                label="Owner"
-                value={username}
-                fullWidth
-                disabled
-              />
+              {mobile ? (
+                <TextField
+                  id="owner"
+                  label="Owner"
+                  value={username}
+                  fullWidth
+                  disabled
+                />
+              ) : (
+                <React.Fragment>
+                  <Label>Owner:</Label>
+                  <ListItemText>
+                    <TextField fullWidth value={username} disabled />
+                  </ListItemText>
+                </React.Fragment>
+              )}
+            </ListItem>
+            <ListItem>
+              {mobile ? (
+                <TextField
+                  id="title"
+                  label="Title"
+                  name="title"
+                  value={title}
+                  onChange={this.handleFieldChange}
+                  fullWidth
+                />
+              ) : (
+                <React.Fragment>
+                  <Label>Title:</Label>
+                  <ListItemText>
+                    <TextField
+                      fullWidth
+                      value={title}
+                      name="title"
+                      onChange={this.handleFieldChange}
+                    />
+                  </ListItemText>
+                </React.Fragment>
+              )}
             </ListItem>
           </List>
           <List>
             <ListItem>
-              <TextField
-                id="title"
-                label="Title"
-                name="title"
-                value={title}
-                onChange={this.handleFieldChange}
-                fullWidth
-              />
+              {mobile ? (
+                <TextField
+                  id="description"
+                  label="Description"
+                  name="description"
+                  value={description}
+                  onChange={this.handleFieldChange}
+                  fullWidth
+                />
+              ) : (
+                <React.Fragment>
+                  <Label>Description:</Label>
+                  <ListItemText>
+                    <TextField
+                      fullWidth
+                      value={description}
+                      name="title"
+                      onChange={this.handleFieldChange}
+                    />
+                  </ListItemText>
+                </React.Fragment>
+              )}
             </ListItem>
             <ListItem>
-              <TextField
-                id="description"
-                label="Description"
-                name="description"
-                value={description}
-                onChange={this.handleFieldChange}
-                fullWidth
-              />
+              {mobile ? (
+                <TextField
+                  id="fileType"
+                  label="Asset type"
+                  value={fileType || ''}
+                  fullWidth
+                  disabled
+                />
+              ) : (
+                <React.Fragment>
+                  <Label>Asset type:</Label>
+                  <ListItemText>
+                    <TextField fullWidth value={fileType || ''} disabled />
+                  </ListItemText>
+                </React.Fragment>
+              )}
             </ListItem>
             <ListItem>
-              <TextField
-                id="fileType"
-                label="Asset type"
-                value={fileType || ''}
-                fullWidth
-                disabled
-              />
-            </ListItem>
-            <ListItem>
-              <TextField
-                id="embedUrl"
-                label="Embed Url:"
-                value={embedUrl}
-                fullWidth
-                disabled
-              />
+              {mobile ? (
+                <TextField
+                  id="embedUrl"
+                  label="Embed Url:"
+                  value={embedUrl}
+                  fullWidth
+                  disabled
+                />
+              ) : (
+                <React.Fragment>
+                  <Label>Embed Url:</Label>
+                  <ListItemText>
+                    <TextField fullWidth value={embedUrl} disabled />
+                  </ListItemText>
+                </React.Fragment>
+              )}
             </ListItem>
           </List>
         </Paper>
