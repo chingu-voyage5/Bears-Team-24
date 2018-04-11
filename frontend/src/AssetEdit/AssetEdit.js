@@ -10,7 +10,9 @@ import Snackbar from 'material-ui/Snackbar';
 import TextField from 'material-ui/TextField';
 
 import {
+  ButtonWrapper,
   DropArea,
+  DropAreaWrapper,
   Heading1,
   Hint,
   ImgPreview,
@@ -325,7 +327,7 @@ class AssetEdit extends React.Component {
           }}
           onChange={this.handleChange}
         />
-        <Paper style={{ display: 'flex', justifyContent: 'center' }}>
+        <DropAreaWrapper>
           <DropArea
             onClick={this.handleDropAreaClick}
             onDrop={this.handleDrop}
@@ -335,12 +337,12 @@ class AssetEdit extends React.Component {
             {data64 && this.renderAsset(fileType, data64)}
             {localUrl && this.renderAsset(fileType, localUrl)}
           </DropArea>
-        </Paper>
-        <div>
+        </DropAreaWrapper>
+        <ButtonWrapper>
           <Button variant="raised" color="primary" onClick={this.handleSave}>
             Save
           </Button>
-        </div>
+        </ButtonWrapper>
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
           open={message.show}

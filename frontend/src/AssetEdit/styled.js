@@ -1,5 +1,10 @@
 import styled from 'styled-components';
+import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+
+export const ButtonWrapper = styled.div`
+  margin-top: 1rem;
+`;
 
 export const DropArea = styled.button`
   background-color: #e2e2e2;
@@ -14,6 +19,12 @@ export const DropArea = styled.button`
   width: 100%;
 `;
 DropArea.displayName = 'DropArea';
+
+export const DropAreaWrapper = styled(Paper)`
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+`;
 
 export const Hint = styled.p`
   left: 0;
