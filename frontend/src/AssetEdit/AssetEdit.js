@@ -21,7 +21,7 @@ import {
 
 import actions from './actions';
 import { fileTypes, maxFileSizeMb } from './config';
-import { getFileType, readFile } from './utils';
+import { getFileType, packageData, readFile } from './utils';
 
 const MAX_FILE_SIZE_MB = maxFileSizeMb;
 const SMALL_WINDOW = 768;
@@ -155,22 +155,8 @@ class AssetEdit extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  packageData = () => {
-    const { file, _id, title, description } = this.state;
-    const payload = new FormData();
-    if (_id) {
-      payload.append('_id', _id);
-    }
-    payload.append('title', title);
-    payload.append('description', description);
-    if (file) {
-      payload.append('blob', file);
-    }
-    return payload;
-  };
-
   handleSave = () => {
-    const payload = this.packageData();
+    const payload = packageData({ ...this.state });
     actions.save(payload).then(json => {
       this.setState({ _id: json._id, creator: json.creator });
     });
