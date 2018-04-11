@@ -257,7 +257,7 @@ class AssetEdit extends React.Component {
                     <TextField
                       fullWidth
                       value={description}
-                      name="title"
+                      name="description"
                       onChange={this.handleFieldChange}
                     />
                   </ListItemText>
