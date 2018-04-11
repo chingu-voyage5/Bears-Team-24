@@ -1,20 +1,17 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Material-UI components
+import Button from 'material-ui/Button';
+import List, { ListItem } from 'material-ui/List';
+import Paper from 'material-ui/Paper';
+// import Snackbar from 'material-ui/Snackbar';
+import TextField from 'material-ui/TextField';
+
+import { DropArea, Hint, ImgPreview, InvisibleInput, Wrapper } from './styled';
+
 import actions from './actions';
-
-import Input from './Input';
-import {
-  Button,
-  DropArea,
-  Hint,
-  ImgPreview,
-  InputField,
-  InvisibleInput,
-  Label,
-  Wrapper,
-} from './styled';
-
 import { fileTypes, maxFileSizeMb } from './config';
 import { getFileType, readFile } from './utils';
 
@@ -193,48 +190,84 @@ class AssetEdit extends React.Component {
     } = this.state;
     const { username = '' } = creator;
     const embedUrl = _id ? `/api/v1/asset/content/${_id}` : '';
+
     return (
       <Wrapper>
-        <Label htmlFor="creator">
-          Owner:
-          <InputField>{username}</InputField>
-        </Label>
-        <Input
-          value={title}
-          label="Title:"
-          name="title"
-          onChange={this.handleFieldChange}
-        />
-        <Input
-          value={description}
-          label="Description:"
-          name="description"
-          onChange={this.handleFieldChange}
-        />
-        <Label htmlFor="asset">
-          Asset type:
-          <InputField>{fileType}</InputField>
-        </Label>
+        <Paper>
+          <List>
+            <ListItem>
+              <TextField
+                id="owner"
+                label="Owner"
+                value={username}
+                fullWidth
+                disabled
+              />
+            </ListItem>
+          </List>
+          <List>
+            <ListItem>
+              <TextField
+                id="title"
+                label="Title"
+                name="title"
+                value={title}
+                onChange={this.handleFieldChange}
+                fullWidth
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                id="description"
+                label="Description"
+                name="description"
+                value={description}
+                onChange={this.handleFieldChange}
+                fullWidth
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                id="fileType"
+                label="Asset type"
+                value={fileType || ''}
+                fullWidth
+                disabled
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                id="embedUrl"
+                label="Embed Url:"
+                value={embedUrl}
+                fullWidth
+                disabled
+              />
+            </ListItem>
+          </List>
+        </Paper>
         <InvisibleInput
           innerRef={ref => {
             this.fileInput = ref;
           }}
           onChange={this.handleChange}
         />
-        <Label htmlFor="embed url">
-          Embed Url:
-          <InputField>{embedUrl}</InputField>
-        </Label>
-        <DropArea
-          onClick={this.handleDropAreaClick}
-          onDrop={this.handleDrop}
-          onDragOver={this.handleDrag}
-        >
-          <Hint>Drop file or click area to select from disk</Hint>
-          {data64 && this.renderAsset(fileType, data64)}
-          {localUrl && this.renderAsset(fileType, localUrl)}
-        </DropArea>
-        <Button onClick={this.handleSave}>Save</Button>
+        <Paper style={{ display: 'flex', justifyContent: 'center' }}>
+          <DropArea
+            onClick={this.handleDropAreaClick}
+            onDrop={this.handleDrop}
+            onDragOver={this.handleDrag}
+          >
+            <Hint>Drop file or click area to select from disk</Hint>
+            {data64 && this.renderAsset(fileType, data64)}
+            {localUrl && this.renderAsset(fileType, localUrl)}
+          </DropArea>
+        </Paper>
+        <div>
+          <Button variant="raised" color="primary" onClick={this.handleSave}>
+            Save
+          </Button>
+        </div>
       </Wrapper>
     );
   }

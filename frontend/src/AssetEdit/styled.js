@@ -34,10 +34,11 @@ export const DropArea = styled.button`
   box-shadow: 0 0 2px #333;
   height: 30vh;
   margin: auto;
+  max-width: 400px;
   padding: 0;
   padding-top: 1rem;
   position: relative;
-  width: 40%;
+  width: 100%;
 `;
 
 DropArea.displayName = 'DropArea';
@@ -83,13 +84,13 @@ export const InputField = styled.p`
 
 InputField.displayName = 'InputField';
 
-export const Label = styled.label`
-  align-items: center;
-  display: flex;
+export const Label = styled.div`
   font-weight: bold;
-  height: 2rem;
-  justify-content: flex-end;
-  margin-bottom: 2rem;
+  min-width: 20%;
+
+  @media (max-width: 768px) {
+    min-width: 25%;
+  }
 `;
 
 Label.displayName = 'Label';
@@ -98,6 +99,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
-  max-width: 75rem;
+  max-width: 60rem;
   padding: 2rem 0;
 `;
