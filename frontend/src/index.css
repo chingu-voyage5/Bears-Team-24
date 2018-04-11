@@ -5,6 +5,10 @@ body {
   font-family: sans-serif;
 }
 
+img {
+  max-width: 100%;
+}
+
 /*** Sidebar Component ***/
 .panel-heading {
   cursor: pointer;
@@ -37,6 +41,8 @@ a:hover {
 }
 
 .content-area {
+  box-sizing: border-box;
+  max-width: calc(100vw - 200px);
   padding: 0 5%;
 }
 
@@ -109,4 +115,46 @@ a:hover {
 
 #root {
   height: 100%;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading .pic {
+  flex-basis: 100px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading .pic img {
+  height: 40px;
+  width: 40px;
+  animation: spin 0.5s infinite;
+}
+
+.loading .description {
+  animation: blink 0.5s infinite alternate;
 }

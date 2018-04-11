@@ -1,43 +1,40 @@
 import React from 'react';
-import JSONToHTML from '../JSONHandle';
+import PropTypes from 'prop-types';
+import SingleArticle from './SingleArticle';
 
 export default class ContentArea extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      innerHTML: undefined,
-    };
-
-    this.loadJSON = this.loadJSON.bind(this);
-  }
-  componentWillMount() {
-    const grabbedHTML = this.loadJSON(); //   fetchData(this.props.selectedUrl) ?
-    this.setState({ innerHTML: grabbedHTML });
-  }
-  loadJSON(location = './db/content/Example-Page.json') {
-    const self = this;
-    const req = new Request(location);
-
-    fetch(req)
-      .then(response => response.json())
-      .then(responseJSON => {
-        const resultHTML = JSONToHTML(responseJSON.HTMLTree);
-        self.setState({ innerHTML: resultHTML });
-      });
-    return '<p>loading......</p>';
-  }
-  // componentWillUpdate  (){....}    -- copy/paste?
-  //   -if user clicks on another link in sidebar: need reload from new url
-
   render() {
+    const { articleId, articleIndex } = this.props;
+    let view = 'none';
+    const number = articleIndex[articleId] || 0;
+
+    if (articleId && number) {
+      view = (
+        <SingleArticle articles={this.props.articles} index={number - 1} />
+      );
+    } else if (articleId) {
+      //  cms/.....
+      view = <p>Article not found</p>;
+    } else {
+      // cms/
+      view = <SingleArticle articles={this.props.articles} index={0} />;
+    }
     return (
       <div>
-        <section
-          className="content-area"
-          dangerouslySetInnerHTML={{ __html: this.state.innerHTML }}
-        />
+        <section className="content-area">{view}</section>
       </div>
     );
   }
 }
+
+ContentArea.propTypes = {
+  articleId: PropTypes.string,
+  articleIndex: PropTypes.object,
+  articles: PropTypes.array,
+};
+
+ContentArea.defaultProps = {
+  articleId: '',
+  articleIndex: {},
+  articles: [],
+};

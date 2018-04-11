@@ -1,16 +1,12 @@
 import React from 'react';
-import Collapsible from './Collapsible';
+import { getTree, getChildren } from './utils';
 import { Wrapper } from './styled';
 
-const Sidebar = () => (
-  <Wrapper>
-    <Collapsible title="About this wiki">Lorem ipsum dolor sit</Collapsible>
-    <Collapsible title="About Voyages">Lorem ipsum dolor sit</Collapsible>
-    <Collapsible title="Project Setup">Lorem ipsum dolor sit</Collapsible>
-    <Collapsible title="Development Sprints">Lorem ipsum dolor sit</Collapsible>
-    <Collapsible title="Project Closure">Lorem ipsum dolor sit</Collapsible>
-    <Collapsible title="Tools & Resources">Lorem ipsum dolor sit</Collapsible>
-  </Wrapper>
-);
+const Sidebar = () => {
+  const articles = JSON.parse(localStorage.getItem('allArticles'));
+  const tree = getTree(articles);
+  const tre = getChildren(tree);
+  return <Wrapper>{tre}</Wrapper>;
+};
 
 export default Sidebar;

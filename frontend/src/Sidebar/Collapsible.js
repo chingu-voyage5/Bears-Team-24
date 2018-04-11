@@ -6,16 +6,16 @@ class Collapsible extends React.Component {
     const { title, children } = this.props;
 
     return (
-      <details>
-        <summary className="panel-heading">{title}</summary>
-        <p className="panel-body">{children}</p>
+      <details style={{ marginLeft: '1rem' }}>
+        <summary>{title}</summary>
+        {children}
       </details>
     );
   }
 }
 
 Collapsible.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   title: PropTypes.string.isRequired,
 };
 
