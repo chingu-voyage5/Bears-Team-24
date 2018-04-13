@@ -1,6 +1,5 @@
 import React from 'react';
 import { getTree, getChildren } from './utils';
-import { getArticlesJSON } from './utilsBypass';
 import { Wrapper } from './styled';
 
 class Sidebar extends React.Component{
@@ -9,24 +8,27 @@ constructor(props) {
         super(props);
 
         this.state = {
-            articles : []  
+            articlesHtml : []  
         };
 
   }
 	
+	shouldComponentUpdate(nextProps, nextState){
+		if(this.props.articles != nextProps.articles || this.state.articlesHtml.length != nextState.articlesHtml.length){
+			return true;
+		}
+		return false;
+	}
 	
-	
-	componentDidMount(){
-		if(this.state.articles.length == 0){
-			getArticlesJSON().then(res => {
-			const tree = getTree(res);
+	componentDidUpdate(){
+			console.log(this.props);
+			const tree = getTree(this.props.articles);
   			const tre = getChildren(tree);				
-				
-			this.setState({ articles: res, articlesHtml: tre});
-			});
+			this.setState({ articlesHtml: tre});
+			
 		}
   	  	
-	}
+	
 	  
 	  
   render(){ 

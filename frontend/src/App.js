@@ -80,6 +80,17 @@ class App extends Component {
     });
     
    */ 
+   
+	if(this.state.articles.length == 0){
+			actions.getArticlesJSONBypass()
+			.then(res => {
+				this.setState({ articles: res, cmsReady: true});
+				})
+			.catch(err => {
+				this.setState({cmsReady: false});
+				});
+		}   
+   
   };
 
   setUser = user => {
