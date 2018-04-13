@@ -3,27 +3,62 @@ import PropTypes from 'prop-types';
 import SingleArticle from './SingleArticle';
 
 export default class ContentArea extends React.Component {
+   constructor(props){
+   	super(props);
+   	this.state = {
+   		view: 'Article not found'
+   	}
+   } 
+	   
+   componentDidMount(){
+   const { articleId } = this.props;
+	  	
+	fetch(`/api/v1/articles/${articleId}`)
+  	.then(res=> res.json())
+  	.then(data => {
+  		if(data.length > 0){
+  		this.setState({view : <SingleArticle content={data[0].content} />} )
+  		};
+  	  		
+  	})
+  	.catch(err => {
+  		this.setState({view : err});
+  	});
+  	
+  	  	
+   } 
+   
+   componentDidUpdate(prevProps){
+   const { articleId } = this.props;
+	
+	if(prevProps.articleId != articleId){  	
+	fetch(`/api/v1/articles/${articleId}`)
+  	.then(res=> res.json())
+  	.then(data => {
+  		if(data.length > 0){
+  		this.setState({view : <SingleArticle content={data[0].content} />} )
+  		};
+  	  		
+  	})
+  	.catch(err => {
+  		this.setState({view : err});
+  	});
+  	}
+  	
+  	  	
+   } 
+    
   render() {
-    const { articleId, articleIndex } = this.props;
-    let view = 'none';
-    const number = articleIndex[articleId] || 0;
-
-    if (articleId && number) {
-      view = (
-        <SingleArticle articles={this.props.articles} index={number - 1} />
-      );
-    } else if (articleId) {
-      //  cms/.....
-      view = <p>Article not found</p>;
-    } else {
-      // cms/
-      view = <SingleArticle articles={this.props.articles} index={0} />;
-    }
-    return (
+	
+  	return (
       <div>
-        <section className="content-area">{view}</section>
+        <section className="content-area">{this.state.view}</section>
       </div>
-    );
+    );  	
+    
+    
+    
+    
   }
 }
 

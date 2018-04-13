@@ -6,22 +6,28 @@ class Sidebar extends React.Component{
 	
 constructor(props) {
         super(props);
-
-        this.state = {
-            articlesHtml : []  
-        };
-
+		this.state = {};
+        
   }
 	
 	shouldComponentUpdate(nextProps, nextState){
-		if(this.props.articles != nextProps.articles || this.state.articlesHtml.length != nextState.articlesHtml.length){
+		if(this.props.articles.length != nextProps.articles.length ||
+		!this.state.articlesHtml && nextState.articlesHtml || 
+		this.state.articlesHtml.length == 0 && nextState.articlesHtml.length>0){
 			return true;
 		}
 		return false;
-	}
+	}	
+
+	componentDidMount(){
+			const tree = getTree(this.props.articles);
+  			const tre = getChildren(tree);				
+			this.setState({ articlesHtml: tre});
+			
+		}	
+	
 	
 	componentDidUpdate(){
-			console.log(this.props);
 			const tree = getTree(this.props.articles);
   			const tre = getChildren(tree);				
 			this.setState({ articlesHtml: tre});
@@ -32,8 +38,7 @@ constructor(props) {
 	  
 	  
   render(){ 
-  	
-	  return <Wrapper>{this.state.articlesHtml}</Wrapper>;
+  	  return <Wrapper>{this.state.articlesHtml && this.state.articlesHtml.length >0? this.state.articlesHtml : 'wait'}</Wrapper>;
   }
 }
 
