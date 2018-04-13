@@ -66,6 +66,8 @@ class App extends Component {
           user: this.guestUser,
         });
       });
+	
+	/*  bypass local storage
 
     actions.checkLocalStorage().then(loaded => {
       this.setState({
@@ -76,6 +78,8 @@ class App extends Component {
           : {},
       });
     });
+    
+   */ 
   };
 
   setUser = user => {
