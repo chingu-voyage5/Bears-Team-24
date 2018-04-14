@@ -67,6 +67,8 @@ class App extends Component {
         });
       });
 
+    /*  bypass local storage
+
     actions.checkLocalStorage().then(loaded => {
       this.setState({
         cmsReady: loaded,
@@ -76,6 +78,20 @@ class App extends Component {
           : {},
       });
     });
+    
+   */
+
+    if (this.state.articles.length === 0) {
+      actions
+        .getArticlesJSONBypass()
+        .then(res => {
+          this.setState({ articles: res, cmsReady: true });
+        })
+        .catch(err => {
+          console.log(err);
+          this.setState({ cmsReady: false });
+        });
+    }
   };
 
   setUser = user => {

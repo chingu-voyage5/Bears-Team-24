@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "a cms",
   "main": "backend/index.js",
-  "engines" : {
-    "node" : "8.9.1"
+  "engines": {
+    "node": "8.9.1"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -16,6 +16,7 @@
     "express-session": "^1.15.6",
     "express-validator": "^4.3.0",
     "http": "0.0.0",
+    "mongodb": "^3.0.6",
     "mongoose": "^5.0.7",
     "mongoose-mongodb-errors": "0.0.2",
     "morgan": "^1.9.0",

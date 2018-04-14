@@ -4,8 +4,7 @@ import marked from 'marked';
 
 export default class SingleArticle extends React.Component {
   render() {
-    const content =
-      this.props.articles[this.props.index].content || 'Empty article';
+    const content = this.props.content || 'Empty article';
     const options = { __html: marked(content) };
 
     return <div dangerouslySetInnerHTML={options} />;
@@ -13,10 +12,9 @@ export default class SingleArticle extends React.Component {
 }
 
 SingleArticle.propTypes = {
-  index: PropTypes.number.isRequired,
-  articles: PropTypes.array,
+  content: PropTypes.string,
 };
 
 SingleArticle.defaultProps = {
-  articles: [],
+  content: '',
 };

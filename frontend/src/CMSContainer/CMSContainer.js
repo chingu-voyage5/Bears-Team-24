@@ -8,10 +8,9 @@ import Loading from './Loading';
 const CMSContainer = props => {
   const articleId = props.match.params.articleId || '';
   const { articleIndex } = props;
-
   return (
     <Wrapper>
-      <Sidebar />
+      <Sidebar articles={props.articles} />
       {props.cmsReady ? (
         <ContentArea
           articles={props.articles}
