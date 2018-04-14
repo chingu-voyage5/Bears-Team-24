@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 // Material UI components
 import Avatar from 'material-ui/Avatar';
-import Paper from 'material-ui/Paper';
 import Table, {
   TableBody,
   TableCell,
@@ -14,7 +13,7 @@ import Table, {
 
 import actions from './actions';
 import avatarPlaceholder from './avatar_placeholder.png';
-import { Wrapper } from './styled';
+import { TableWrapper, Wrapper } from './styled';
 
 const columnData = [
   { id: 'avatar', numeric: false, label: 'Avatar', unsortable: true },
@@ -68,7 +67,7 @@ class UserList extends React.Component {
 
     return (
       <Wrapper>
-        <Paper>
+        <TableWrapper>
           <Table>
             <TableHead>
               <TableRow>
@@ -103,7 +102,7 @@ class UserList extends React.Component {
               ))}
             </TableBody>
           </Table>
-        </Paper>
+        </TableWrapper>
       </Wrapper>
     );
   }

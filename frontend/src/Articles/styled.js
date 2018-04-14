@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Paper from 'material-ui/Paper';
 import { TableCell, TableRow as TableRowMUI } from 'material-ui/Table';
 
 export const ButtonWrapper = styled.div`
@@ -17,6 +18,10 @@ export const TableRow = styled(TableRowMUI)`
     background-color: #f9f9f9;
   }
   cursor: pointer;
+`;
+
+export const TableWrapper = styled(Paper)`
+  overflow-x: auto;
 `;
 
 export const Wrapper = styled.div`

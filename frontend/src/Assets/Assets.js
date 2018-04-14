@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 // Material UI components
 import Button from 'material-ui/Button';
-import Paper from 'material-ui/Paper';
 import Table, {
   TableBody,
   TableCell,
@@ -12,7 +11,13 @@ import Table, {
 } from 'material-ui/Table';
 
 import actions from './actions';
-import { ButtonWrapper, LinkCell, TableRow, Wrapper } from './styled';
+import {
+  ButtonWrapper,
+  LinkCell,
+  TableRow,
+  TableWrapper,
+  Wrapper,
+} from './styled';
 
 const CREATOR = 'creator';
 const CREATED = 'created';
@@ -122,7 +127,7 @@ class Assets extends React.Component {
             New Asset
           </Button>
         </ButtonWrapper>
-        <Paper>
+        <TableWrapper>
           <Table>
             <TableHead>
               <TableRow>
@@ -153,7 +158,7 @@ class Assets extends React.Component {
               ))}
             </TableBody>
           </Table>
-        </Paper>
+        </TableWrapper>
       </Wrapper>
     );
   }
