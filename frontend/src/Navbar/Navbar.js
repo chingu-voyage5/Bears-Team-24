@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import List, { ListItem } from 'material-ui/List';
 import Tabs from 'material-ui/Tabs';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import TabMod from './TabMod';
-import { Greeting, NavLinkStyled, Wrapper } from './styled';
+
+import { DrawerLink, Greeting, NavLinkStyled, Wrapper } from './styled';
 
 import paths from './config';
 
@@ -121,6 +124,29 @@ class Navbar extends React.Component {
               </NavLinkStyled>
             )}
           </Toolbar>
+          <Drawer open={open} onClose={this.closeDrawer}>
+            <div
+              style={{ width: 250 }}
+              tabIndex={0}
+              role="button"
+              onClick={this.closeDrawer}
+              onKeyDown={this.closeDrawer}
+            >
+              <List>
+                {paths.map((path, i) => (
+                  <ListItem
+                    exact
+                    key={path.stem}
+                    component={DrawerLink}
+                    to={paths[i].to}
+                    divider
+                  >
+                    {path.label}
+                  </ListItem>
+                ))}
+              </List>
+            </div>
+          </Drawer>
         </AppBar>
       </Wrapper>
     );
