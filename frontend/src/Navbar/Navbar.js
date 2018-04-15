@@ -86,6 +86,7 @@ class Navbar extends React.Component {
               <TabMod idx={4} classes={classes} />
             </Tabs>
             <Greeting>Hi, {username}</Greeting>
+            <Greeting>Hi,&nbsp;{username}</Greeting>
             {isLoggedIn ? (
               <NavLinkStyled to="/logout" onClick={this.hideIndicator}>
                 <Typography variant="button">Logout</Typography>
