@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
     "marked": "^0.3.17",
     "material-ui": "^1.0.0-beta.41",
     "prop-types": "^15.6.0",
