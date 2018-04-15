@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
+import IconButton from 'material-ui/IconButton';
 import List, { ListItem } from 'material-ui/List';
+import MenuIcon from '@material-ui/icons/Menu';
 import Tabs from 'material-ui/Tabs';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -91,28 +93,49 @@ class Navbar extends React.Component {
     }));
   };
 
+  openDrawer = () => {
+    this.setState(() => ({
+      open: true,
+    }));
+  };
+
+  closeDrawer = () => {
+    this.setState(() => ({
+      open: false,
+    }));
+  };
+
   render() {
-    const { value } = this.state;
+    const { mobile, open, value } = this.state;
     const { classes, isLoggedIn, username } = this.props;
 
     return (
       <Wrapper>
         <AppBar position="static">
           <Toolbar disableGutters>
-            <Tabs
-              classes={{ root: classes.fullHeight }}
-              value={value}
-              onChange={this.handleIndicator}
-              indicatorColor="secondary"
-              fullWidth={false}
-            >
-              <TabMod idx={0} exact classes={classes} />
-              {isLoggedIn && <TabMod idx={1} classes={classes} />}
-              {isLoggedIn && <TabMod idx={2} classes={classes} />}
-              {isLoggedIn && <TabMod idx={3} classes={classes} />}
-              <TabMod idx={4} classes={classes} />
-            </Tabs>
-            <Greeting>Hi, {username}</Greeting>
+            {mobile ? (
+              <IconButton
+                color="inherit"
+                aria-label="Menu"
+                onClick={this.openDrawer}
+              >
+                <MenuIcon />
+              </IconButton>
+            ) : (
+              <Tabs
+                classes={{ root: classes.fullHeight }}
+                value={value}
+                onChange={this.handleIndicator}
+                indicatorColor="secondary"
+                fullWidth={false}
+              >
+                <TabMod idx={0} exact classes={classes} />
+                {isLoggedIn && <TabMod idx={1} classes={classes} />}
+                {isLoggedIn && <TabMod idx={2} classes={classes} />}
+                {isLoggedIn && <TabMod idx={3} classes={classes} />}
+                <TabMod idx={4} classes={classes} />
+              </Tabs>
+            )}
             <Greeting>Hi,&nbsp;{username}</Greeting>
             {isLoggedIn ? (
               <NavLinkStyled to="/logout" onClick={this.hideIndicator}>
