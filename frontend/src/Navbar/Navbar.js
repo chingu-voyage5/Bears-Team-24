@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Material UI components
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
@@ -10,8 +11,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Tabs from 'material-ui/Tabs';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import TabMod from './TabMod';
 
+import TabMod from './TabMod';
 import { DrawerLink, Greeting, NavLinkStyled, Wrapper } from './styled';
 
 import paths from './config';
@@ -56,12 +57,14 @@ class Navbar extends React.Component {
 
     window.addEventListener('resize', this.handleResize);
   }
+
   componentWillReceiveProps(nextProps) {
     // eslint-disable-next-line
     if (nextProps.location.pathname === '/') {
       this.handleIndicator(null, 0);
     }
   }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
   }
