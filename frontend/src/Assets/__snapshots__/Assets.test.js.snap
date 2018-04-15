@@ -38,7 +38,7 @@ ShallowWrapper {
                     New Asset
           </WithStyles(Button)>
 </styled.div>,
-        <WithStyles(Paper)>
+        <Styled(WithStyles(Paper))>
           <WithStyles(Table)>
                     <WithStyles(TableHead)>
                               <Styled(WithStyles(TableRow))>
@@ -92,7 +92,7 @@ ShallowWrapper {
                               
                     </WithStyles(TableBody)>
           </WithStyles(Table)>
-</WithStyles(Paper)>,
+</Styled(WithStyles(Paper))>,
       ],
     },
     "ref": null,
@@ -519,7 +519,7 @@ ShallowWrapper {
                         New Asset
             </WithStyles(Button)>
 </styled.div>,
-          <WithStyles(Paper)>
+          <Styled(WithStyles(Paper))>
             <WithStyles(Table)>
                         <WithStyles(TableHead)>
                                     <Styled(WithStyles(TableRow))>
@@ -573,7 +573,7 @@ ShallowWrapper {
                                     
                         </WithStyles(TableBody)>
             </WithStyles(Table)>
-</WithStyles(Paper)>,
+</Styled(WithStyles(Paper))>,
         ],
       },
       "ref": null,
