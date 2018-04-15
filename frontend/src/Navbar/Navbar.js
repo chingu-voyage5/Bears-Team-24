@@ -33,9 +33,12 @@ const styles = theme => ({
   },
 });
 
+const BREAK_MOBILE = 700;
+
 class Navbar extends React.Component {
   state = {
     value: 0,
+    mobile: window.innerWidth <= BREAK_MOBILE,
   };
 
   componentDidMount() {
@@ -45,6 +48,8 @@ class Navbar extends React.Component {
     this.setState(() => ({
       value: idx < 0 ? false : idx,
     }));
+
+    window.addEventListener('resize', this.handleResize);
   }
   componentWillReceiveProps(nextProps) {
     // eslint-disable-next-line
@@ -52,6 +57,25 @@ class Navbar extends React.Component {
       this.handleIndicator(null, 0);
     }
   }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = e => {
+    const { mobile } = this.state;
+    const windowWidth = e.target.innerWidth;
+
+    if (mobile && windowWidth > BREAK_MOBILE) {
+      this.setState(() => ({
+        mobile: false,
+      }));
+    } else if (!mobile && windowWidth <= BREAK_MOBILE) {
+      this.setState(() => ({
+        mobile: true,
+      }));
+    }
+  };
+
   handleIndicator = (e, value) => {
     this.setState(() => ({
       value,
