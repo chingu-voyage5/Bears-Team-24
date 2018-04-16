@@ -144,6 +144,17 @@ class ArticleEdit extends React.Component {
               </ListItemText>
             </ListItem>
             <ListItem>
+              <Label>Order:</Label>
+              <ListItemText>
+                <TextField
+                  fullWidth
+                  value={article.order}
+                  name="order"
+                  onChange={this.handleFieldChange}
+                />
+              </ListItemText>
+            </ListItem>
+            <ListItem>
               <Label>Topic:</Label>
               <ListItemText>
                 <TextField
