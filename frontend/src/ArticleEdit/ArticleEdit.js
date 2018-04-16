@@ -38,8 +38,8 @@ class ArticleEdit extends React.Component {
     edit: 0,
     article: {
       title: '',
-      topic: '',
-      sub_topic: '',
+      topic: { name: '' },
+      sub_topic: { name: '' },
     },
     horizontal: 'right',
     vertical: 'top',
@@ -69,12 +69,21 @@ class ArticleEdit extends React.Component {
 
   handleFieldChange = e => {
     const { message, article } = this.state;
+    const na = { ...article };
+    switch (e.target.name) {
+      case 'topic':
+        na.topic = { ...article.topic, name: e.target.value };
+        break;
+      case 'sub_topic':
+        na.sub_topic = { ...article.sub_topic, name: e.target.value };
+        break;
+      default:
+        na[e.target.name] = e.target.value;
+        break;
+    }
     this.setState({
       message: { ...message, show: false },
-      article: {
-        ...article,
-        [e.target.name]: e.target.value,
-      },
+      article: na,
     });
   };
 
@@ -139,7 +148,7 @@ class ArticleEdit extends React.Component {
               <ListItemText>
                 <TextField
                   fullWidth
-                  value={article.topic}
+                  value={article.topic.name}
                   name="topic"
                   onChange={this.handleFieldChange}
                 />
@@ -150,7 +159,7 @@ class ArticleEdit extends React.Component {
               <ListItemText>
                 <TextField
                   fullWidth
-                  value={article.sub_topic}
+                  value={article.sub_topic.name}
                   name="sub_topic"
                   onChange={this.handleFieldChange}
                 />

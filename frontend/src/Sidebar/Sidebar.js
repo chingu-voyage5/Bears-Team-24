@@ -11,6 +11,7 @@ class Sidebar extends React.Component {
   }
 
   componentDidMount() {
+    console.log('articles:', this.props.articles);
     const self = this;
     (function linterAvoid() {
       const tree = getTree(self.props.articles);

@@ -58,6 +58,7 @@ router.post(
   catchAsyncErrors(assets.upsert)
 );
 
+router.get('/api/v1/articles', catchAsyncErrors(articles.getAll));
 router.get('/api/v1/articles/:id*?', cms.getArticleJSON);
 
 router.post(

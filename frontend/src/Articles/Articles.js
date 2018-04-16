@@ -45,7 +45,15 @@ class Articles extends React.Component {
 
   componentDidMount = () => {
     this.fetchData()
-      .then(data => this.setState({ data }))
+      .then(res => {
+        console.log('article list:', res);
+        const data = res.map(art => ({
+          ...art,
+          topic: art.topic.name,
+          sub_topic: art.sub_topic.name,
+        }));
+        this.setState({ data });
+      })
       // eslint-disable-next-line no-console
       .catch(e => console.error('mounted error:', e));
   };

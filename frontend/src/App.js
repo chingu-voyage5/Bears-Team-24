@@ -78,13 +78,14 @@ class App extends Component {
           : {},
       });
     });
-    
+
    */
 
     if (this.state.articles.length === 0) {
       actions
         .getArticlesJSONBypass()
         .then(res => {
+          console.log('app articles:', res);
           this.setState({ articles: res, cmsReady: true });
         })
         .catch(err => {
