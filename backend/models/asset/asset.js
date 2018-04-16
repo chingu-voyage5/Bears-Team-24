@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 mongoose.Promise = global.Promise;
 
 const assetSchema = new Schema({
-  active: Boolean,
+  active: { type: Boolean, default: true },
   created: { type: Date, default: Date.now },
   last_updated: { type: Date, default: Date.now },
   creator: { type: Schema.Types.ObjectId, ref: 'User' },
