@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { MuiThemeProvider } from 'material-ui/styles';
+
 import AuthRoute from './AuthRoute';
 import actions from './actions';
 import LandingPage from './LandingPage';
@@ -11,6 +13,8 @@ import Assets from './Assets';
 import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';
 import { UserList, UserPage } from './UserList';
+
+import theme from './theme';
 
 /**
  * authing routes entered into address bar.
@@ -88,6 +92,7 @@ class App extends Component {
           this.setState({ articles: res, cmsReady: true });
         })
         .catch(err => {
+          // eslint-disable-next-line
           console.log(err);
           this.setState({ cmsReady: false });
         });
@@ -128,93 +133,95 @@ class App extends Component {
     }
     return (
       <BrowserRouter>
-        <React.Fragment>
-          <Route
-            render={r => (
-              <Navbar
+        <MuiThemeProvider theme={theme}>
+          <React.Fragment>
+            <Route
+              render={r => (
+                <Navbar
+                  isLoggedIn={isLoggedIn}
+                  userId={user._id}
+                  username={user.username}
+                  {...r}
+                />
+              )}
+            />
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <AuthRoute
+                exact
                 isLoggedIn={isLoggedIn}
-                userId={user._id}
-                username={user.username}
-                {...r}
+                path="/articles"
+                render={r => <Articles {...r} />}
               />
-            )}
-          />
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <AuthRoute
-              exact
-              isLoggedIn={isLoggedIn}
-              path="/articles"
-              render={r => <Articles {...r} />}
-            />
-            <AuthRoute
-              exact
-              isLoggedIn={isLoggedIn}
-              path="/articles/new"
-              render={r => <ArticleEdit {...r} empty user={user} />}
-            />
-            <AuthRoute
-              isLoggedIn={isLoggedIn}
-              path="/articles/:id"
-              render={props => <ArticleEdit id={props.match.params.id} />}
-            />
-            <AuthRoute
-              exact
-              isLoggedIn={isLoggedIn}
-              path="/users"
-              render={() => <UserList />}
-            />
-            <Route
-              path="/users/:id"
-              render={props => <UserPage userId={props.match.params.id} />}
-            />
-            <AuthRoute
-              exact
-              isLoggedIn={isLoggedIn}
-              path="/assets"
-              render={r => <Assets {...r} />}
-            />
-            <AuthRoute
-              exact
-              isLoggedIn={isLoggedIn}
-              path="/assets/new"
-              render={r => <AssetEdit {...r} user={user} />}
-            />
-            <AuthRoute
-              isLoggedIn={isLoggedIn}
-              path="/assets/:id"
-              render={props => <AssetEdit id={props.match.params.id} />}
-            />
-            <Route
-              exact
-              path="/cms"
-              render={props => (
-                <CMSContainer
-                  {...props}
-                  articles={articles}
-                  articleIndex={articleIndex}
-                  cmsReady={cmsReady}
-                />
-              )}
-            />
-            <Route
-              path="/cms/:articleId"
-              render={props => (
-                <CMSContainer
-                  {...props}
-                  articles={articles}
-                  articleIndex={articleIndex}
-                  cmsReady={cmsReady}
-                />
-              )}
-            />
-            <Route
-              path="/login"
-              render={() => <Login setUser={this.setUser} />}
-            />
-            <Route path="/logout" render={this.logout} />
-          </Switch>
-        </React.Fragment>
+              <AuthRoute
+                exact
+                isLoggedIn={isLoggedIn}
+                path="/articles/new"
+                render={r => <ArticleEdit {...r} empty user={user} />}
+              />
+              <AuthRoute
+                isLoggedIn={isLoggedIn}
+                path="/articles/:id"
+                render={props => <ArticleEdit id={props.match.params.id} />}
+              />
+              <AuthRoute
+                exact
+                isLoggedIn={isLoggedIn}
+                path="/users"
+                render={() => <UserList />}
+              />
+              <Route
+                path="/users/:id"
+                render={props => <UserPage userId={props.match.params.id} />}
+              />
+              <AuthRoute
+                exact
+                isLoggedIn={isLoggedIn}
+                path="/assets"
+                render={r => <Assets {...r} />}
+              />
+              <AuthRoute
+                exact
+                isLoggedIn={isLoggedIn}
+                path="/assets/new"
+                render={r => <AssetEdit {...r} user={user} />}
+              />
+              <AuthRoute
+                isLoggedIn={isLoggedIn}
+                path="/assets/:id"
+                render={props => <AssetEdit id={props.match.params.id} />}
+              />
+              <Route
+                exact
+                path="/cms"
+                render={props => (
+                  <CMSContainer
+                    {...props}
+                    articles={articles}
+                    articleIndex={articleIndex}
+                    cmsReady={cmsReady}
+                  />
+                )}
+              />
+              <Route
+                path="/cms/:articleId"
+                render={props => (
+                  <CMSContainer
+                    {...props}
+                    articles={articles}
+                    articleIndex={articleIndex}
+                    cmsReady={cmsReady}
+                  />
+                )}
+              />
+              <Route
+                path="/login"
+                render={() => <Login setUser={this.setUser} />}
+              />
+              <Route path="/logout" render={this.logout} />
+            </Switch>
+          </React.Fragment>
+        </MuiThemeProvider>
       </BrowserRouter>
     );
   }
