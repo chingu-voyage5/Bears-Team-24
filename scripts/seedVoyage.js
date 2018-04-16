@@ -1,10 +1,35 @@
 /* eslint-disable */
 const Article = require('../backend/models/article');
+const { Topic, SubTopic } = require('../backend/models/topic');
 
 const seedVoyage = async sys_id => {
+  const topic = new Topic({ name: "Voyage", order: 1 });
+  const about = new SubTopic({ name: "About this wiki", order: 1 });
+  const voyage = new SubTopic({ name: "About Voyages", order: 2 });
+  const setup = new SubTopic({ name: "Project Setup", order: 3 });
+  const sprints = new SubTopic({ name: "Development Sprints", order: 4 });
+  const closure = new SubTopic({ name: "Project Closure", order: 5 });
+  const tools = new SubTopic({ name: "Tools and Resources", order: 6 });
+  const faq = new SubTopic({ name: "Tools and Resources>FAQ", order: 7 });
+
+  try {
+    await topic.save();
+    await about.save();
+    await voyage.save();
+    await setup.save();
+    await sprints.save();
+    await closure.save();
+    await tools.save();
+    await faq.save();
+  } catch (e) {
+    console.error('Voygae save failed:', e);
+    process.exit(1);
+  }
+
   await Article.create([
     // { creator: "1", topic: "", sub_topic: "", content: "" },
-    { creator: sys_id, topic: "Voyage", sub_topic: "About this wiki", title: 'Home',
+    { creator: sys_id, topic: topic._id, sub_topic: about._id, title: 'Home',
+      order: 1,
       content: `## About this Wiki
   This wiki is intended to provide Voyage teams with a reference defining what to expect from the current Voyage, how to get started, and how to deal with problems that may arise during your journey. This is a ["living document"](https://en.wikipedia.org/wiki/Living_document) that will improve from Voyage-to-Voyage based on your experiences and feedback. Both positive and negative.
 
@@ -12,7 +37,8 @@ const seedVoyage = async sys_id => {
 
   # Good luck, Clear Skies, and Smooth Sailing!
       ` },
-    { creator: sys_id, topic: "Voyage", sub_topic: "About this wiki", title: 'How to Contribute',
+    { creator: sys_id, topic: topic._id, sub_topic: about._id, title: 'How to Contribute',
+      order: 2,
       content: `## Why Contribute?
 
   Keeping the information and advice in the Voyage Wiki up to date is important not only
@@ -79,7 +105,8 @@ const seedVoyage = async sys_id => {
   set of best practices for managing IT infrastructure assets.
 
       ` },
-    { creator: sys_id, topic: "Voyage", sub_topic: "About Voyages", title: 'About Voyages',
+    { creator: sys_id, topic: topic._id, sub_topic: voyage._id, title: 'About Voyages',
+      order: 1,
       content: `## About Chingu Voyages
   Chingu Voyages are an exciting way to work on projects that provide the opportunity to:
 
@@ -105,7 +132,8 @@ const seedVoyage = async sys_id => {
 
   For more details and examples check out [Chingu Voyage-4 Team Projects Lineup](https://medium.com/chingu/chingu-voyage-4-team-projects-lineup-320a8bc87701)
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "About Voyages", title: 'Voyage Roadmap',
+    { creator: sys_id, topic: topic._id, sub_topic: voyage._id, title: 'Voyage Roadmap',
+      order: 2,
       content: `## Roadmap Overview
 
   At Chingu, we build to learn. Below is the project roadmap for teams:
@@ -145,7 +173,8 @@ const seedVoyage = async sys_id => {
   |        | PM   | Wizard - \`/team status\`    | Update status after Completed Sprint Review |
 
       ` },
-    { creator: sys_id, topic: "Voyage", sub_topic: "About Voyages", title: '.. Tier1 Schedule',
+    { creator: sys_id, topic: topic._id, sub_topic: voyage._id, title: '.. Tier1 Schedule',
+      order: 3,
       content: `Tier 1 teams follow a different schedule than Tier 2 and Tier 3 teams due to the fact that they have different goals. While all tiers are focused on learning and improving their skills, Tier 1 Voyagers are concentrating on building foundational skills and learning how to work in a team, while Tier 2 & 3 teams are more
   focused on rounding out their skills by working on complex problems.
 
@@ -170,7 +199,8 @@ const seedVoyage = async sys_id => {
 
   Each sprint consists of a set of milestones and events designed to provide feedback to your team, collect information to help the Chingu Organization improve your Voyage experience, and provide a transition between sprints.
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "About Voyages", title: '.. Tier2 & 3 Schedule',
+    { creator: sys_id, topic: topic._id, sub_topic: voyage._id, title: '.. Tier2 & 3 Schedule',
+      order: 4,
       content: `Tier 2 and Tier 3 teams follow a different schedule than Tier 1 teams due to the fact that they have different goals. While all tiers are focused on learning and improving their skills, Tier 1 Voyagers building foundational skills and learning how to work in a team, while Tier 2 & 3 teams are more
   focused on rounding out their skills by working on complex problems.
 
@@ -195,7 +225,8 @@ const seedVoyage = async sys_id => {
 
   Each sprint consists of a set of milestones and events designed to provide feedback to your team, collect information to help the Chingu Organization improve your Voyage experience, and provide a transition between sprints.
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "About Voyages", title: 'Voyage Support',
+    { creator: sys_id, topic: topic._id, sub_topic: voyage._id, title: 'Voyage Support',
+      order: 5,
       content: `## Ensuring Accountability & Team Support
 
   A big challenge in remote software teams is navigating challenges and regularly re-assessing the state of the team to ensure the opportunities are unlocked for committed members.
@@ -234,14 +265,16 @@ const seedVoyage = async sys_id => {
   * **Weekly Check-ins** - there will be an opportunity to let us know of any improvements or ask for help on this check-in. For example, if you say your team needs help with Auth0, we may be able to find someone to send your team's way to help.
   * **Chingu Medium Publication** - Every week Chingu will publish a Weekly Update on the Chingu ecosystem and all the wild projects & news from Chingu members.
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "About Voyages", title: 'What Team Am I On?',
+    { creator: sys_id, topic: topic._id, sub_topic: voyage._id, title: 'What Team Am I On?',
+      order: 6,
       content: `## Voyage Teams
 
   If you are unsure as to which team you are on please consult the following. For each team this includes the Github id's of the team members, their timezones, skill sets, and goals, as well as the tier for each team.
 
   [Voyage 4 - February to April, 2018](http://bit.ly/2EJKhS9)
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Project Setup", title: 'Understanding Your Obligations',
+    { creator: sys_id, topic: topic._id, sub_topic: setup._id, title: 'Understanding Your Obligations',
+      order: 1,
       content: `## General
 
   If everyone was fully committed and remained that way team projects would be much easier to finish, but the reality is that life will happen and some members will have to drop out. People will get developer jobs, personal emergencies will occur, etc.
@@ -289,7 +322,8 @@ const seedVoyage = async sys_id => {
   5. Notify the Chingu Management team if a situation arises that makes it
   difficult or impossible to complete your committments to your team and project
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Project Setup", title: 'Establishing the Team',
+    { creator: sys_id, topic: topic._id, sub_topic: setup._id, title: 'Establishing the Team',
+      order: 2,
       content: `## Starting Your Project
   The hardest part of any project is getting started. Over several Chingu Voyages some common activities of successful teams have been identified that should help you to kick off your project.
 
@@ -350,7 +384,8 @@ const seedVoyage = async sys_id => {
   - [ZenHub](https://www.zenhub.com)
 
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Project Setup", title: 'Setting Up Your Git Workflow',
+    { creator: sys_id, topic: topic._id, sub_topic: setup._id, title: 'Setting Up Your Git Workflow',
+      order: 3,
       content: `## Importance of Good Practices
 
   Your projects source code is its single most important artifact. The loss or corruption of your code base is a catastrophic event that can impact not just your project, but also your [reputation](https://about.gitlab.com/2017/02/01/gitlab-dot-com-database-incident/) as a professional developer.
@@ -399,7 +434,8 @@ const seedVoyage = async sys_id => {
   - [tryGit](https://try.github.io/levels/1/challenges/1)
 
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Project Setup", title: 'Defining Your Project',
+    { creator: sys_id, topic: topic._id, sub_topic: setup._id, title: 'Defining Your Project',
+      order: 4,
       content: `## Introduction
 
   When you start a new project one of the first things you'll need to do is to define the tasks that must be completed to meet the projects goals. One of the main responsibilities of your teams PM is to coordinate a "brainstorm" with the team to define who your users are, the value the app will bring to each of them, and the high level components of the app responsible for delivering this value.
@@ -479,7 +515,8 @@ const seedVoyage = async sys_id => {
 
   [A Short Introduction to the Scrum Methodology](https://medium.com/chingu/a-short-introduction-to-the-scrum-methodology-7a23431b9f17)
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Development Sprints", title: 'Creating a Readme',
+    { creator: sys_id, topic: topic._id, sub_topic: sprints._id, title: 'Creating a Readme',
+      order: 1,
       content: `## Creating a Readme
 
   A well written and organized README is an essential component of every project.
@@ -492,7 +529,8 @@ const seedVoyage = async sys_id => {
   - [A Curated List of Awesome README's](https://github.com/matiassingers/awesome-readme)
 
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Development Sprints", title: 'Pair Programming',
+    { creator: sys_id, topic: topic._id, sub_topic: sprints._id, title: 'Pair Programming',
+      order: 2,
       content: `## What is Pair Programming?
 
   There is an oft quoted adage that "two heads are better than one". *_Pair
@@ -518,7 +556,8 @@ const seedVoyage = async sys_id => {
   - [Wikipedia](https://en.wikipedia.org/wiki/Pair_programming)
 
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Development Sprints", title: 'Tracking Issues',
+    { creator: sys_id, topic: topic._id, sub_topic: sprints._id, title: 'Tracking Issues',
+      order: 3,
       content: `# Introduction
   Your team should consider using GitHub not only for source code management, but also for issue reporting. The purpose of the following guidelines is to provide guidance on how to report an issue. You might be asking yourself "How hard can this be?". You might be surprised to find out how often bad issue reports are actually created. Here are some examples:
 
@@ -600,10 +639,12 @@ const seedVoyage = async sys_id => {
 
   The best source of examples for how issues are to be defined an labeled is the [Voyage Issue Log](https://github.com/Chingu-cohorts/voyage-wiki/issues).
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Project Closure", title: 'TBD',
+    { creator: sys_id, topic: topic._id, sub_topic: closure._id, title: 'TBD',
+      order: 1,
       content: `TBD
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Tools and resources", title: 'Useful Links',
+    { creator: sys_id, topic: topic._id, sub_topic: tools._id, title: 'Useful Links',
+      order: 1,
       content: `Some websites and resources you may find useful are:
 
   - [Chingu Medium Publication](https://medium.com/chingu)
@@ -613,7 +654,8 @@ const seedVoyage = async sys_id => {
   - [Voyage 4 Handbook](https://medium.com/chingu/the-voyage-4-handbook-33c1c90b855b)
   - [Voyage Projects](https://medium.com/chingu/chingu-voyage-4-team-projects-lineup-320a8bc87701)
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Tools and Resources>FAQ", title: 'Voyage wiki',
+    { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Voyage wiki',
+      order: 1,
       content: `## Voyage Wiki
 
   ### I've found an error or omission! How do I request a change?
@@ -623,7 +665,8 @@ const seedVoyage = async sys_id => {
   To report an issue or to request a new topic open an issue in the [Voyage Wiki Issue Log](https://github.com/Chingu-cohorts/voyage-wiki/issues). Be sure to describe what's needs correction or your topic suggestions in as much detail as possible.
 
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Tools and Resources>FAQ", title: 'Voyage',
+    { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Voyage',
+      order: 2,
       content: `## Voyage
 
   ### What's Expected of Me?
@@ -663,7 +706,8 @@ const seedVoyage = async sys_id => {
   suggestion, or correction to report.
 
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Tools and Resources>FAQ", title: 'Your Team',
+    { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Your Team',
+      order: 3,
       content: `## Your Team
 
   ### What Makes a Successful Team?
@@ -721,7 +765,8 @@ const seedVoyage = async sys_id => {
   Start by treating a disagreement as you would any other problem. Make sure there's a clear and concise statement of the problem. Then as a team build a list of pros and cons. Weight these if necessary to highlight those that are more important than other. Then discuss and vote. If there's no clear consensus then the PM should choose a solution. Remember, if you choose the wrong solution you will have learned something valuable and you can refactor.
 
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Tools and Resources>FAQ", title: 'Git & GitHub',
+    { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Git & GitHub',
+      order: 4,
       content: `## Git & GitHub
 
   ### Why GitHub?
@@ -737,7 +782,8 @@ const seedVoyage = async sys_id => {
   At the start of a Voyage your team's repo will be automatically set up and your team members will be authorized for access. If you are having access issues it's most likely due to an authorization issue. Your PM has the admin privileges necessary to correct this type of issue.
 
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Tools and Resources>FAQ", title: 'Slack',
+    { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Slack',
+      order: 5,
       content: `## Slack
 
   ### Why Slack?
@@ -763,7 +809,8 @@ const seedVoyage = async sys_id => {
   One formatting option to emphasize is to format any code you include in messages by surrounding it with 3 backticks ('\`') just as you would in Markdown. This makes it far easier to read than normal prose.
 
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Tools and Resources>FAQ", title: 'Project Licence',
+    { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Project Licence',
+      order: 6,
       content: `## Project License
 
   ### Why Are Licenses Important?
@@ -780,7 +827,8 @@ const seedVoyage = async sys_id => {
   [Choose a License](https://choosealicense.com/) is one resource that can help you evaluate the differences between the various open source licenses so you can make an informed decision.
 
       `},
-    { creator: sys_id, topic: "Voyage", sub_topic: "Tools and Resources>FAQ", title: 'Glossary',
+    { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Glossary',
+      order: 7,
       content: `**_backlog_** - The main source of information about the project is
   the _Product Backlog_, which defines requirements the application must meet in order to be successful. Requirements are expressed as user stories of the format: “As a: <role> I want to: <function-description> So I can: <value-statement>”
 

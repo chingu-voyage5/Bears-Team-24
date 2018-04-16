@@ -1,10 +1,33 @@
 /* eslint-disable */
 const Article = require('../backend/models/article');
+const { Topic, SubTopic } = require('../backend/models/topic');
 
 const seedPmrok = async sys_id => {
+  const topic = new Topic({ name: "PMRoK", order: 2 });
+  const about = new SubTopic({ name: "About this wiki", order: 1 });
+  const voyage = new SubTopic({ name: "About Voyages", order: 2 });
+  const manage = new SubTopic({ name: "Managing a Project", order: 3 });
+  const guide = new SubTopic({ name: "Guidance>Situational Guidance", order: 4});
+  const guidance = new SubTopic({ name: "Guidance", order: 5 });
+  const resources = new SubTopic({ name: "Resources", order: 6 });
+  const faq = new SubTopic({ name: "Resources>PM FAQ", order: 7 });
+  try {
+    await topic.save();
+    await about.save();
+    await voyage.save();
+    await manage.save();
+    await guide.save();
+    await guidance.save();
+    await resources.save();
+    await faq.save();
+  } catch (e) {
+    console.error('PMRoK save failed:', e);
+    process.exit(1);
+  }
   await Article.create([
     // { creator: "1", topic: "", sub_topic: "", content: "" },
-    { creator: sys_id, topic: "PMRoK", sub_topic: "About this wiki", title: 'The Chingu PMRoK',
+    { creator: sys_id, topic: topic._id, sub_topic: about._id, title: 'The Chingu PMRoK',
+      order: 1,
       content: `# The Chingu Project Management Repository of Knowledge
 
   Welcome to the PMRoK Wiki!
@@ -42,7 +65,8 @@ const seedPmrok = async sys_id => {
   this wiki.
 
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "About this wiki", title: 'How to Contribute',
+    { creator: sys_id, topic: topic._id, sub_topic: about._id, title: 'How to Contribute',
+      order: 2,
       content: `## Why Contribute?
 
   Keeping the information and advice in PMRoK up to date is important not only
@@ -112,7 +136,8 @@ const seedPmrok = async sys_id => {
   set of best practices for managing IT infrastructure assets.
 
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "About Voyages", title: 'Voyage Roadmap',
+    { creator: sys_id, topic: topic._id, sub_topic: voyage._id, title: 'Voyage Roadmap',
+      order: 1,
       content: `At Chingu, we build to learn. Below is the project roadmap for teams:
 
   ![Voyage Roadmap](https://github.com/Chingu-cohorts/pmrok/blob/development/diagrams/Voyage%20Roadmap%20Diagram.png)
@@ -582,7 +607,8 @@ const seedPmrok = async sys_id => {
   ## #8 - The Voyage is Complete
 
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "About Voyages", title: 'Voyage Workflow',
+    { creator: sys_id, topic: topic._id, sub_topic: voyage._id, title: 'Voyage Workflow',
+      order: 2,
       content: `As a PM in a Chingu Voyage, you'll have access to lots of support.
 
   You can gain support via the community (slack-channels: #project-managers, #ask-for-help, #resources-treasure, #community-chat), from facilitators (Weekly Check-ins, Repair Days), or by making an issue in this repo's [issue section](https://github.com/Chingu-cohorts/pmrok/issues) or in the comment section of your Weekly Check-in.
@@ -617,7 +643,8 @@ const seedPmrok = async sys_id => {
   * **Weekly Check-ins** - there will be an opportunity to let us know of any improvements or ask for help on this check-in. For example, if you say your team needs help with Auth0, we may be able to find someone to send your team's way to help.
   * **Chingu Medium Publication** - Every week Chingu will publish a Weekly Update on the Chingu ecosystem and all the wild projects & news from Chingu members.
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Managing a Project", title: 'Project Manage Concepts',
+    { creator: sys_id, topic: topic._id, sub_topic: manage._id, title: 'Project Manage Concepts',
+      order: 1,
       content: `## What is a PM?
 
   An Agile PM is responsible for managing the resouces, time, and scope that
@@ -668,7 +695,8 @@ const seedPmrok = async sys_id => {
   - Responding to change over following a plan
 
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Managing a Project", title: 'Your Sprints',
+    { creator: sys_id, topic: topic._id, sub_topic: manage._id, title: 'Your Sprints',
+      order: 2,
       content: `## Sprints
 
   With an Agile approach you will divide the time between the start of your project and its delivery date into *_sprints_* of equal duration in which you'll be completing tasks. At the start of each sprint you and your team will review the backlog and choose the tasks that must be completed in the new sprint. If you complete all of these before the end of the sprint then you'll start new tasks, one-at-a-time, from your backlog to fill the remaining time.
@@ -707,13 +735,16 @@ const seedPmrok = async sys_id => {
 
   This is an inward look by the team at how they performed during the last sprint and an opportunity to identify changes for the next sprint. This isn’t just about technology and tools, but also about procedures, interactions between people and roles, and successes and failures. The goal is to improve by implementing “midstream” corrections at the point they are needed.
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Managing a Project", title: 'Conducting an MVP',
+    { creator: sys_id, topic: topic._id, sub_topic: manage._id, title: 'Conducting an MVP',
+      order: 3,
       content: `TBD
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Managing a Project", title: 'Project Closure',
+    { creator: sys_id, topic: topic._id, sub_topic: manage._id, title: 'Project Closure',
+      order: 4,
       content: `TBD
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Managing a Project", title: 'Using the Wizard',
+    { creator: sys_id, topic: topic._id, sub_topic: manage._id, title: 'Using the Wizard',
+      order: 5,
       content: `## Using the Wizard
 
   **_This section is under development_**
@@ -739,7 +770,8 @@ const seedPmrok = async sys_id => {
   blocking up your conversation.
 
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Guidance>Situational Guidance", title: 'Building the Project Backlog',
+    { creator: sys_id, topic: topic._id, sub_topic: guide._id, title: 'Building the Project Backlog',
+      order: 1,
       content: `## Sagas, Epics, & User Stories
 
   It is often helpful to categorize stories as sagas, epics, and stories to reflect differences in their scope and lifespan.
@@ -805,7 +837,8 @@ const seedPmrok = async sys_id => {
 
   Good luck on your projects!
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Guidance>Situational Guidance", title: 'Managing Application Secrets',
+    { creator: sys_id, topic: topic._id, sub_topic: guide._id, title: 'Managing Application Secrets',
+      order: 2,
       content: `Every application has certain secrets, such as build instructions, passwords and SSH keys that could compromise the security and confidentiality of the app if made public. It is the responsibility of the Project Manager to ensure that these are maintained in a secure location and are available to a minimum of two team members. After all, given the fluid nature of team membership you don't want to wake up one day to find that no one on the team has access to the Production server.
 
   Please note that the Guidelines presented below are sufficient to protect most private and commercial secrets, but are NOT sufficient for apps supporting many government departments and agencies such as the U. S. Department of Defense.
@@ -828,7 +861,8 @@ const seedPmrok = async sys_id => {
 
   -----
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Guidance>Situational Guidance", title: 'Managing Team Documentation',
+    { creator: sys_id, topic: topic._id, sub_topic: guide._id, title: 'Managing Team Documentation',
+      order: 3,
       content: `One of the foundations of the [Agile Manifesto](http://agilemanifesto.org/) is that Working software is valued over comprehensive documentation. This has led to the misconception that Agile methodologies, like Scrum, produce only code and not documentation. In fact, Agile methodologies promote the production of documentation at the right point in time and at the right level of detail.
 
   Generally speaking the "right point in time" is when the necessary details are stable enough to produce documentation that will not require later revision. You may need to keep notes as your sprints progress so you'll have the information you need to create usable documentation, but you won't create that documentation until the details have been defined and are stable.
@@ -841,7 +875,8 @@ const seedPmrok = async sys_id => {
 
   This diagram shows the reader everything he or she needs to know regarding how they are expected to conduct their day-to-day development tasks with respect to Git and GitHub.
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Guidance>Situational Guidance", title: 'Managing Issues & Requests',
+    { creator: sys_id, topic: topic._id, sub_topic: guide._id, title: 'Managing Issues & Requests',
+      order: 4,
       content: `# Introduction
   The PMRoK Project uses GitHub not only for source code management, but also for issue reporting. The purpose of the following guidelines is to provide guidance on how to report an issue. You might be asking yourself "How hard can this be?". You might be surprised to find out how often bad issue reports are actually created. Here are some examples:
 
@@ -906,7 +941,8 @@ const seedPmrok = async sys_id => {
   # Examples
   The best source of examples for how issues are to be defined and labeled is the [PMRoK Issue Log](https://github.com/Chingu-cohorts/pmrok/issues).
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Guidance>Situational Guidance", title: 'Dealing with "Analysis Paralysis"',
+    { creator: sys_id, topic: topic._id, sub_topic: guide._id, title: 'Dealing with "Analysis Paralysis"',
+      order: 5,
       content: `The short duration of Chingu Voyages requires that teams strike a delicate balance between performing quality work, learning new things, and completing the project. This is made even more import by the fact that team members typically have responsibilities outside of their Voyage project such as family obligations, jobs, and school which can create more stress. The objective of the Voyage is to learn and not increase stress.
 
   ## Setting Your Goals & Expectations
@@ -965,7 +1001,8 @@ const seedPmrok = async sys_id => {
   2. If a change to the stack is proposed after Sprint 2 - Design work with the team to ensure that there is sufficient justification for the change and the impact it has on completing the project on time is fully understood.
   3. Changes proposed after Sprint 5 should be challenged since this is the midway point in the Voyage's development cycle.
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Guidance", title: 'Managing Conflict',
+    { creator: sys_id, topic: topic._id, sub_topic: guidance._id, title: 'Managing Conflict',
+      order: 1,
       content: `This section is intended to provide information and guidance on a variety of
   situations stemming from team dysfunction. This information tends to be both practical and
   opinionated. However, don't hesitate to share your experiences and to make
@@ -1013,7 +1050,8 @@ const seedPmrok = async sys_id => {
   to ask for the addition of new team members to fill the gap.
 
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Resources", title: 'Tools & Resources',
+    { creator: sys_id, topic: topic._id, sub_topic: resources._id, title: 'Tools & Resources',
+      order: 1,
       content: `## Tools
 
   Below are some tools and resources teams have found helpful in the past. Most of these were discovered by people like you, so if you find a resource or tool that was helpful please let us know! 🚀
@@ -1172,7 +1210,8 @@ const seedPmrok = async sys_id => {
   ## Bonus
   Here's another good [short read about not overly planning the project out.](https://hackernoon.com/start-together-finish-together-5b47ca1209b3)  Just getting a good framework and moving through it.
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Resources>PM FAQ", title: 'I\'m Nervous!',
+    { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'I\'m Nervous!',
+      order: 1,
       content: `## Nervous
 
   ### Ok, I'm the PM, but I'm nervous!
@@ -1193,13 +1232,16 @@ const seedPmrok = async sys_id => {
   ### What do I do if I need help?
   Everyone needs help sometimes. Be prepared to ask for it when you need it.  First, look back over this wiki and see if the answer is here. We will be adding to it often as questions arise.  Additionally, you can head to the PM slack and ask the other PMs.  Possibly one of us will have stumbled across that same issue and have the answer.
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Resources>PM FAQ", title: 'Your Team',
+    { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Your Team',
+      order: 2,
       content: `TBD
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Resources>PM FAQ", title: 'Git & Github',
+    { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Git & Github',
+      order: 3,
       content: `TBD
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Resources", title: 'Glossary',
+    { creator: sys_id, topic: topic._id, sub_topic: resources._id, title: 'Glossary',
+      order: 2,
       content: `**_backlog_** - The main source of information about the project is the _Product Backlog_, which defines requirements the application must meet in order to be successful. Requirements are expressed as user stories of the format: “As a: <role> I want to: <function-description> So I can: <value-statement>”
 
   **_blocker_** - Any issue or task that is preventing the project from moving forward or is preventing another task from being able to be started.
