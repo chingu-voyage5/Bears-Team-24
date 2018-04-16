@@ -43,6 +43,7 @@ export const Register = styled(Typography).attrs({
   cursor: pointer;
   text-align: center;
 `;
+Register.displayName = 'Register';
 
 export const Spacer = styled.div`
   height: 1rem;
