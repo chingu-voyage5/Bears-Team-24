@@ -78,7 +78,7 @@ class App extends Component {
           : {},
       });
     });
-    
+
    */
 
     if (this.state.articles.length === 0) {
@@ -88,6 +88,7 @@ class App extends Component {
           this.setState({ articles: res, cmsReady: true });
         })
         .catch(err => {
+          // eslint-disable-next-line
           console.log(err);
           this.setState({ cmsReady: false });
         });
