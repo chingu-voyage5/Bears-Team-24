@@ -1,18 +1,13 @@
 import styled from 'styled-components';
-
-export const ButtonLikeText = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 1rem;
-`;
+import Button from 'material-ui/Button';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
 
 export const Fields = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  min-height: 13rem;
+  min-height: 14rem;
   min-width: 100%;
 `;
 
@@ -22,24 +17,44 @@ export const Form = styled.form`
   width: 100%;
 `;
 
-export const Heading2 = styled.h2`
-  font-size: 2rem;
-  font-weight: bold;
+export const GithubButton = styled(Button).attrs({
+  variant: 'raised',
+})`
+  && {
+    background-color: #666;
+    color: #fff;
+  }
+
+  &&:hover {
+    background-color: #555;
+  }
 `;
 
-export const Wrapper = styled.div`
-  align-items: center;
-  box-shadow: 0 1px 2px 1px #aeaeae;
+export const Heading2 = styled(Typography).attrs({
+  variant: 'display1',
+})`
+  text-align: center;
+`;
+Heading2.displayName = 'Heading2';
+
+export const Register = styled(Typography).attrs({
+  variant: 'body2',
+})`
+  cursor: pointer;
+  text-align: center;
+`;
+
+export const Spacer = styled.div`
+  height: 1rem;
+`;
+
+export const Wrapper = styled(Paper)`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 2rem auto;
-  max-width: 20rem;
+  margin: auto;
+  margin-top: 2rem;
+  max-width: 25rem;
   padding: 2rem;
   width: 100%;
-`;
-
-export const Message = styled.div`
-  visibility: ${props => (props.show ? 'visible' : 'hidden')};
-  color: ${props => (props.error ? 'tomato' : 'gold')};
 `;
