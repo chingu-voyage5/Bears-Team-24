@@ -28,20 +28,24 @@ const getTree = articles => {
 
 let ndx = 0;
 /* eslint-disable no-plusplus */
-const getChildren = sub => {
+const getChildren = (sub, path) => {
   const keys = Object.keys(sub);
   return keys.map(key => {
     const s = sub[key];
     if (typeof s === 'string') {
+      // TODO: great idea but keeping it updated will be fun
+      // const displayed = path.includes(key) ? ' >' : '';
       return (
         <LI key={ndx++}>
-          <Link to={`/cms/${s}`}>{key}</Link>
+          <Link to={`/cms/${s}`}>{`${key}`}</Link>
         </LI>
       );
     }
-    const children = getChildren(sub[key]);
+    const children = getChildren(sub[key], path);
+    const open = path.includes(key);
+    console.log(`path [${key}] is open [${open}]`);
     return (
-      <Collapsible key={ndx++} title={key}>
+      <Collapsible key={ndx++} title={key} open={open}>
         {children}
       </Collapsible>
     );
