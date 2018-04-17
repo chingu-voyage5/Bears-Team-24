@@ -21,7 +21,6 @@ export default class Sidebar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('Sidebar received props:', nextProps);
     const { articles } = nextProps;
     let selectedArticlePath = [];
     if (nextProps.match.params.id) {
@@ -34,16 +33,13 @@ export default class Sidebar extends React.Component {
       }
     }
     const tree = getTree(articles);
-    console.log('selected article path:', selectedArticlePath);
     const articlesHtml = getChildren(tree, selectedArticlePath);
     this.setState({ articlesHtml });
   }
   shouldComponentUpdate(nextProps) {
     if (nextProps.articles.length === this.props.articles.length) {
-      console.log('Sidebar should not update');
       return false;
     }
-    console.log('Sidebar should update');
     return true;
   }
 
