@@ -4,59 +4,50 @@ import { getTree, getChildren } from './utils';
 
 import { Wrapper } from './styled';
 
-class Sidebar extends React.Component {
+export default class Sidebar extends React.Component {
+  static propTypes = {
+    articles: PropTypes.array.isRequired,
+    match: PropTypes.object,
+  };
+
+  static defaultProps = {
+    match: '',
+  };
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      articlesHtml: [],
+    };
   }
 
-  componentDidMount() {
-    const self = this;
-    (function linterAvoid() {
-      const tree = getTree(self.props.articles);
-      const tre = getChildren(tree);
-      self.setState({ articlesHtml: tre });
-    })();
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (
-      this.props.articles.length !== nextProps.articles.length ||
-      (!this.state.articlesHtml && nextState.articlesHtml) ||
-      (this.state.articlesHtml.length === 0 &&
-        nextState.articlesHtml.length > 0)
-    ) {
-      return true;
+  componentWillReceiveProps(nextProps) {
+    console.log('Sidebar received props:', nextProps);
+    const { articles } = nextProps;
+    let selectedArticlePath = [];
+    if (nextProps.match.params.id) {
+      const { id } = nextProps.match.params;
+      const match = articles.filter(article => article._id === id);
+      if (match.length) {
+        // eslint-disable-next-line camelcase
+        const { topic, sub_topic, title } = match[0];
+        selectedArticlePath = [topic, title].concat(sub_topic.split('>'));
+      }
     }
-    return false;
+    const tree = getTree(articles);
+    console.log('selected article path:', selectedArticlePath);
+    const articlesHtml = getChildren(tree, selectedArticlePath);
+    this.setState({ articlesHtml });
   }
-
-  componentDidUpdate() {
-    const self = this;
-    (function linterAvoid() {
-      const tree = getTree(self.props.articles);
-      const tre = getChildren(tree);
-      self.setState({ articlesHtml: tre });
-    })();
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.articles.length === this.props.articles.length) {
+      console.log('Sidebar should not update');
+      return false;
+    }
+    console.log('Sidebar should update');
+    return true;
   }
 
   render() {
-    return (
-      <Wrapper>
-        {this.state.articlesHtml && this.state.articlesHtml.length > 0
-          ? this.state.articlesHtml
-          : 'wait'}
-      </Wrapper>
-    );
+    return <Wrapper>{this.state.articlesHtml}</Wrapper>;
   }
 }
-
-export default Sidebar;
-
-Sidebar.propTypes = {
-  articles: PropTypes.array,
-};
-
-Sidebar.defaultProps = {
-  articles: [],
-};
