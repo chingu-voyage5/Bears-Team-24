@@ -2,6 +2,7 @@
 
 exports[`creating tree should create elements 1`] = `
 <details
+  open={true}
   style={
     Object {
       "marginLeft": "1rem",
@@ -12,6 +13,7 @@ exports[`creating tree should create elements 1`] = `
     Voyage
   </summary>
   <details
+    open={false}
     style={
       Object {
         "marginLeft": "1rem",
@@ -43,6 +45,7 @@ exports[`creating tree should create elements 1`] = `
     </li>
   </details>
   <details
+    open={false}
     style={
       Object {
         "marginLeft": "1rem",
