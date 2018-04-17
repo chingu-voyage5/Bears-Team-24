@@ -43,7 +43,6 @@ const getChildren = (sub, path) => {
     }
     const children = getChildren(sub[key], path);
     const open = path.includes(key);
-    console.log(`path [${key}] is open [${open}]`);
     return (
       <Collapsible key={ndx++} title={key} open={open}>
         {children}
