@@ -74,7 +74,7 @@ class Navbar extends React.Component {
 
     if (!location) return HOME;
 
-    return location.pathname.slice(1) || HOME;
+    return location.pathname.split('/')[1] || HOME;
   };
 
   handleResize = e => {
