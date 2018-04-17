@@ -25,7 +25,7 @@ export default class CMSContainer extends React.Component {
           <React.Fragment>
             <Route
               path="/cms/:id?"
-              render={p => <Sidebar {...p} articleList={articleList} />}
+              render={p => <Sidebar {...p} articles={articleList} />}
             />
             <Route
               exact
