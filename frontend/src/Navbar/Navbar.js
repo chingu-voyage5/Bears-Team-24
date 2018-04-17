@@ -69,6 +69,14 @@ class Navbar extends React.Component {
     window.removeEventListener('resize', this.handleResize);
   }
 
+  getLocationLabel = location => {
+    const HOME = 'Home';
+
+    if (!location) return HOME;
+
+    return location.pathname.split('/')[1] || HOME;
+  };
+
   handleResize = e => {
     const { mobile } = this.state;
     const windowWidth = e.target.innerWidth;
@@ -110,20 +118,25 @@ class Navbar extends React.Component {
 
   render() {
     const { mobile, open, value } = this.state;
-    const { classes, isLoggedIn, username } = this.props;
+    const { classes, isLoggedIn, location, username } = this.props;
 
     return (
       <Wrapper>
         <AppBar position="static">
           <Toolbar disableGutters>
             {mobile ? (
-              <IconButton
-                color="inherit"
-                aria-label="Menu"
-                onClick={this.openDrawer}
-              >
-                <MenuIcon />
-              </IconButton>
+              <React.Fragment>
+                <IconButton
+                  color="inherit"
+                  aria-label="Menu"
+                  onClick={this.openDrawer}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography color="inherit" variant="button">
+                  {this.getLocationLabel(location)}
+                </Typography>
+              </React.Fragment>
             ) : (
               <Tabs
                 classes={{ root: classes.fullHeight }}
