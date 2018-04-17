@@ -172,17 +172,22 @@ class Navbar extends React.Component {
               onKeyDown={this.closeDrawer}
             >
               <List>
-                {paths.map((path, i) => (
-                  <ListItem
-                    exact
-                    key={path.stem}
-                    component={DrawerLink}
-                    to={paths[i].to}
-                    divider
-                  >
-                    {path.label}
-                  </ListItem>
-                ))}
+                {paths.map((path, i) => {
+                  if (i > 0 && i < 4 && !isLoggedIn) {
+                    return null;
+                  }
+                  return (
+                    <ListItem
+                      exact
+                      key={path.stem}
+                      component={DrawerLink}
+                      to={paths[i].to}
+                      divider
+                    >
+                      {path.label}
+                    </ListItem>
+                  );
+                })}
               </List>
             </div>
           </Drawer>
