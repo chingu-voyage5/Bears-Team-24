@@ -69,6 +69,14 @@ class Navbar extends React.Component {
     window.removeEventListener('resize', this.handleResize);
   }
 
+  getLocationLabel = location => {
+    const HOME = 'Home';
+
+    if (!location) return HOME;
+
+    return location.pathname.split('/')[1] || HOME;
+  };
+
   handleResize = e => {
     const { mobile } = this.state;
     const windowWidth = e.target.innerWidth;
@@ -110,20 +118,25 @@ class Navbar extends React.Component {
 
   render() {
     const { mobile, open, value } = this.state;
-    const { classes, isLoggedIn, username } = this.props;
+    const { classes, isLoggedIn, location, username } = this.props;
 
     return (
       <Wrapper>
         <AppBar position="static">
           <Toolbar disableGutters>
             {mobile ? (
-              <IconButton
-                color="inherit"
-                aria-label="Menu"
-                onClick={this.openDrawer}
-              >
-                <MenuIcon />
-              </IconButton>
+              <React.Fragment>
+                <IconButton
+                  color="inherit"
+                  aria-label="Menu"
+                  onClick={this.openDrawer}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography color="inherit" variant="button">
+                  {this.getLocationLabel(location)}
+                </Typography>
+              </React.Fragment>
             ) : (
               <Tabs
                 classes={{ root: classes.fullHeight }}
@@ -159,17 +172,22 @@ class Navbar extends React.Component {
               onKeyDown={this.closeDrawer}
             >
               <List>
-                {paths.map((path, i) => (
-                  <ListItem
-                    exact
-                    key={path.stem}
-                    component={DrawerLink}
-                    to={paths[i].to}
-                    divider
-                  >
-                    {path.label}
-                  </ListItem>
-                ))}
+                {paths.map((path, i) => {
+                  if (i > 0 && i < 4 && !isLoggedIn) {
+                    return null;
+                  }
+                  return (
+                    <ListItem
+                      exact
+                      key={path.stem}
+                      component={DrawerLink}
+                      to={paths[i].to}
+                      divider
+                    >
+                      {path.label}
+                    </ListItem>
+                  );
+                })}
               </List>
             </div>
           </Drawer>
