@@ -62,6 +62,11 @@ class Navbar extends React.Component {
     // eslint-disable-next-line
     if (nextProps.location.pathname === '/') {
       this.handleIndicator(null, 0);
+    } else {
+      const { pathname } = nextProps.location;
+      const stem = pathname.split('/')[1];
+
+      this.handleIndicator(null, paths.findIndex(path => path.stem === stem));
     }
   }
 
