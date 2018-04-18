@@ -87,6 +87,7 @@ class AssetEdit extends React.Component {
     }
 
     window.addEventListener('resize', this.handleResize);
+    this.handleResize();
   };
 
   componentWillUnmount() {
