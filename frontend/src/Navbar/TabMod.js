@@ -8,17 +8,17 @@ import paths from './config';
 
 const propTypes = {
   classes: PropTypes.object.isRequired,
-  idx: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
 };
 
-const TabMod = ({ classes, idx, ...props }) => (
+const TabMod = ({ classes, value, ...props }) => (
   <Tab
     component={NavLinkStyled}
     disableRipple
-    key={idx}
-    to={paths[idx].to}
-    label={paths[idx].label}
+    to={paths[value].to}
+    label={paths[value].label}
     classes={{ root: classes.fullHeight }}
+    value={value}
     {...props}
   />
 );

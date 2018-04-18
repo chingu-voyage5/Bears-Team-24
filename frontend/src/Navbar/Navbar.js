@@ -62,6 +62,11 @@ class Navbar extends React.Component {
     // eslint-disable-next-line
     if (nextProps.location.pathname === '/') {
       this.handleIndicator(null, 0);
+    } else {
+      const { pathname } = nextProps.location;
+      const stem = pathname.split('/')[1];
+
+      this.handleIndicator(null, paths.findIndex(path => path.stem === stem));
     }
   }
 
@@ -145,11 +150,11 @@ class Navbar extends React.Component {
                 indicatorColor="secondary"
                 fullWidth={false}
               >
-                <TabMod idx={0} exact classes={classes} />
-                {isLoggedIn && <TabMod idx={1} classes={classes} />}
-                {isLoggedIn && <TabMod idx={2} classes={classes} />}
-                {isLoggedIn && <TabMod idx={3} classes={classes} />}
-                <TabMod idx={4} classes={classes} />
+                <TabMod value={0} exact classes={classes} />
+                {isLoggedIn && <TabMod value={1} classes={classes} />}
+                {isLoggedIn && <TabMod value={2} classes={classes} />}
+                {isLoggedIn && <TabMod value={3} classes={classes} />}
+                <TabMod value={4} classes={classes} />
               </Tabs>
             )}
             <Greeting>Hi,&nbsp;{username}</Greeting>
