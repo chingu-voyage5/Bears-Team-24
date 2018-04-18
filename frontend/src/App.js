@@ -28,13 +28,10 @@ class App extends Component {
   /* eslint-disable react/sort-comp */
   guestUser = { _id: '0', username: 'Guest' };
   state = {
-    articles: [],
-    articleIndex: {},
     startup: true,
     isLoggedIn: false,
     waitingForLogin: false,
     user: this.guestUser,
-    cmsReady: false,
   };
   componentDidMount = () => {
     if (this.state.waitingForLogin) {
@@ -70,33 +67,6 @@ class App extends Component {
           user: this.guestUser,
         });
       });
-
-    /*  bypass local storage
-
-    actions.checkLocalStorage().then(loaded => {
-      this.setState({
-        cmsReady: loaded,
-        articles: loaded ? JSON.parse(localStorage.getItem('allArticles')) : [],
-        articleIndex: loaded
-          ? JSON.parse(localStorage.getItem('articleIndex'))
-          : {},
-      });
-    });
-
-   */
-
-    if (this.state.articles.length === 0) {
-      actions
-        .getArticlesJSONBypass()
-        .then(res => {
-          this.setState({ articles: res, cmsReady: true });
-        })
-        .catch(err => {
-          // eslint-disable-next-line
-          console.log(err);
-          this.setState({ cmsReady: false });
-        });
-    }
   };
 
   setUser = user => {
@@ -120,9 +90,6 @@ class App extends Component {
 
   render() {
     const {
-      articles,
-      articleIndex,
-      cmsReady,
       isLoggedIn,
       startup,
       waitingForLogin,
@@ -191,29 +158,7 @@ class App extends Component {
                 path="/assets/:id"
                 render={props => <AssetEdit id={props.match.params.id} />}
               />
-              <Route
-                exact
-                path="/cms"
-                render={props => (
-                  <CMSContainer
-                    {...props}
-                    articles={articles}
-                    articleIndex={articleIndex}
-                    cmsReady={cmsReady}
-                  />
-                )}
-              />
-              <Route
-                path="/cms/:articleId"
-                render={props => (
-                  <CMSContainer
-                    {...props}
-                    articles={articles}
-                    articleIndex={articleIndex}
-                    cmsReady={cmsReady}
-                  />
-                )}
-              />
+              <Route path="/cms" component={CMSContainer} />
               <Route
                 path="/login"
                 render={() => <Login setUser={this.setUser} />}

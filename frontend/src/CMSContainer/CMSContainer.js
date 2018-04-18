@@ -1,40 +1,41 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
+
+import { getArticleList } from './actions';
 import ContentArea from '../ContentArea';
 import Sidebar from '../Sidebar';
 import { Wrapper } from './styled';
-import Loading from './Loading';
 
-const CMSContainer = props => {
-  const articleId = props.match.params.articleId || '';
-  const { articleIndex } = props;
-  return (
-    <Wrapper>
-      <Sidebar articles={props.articles} />
-      {props.cmsReady ? (
-        <ContentArea
-          articles={props.articles}
-          articleId={articleId}
-          articleIndex={articleIndex}
+export default class CMSContainer extends React.Component {
+  state = {
+    articleList: [],
+  };
+
+  componentDidMount = () => {
+    getArticleList().then(articleList => {
+      this.setState({ articleList });
+    });
+  };
+
+  render() {
+    const { articleList } = this.state;
+    return (
+      <Wrapper>
+        <Route
+          path="/cms/:id?"
+          render={p => <Sidebar {...p} articles={articleList} />}
         />
-      ) : (
-        <Loading />
-      )}
-    </Wrapper>
-  );
-};
-
-export default CMSContainer;
-
-CMSContainer.propTypes = {
-  match: PropTypes.object.isRequired,
-  cmsReady: PropTypes.bool,
-  articleIndex: PropTypes.object,
-  articles: PropTypes.array,
-};
-
-CMSContainer.defaultProps = {
-  cmsReady: false,
-  articleIndex: {},
-  articles: [],
-};
+        <Route
+          exact
+          path="/cms"
+          render={() => (
+            <div>
+              <h1>Welcome</h1>
+            </div>
+          )}
+        />
+        <Route path="/cms/:id" component={ContentArea} />
+      </Wrapper>
+    );
+  }
+}
