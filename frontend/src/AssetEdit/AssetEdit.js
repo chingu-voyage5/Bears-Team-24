@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 
 // Material-UI components
 import Button from 'material-ui/Button';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 import Snackbar from 'material-ui/Snackbar';
-import TextField from 'material-ui/TextField';
+
+import ListItemInput from '../ListItemInput';
 
 import {
   ButtonWrapper,
@@ -17,7 +18,6 @@ import {
   Hint,
   ImgPreview,
   InvisibleInput,
-  Label,
   Wrapper,
 } from './styled';
 
@@ -217,108 +217,43 @@ class AssetEdit extends React.Component {
         <Paper>
           <Heading1>{!_id ? 'Create new asset' : 'Edit asset'}</Heading1>
           <List>
-            <ListItem>
-              {mobile ? (
-                <TextField
-                  id="owner"
-                  label="Owner"
-                  value={username}
-                  fullWidth
-                  disabled
-                />
-              ) : (
-                <React.Fragment>
-                  <Label>Owner:</Label>
-                  <ListItemText>
-                    <TextField fullWidth value={username} disabled />
-                  </ListItemText>
-                </React.Fragment>
-              )}
-            </ListItem>
-            <ListItem>
-              {mobile ? (
-                <TextField
-                  id="title"
-                  label="Title"
-                  name="title"
-                  value={title}
-                  onChange={this.handleFieldChange}
-                  fullWidth
-                />
-              ) : (
-                <React.Fragment>
-                  <Label>Title:</Label>
-                  <ListItemText>
-                    <TextField
-                      fullWidth
-                      value={title}
-                      name="title"
-                      onChange={this.handleFieldChange}
-                    />
-                  </ListItemText>
-                </React.Fragment>
-              )}
-            </ListItem>
-            <ListItem>
-              {mobile ? (
-                <TextField
-                  id="description"
-                  label="Description"
-                  name="description"
-                  value={description}
-                  onChange={this.handleFieldChange}
-                  fullWidth
-                />
-              ) : (
-                <React.Fragment>
-                  <Label>Description:</Label>
-                  <ListItemText>
-                    <TextField
-                      fullWidth
-                      value={description}
-                      name="description"
-                      onChange={this.handleFieldChange}
-                    />
-                  </ListItemText>
-                </React.Fragment>
-              )}
-            </ListItem>
-            <ListItem>
-              {mobile ? (
-                <TextField
-                  id="fileType"
-                  label="Asset type"
-                  value={fileType || ''}
-                  fullWidth
-                  disabled
-                />
-              ) : (
-                <React.Fragment>
-                  <Label>Asset type:</Label>
-                  <ListItemText>
-                    <TextField fullWidth value={fileType || ''} disabled />
-                  </ListItemText>
-                </React.Fragment>
-              )}
-            </ListItem>
-            <ListItem>
-              {mobile ? (
-                <TextField
-                  id="embedUrl"
-                  label="Embed Url:"
-                  value={embedUrl}
-                  fullWidth
-                  disabled
-                />
-              ) : (
-                <React.Fragment>
-                  <Label>Embed Url:</Label>
-                  <ListItemText>
-                    <TextField fullWidth value={embedUrl} disabled />
-                  </ListItemText>
-                </React.Fragment>
-              )}
-            </ListItem>
+            <ListItemInput
+              mobile={mobile}
+              label="Owner"
+              name="owner"
+              value={username}
+              disabled
+            />
+            <ListItemInput
+              mobile={mobile}
+              label="Title"
+              name="title"
+              value={title}
+              onChange={this.handleFieldChange}
+            />
+            <ListItemInput
+              mobile={mobile}
+              label="Description"
+              name="description"
+              value={description}
+              onChange={this.handleFieldChange}
+            />
+            <ListItemInput
+              mobile={mobile}
+              label="Asset type"
+              name="fileType"
+              value={fileType || ''}
+              onChange={this.handleFieldChange}
+              disabled
+            />
+            <ListItemInput
+              mobile={mobile}
+              label="Embed Url"
+              name="embedUrl"
+              value={embedUrl}
+              onChange={this.handleFieldChange}
+              disabled
+            />
           </List>
         </Paper>
         <InvisibleInput
