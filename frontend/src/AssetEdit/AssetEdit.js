@@ -25,8 +25,9 @@ import actions from './actions';
 import { fileTypes, maxFileSizeMb } from './config';
 import { getFileType, packageData, readFile } from './utils';
 
+import { SMALL_WINDOW } from '../config';
+
 const MAX_FILE_SIZE_MB = maxFileSizeMb;
-const SMALL_WINDOW = 768;
 
 class AssetEdit extends React.Component {
   static propTypes = {
