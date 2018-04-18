@@ -10,7 +10,7 @@ export default class ContentArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'Loading...',
+      content: '',
     };
   }
 
@@ -28,16 +28,17 @@ export default class ContentArea extends React.Component {
 
   loadArticle(id) {
     getArticle(id).then(article => {
-      this.setState({
-        view: <SingleArticle content={article.content} />,
-      });
+      this.setState({ content: article.content });
     });
   }
 
   render() {
+    const { content } = this.state;
     return (
       <div>
-        <section className="content-area">{this.state.view}</section>
+        <section className="content-area">
+          {content ? <SingleArticle content={content} /> : 'Loading...'}
+        </section>
       </div>
     );
   }
