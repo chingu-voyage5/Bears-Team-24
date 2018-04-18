@@ -142,21 +142,21 @@ class ArticleEdit extends React.Component {
               mobile={mobile}
               label="Title"
               name="title"
-              value={article.title}
+              value={article.title || ''}
               onChange={this.handleFieldChange}
             />
             <ListItemInput
               mobile={mobile}
               label="Topic"
               name="topic"
-              value={article.topic}
+              value={article.topic || ''}
               onChange={this.handleFieldChange}
             />
             <ListItemInput
               mobile={mobile}
               label="Sub topic"
               name="sub_topic"
-              value={article.sub_topic}
+              value={article.sub_topic || ''}
               onChange={this.handleFieldChange}
             />
           </List>
