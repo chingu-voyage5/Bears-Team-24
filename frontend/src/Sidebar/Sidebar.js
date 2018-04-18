@@ -7,12 +7,9 @@ import { Wrapper } from './styled';
 export default class Sidebar extends React.Component {
   static propTypes = {
     articles: PropTypes.array.isRequired,
-    match: PropTypes.object,
+    match: PropTypes.object.isRequired,
   };
 
-  static defaultProps = {
-    match: {},
-  };
   constructor(props) {
     super(props);
     this.state = {
