@@ -3,7 +3,30 @@ import { shallow } from 'enzyme';
 
 import Assets from './Assets';
 
-const routerProps = {
+const assets = [
+  {
+    _id: '91053eef8dfa4f8684c3b38bc90268be',
+    content_type: 'audio',
+    creator: {
+      _id: '123',
+      username: 'Donnie',
+    },
+    title: 'Duis at velit eu est congue elementum.',
+    created: 1507391163000,
+  },
+  {
+    _id: '24a5310c7db0429abef5ca7d529c9713',
+    content_type: 'video',
+    creator: {
+      _id: '123',
+      username: 'Splinter',
+    },
+    title: 'Sed sagittis.',
+    created: 1486505062000,
+  },
+];
+
+const props = {
   history: {
     push: jest.fn(),
   },
@@ -13,14 +36,13 @@ const routerProps = {
 };
 
 describe('Assets component', () => {
-  beforeEach(() => {
-    fetch.resetMocks();
-  });
-  it('should render a Button and ReactTable', () => {
-    fetch.mockResponseOnce(JSON.stringify([]));
-    const wrapper = shallow(<Assets {...routerProps} />);
+  it('should match snapshot', () => {
+    jest
+      .spyOn(Assets.prototype, 'fetchData')
+      .mockImplementation(() => new Promise(resolve => resolve(assets)));
 
-    expect(wrapper.find('Button').length).toEqual(1);
-    expect(wrapper.find('ReactTable').length).toEqual(1);
+    const wrapper = shallow(<Assets {...props} />);
+
+    expect(wrapper).toMatchSnapshot();
   });
 });

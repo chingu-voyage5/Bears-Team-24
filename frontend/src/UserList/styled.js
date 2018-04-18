@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import AvatarMUI from 'material-ui/Avatar';
+import Paper from 'material-ui/Paper';
 
 export const Avatar = styled(AvatarMUI)`
   && {
@@ -26,6 +27,11 @@ export const Label = styled.div`
     min-width: 25%;
   }
 `;
+
+export const TableWrapper = styled(Paper)`
+  overflow-x: auto;
+`;
+
 export const Wrapper = styled.div`
   margin: 1rem auto;
   max-width: 960px;

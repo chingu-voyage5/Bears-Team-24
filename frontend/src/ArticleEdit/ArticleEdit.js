@@ -2,109 +2,212 @@ import React from 'react';
 import marked from 'marked';
 import PropTypes from 'prop-types';
 
-import Input from './Input';
-import Tab from './Tab';
-import { Button, Editor, Heading1, Preview, Textarea, Wrapper } from './styled';
+// Material-UI components
+import Button from 'material-ui/Button';
+import List from 'material-ui/List';
+import Paper from 'material-ui/Paper';
+import Snackbar from 'material-ui/Snackbar';
+import Tabs, { Tab } from 'material-ui/Tabs';
+
+import ListItemInput from '../ListItemInput';
+
+import actions from './actions';
+
+import {
+  AppBar,
+  ContentWrapper,
+  EditorWrapper,
+  Heading1,
+  Preview,
+  Textarea,
+  Wrapper,
+} from './styled';
+
+import { SMALL_WINDOW } from '../config';
 
 const propTypes = {
-  data: PropTypes.shape({
-    topic: PropTypes.string,
-    content: PropTypes.string,
-    sub_topic: PropTypes.array,
-    title: PropTypes.string,
-  }),
+  id: PropTypes.string,
   empty: PropTypes.bool,
 };
 
 const defaultProps = {
-  data: { topic: '', content: '', sub_topic: [], title: '' },
+  id: '',
   empty: false,
 };
 
 class ArticleEdit extends React.Component {
   state = {
-    edit: true,
-    content: this.props.empty ? '' : this.props.data.content,
+    edit: 0,
+    article: {
+      title: '',
+      topic: '',
+      sub_topic: '',
+    },
+    horizontal: 'right',
+    vertical: 'top',
+    message: { show: false, error: false, text: '' },
   };
 
-  handleChange = e => {
-    const { edit } = this.state;
-    if (e.target.id === 'radio-preview' && edit) {
-      this.setState(() => ({ edit: false, content: this.textarea.value }));
-    } else if (e.target.id === 'radio-edit' && !edit) {
-      this.setState(() => ({ edit: true }));
+  componentDidMount = () => {
+    if (this.props.id) {
+      actions
+        .get(this.props.id)
+        .then(article => this.setState({ article }))
+        // eslint-disable-next-line no-console
+        .catch(e => console.error('get article for edit failed:', e));
     }
+
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    this.setState(() => ({
+      mobile: window.innerWidth <= SMALL_WINDOW,
+    }));
+  };
+
+  // eslint-disable-next-line
+  fetchData(id) {
+    return actions.get(id);
+  }
+
+  handleTabSwitch = (e, value) => {
+    this.setState(() => ({
+      edit: value,
+    }));
+  };
+
+  handleFieldChange = e => {
+    const { message, article } = this.state;
+    this.setState({
+      message: { ...message, show: false },
+      article: {
+        ...article,
+        [e.target.name]: e.target.value,
+      },
+    });
   };
 
   handleSave = () => {
-    // TEMP
-    /* eslint-disable */
-    console.log('Title:\n', this.inputTitle.value);
-    console.log('Topic:\n', this.inputTopic.value);
-    console.log('Sub topic:\n', this.inputSubTopic.value);
-    console.log('Content:\n', this.state.content);
-    alert('Check console');
-    /* eslint-enable */
+    actions
+      .save(this.state.article)
+      .then(json => {
+        if (json.success) {
+          this.setState(({ article }) => ({
+            message: {
+              show: true,
+              error: false,
+              text: 'Saved Successfully',
+            },
+            article: { ...article, _id: json._id },
+          }));
+        } else {
+          this.setState({
+            message: { show: true, error: true, text: json.error },
+          });
+        }
+      })
+      .catch(() => {
+        this.setState({
+          message: {
+            show: true,
+            error: true,
+            text: 'Save Unsuccessful',
+          },
+        });
+      });
+  };
+
+  handleClose = () => {
+    this.setState(() => ({
+      message: { show: false },
+    }));
   };
 
   render() {
-    const { content, edit } = this.state;
-    const { data, empty } = this.props;
+    const { edit, article, message, horizontal, vertical, mobile } = this.state;
+    const { empty } = this.props;
 
     return (
-      <Wrapper>
-        <Heading1>{empty ? 'Create new article' : 'Edit article'}</Heading1>
-        <Input
-          defaultValue={!empty ? data.title : ''}
-          label="Title:"
-          name="title"
-          innerRef={ref => {
-            this.inputTitle = ref;
-          }}
-        />
-        <Input
-          defaultValue={!empty ? data.topic : ''}
-          label="Topic:"
-          name="topic"
-          innerRef={ref => {
-            this.inputTopic = ref;
-          }}
-        />
-        <Input
-          defaultValue={!empty ? data.sub_topic.join(', ') : ''}
-          label="Sub topic:"
-          name="sub-topic"
-          innerRef={ref => {
-            this.inputSubTopic = ref;
-          }}
-        />
-        <Editor>
-          <Tab
-            active={this.state.edit}
-            gridArea="markdown"
-            handleClick={this.handleChange}
-            label="Markdown"
-            name="radio-edit"
-          />
-          <Tab
-            active={!this.state.edit}
-            gridArea="preview"
-            handleClick={this.handleChange}
-            label="Preview"
-            name="radio-preview"
-          />
-          {edit ? (
-            <Textarea
-              innerRef={ref => {
-                this.textarea = ref;
-              }}
-              defaultValue={content}
+      <Wrapper mobile={mobile}>
+        <EditorWrapper>
+          <Heading1>{empty ? 'Create new article' : 'Edit article'}</Heading1>
+          <List>
+            <ListItemInput
+              mobile={mobile}
+              label="Title"
+              name="title"
+              value={article.title || ''}
+              onChange={this.handleFieldChange}
             />
-          ) : (
-            <Preview dangerouslySetInnerHTML={{ __html: marked(content) }} />
-          )}
-        </Editor>
-        <Button onClick={this.handleSave}>Save</Button>
+            <ListItemInput
+              mobile={mobile}
+              label="Topic"
+              name="topic"
+              value={article.topic || ''}
+              onChange={this.handleFieldChange}
+            />
+            <ListItemInput
+              mobile={mobile}
+              label="Sub topic"
+              name="sub_topic"
+              value={article.sub_topic || ''}
+              onChange={this.handleFieldChange}
+            />
+          </List>
+          <ContentWrapper>
+            <AppBar position="static">
+              <Tabs
+                value={edit}
+                onChange={this.handleTabSwitch}
+                indicatorColor="secondary"
+                fullWidth={false}
+              >
+                <Tab disableRipple label="Markdown" />
+                <Tab disableRipple label="Preview" />
+              </Tabs>
+            </AppBar>
+            {!edit ? (
+              <Paper>
+                <Textarea
+                  placeholder="Markdown flavored content here..."
+                  multiline
+                  name="content"
+                  value={article.content}
+                  onChange={this.handleFieldChange}
+                />
+              </Paper>
+            ) : (
+              <Preview
+                dangerouslySetInnerHTML={{ __html: marked(article.content) }}
+              />
+            )}
+          </ContentWrapper>
+        </EditorWrapper>
+        <div>
+          <Button variant="raised" color="primary" onClick={this.handleSave}>
+            Save
+          </Button>
+        </div>
+        <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          open={message.show}
+          onClose={this.handleClose}
+          autoHideDuration={message.error ? null : 3000}
+          SnackbarContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={
+            <span id="message-id">
+              {message.text || 'Something went wrong :('}
+            </span>
+          }
+        />
       </Wrapper>
     );
   }

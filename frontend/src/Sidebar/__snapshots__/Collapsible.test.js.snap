@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`creating tree should create elements 1`] = `
+<details
+  open={true}
+  style={
+    Object {
+      "marginLeft": "1rem",
+    }
+  }
+>
+  <summary>
+    Voyage
+  </summary>
+  <details
+    open={false}
+    style={
+      Object {
+        "marginLeft": "1rem",
+      }
+    }
+  >
+    <summary>
+      About this wiki
+    </summary>
+    <li
+      className="sc-bwzfXH dqTlWx"
+    >
+      <a
+        href="/cms/1"
+        onClick={[Function]}
+      >
+        Home
+      </a>
+    </li>
+    <li
+      className="sc-bwzfXH dqTlWx"
+    >
+      <a
+        href="/cms/2"
+        onClick={[Function]}
+      >
+        How to Contribute
+      </a>
+    </li>
+  </details>
+  <details
+    open={false}
+    style={
+      Object {
+        "marginLeft": "1rem",
+      }
+    }
+  >
+    <summary>
+      About Voyages
+    </summary>
+    <li
+      className="sc-bwzfXH dqTlWx"
+    >
+      <a
+        href="/cms/3"
+        onClick={[Function]}
+      >
+        About Voyages
+      </a>
+    </li>
+  </details>
+</details>
+`;
+
+exports[`creating tree should create elements 2`] = `
+<BrowserRouter>
+  <Unknown>
+    <Collapsible
+      open={true}
+      title="Voyage"
+    >
+      <Collapsible
+        open={true}
+        title="About this wiki"
+      >
+        <Link
+          replace={false}
+          to="/cms/1"
+        >
+          Home
+        </Link>
+        <Link
+          replace={false}
+          to="/cms/2"
+        >
+          How to Contribute
+        </Link>
+      </Collapsible>
+      <Collapsible
+        open={false}
+        title="About Voyages"
+      >
+        <Link
+          replace={false}
+          to="/cms/3"
+        >
+          About Voyages
+        </Link>
+      </Collapsible>
+    </Collapsible>
+  </Unknown>
+</BrowserRouter>
+`;

@@ -3,20 +3,21 @@ import PropTypes from 'prop-types';
 
 class Collapsible extends React.Component {
   render() {
-    const { title, children } = this.props;
+    const { title, children, open } = this.props;
 
     return (
-      <details>
-        <summary className="panel-heading">{title}</summary>
-        <p className="panel-body">{children}</p>
+      <details style={{ marginLeft: '1rem' }} open={open}>
+        <summary>{title}</summary>
+        {children}
       </details>
     );
   }
 }
 
 Collapsible.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   title: PropTypes.string.isRequired,
+  open: PropTypes.bool.isRequired,
 };
 
 export default Collapsible;

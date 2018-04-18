@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { MuiThemeProvider } from 'material-ui/styles';
+
+import AuthRoute from './AuthRoute';
 import actions from './actions';
 import LandingPage from './LandingPage';
 import Login from './Login';
@@ -11,31 +14,58 @@ import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';
 import { UserList, UserPage } from './UserList';
 
-import articleMockData from './_mockData/article.json';
-import articlesMockData from './_mockData/articles.json';
+import theme from './theme';
 
+/**
+ * authing routes entered into address bar.
+    1. We can't go to auth route whilst we're waiting for auto login. If we do
+        AuthRoute is triggered before we're logged in and sends us to login page.
+    2. Additionally, on startup, waitingForLogin is false, so AuthRoute is
+        So we use startup flag to prevent AuthRoute being called until we're sure
+        auto login has run.
+ */
 class App extends Component {
-  // eslint-disable-next-line react/sort-comp
+  /* eslint-disable react/sort-comp */
   guestUser = { _id: '0', username: 'Guest' };
   state = {
-    article: articleMockData,
-    articles: articlesMockData,
-    isLoggedIn: true,
+    startup: true,
+    isLoggedIn: false,
+    waitingForLogin: false,
     user: this.guestUser,
   };
-
   componentDidMount = () => {
+    if (this.state.waitingForLogin) {
+      return;
+    }
+    this.setState({ waitingForLogin: true });
     actions
       .getUser()
       .then(res => {
         if (res.success) {
-          this.setState({ isLoggedIn: true, user: res.user });
+          this.setState({
+            startup: false,
+            waitingForLogin: false,
+            isLoggedIn: true,
+            user: res.user,
+          });
         } else {
-          this.setState({ isLoggedIn: false, user: this.guestUser });
+          this.setState({
+            startup: false,
+            waitingForLogin: false,
+            isLoggedIn: false,
+            user: this.guestUser,
+          });
         }
       })
-      .catch(() => {
-        this.setState({ isLoggedIn: false, user: this.guestUser });
+      .catch(e => {
+        // eslint-disable-next-line no-console
+        console.log('auto login error:', e);
+        this.setState({
+          startup: false,
+          waitingForLogin: false,
+          isLoggedIn: false,
+          user: this.guestUser,
+        });
       });
   };
 
@@ -59,59 +89,84 @@ class App extends Component {
   };
 
   render() {
-    const { article, articles, isLoggedIn, user = this.guestUser } = this.state;
+    const {
+      isLoggedIn,
+      startup,
+      waitingForLogin,
+      user = this.guestUser,
+    } = this.state;
+    if (waitingForLogin || startup) {
+      return <h1>Loading ...</h1>;
+    }
     return (
       <BrowserRouter>
-        <React.Fragment>
-          <Route
-            render={r => (
-              <Navbar
+        <MuiThemeProvider theme={theme}>
+          <React.Fragment>
+            <Route
+              render={r => (
+                <Navbar
+                  isLoggedIn={isLoggedIn}
+                  userId={user._id}
+                  username={user.username}
+                  {...r}
+                />
+              )}
+            />
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <AuthRoute
+                exact
                 isLoggedIn={isLoggedIn}
-                userId={user._id}
-                username={user.username}
-                {...r}
+                path="/articles"
+                render={r => <Articles {...r} />}
               />
-            )}
-          />
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route
-              exact
-              path="/pages"
-              render={r => <Articles {...r} data={articles} />}
-            />
-            <Route
-              exact
-              path="/pages/new"
-              render={() => <ArticleEdit empty />}
-            />
-            <Route
-              path="/pages/:id"
-              render={() => <ArticleEdit data={article} />}
-            />
-            <Route exact path="/users" render={() => <UserList />} />
-            <Route
-              path="/users/:id"
-              render={props => <UserPage userId={props.match.params.id} />}
-            />
-            <Route exact path="/assets" render={r => <Assets {...r} />} />
-            <Route
-              exact
-              path="/assets/new"
-              render={r => <AssetEdit {...r} user={user} />}
-            />
-            <Route
-              path="/assets/:id"
-              render={props => <AssetEdit id={props.match.params.id} />}
-            />
-            <Route path="/cms" component={CMSContainer} />
-            <Route
-              path="/login"
-              render={() => <Login setUser={this.setUser} />}
-            />
-            <Route path="/logout" render={this.logout} />
-          </Switch>
-        </React.Fragment>
+              <AuthRoute
+                exact
+                isLoggedIn={isLoggedIn}
+                path="/articles/new"
+                render={r => <ArticleEdit {...r} empty user={user} />}
+              />
+              <AuthRoute
+                isLoggedIn={isLoggedIn}
+                path="/articles/:id"
+                render={props => <ArticleEdit id={props.match.params.id} />}
+              />
+              <AuthRoute
+                exact
+                isLoggedIn={isLoggedIn}
+                path="/users"
+                render={() => <UserList />}
+              />
+              <Route
+                path="/users/:id"
+                render={props => <UserPage userId={props.match.params.id} />}
+              />
+              <AuthRoute
+                exact
+                isLoggedIn={isLoggedIn}
+                path="/assets"
+                render={r => <Assets {...r} />}
+              />
+              <AuthRoute
+                exact
+                isLoggedIn={isLoggedIn}
+                path="/assets/new"
+                render={r => <AssetEdit {...r} user={user} />}
+              />
+              <AuthRoute
+                isLoggedIn={isLoggedIn}
+                path="/assets/:id"
+                render={props => <AssetEdit id={props.match.params.id} />}
+              />
+              <Route path="/cms" component={CMSContainer} />
+              <Route
+                path="/login"
+                render={() => <Login setUser={this.setUser} />}
+              />
+              <Route path="/logout" render={this.logout} />
+            </Switch>
+          </React.Fragment>
+        </MuiThemeProvider>
       </BrowserRouter>
     );
   }

@@ -1,409 +1,57 @@
 [
   {
     "_id": "91053eef8dfa4f8684c3b38bc90268be",
-    "type": "audio",
-    "creator": "Donnie",
+    "content_type": "audio",
+    "creator": {
+      "_id": "123",
+      "username": "Donnie"
+    },
     "title": "Duis at velit eu est congue elementum.",
-    "created": "1507391163",
-    "last_updated": "1516849858"
+    "created": 1507391163000,
+    "last_updated": 1516849858000
   },
   {
     "_id": "24a5310c7db0429abef5ca7d529c9713",
-    "type": "video",
-    "creator": "Splinter",
+    "content_type": "video",
+    "creator": {
+      "_id": "123",
+      "username": "Splinter"
+    },
     "title": "Sed sagittis.",
-    "created": "1486505062",
-    "last_updated": "1519743090"
+    "created": 1486505062000,
+    "last_updated": 1519743090000
   },
   {
     "_id": "e92ad2fa75a044b09e1274b49beb1546",
-    "type": "image",
-    "creator": "Leo",
+    "content_type": "image",
+    "creator": {
+      "_id": "123",
+      "username": "Leo"
+    },
     "title": "In hac habitasse platea dictumst.",
-    "created": "1505578147",
-    "last_updated": "1515954732"
+    "created": 1505578147000,
+    "last_updated": 1515954732000
   },
   {
     "_id": "4db204d723464d469d3b222d3c6c546e",
-    "type": "audio",
-    "creator": "Donnie",
+    "content_type": "audio",
+    "creator": {
+      "_id": "123",
+      "username": "Donnie"
+    },
     "title": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-    "created": "1506151611",
-    "last_updated": "1507143274"
+    "created": 1506151611000,
+    "last_updated": 1507143274000
   },
   {
     "_id": "bb1ad4cf178149e6b8fc1e900daecd41",
-    "type": "audio",
-    "creator": "Mikey",
+    "content_type": "audio",
+    "creator": {
+      "_id": "123",
+      "username": "Mikey"
+    },
     "title": "Duis bibendum.",
-    "created": "1512858555",
-    "last_updated": "1497282355"
-  },
-  {
-    "_id": "2b081ecad0894f8e8a6403391388ffa6",
-    "type": "audio",
-    "creator": "Donnie",
-    "title": "Donec ut dolor.",
-    "created": "1488800450",
-    "last_updated": "1500383401"
-  },
-  {
-    "_id": "fd91a53f422d4da0a9e47df97d6eaa7d",
-    "type": "image",
-    "creator": "Raph",
-    "title": "Curabitur in libero ut massa volutpat convallis.",
-    "created": "1506095277",
-    "last_updated": "1492884950"
-  },
-  {
-    "_id": "19dbf5015d9e4b268e5423b7d1e338fc",
-    "type": "video",
-    "creator": "April",
-    "title": "Suspendisse accumsan tortor quis turpis.",
-    "created": "1515053123",
-    "last_updated": "1488060271"
-  },
-  {
-    "_id": "c683535c848b49f2b52f90b774eadd84",
-    "type": "audio",
-    "creator": "Donnie",
-    "title":
-      "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-    "created": "1489786870",
-    "last_updated": "1489254280"
-  },
-  {
-    "_id": "096729b0791847d390d0b2a57f9d4346",
-    "type": "video",
-    "creator": "Mikey",
-    "title": "Etiam justo.",
-    "created": "1507750540",
-    "last_updated": "1488952972"
-  },
-  {
-    "_id": "8d5fc19c43db4456a187ab121a13b38f",
-    "type": "image",
-    "creator": "Donnie",
-    "title": "In hac habitasse platea dictumst.",
-    "created": "1511985476",
-    "last_updated": "1492654867"
-  },
-  {
-    "_id": "a1d2231870054ecf81cfd779d62cad15",
-    "type": "video",
-    "creator": "Donnie",
-    "title": "Nam tristique tortor eu pede.",
-    "created": "1512967297",
-    "last_updated": "1513903915"
-  },
-  {
-    "_id": "c9ba44a10bce4d7ba3284551d5cd4ba5",
-    "type": "image",
-    "creator": "Splinter",
-    "title": "In hac habitasse platea dictumst.",
-    "created": "1510945173",
-    "last_updated": "1488227553"
-  },
-  {
-    "_id": "5926833edce84d2ba3b4390a460afae1",
-    "type": "video",
-    "creator": "Splinter",
-    "title":
-      "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    "created": "1514856655",
-    "last_updated": "1515149358"
-  },
-  {
-    "_id": "73b6e7a62586411ca5967542a099d955",
-    "type": "audio",
-    "creator": "April",
-    "title": "Suspendisse potenti.",
-    "created": "1514165096",
-    "last_updated": "1507181891"
-  },
-  {
-    "_id": "97495e17f7cb479fbd95656a148c9cb4",
-    "type": "video",
-    "creator": "Raph",
-    "title": "Vestibulum rutrum rutrum neque.",
-    "created": "1496346720",
-    "last_updated": "1509737621"
-  },
-  {
-    "_id": "fcf5fc97cb2a42d29115ea2298cbef74",
-    "type": "video",
-    "creator": "Raph",
-    "title": "In congue.",
-    "created": "1495440847",
-    "last_updated": "1494906984"
-  },
-  {
-    "_id": "da3346c9a6b94896af7eeb2870c03606",
-    "type": "image",
-    "creator": "Leo",
-    "title": "Suspendisse potenti.",
-    "created": "1510497123",
-    "last_updated": "1504933139"
-  },
-  {
-    "_id": "45917df643e84228b56a1c55170365dd",
-    "type": "image",
-    "creator": "Donnie",
-    "title": "Curabitur in libero ut massa volutpat convallis.",
-    "created": "1513727233",
-    "last_updated": "1497892265"
-  },
-  {
-    "_id": "97dd1f44434e4f2183ac1db509084800",
-    "type": "audio",
-    "creator": "Leo",
-    "title": "Nullam porttitor lacus at turpis.",
-    "created": "1490566860",
-    "last_updated": "1501563414"
-  },
-  {
-    "_id": "ca08325f5f1941178ae054855080daf3",
-    "type": "video",
-    "creator": "April",
-    "title": "Sed accumsan felis.",
-    "created": "1495896168",
-    "last_updated": "1504358686"
-  },
-  {
-    "_id": "7819e90c70a94c96866e3c479d65ed42",
-    "type": "image",
-    "creator": "Mikey",
-    "title": "Etiam faucibus cursus urna.",
-    "created": "1506034981",
-    "last_updated": "1496955483"
-  },
-  {
-    "_id": "3b733bdb22824f35b17efcfe05fd33c3",
-    "type": "image",
-    "creator": "Donnie",
-    "title": "Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-    "created": "1510322396",
-    "last_updated": "1488073017"
-  },
-  {
-    "_id": "b9866e094226462a88f54f5ff578a7b4",
-    "type": "audio",
-    "creator": "Splinter",
-    "title": "In blandit ultrices enim.",
-    "created": "1497643399",
-    "last_updated": "1506485482"
-  },
-  {
-    "_id": "719fc43e9fb64141ac3dcac847b818dc",
-    "type": "audio",
-    "creator": "Donnie",
-    "title":
-      "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    "created": "1496271121",
-    "last_updated": "1513703080"
-  },
-  {
-    "_id": "5add4c16de71451fb8200722c58ad7ac",
-    "type": "video",
-    "creator": "Mikey",
-    "title": "Vestibulum sed magna at nunc commodo placerat.",
-    "created": "1512279792",
-    "last_updated": "1514847247"
-  },
-  {
-    "_id": "3cfafe266828409aa19e2e40c060571f",
-    "type": "image",
-    "creator": "Mikey",
-    "title":
-      "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-    "created": "1497424997",
-    "last_updated": "1509305106"
-  },
-  {
-    "_id": "6fda250b10a548c0ad9faa6702b919c3",
-    "type": "image",
-    "creator": "Raph",
-    "title": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-    "created": "1510913278",
-    "last_updated": "1506539656"
-  },
-  {
-    "_id": "d0046db1d25e4d9f851ffd6d2e9bbb7c",
-    "type": "audio",
-    "creator": "Splinter",
-    "title": "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
-    "created": "1510500350",
-    "last_updated": "1500140727"
-  },
-  {
-    "_id": "53c5d078833a4de98c8206b40640172d",
-    "type": "audio",
-    "creator": "Leo",
-    "title": "Vivamus tortor.",
-    "created": "1511951554",
-    "last_updated": "1512195298"
-  },
-  {
-    "_id": "b9077acb44224ed9b9c6d6c163a48f6a",
-    "type": "audio",
-    "creator": "Splinter",
-    "title": "Maecenas pulvinar lobortis est.",
-    "created": "1503213885",
-    "last_updated": "1488152033"
-  },
-  {
-    "_id": "036836b4e10546fd971638b79e545ec2",
-    "type": "video",
-    "creator": "Donnie",
-    "title":
-      "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
-    "created": "1513351305",
-    "last_updated": "1516283936"
-  },
-  {
-    "_id": "9dab809bd0614c0ca541846f2e87b238",
-    "type": "video",
-    "creator": "Donnie",
-    "title":
-      "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.",
-    "created": "1486872575",
-    "last_updated": "1514611407"
-  },
-  {
-    "_id": "0030292aa6a7403ea2c75a6f04d21e1b",
-    "type": "video",
-    "creator": "April",
-    "title": "In hac habitasse platea dictumst.",
-    "created": "1486383550",
-    "last_updated": "1499236847"
-  },
-  {
-    "_id": "d355285a3a124d1b8c2bfa5f3f689756",
-    "type": "image",
-    "creator": "Leo",
-    "title": "Morbi non lectus.",
-    "created": "1514080036",
-    "last_updated": "1504702839"
-  },
-  {
-    "_id": "a5f20d373f2d4a619081af7d58766e69",
-    "type": "image",
-    "creator": "Leo",
-    "title": "Suspendisse potenti.",
-    "created": "1492165233",
-    "last_updated": "1510608612"
-  },
-  {
-    "_id": "7ff0563eda47438094e1358cbf8f9338",
-    "type": "video",
-    "creator": "Leo",
-    "title": "Duis mattis egestas metus.",
-    "created": "1513947719",
-    "last_updated": "1515068091"
-  },
-  {
-    "_id": "9cacb425f0ae444990a574082b27d51f",
-    "type": "video",
-    "creator": "April",
-    "title": "Sed ante.",
-    "created": "1487833805",
-    "last_updated": "1486554611"
-  },
-  {
-    "_id": "e6c88c1344d4405e859a738bcc952b4d",
-    "type": "image",
-    "creator": "Donnie",
-    "title": "Praesent lectus.",
-    "created": "1514568661",
-    "last_updated": "1495358206"
-  },
-  {
-    "_id": "b7aee074eed64e27a31107fbc75294a8",
-    "type": "audio",
-    "creator": "April",
-    "title": "Pellentesque ultrices mattis odio.",
-    "created": "1487220822",
-    "last_updated": "1495409264"
-  },
-  {
-    "_id": "2fd8af9f858544d1a67697b13334f138",
-    "type": "image",
-    "creator": "Splinter",
-    "title": "Donec posuere metus vitae ipsum.",
-    "created": "1493740306",
-    "last_updated": "1517569377"
-  },
-  {
-    "_id": "aade79a5fa614673a5379b99648b0c40",
-    "type": "audio",
-    "creator": "Mikey",
-    "title": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
-    "created": "1486650503",
-    "last_updated": "1505670401"
-  },
-  {
-    "_id": "692aec8147be401faf00bfbdddc7ad77",
-    "type": "image",
-    "creator": "Leo",
-    "title": "Nulla mollis molestie lorem.",
-    "created": "1502040812",
-    "last_updated": "1498518613"
-  },
-  {
-    "_id": "ca4423eaf4e949ecb41a3113abe56f22",
-    "type": "audio",
-    "creator": "Donnie",
-    "title":
-      "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
-    "created": "1519633875",
-    "last_updated": "1493594985"
-  },
-  {
-    "_id": "d44877c24e1c4b4db2e38372ae8dc981",
-    "type": "audio",
-    "creator": "Splinter",
-    "title": "In hac habitasse platea dictumst.",
-    "created": "1508319604",
-    "last_updated": "1496793607"
-  },
-  {
-    "_id": "59ed4cd106f94fc0bad7d5e387a13c5f",
-    "type": "video",
-    "creator": "Mikey",
-    "title": "Nulla nisl.",
-    "created": "1492523262",
-    "last_updated": "1486322429"
-  },
-  {
-    "_id": "7d83279cff974d81bed2375437155b55",
-    "type": "image",
-    "creator": "Donnie",
-    "title": "Cras pellentesque volutpat dui.",
-    "created": "1513644688",
-    "last_updated": "1506592799"
-  },
-  {
-    "_id": "dea43c939e864c3ba9aad372714884a3",
-    "type": "audio",
-    "creator": "April",
-    "title": "In eleifend quam a odio.",
-    "created": "1498087078",
-    "last_updated": "1486491177"
-  },
-  {
-    "_id": "027801be182340dc826e0ce451f290a6",
-    "type": "image",
-    "creator": "Splinter",
-    "title": "Praesent id massa id nisl venenatis lacinia.",
-    "created": "1504315383",
-    "last_updated": "1497487523"
-  },
-  {
-    "_id": "64b0003127a54d8f90b78856197d88bc",
-    "type": "video",
-    "creator": "Mikey",
-    "title": "Etiam faucibus cursus urna.",
-    "created": "1513278803",
-    "last_updated": "1494315146"
+    "created": 1518968555000,
+    "last_updated": 1518968556000
   }
 ]

@@ -47,10 +47,23 @@ const readFile = file =>
     reader.readAsDataURL(file);
   });
 
-const getLocalUrl = res =>
-  res.blob().then(blob => {
-    const url = URL.createObjectURL(blob);
-    return url;
-  });
+const getLocalUrl = blob => URL.createObjectURL(blob);
 
-export { getFileType, getMediaType, readFile, getLocalUrl };
+const packageData = ({ _id, file, title, description }) => {
+  const payload = new FormData();
+
+  if (_id) {
+    payload.append('_id', _id);
+  }
+
+  payload.append('title', title);
+  payload.append('description', description);
+
+  if (file) {
+    payload.append('blob', file);
+  }
+
+  return payload;
+};
+
+export { getFileType, getMediaType, packageData, readFile, getLocalUrl };

@@ -1,16 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import Input from './Input';
+
+// Material-UI components
+import Button from 'material-ui/Button';
+import { FormControl } from 'material-ui/Form';
+import IconButton from 'material-ui/IconButton';
+import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
+import Snackbar from 'material-ui/Snackbar';
+import TextField from 'material-ui/TextField';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
+// FontAwesome Icons
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faGithub from '@fortawesome/fontawesome-free-brands/faGithub';
+
 import {
-  ButtonLikeText,
   Fields,
   Form,
+  GithubButton,
   Heading2,
+  Register,
+  Spacer,
   Wrapper,
-  Message,
 } from './styled';
+
 import actions from './actions';
+
+const githubIcon = <FontAwesomeIcon icon={faGithub} />;
 
 const MIN_PASSWORD_LENGTH = process.env.NODE_ENV === 'development' ? 1 : 6;
 const MIN_USERNAME_LENGTH = process.env.NODE_ENV === 'development' ? 1 : 6;
@@ -19,6 +37,7 @@ class Login extends React.Component {
   static propTypes = {
     setUser: PropTypes.func.isRequired,
   };
+
   state = {
     register: false,
     username: '',
@@ -27,6 +46,7 @@ class Login extends React.Component {
     redirect: false,
     message: { show: false, error: false, text: '' },
   };
+
   handleChange = e => {
     const { name, value } = e.target;
     this.setState(() => ({
@@ -38,48 +58,64 @@ class Login extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    /* eslint-disable no-console */
     if (this.state.register) {
       const { username, password1, password2 } = this.state;
-      console.log('register:', this.state);
-      actions.register({ username, password1, password2 }).then(json => {
-        console.log('register response:', json);
-        if (json.error) {
-          this.setState({
-            message: { show: true, error: true, text: json.error },
-          });
-        } else {
-          this.setState({
-            register: false,
-            message: {
-              show: true,
-              error: false,
-              text: 'Successfully Registered',
-            },
-          });
-        }
-      });
-    } else {
-      const { username, password1 } = this.state;
-      console.log('login:', this.state);
-      actions.login({ username, password: password1 }).then(json => {
-        console.log('login response:', json);
-        if (json.error) {
-          this.setState({
+      actions
+        .register({ username, password1, password2 })
+        .then(json => {
+          if (json.error) {
+            this.setState({
+              message: { show: true, error: true, text: json.error },
+            });
+          } else {
+            this.setState({
+              register: false,
+              message: {
+                show: true,
+                error: false,
+                text: 'Successfully Registered',
+              },
+            });
+          }
+        })
+        .catch(() => {
+          this.setState(() => ({
             message: {
               show: true,
               error: true,
-              text: json.error,
             },
-          });
-          this.props.setUser(null);
-        } else {
-          this.props.setUser(json);
-          this.setState({ redirect: '/' });
-        }
-      });
+          }));
+        });
+    } else {
+      const { username, password1 } = this.state;
+
+      actions
+        .login({ username, password: password1 })
+        .then(json => {
+          if (json.error) {
+            this.setState({
+              message: {
+                show: true,
+                error: true,
+                text: json.error,
+              },
+            });
+            this.props.setUser(null);
+          } else {
+            this.props.setUser(json);
+            this.setState({ redirect: '/' });
+          }
+        })
+        .catch(() => {
+          this.setState(() => ({
+            message: {
+              show: true,
+              error: true,
+              text: 'Login failed',
+            },
+          }));
+        });
     }
-    /* eslint-enable */
 
     this.setState(() => ({
       username: '',
@@ -95,6 +131,20 @@ class Login extends React.Component {
       password1: '',
       password2: '',
       message: { ...this.state.message, show: false },
+    }));
+  };
+
+  handleMouseDownPassword = e => {
+    e.preventDefault();
+  };
+
+  handleClickShowPassword = () => {
+    this.setState({ showPassword: !this.state.showPassword });
+  };
+
+  handleClose = () => {
+    this.setState(() => ({
+      message: { show: false, text: '' },
     }));
   };
 
@@ -116,58 +166,101 @@ class Login extends React.Component {
 
     return (
       <Wrapper>
-        <Message show={message.show} error={message.error}>
-          {message.text}
-        </Message>
         <Form onSubmit={this.handleSubmit}>
           <Heading2>{!register ? 'Login' : 'Register'}</Heading2>
           <Fields>
-            <Input
+            <TextField
+              id="username"
               label={
                 register
                   ? `Username (min ${MIN_USERNAME_LENGTH} characters):`
                   : 'Username:'
               }
               name="username"
-              onChange={this.handleChange}
               value={username}
-              autofocus
-            />
-            <Input
-              label={
-                register
-                  ? `Password (min ${MIN_PASSWORD_LENGTH} characters):`
-                  : 'Password:'
-              }
-              name="password1"
-              type="password"
               onChange={this.handleChange}
-              value={password1}
+              margin="normal"
+              fullWidth
+              autoFocus
             />
-            {register && (
+            <FormControl margin="normal">
+              <InputLabel htmlFor="password1">
+                {register
+                  ? `Password (min ${MIN_PASSWORD_LENGTH} characters):`
+                  : 'Password:'}
+              </InputLabel>
               <Input
+                id="password1"
+                name="password1"
+                type={this.state.showPassword ? 'text' : 'password'}
+                value={password1}
+                onChange={this.handleChange}
+                fullWidth
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="Toggle password visibility"
+                      onClick={this.handleClickShowPassword}
+                      onMouseDown={this.handleMouseDownPassword}
+                    >
+                      {this.state.showPassword ? (
+                        <VisibilityOff />
+                      ) : (
+                        <Visibility />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            {register && (
+              <TextField
+                id="password2"
                 label="Repeat password:"
                 name="password2"
-                type="password"
-                onChange={this.handleChange}
+                type={this.state.showPassword ? 'text' : 'password'}
                 value={password2}
+                onChange={this.handleChange}
+                fullWidth
+                margin="normal"
               />
             )}
           </Fields>
-          <Input
-            disabled={isSubmitDisabled}
+          <Button
+            variant="raised"
+            color="primary"
             name="submit"
             type="submit"
+            disabled={isSubmitDisabled}
             onChange={this.handleChange}
-            value={register ? 'Register' : 'Login'}
-          />
+          >
+            {register ? 'Register' : 'Login'}
+          </Button>
         </Form>
-        <ButtonLikeText onClick={this.switchToRegister}>
+        <Spacer />
+        <GithubButton href={loginGithubUrl}>
+          {githubIcon}&nbsp;&nbsp;GitHub Login
+        </GithubButton>
+        <Spacer />
+        <Register variant="body2" onClick={this.switchToRegister}>
           {!register
             ? 'Click to register new user'
             : 'Click to login as an existing user'}
-        </ButtonLikeText>
-        <a href={loginGithubUrl}>Login using GitHub</a>
+        </Register>
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={message.show}
+          onClose={this.handleClose}
+          autoHideDuration={3000}
+          SnackbarContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={
+            <span id="message-id">
+              {message.text || 'Something went wrong :('}
+            </span>
+          }
+        />
       </Wrapper>
     );
   }

@@ -1,9 +1,27 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import 'jest-styled-components';
 
-import Articles, { renderRows } from '.';
+import Articles from './Articles';
 
-const routerProps = {
+const articles = [
+  {
+    _id: '5abe00d98c3fc76f593741e0',
+    creator: { _id: '5abe00d98c3fc76f593741df', username: 'sys' },
+    topic: 'Voyage',
+    sub_topic: 'About this wiki',
+    title: 'Home',
+  },
+  {
+    _id: '5abe00d98c3fc76f593741e2',
+    creator: { _id: '5abe00d98c3fc76f593741df', username: 'sys' },
+    topic: 'Voyage',
+    sub_topic: 'About Voyages',
+    title: 'About Voyages',
+  },
+];
+
+const props = {
   history: {
     push: jest.fn(),
   },
@@ -12,48 +30,14 @@ const routerProps = {
   },
 };
 
-const data = [
-  {
-    _id: '123abc',
-    content: 'Lorem ipsum',
-    creator: 'Foo',
-  },
-  {
-    _id: '456def',
-    content: 'Dolor sit',
-    creator: 'Baz',
-  },
-];
+describe('Articles list', () => {
+  it('should match snapshot', () => {
+    jest
+      .spyOn(Articles.prototype, 'fetchData')
+      .mockImplementation(() => new Promise(resolve => resolve(articles)));
 
-const noop = () => {};
+    const wrapper = shallow(<Articles {...props} />);
 
-describe('Articles Component', () => {
-  it('should renderRows', () => {
-    const wrapper = renderRows(data, noop);
-
-    expect(wrapper.length).toEqual(2);
-  });
-
-  it('should handle empty data', () => {
-    const wrapper = renderRows([], noop);
-
-    expect(wrapper.length).toEqual(0);
-  });
-
-  it('should render Button', () => {
-    const wrapper = shallow(<Articles {...routerProps} />);
-
-    const button = wrapper.find('Button');
-    expect(button.length).toEqual(1);
-  });
-
-  xit('playground', () => {
-    const wrapper = shallow(<Articles {...routerProps} />);
-
-    wrapper.instance().handleNewPage();
-
-    expect(wrapper.instance().props.history.push.mock.calls[0][0]).toEqual(
-      `${routerProps.location.pathname}/new`
-    );
+    expect(wrapper).toMatchSnapshot();
   });
 });

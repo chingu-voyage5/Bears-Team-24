@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 // Material-UI components
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 import Select from 'material-ui/Select';
-import TextField from 'material-ui/TextField';
+
+import ListItemInput from '../ListItemInput';
 
 import { Avatar, AvatarWrapper, Buttons, Label, Wrapper } from './styled';
 
 import actions from './actions';
 import roles from './roles';
 import avatarPlaceholder from './avatar_placeholder.png';
+
+import { SMALL_WINDOW } from '../config';
 
 const propTypes = {
   isAdmin: PropTypes.bool,
@@ -30,9 +34,26 @@ class UserPage extends React.Component {
   };
 
   componentDidMount = () => {
-    actions.getUser(this.props.userId).then(({ user }) => {
-      this.setState(() => ({ user, initUser: { ...user } }));
-    });
+    actions
+      .getUser(this.props.userId)
+      .then(({ user }) => {
+        this.setState(() => ({ user, initUser: { ...user } }));
+      })
+      // eslint-disable-next-line no-console
+      .catch(e => console.error('getUser failed:', e));
+
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    this.setState(() => ({
+      mobile: window.innerWidth <= SMALL_WINDOW,
+    }));
   };
 
   handleSave = () => {
@@ -70,7 +91,7 @@ class UserPage extends React.Component {
   };
 
   render() {
-    const { isAdmin, edited, user } = this.state;
+    const { isAdmin, edited, user, mobile } = this.state;
     const { _id, avatar, role, username, email, bio } = user;
 
     return (
@@ -80,18 +101,23 @@ class UserPage extends React.Component {
             <Avatar src={avatar || avatarPlaceholder} alt={username} />
           </AvatarWrapper>
           <List>
-            <ListItem />
-            <ListItem>
-              <Label>Id:</Label>
-              <ListItemText primary={_id} />
-            </ListItem>
-            <ListItem>
-              <Label>Username:</Label>
-              <ListItemText primary={username} />
-            </ListItem>
-            <ListItem>
-              <Label>Role:</Label>
-              {isAdmin ? (
+            <ListItemInput
+              mobile={mobile}
+              label="ID"
+              name="id"
+              value={_id || ''}
+              disabled
+            />
+            <ListItemInput
+              mobile={mobile}
+              label="Username"
+              name="username"
+              value={username || ''}
+              disabled
+            />
+            {isAdmin ? (
+              <ListItem>
+                <Label>Role:</Label>
                 <ListItemText>
                   <Select
                     native
@@ -105,30 +131,30 @@ class UserPage extends React.Component {
                     {roles.map(r => <option key={r}>{r}</option>)}
                   </Select>
                 </ListItemText>
-              ) : (
-                <ListItemText primary={role} />
-              )}
-            </ListItem>
-            <ListItem>
-              <Label>Email:</Label>
-              <ListItemText primary={email} />
-            </ListItem>
-            <ListItem>
-              <Label>Bio:</Label>
-              {isAdmin ? (
-                <ListItemText>
-                  <TextField
-                    value={bio}
-                    multiline
-                    fullWidth
-                    onChange={this.handleChange}
-                    name="bio"
-                  />
-                </ListItemText>
-              ) : (
-                <ListItemText primary={bio} />
-              )}
-            </ListItem>
+              </ListItem>
+            ) : (
+              <ListItemInput
+                mobile={mobile}
+                label="Role"
+                name="role"
+                value={role || ''}
+                disabled
+              />
+            )}
+            <ListItemInput
+              mobile={mobile}
+              label="Email"
+              name="email"
+              value={email || ''}
+              disabled
+            />
+            <ListItemInput
+              mobile={mobile}
+              label="Bio"
+              name="bio"
+              value={bio || ''}
+              disabled={!isAdmin}
+            />
           </List>
         </Paper>
         {isAdmin && (
@@ -160,4 +186,4 @@ UserPage.propTypes = propTypes;
 
 UserPage.defaultProps = defaultProps;
 
-export default UserPage;
+export default withRouter(UserPage);

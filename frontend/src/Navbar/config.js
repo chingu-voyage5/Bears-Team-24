@@ -5,9 +5,9 @@ export default [
     label: 'Home',
   },
   {
-    to: '/pages',
-    stem: 'pages',
-    label: 'Pages',
+    to: '/articles',
+    stem: 'articles',
+    label: 'Articles',
   },
   {
     to: '/users',

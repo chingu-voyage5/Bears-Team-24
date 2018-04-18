@@ -1,42 +1,44 @@
 import React from 'react';
-import JSONToHTML from '../JSONHandle';
+import PropTypes from 'prop-types';
+import SingleArticle from './SingleArticle';
+import { getArticle } from './actions';
 
 export default class ContentArea extends React.Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+  };
   constructor(props) {
     super(props);
-
     this.state = {
-      innerHTML: undefined,
+      content: '',
     };
+  }
 
-    this.loadJSON = this.loadJSON.bind(this);
+  componentDidMount() {
+    if (this.props.match.params.id) {
+      this.loadArticle(this.props.match.params.id);
+    }
   }
-  componentWillMount() {
-    const grabbedHTML = this.loadJSON(); //   fetchData(this.props.selectedUrl) ?
-    this.setState({ innerHTML: grabbedHTML });
-  }
-  loadJSON(location = './db/content/Example-Page.json') {
-    const self = this;
-    const req = new Request(location);
 
-    fetch(req)
-      .then(response => response.json())
-      .then(responseJSON => {
-        const resultHTML = JSONToHTML(responseJSON.HTMLTree);
-        self.setState({ innerHTML: resultHTML });
-      });
-    return '<p>loading......</p>';
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.id) {
+      this.loadArticle(nextProps.match.params.id);
+    }
   }
-  // componentWillUpdate  (){....}    -- copy/paste?
-  //   -if user clicks on another link in sidebar: need reload from new url
+
+  loadArticle(id) {
+    getArticle(id).then(article => {
+      this.setState({ content: article.content });
+    });
+  }
 
   render() {
+    const { content } = this.state;
     return (
       <div>
-        <section
-          className="content-area"
-          dangerouslySetInnerHTML={{ __html: this.state.innerHTML }}
-        />
+        <section className="content-area">
+          {content ? <SingleArticle content={content} /> : 'Loading...'}
+        </section>
       </div>
     );
   }
