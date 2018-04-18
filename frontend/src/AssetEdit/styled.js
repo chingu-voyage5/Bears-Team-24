@@ -54,16 +54,6 @@ export const InvisibleInput = styled.input.attrs({
 `;
 InvisibleInput.displayName = 'InvisibleInput';
 
-export const Label = styled.div`
-  font-weight: bold;
-  min-width: 20%;
-
-  @media (max-width: 768px) {
-    min-width: 25%;
-  }
-`;
-Label.displayName = 'Label';
-
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
