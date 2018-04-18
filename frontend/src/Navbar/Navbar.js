@@ -145,11 +145,11 @@ class Navbar extends React.Component {
                 indicatorColor="secondary"
                 fullWidth={false}
               >
-                <TabMod idx={0} exact classes={classes} />
-                {isLoggedIn && <TabMod idx={1} classes={classes} />}
-                {isLoggedIn && <TabMod idx={2} classes={classes} />}
-                {isLoggedIn && <TabMod idx={3} classes={classes} />}
-                <TabMod idx={4} classes={classes} />
+                <TabMod value={0} exact classes={classes} />
+                {isLoggedIn && <TabMod value={1} classes={classes} />}
+                {isLoggedIn && <TabMod value={2} classes={classes} />}
+                {isLoggedIn && <TabMod value={3} classes={classes} />}
+                <TabMod value={4} classes={classes} />
               </Tabs>
             )}
             <Greeting>Hi,&nbsp;{username}</Greeting>
