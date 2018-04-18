@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { getArticleList } from './actions';
 import ContentArea from '../ContentArea';
@@ -21,24 +21,20 @@ export default class CMSContainer extends React.Component {
     const { articleList } = this.state;
     return (
       <Wrapper>
-        <BrowserRouter>
-          <React.Fragment>
-            <Route
-              path="/cms/:id?"
-              render={p => <Sidebar {...p} articles={articleList} />}
-            />
-            <Route
-              exact
-              path="/cms"
-              render={() => (
-                <div>
-                  <h1>Welcome</h1>
-                </div>
-              )}
-            />
-            <Route path="/cms/:id" component={ContentArea} />
-          </React.Fragment>
-        </BrowserRouter>
+        <Route
+          path="/cms/:id?"
+          render={p => <Sidebar {...p} articles={articleList} />}
+        />
+        <Route
+          exact
+          path="/cms"
+          render={() => (
+            <div>
+              <h1>Welcome</h1>
+            </div>
+          )}
+        />
+        <Route path="/cms/:id" component={ContentArea} />
       </Wrapper>
     );
   }
