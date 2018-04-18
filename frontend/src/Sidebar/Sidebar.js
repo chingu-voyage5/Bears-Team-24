@@ -11,7 +11,7 @@ export default class Sidebar extends React.Component {
   };
 
   static defaultProps = {
-    match: '',
+    match: {},
   };
   constructor(props) {
     super(props);
@@ -25,10 +25,10 @@ export default class Sidebar extends React.Component {
     let selectedArticlePath = [];
     if (nextProps.match.params.id) {
       const { id } = nextProps.match.params;
-      const match = articles.filter(article => article._id === id);
-      if (match.length) {
+      const selectedArticles = articles.filter(article => article._id === id);
+      if (selectedArticles.length) {
         // eslint-disable-next-line camelcase
-        const { topic, sub_topic, title } = match[0];
+        const { topic, sub_topic, title } = selectedArticles[0];
         selectedArticlePath = [topic, title].concat(sub_topic.split('>'));
       }
     }
@@ -37,10 +37,7 @@ export default class Sidebar extends React.Component {
     this.setState({ articlesHtml });
   }
   shouldComponentUpdate(nextProps) {
-    if (nextProps.articles.length === this.props.articles.length) {
-      return false;
-    }
-    return true;
+    return nextProps.articles.length !== this.props.articles.length;
   }
 
   render() {
