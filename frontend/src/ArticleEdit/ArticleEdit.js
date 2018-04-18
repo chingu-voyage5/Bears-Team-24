@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 
 // Material-UI components
 import Button from 'material-ui/Button';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 import Snackbar from 'material-ui/Snackbar';
 import Tabs, { Tab } from 'material-ui/Tabs';
-import TextField from 'material-ui/TextField';
+
+import ListItemInput from '../ListItemInput';
 
 import actions from './actions';
 
@@ -17,11 +18,12 @@ import {
   ContentWrapper,
   EditorWrapper,
   Heading1,
-  Label,
   Preview,
   Textarea,
   Wrapper,
 } from './styled';
+
+import { SMALL_WINDOW } from '../config';
 
 const propTypes = {
   id: PropTypes.string,
@@ -54,6 +56,19 @@ class ArticleEdit extends React.Component {
         // eslint-disable-next-line no-console
         .catch(e => console.error('get article for edit failed:', e));
     }
+
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    this.setState(() => ({
+      mobile: window.innerWidth <= SMALL_WINDOW,
+    }));
   };
 
   // eslint-disable-next-line
@@ -115,47 +130,35 @@ class ArticleEdit extends React.Component {
   };
 
   render() {
-    const { edit, article, message, horizontal, vertical } = this.state;
+    const { edit, article, message, horizontal, vertical, mobile } = this.state;
     const { empty } = this.props;
 
     return (
-      <Wrapper>
+      <Wrapper mobile={mobile}>
         <EditorWrapper>
           <Heading1>{empty ? 'Create new article' : 'Edit article'}</Heading1>
           <List>
-            <ListItem>
-              <Label>Title:</Label>
-              <ListItemText>
-                <TextField
-                  fullWidth
-                  value={article.title}
-                  name="title"
-                  onChange={this.handleFieldChange}
-                />
-              </ListItemText>
-            </ListItem>
-            <ListItem>
-              <Label>Topic:</Label>
-              <ListItemText>
-                <TextField
-                  fullWidth
-                  value={article.topic}
-                  name="topic"
-                  onChange={this.handleFieldChange}
-                />
-              </ListItemText>
-            </ListItem>
-            <ListItem>
-              <Label>Sub topic:</Label>
-              <ListItemText>
-                <TextField
-                  fullWidth
-                  value={article.sub_topic}
-                  name="sub_topic"
-                  onChange={this.handleFieldChange}
-                />
-              </ListItemText>
-            </ListItem>
+            <ListItemInput
+              mobile={mobile}
+              label="Title"
+              name="title"
+              value={article.title || ''}
+              onChange={this.handleFieldChange}
+            />
+            <ListItemInput
+              mobile={mobile}
+              label="Topic"
+              name="topic"
+              value={article.topic || ''}
+              onChange={this.handleFieldChange}
+            />
+            <ListItemInput
+              mobile={mobile}
+              label="Sub topic"
+              name="sub_topic"
+              value={article.sub_topic || ''}
+              onChange={this.handleFieldChange}
+            />
           </List>
           <ContentWrapper>
             <AppBar position="static">

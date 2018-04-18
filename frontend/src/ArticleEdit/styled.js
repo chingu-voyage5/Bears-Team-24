@@ -64,5 +64,6 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   margin: auto;
   max-width: 60rem;
-  padding: 1rem;
+  padding: ${p => (p.mobile ? 0 : '1rem')};
+  padding-top: 1rem;
 `;
