@@ -85,6 +85,14 @@ class AssetEdit extends React.Component {
       this.setState({ creator: this.props.user });
     }
 
+    window.addEventListener('resize', this.handleResize);
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
     this.setState(() => ({
       mobile: window.innerWidth <= SMALL_WINDOW,
     }));
