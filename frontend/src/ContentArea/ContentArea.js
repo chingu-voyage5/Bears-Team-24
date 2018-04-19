@@ -1,62 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SingleArticle from './SingleArticle';
+import { getArticle } from './actions';
 
 export default class ContentArea extends React.Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+  };
   constructor(props) {
     super(props);
     this.state = {
-      view: 'Article not found',
+      content: '',
     };
   }
 
   componentDidMount() {
-    const { articleId } = this.props;
-
-    fetch(`/api/v1/articles/${articleId}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.length > 0) {
-          this.setState({ view: <SingleArticle content={data[0].content} /> });
-        }
-      })
-      .catch(err => {
-        this.setState({ view: err });
-      });
-  }
-
-  componentDidUpdate(prevProps) {
-    const { articleId } = this.props;
-
-    if (prevProps.articleId !== articleId) {
-      fetch(`/api/v1/articles/${articleId}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.length > 0) {
-            this.setState({
-              view: <SingleArticle content={data[0].content} />,
-            });
-          }
-        })
-        .catch(err => {
-          this.setState({ view: err });
-        });
+    if (this.props.match.params.id) {
+      this.loadArticle(this.props.match.params.id);
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.id) {
+      this.loadArticle(nextProps.match.params.id);
+    }
+  }
+
+  loadArticle(id) {
+    getArticle(id).then(article => {
+      this.setState({ content: article.content });
+    });
+  }
+
   render() {
+    const { content } = this.state;
     return (
       <div>
-        <section className="content-area">{this.state.view}</section>
+        <section className="content-area">
+          {content ? <SingleArticle content={content} /> : 'Loading...'}
+        </section>
       </div>
     );
   }
 }
-
-ContentArea.propTypes = {
-  articleId: PropTypes.string,
-};
-
-ContentArea.defaultProps = {
-  articleId: '',
-};

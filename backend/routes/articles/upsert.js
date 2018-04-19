@@ -2,12 +2,14 @@
 /* eslint-disable camelcase */
 const Article = require('../../models/article');
 const { Topic, SubTopic } = require('../../models/topic');
+const History = require('../../models/history');
 
 const upsert = async (req, res) => {
   let newArticle = false;
   let article;
   let topic;
   let sub_topic;
+  let sizePre = 0;
   if (req.body._id) {
     article = await Article.findById(req.body._id)
       .populate('creator')
@@ -15,6 +17,7 @@ const upsert = async (req, res) => {
       .populate('sub_topic');
     topic = article.topic;
     sub_topic = article.sub_topic;
+    sizePre = article.content.length;
   } else {
     newArticle = true;
     article = new Article();
@@ -39,8 +42,21 @@ const upsert = async (req, res) => {
   }
   article.topic = topic._id;
   article.sub_topic = sub_topic._id;
-  await article.save();
-  res.json({
+  try {
+    await article.save();
+    const history = new History({
+      contributor: req.user._id,
+      article: article._id,
+      sizePre,
+      sizePost: article.content.length,
+    });
+    await history.save();
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('article upsert failed:', e);
+    return res.json({ success: false, error: e.messageText });
+  }
+  return res.json({
     success: true,
     _id: article._id,
     topic_id: article.topic,

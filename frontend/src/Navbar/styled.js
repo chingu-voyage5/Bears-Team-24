@@ -7,6 +7,22 @@ const activeClassName = 'selected';
 const $primaryLinkColor = '#bbb';
 const $activeLinkColor = '#fff';
 
+export const DrawerLink = styled(NavLink).attrs({
+  activeClassName,
+})`
+  color: #333;
+
+  &:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &.${activeClassName} {
+    color: #333;
+    font-weight: 600;
+  }
+`;
+
 export const Greeting = styled.span`
   margin-left: auto;
 `;

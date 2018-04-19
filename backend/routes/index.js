@@ -36,12 +36,8 @@ router.get(
   }
 );
 
-router.get(
-  '/api/v0/articles',
-  auth.isLoggedIn,
-  catchAsyncErrors(articles.getAll)
-);
-router.get('/api/v0/articles/:id', auth.isLoggedIn, articles.getDetail);
+router.get('/api/v0/articles', catchAsyncErrors(articles.getAll));
+router.get('/api/v0/articles/:id', articles.getDetail);
 router.post(
   '/api/v0/articles/:id*?',
   auth.isLoggedIn,
