@@ -12,6 +12,7 @@ import ArticleEdit from './ArticleEdit';
 import Assets from './Assets';
 import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';
+import TopicEdit from './TopicEdit';
 import { UserList, UserPage } from './UserList';
 
 import theme from './theme';
@@ -157,6 +158,11 @@ class App extends Component {
                 isLoggedIn={isLoggedIn}
                 path="/assets/:id"
                 render={props => <AssetEdit id={props.match.params.id} />}
+              />
+              <AuthRoute
+                isLoggedIn={isLoggedIn}
+                path="/topic"
+                component={TopicEdit}
               />
               <Route path="/cms" component={CMSContainer} />
               <Route

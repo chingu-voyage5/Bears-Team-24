@@ -20,6 +20,11 @@ export default [
     label: 'Assets',
   },
   {
+    to: '/topic',
+    stem: 'topic',
+    label: 'Topic',
+  },
+  {
     to: '/cms',
     stem: 'cms',
     label: 'CMS',

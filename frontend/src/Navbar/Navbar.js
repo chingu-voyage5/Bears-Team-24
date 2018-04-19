@@ -154,7 +154,8 @@ class Navbar extends React.Component {
                 {isLoggedIn && <TabMod value={1} classes={classes} />}
                 {isLoggedIn && <TabMod value={2} classes={classes} />}
                 {isLoggedIn && <TabMod value={3} classes={classes} />}
-                <TabMod value={4} classes={classes} />
+                {isLoggedIn && <TabMod value={4} classes={classes} />}
+                <TabMod value={5} classes={classes} />
               </Tabs>
             )}
             <Greeting>Hi,&nbsp;{username}</Greeting>
@@ -178,7 +179,7 @@ class Navbar extends React.Component {
             >
               <List>
                 {paths.map((path, i) => {
-                  if (i > 0 && i < 4 && !isLoggedIn) {
+                  if (i > 0 && i < paths.length - 1 && !isLoggedIn) {
                     return null;
                   }
                   return (
