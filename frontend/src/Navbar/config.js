@@ -22,7 +22,7 @@ export default [
   {
     to: '/topic',
     stem: 'topic',
-    label: 'Topic',
+    label: 'Topics',
   },
   {
     to: '/cms',
