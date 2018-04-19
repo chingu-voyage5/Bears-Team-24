@@ -8,6 +8,7 @@ const users = require('./users');
 const assets = require('./assets');
 const cms = require('./cms');
 const articles = require('./articles');
+const topics = require('./topics');
 
 const passport = require('passport');
 
@@ -34,6 +35,17 @@ router.get(
       process.env.NODE_ENV === 'production' ? '/' : 'http://127.0.0.1:3000';
     res.redirect(redir);
   }
+);
+
+router.get(
+  '/api/v1/topics',
+  auth.isLoggedIn,
+  catchAsyncErrors(topics.getTopics)
+);
+router.get(
+  '/api/v1/subtopics',
+  auth.isLoggedIn,
+  catchAsyncErrors(topics.getSubTopics)
 );
 
 router.get('/api/v0/articles', catchAsyncErrors(articles.getAll));
