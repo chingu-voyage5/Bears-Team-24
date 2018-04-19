@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 const propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
-  component: PropTypes.object,
+  component: PropTypes.func,
   redirect: PropTypes.string,
   render: PropTypes.func,
 };
@@ -25,7 +25,6 @@ const AuthRoute = ({
   if (renderer && isLoggedIn) {
     return <Route {...rest} render={renderer} />;
   }
-
   return (
     <Route
       {...rest}
