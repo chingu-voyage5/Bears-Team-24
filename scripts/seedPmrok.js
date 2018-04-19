@@ -4,15 +4,21 @@ const { Topic, SubTopic } = require('../backend/models/topic');
 
 const seedPmrok = async sys_id => {
   const topic = new Topic({ name: "PMRoK", order: 2 });
-  const about = new SubTopic({ name: "About this wiki", order: 1 });
-  const voyage = new SubTopic({ name: "About Voyages", order: 2 });
-  const manage = new SubTopic({ name: "Managing a Project", order: 3 });
-  const guide = new SubTopic({ name: "Guidance>Situational Guidance", order: 4});
-  const guidance = new SubTopic({ name: "Guidance", order: 5 });
-  const resources = new SubTopic({ name: "Resources", order: 6 });
-  const faq = new SubTopic({ name: "Resources>PM FAQ", order: 7 });
   try {
     await topic.save();
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('PMRoK topic failed:', e);
+    process.exit(1);
+  }
+  const about = new SubTopic({ parent: topic._id, name: "About this wiki", order: 1 });
+  const voyage = new SubTopic({ parent: topic._id, name: "About Voyages", order: 2 });
+  const manage = new SubTopic({ parent: topic._id, name: "Managing a Project", order: 3 });
+  const guide = new SubTopic({ parent: topic._id, name: "Guidance>Situational Guidance", order: 4});
+  const guidance = new SubTopic({ parent: topic._id, name: "Guidance", order: 5 });
+  const resources = new SubTopic({ parent: topic._id, name: "Resources", order: 6 });
+  const faq = new SubTopic({ parent: topic._id, name: "Resources>PM FAQ", order: 7 });
+  try {
     await about.save();
     await voyage.save();
     await manage.save();

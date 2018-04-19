@@ -4,16 +4,21 @@ const { Topic, SubTopic } = require('../backend/models/topic');
 
 const seedVoyage = async sys_id => {
   const topic = new Topic({ name: "Voyage", order: 1 });
-  const about = new SubTopic({ name: "About this wiki", order: 1 });
-  const voyage = new SubTopic({ name: "About Voyages", order: 2 });
-  const setup = new SubTopic({ name: "Project Setup", order: 3 });
-  const sprints = new SubTopic({ name: "Development Sprints", order: 4 });
-  const closure = new SubTopic({ name: "Project Closure", order: 5 });
-  const tools = new SubTopic({ name: "Tools and Resources", order: 6 });
-  const faq = new SubTopic({ name: "Tools and Resources>FAQ", order: 7 });
-
   try {
     await topic.save();
+  } catch (e) {
+    console.error('voyage topic save failed:', e);
+    process.exit(1);
+  }
+  const about = new SubTopic({ parent: topic._id, name: "About this wiki", order: 1 });
+  const voyage = new SubTopic({ parent: topic._id, name: "About Voyages", order: 2 });
+  const setup = new SubTopic({ parent: topic._id, name: "Project Setup", order: 3 });
+  const sprints = new SubTopic({ parent: topic._id, name: "Development Sprints", order: 4 });
+  const closure = new SubTopic({ parent: topic._id, name: "Project Closure", order: 5 });
+  const tools = new SubTopic({ parent: topic._id, name: "Tools and Resources", order: 6 });
+  const faq = new SubTopic({ parent: topic._id, name: "Tools and Resources>FAQ", order: 7 });
+
+  try {
     await about.save();
     await voyage.save();
     await setup.save();
