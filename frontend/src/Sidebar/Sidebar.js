@@ -4,6 +4,7 @@ import { getTree, getChildren } from './utils';
 
 import { Wrapper } from './styled';
 
+/* eslint-disable camelcase */
 export default class Sidebar extends React.Component {
   static propTypes = {
     articles: PropTypes.array.isRequired,
@@ -24,9 +25,11 @@ export default class Sidebar extends React.Component {
       const { id } = nextProps.match.params;
       const selectedArticles = articles.filter(article => article._id === id);
       if (selectedArticles.length) {
-        // eslint-disable-next-line camelcase
         const { topic, sub_topic, title } = selectedArticles[0];
-        selectedArticlePath = [topic, title].concat(sub_topic.split('>'));
+        selectedArticlePath = [topic, title];
+        if (sub_topic) {
+          selectedArticlePath.push(sub_topic.split('>'));
+        }
       }
     }
     const tree = getTree(articles);
@@ -41,3 +44,4 @@ export default class Sidebar extends React.Component {
     return <Wrapper>{this.state.articlesHtml}</Wrapper>;
   }
 }
+/* eslint-enable camelcase */
