@@ -8,8 +8,8 @@ export const Wrapper = styled.nav`
   display: flex;
   flex-direction: column;
   height: 100%;
-  flex-basis: 200px;
   font-size: 14px;
+  min-width: 250px;
 `;
 
 export const LI = styled.li`

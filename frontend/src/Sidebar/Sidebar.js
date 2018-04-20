@@ -36,9 +36,6 @@ export default class Sidebar extends React.Component {
     const articlesHtml = getChildren(tree, selectedArticlePath);
     this.setState({ articlesHtml });
   }
-  shouldComponentUpdate(nextProps) {
-    return nextProps.articles.length !== this.props.articles.length;
-  }
 
   render() {
     return <Wrapper>{this.state.articlesHtml}</Wrapper>;
