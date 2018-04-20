@@ -145,7 +145,7 @@ class Navbar extends React.Component {
             ) : (
               <Tabs
                 classes={{ root: classes.fullHeight }}
-                value={value}
+                value={value < 0 ? 0 : value}
                 onChange={this.handleIndicator}
                 indicatorColor="secondary"
                 fullWidth={false}
