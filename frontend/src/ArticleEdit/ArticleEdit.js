@@ -184,7 +184,9 @@ class ArticleEdit extends React.Component {
               </Paper>
             ) : (
               <Preview
-                dangerouslySetInnerHTML={{ __html: marked(article.content) }}
+                dangerouslySetInnerHTML={{
+                  __html: marked(article.content || ''),
+                }}
               />
             )}
           </ContentWrapper>
