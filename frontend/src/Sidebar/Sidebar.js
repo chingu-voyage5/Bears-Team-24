@@ -28,7 +28,9 @@ export default class Sidebar extends React.Component {
         const { topic, sub_topic, title } = selectedArticles[0];
         selectedArticlePath = [topic, title];
         if (sub_topic) {
-          selectedArticlePath.push(sub_topic.split('>'));
+          selectedArticlePath = selectedArticlePath.concat(
+            sub_topic.split('>')
+          );
         }
       }
     }
