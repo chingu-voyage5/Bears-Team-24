@@ -46,6 +46,12 @@ a:hover {
   padding: 0 5%;
 }
 
+@media (max-width: 900px) {
+  .content-area {
+    max-width: 100%;
+  }
+}
+
 .user-list,
 .user-page {
   padding: 0 20%;
