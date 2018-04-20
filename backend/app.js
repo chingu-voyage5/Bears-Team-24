@@ -17,10 +17,6 @@ const app = express();
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'frontend', 'build')));
-// Always return the main index.html, so react-router render the route in the client
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
-});
 
 app.use(cors());
 // Middlewares
@@ -62,6 +58,11 @@ app.use((req, res, next) => {
 });
 
 app.use(routes);
+
+// Always return the main index.html, so react-router render the route in the client
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
+});
 
 // create a http server from the app (this can be closed properly, unlike the express app)
 module.exports = http.createServer(app);
