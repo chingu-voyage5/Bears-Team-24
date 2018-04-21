@@ -16,8 +16,6 @@ import Wrapper, { TopicWrapper, SelectWrapper } from './styled';
 
 import { getTopics, getSubTopics, updateOrder } from './actions';
 
-const loadingTopic = { _id: '0', name: 'Loading...', order: 0, parent: '0' };
-
 /* eslint-disable camelcase */
 
 export default class TopicEdit extends React.Component {
@@ -70,7 +68,9 @@ export default class TopicEdit extends React.Component {
       this.state.topics.length === 0 ||
       this.state.sub_topics.length === 0 ||
       selectedTopic === null
-    ) return null;
+    ) {
+      return null;
+    }
     const topicList = this.state.topics.map(topic => (
       <MenuItem key={topic._id} value={topic}>
         {topic.name}
@@ -97,13 +97,16 @@ export default class TopicEdit extends React.Component {
         <h3>Topic and SubTopic ordering</h3>
         <TopicWrapper>
           1. Select a Topic:&nbsp;
-          <SelectWrapper value={selectedTopic} onChange={this.handleTopicSelect}>
+          <SelectWrapper
+            value={selectedTopic}
+            onChange={this.handleTopicSelect}
+          >
             {topicList}
           </SelectWrapper>
         </TopicWrapper>
         <p>
-          2. Set the order that you want the topics and subtopics to
-          appear in the CMS sidebar view
+          2. Set the order that you want the topics and subtopics to appear in
+          the CMS sidebar view
         </p>
         <Paper>
           <Table>
@@ -121,13 +124,11 @@ export default class TopicEdit extends React.Component {
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
-              {sub_topic_rows}
-            </TableBody>
+            <TableBody>{sub_topic_rows}</TableBody>
           </Table>
         </Paper>
       </Wrapper>
     );
-  };
+  }
 }
 /* eslint-enable camelcase */
