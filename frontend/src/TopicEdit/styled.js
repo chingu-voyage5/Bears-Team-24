@@ -1,20 +1,25 @@
 import styled from 'styled-components';
+import Select from 'material-ui/Select';
 
-const $sidebarBackground = '#e2e2e2';
+export const TopicWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+`;
 
-export const Wrapper = styled.nav`
-  padding: 2em 2em;
-  background-color: ${$sidebarBackground};
+export const SelectWrapper = styled(Select)`
+  width: 200px;
+  bottom-margin: 1rem;
+`;
+
+const Wrapper = styled.div`
+  cursor: default;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  flex-basis: 200px;
-  font-size: 14px;
+  margin: auto;
+  padding: 2rem 0;
+  max-width: 60rem;
 `;
-
-export const LI = styled.li`
-  list-style-type: none;
-  margin-left: 1rem;
-`;
+Wrapper.displayName = 'Wrapper';
 
 export default Wrapper;
