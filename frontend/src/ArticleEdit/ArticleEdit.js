@@ -125,7 +125,7 @@ class ArticleEdit extends React.Component {
 
   handleClose = () => {
     this.setState(() => ({
-      message: { show: false },
+      message: { ...this.state.message, show: false },
     }));
   };
 
