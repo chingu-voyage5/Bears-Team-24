@@ -87,7 +87,11 @@ export default class TopicEdit extends React.Component {
     }));
   };
 
-  handleClose = () => {};
+  handleClose = () => {
+    this.setState(() => ({
+      message: { ...this.state.message, show: false },
+    }));
+  };
 
   handleSave = () => {
     const topic_updates = this.state.topics.reduce((acc, topic) => {
@@ -253,7 +257,7 @@ export default class TopicEdit extends React.Component {
           anchorOrigin={{ vertical, horizontal }}
           open={message.show}
           onClose={this.handleClose}
-          autoHideDuration={message.error ? 3000 : 3000}
+          autoHideDuration={message.error ? null : 3000}
           SnackbarContentProps={{
             'aria-describedby': 'message-id',
           }}
