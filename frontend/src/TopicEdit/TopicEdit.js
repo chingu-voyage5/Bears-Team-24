@@ -1,21 +1,21 @@
 import React from 'react';
 
 // import TopicItem from './TopicItem';
-import Paper from 'material-ui/Paper';
-import Snackbar from 'material-ui/Snackbar';
-import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/Menu/MenuItem';
-import Button from 'material-ui/Button';
-import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
+import TextField from 'material-ui/TextField';
+import { TableCell, TableRow } from 'material-ui/Table';
 
-import Wrapper, {
-  ButtonWrapper,
-  TopicWrapper,
-  SelectWrapper,
-  TableHeadWrapper,
-} from './styled';
+import MessageBar from '../common/MessageBar';
+import SaveButton from '../common/SaveButton';
+import TopicSelector from './TopicSelector';
+import TopicOrderTable from './TopicOrderTable';
 
-import { getTopics, getSubTopics, saveTopics, saveSubTopics } from './actions';
+import Wrapper, { ButtonWrapper, TopicWrapper } from './styled';
+
+import saveTopicUpdates from './topicActions';
+import saveSubTopicUpdates from './subTopicActions';
+import orderCompareAsc from '../common/orderCompare';
+import { getTopics, getSubTopics } from './api';
 
 import { SMALL_WINDOW } from '../config';
 
@@ -94,88 +94,41 @@ export default class TopicEdit extends React.Component {
   };
 
   handleSave = () => {
-    const topic_updates = this.state.topics.reduce((acc, topic) => {
-      if (topic.isDirty) {
-        const { isDirty, ...updateTopic } = topic;
-        return acc.concat(updateTopic);
+    saveTopicUpdates(this.state.topics).then(result => {
+      if (result) {
+        this.setState({
+          message: { show: true, error: false, text: 'Save Successful' },
+        });
+      } else {
+        this.setState({
+          message: {
+            show: true,
+            error: true,
+            text: 'Save Failed - please refresh',
+          },
+        });
       }
-      return acc;
-    }, []);
-    if (topic_updates.length) {
-      saveTopics(topic_updates).then(results => {
-        const success = results.reduce((acc, res) => {
-          if (!res.success) {
-            return false;
-          }
-          return acc;
-        }, true);
-        if (success) {
-          const topics = this.state.topics.map(t => {
-            const { isDirty, ...cleanTopic } = t;
-            return cleanTopic;
-          });
-          // TODO: UX feedback status
-          this.setState({
-            topics,
-            message: {
-              show: true,
-              error: false,
-              text: 'Save Successful',
-            },
-          });
-        } else {
-          this.setState({
-            message: {
-              show: true,
-              error: true,
-              text: 'save failed - please refresh',
-            },
-          });
-        }
-      });
-    }
-    const sub_updates = this.state.sub_topics.reduce((acc, sub) => {
-      if (sub.isDirty) {
-        const { isDirty, ...updateSub } = sub;
-        return acc.concat(updateSub);
+    });
+    saveSubTopicUpdates(this.state.sub_topics).then(result => {
+      if (result) {
+        const sub_topics = this.state.sub_topics.slice().sort(orderCompareAsc);
+        this.setState({
+          sub_topics,
+          message: { show: true, error: false, text: 'Save Successful' },
+        });
+      } else {
+        this.setState({
+          message: {
+            show: true,
+            error: true,
+            text: 'SubTopic save failed - please refresh',
+          },
+        });
       }
-      return acc;
-    }, []);
-    if (sub_updates.length) {
-      saveSubTopics(sub_updates).then(results => {
-        const success = results.reduce((acc, res) => {
-          if (!res.success) {
-            return false;
-          }
-          return acc;
-        }, true);
-        if (success) {
-          const sub_topics = this.state.sub_topics.map(s => {
-            const { isDirty, ...cleanSub } = s;
-            return cleanSub;
-          });
-          this.setState({
-            sub_topics,
-            message: {
-              show: true,
-              error: false,
-              text: 'Save Successful',
-            },
-          });
-        } else {
-          this.setState({
-            message: {
-              show: true,
-              error: true,
-              text: 'Save failed - please refresh',
-            },
-          });
-        }
-      });
-    }
-    console.log('topic and subtopic updates:', topic_updates, sub_updates);
+    });
   };
   render() {
+    console.log('render sub topics:', this.state.sub_topics);
     const { selectedTopic, message, horizontal, vertical, mobile } = this.state;
     let isDirty = false;
     if (
@@ -207,65 +160,33 @@ export default class TopicEdit extends React.Component {
         </TableRow>
       );
     }, []);
-    console.log('selected topic:', selectedTopic);
     return (
       <Wrapper mobile={mobile}>
         <h3>Topic and SubTopic ordering</h3>
         <TopicWrapper>
           1. Select a Topic:&nbsp;
-          <SelectWrapper
-            value={selectedTopic}
-            onChange={this.handleTopicSelect}
-          >
-            {topicList}
-          </SelectWrapper>
+          <TopicSelector
+            selectedTopic={selectedTopic}
+            onSelect={this.handleTopicSelect}
+            topicList={topicList}
+          />
         </TopicWrapper>
         <p>
           2. Set the order that you want the topics and subtopics to appear in
           the CMS sidebar view
         </p>
-        <Paper>
-          <Table>
-            {/* TODO: styled */}
-            <TableHeadWrapper>
-              <TableRow key={selectedTopic._id}>
-                <TableCell>{selectedTopic.name}</TableCell>
-                <TableCell>
-                  <TextField
-                    id={selectedTopic._id}
-                    name="topic"
-                    value={selectedTopic.order}
-                    onChange={this.orderTopicChange}
-                  />
-                </TableCell>
-              </TableRow>
-            </TableHeadWrapper>
-            <TableBody>{sub_topic_rows}</TableBody>
-          </Table>
-        </Paper>
+        <TopicOrderTable
+          selectedTopic={selectedTopic}
+          onTopicOrderChange={this.orderTopicChange}
+          subTopicRows={sub_topic_rows}
+        />
         <ButtonWrapper>
-          <Button
-            variant="raised"
-            color="primary"
-            disabled={!isDirty}
-            onClick={this.handleSave}
-          >
-            Save
-          </Button>
+          <SaveButton disabled={!isDirty} onClick={this.handleSave} />
         </ButtonWrapper>
-        <Snackbar
-          anchorOrigin={{ vertical, horizontal }}
-          open={message.show}
-          onClose={this.handleClose}
-          autoHideDuration={message.error ? null : 3000}
-          SnackbarContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={
-            <span id="message-id">
-              {message.text || 'Something went wrong :('}
-            </span>
-          }
+        <MessageBar
+          anchor={{ vertical, horizontal }}
+          message={message}
+          handleClose={this.handleClose}
         />
       </Wrapper>
     );
