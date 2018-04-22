@@ -42,10 +42,21 @@ router.get(
   auth.isLoggedIn,
   catchAsyncErrors(topics.getTopics)
 );
+router.post(
+  '/api/v1/topics',
+  auth.isLoggedIn,
+  catchAsyncErrors(topics.upsertTopics)
+);
+
 router.get(
   '/api/v1/subtopics',
   auth.isLoggedIn,
   catchAsyncErrors(topics.getSubTopics)
+);
+router.post(
+  '/api/v1/subtopics',
+  auth.isLoggedIn,
+  catchAsyncErrors(topics.upsertSubTopics)
 );
 
 router.get('/api/v0/articles', catchAsyncErrors(articles.getAll));
