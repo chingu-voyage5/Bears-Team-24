@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 import Select from 'material-ui/Select';
+import { TableHead } from 'material-ui/Table';
+
+export const ButtonWrapper = styled.div`
+  margin: 1rem auto;
+`;
+
+export const TableHeadWrapper = styled(TableHead)`
+  background: #eee;
+`;
 
 export const TopicWrapper = styled.div`
   display: flex;
@@ -19,7 +28,9 @@ const Wrapper = styled.div`
   margin: auto;
   padding: 2rem 0;
   max-width: 60rem;
+  padding: ${p => (p.mobile ? 0 : '1rem')};
 `;
+
 Wrapper.displayName = 'Wrapper';
 
 export default Wrapper;

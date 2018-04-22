@@ -2,6 +2,22 @@ import handleResponse from '../common/ErrorHandler';
 
 /* eslint-disable import/prefer-default-export */
 
+export const saveTopics = payload =>
+  fetch('/api/v1/topics', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    credentials: 'same-origin',
+    body: JSON.stringify(payload),
+  }).then(handleResponse);
+
+export const saveSubTopics = payload =>
+  fetch('/api/v1/subtopics', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    credentials: 'same-origin',
+    body: JSON.stringify(payload),
+  }).then(handleResponse);
+
 export const getTopics = () =>
   fetch('/api/v1/topics', {
     method: 'GET',
