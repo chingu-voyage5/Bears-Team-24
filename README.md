@@ -89,9 +89,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **gnnsampaio**
-* **jenovs**
-* **keith1111**
+* **gnnsampaio** [Giovanni Sampaio](https://github.com/giovannisampaio)
+* **jenovs** [Viktors Jenovs](https://github.com/jenovs)
+* **keith1111** [Keith Martens](https://github.com/keith1111)
 * **nik** - [nikrb](https://github.com/nikrb)
 
 ## License
