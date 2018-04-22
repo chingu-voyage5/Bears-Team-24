@@ -128,7 +128,6 @@ export default class TopicEdit extends React.Component {
     });
   };
   render() {
-    console.log('render sub topics:', this.state.sub_topics);
     const { selectedTopic, message, horizontal, vertical, mobile } = this.state;
     let isDirty = false;
     if (

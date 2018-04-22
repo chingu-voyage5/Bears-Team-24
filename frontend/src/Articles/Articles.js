@@ -46,7 +46,6 @@ class Articles extends React.Component {
   componentDidMount = () => {
     this.fetchData()
       .then(res => {
-        console.log('article list:', res);
         const data = res.map(art => ({
           ...art,
           topic: art.topic.name,
