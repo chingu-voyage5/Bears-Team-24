@@ -22,7 +22,7 @@ const TopicOrderTable = ({ selectedTopic, subTopicRows }) => (
             <TextField
               id={selectedTopic._id}
               name="topic"
-              value={selectedTopic.order}
+              value={`${selectedTopic.order}`}
               onChange={this.orderTopicChange}
             />
           </TableCell>

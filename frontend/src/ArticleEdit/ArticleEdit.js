@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import List from 'material-ui/List';
 import Paper from 'material-ui/Paper';
-import Snackbar from 'material-ui/Snackbar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
 import ListItemInput from '../ListItemInput';
+import MessageBar from '../common/MessageBar';
 
 import actions from './actions';
 
@@ -25,30 +25,35 @@ import {
 
 import { SMALL_WINDOW } from '../config';
 
-const propTypes = {
-  id: PropTypes.string,
-  empty: PropTypes.bool,
-};
-
-const defaultProps = {
-  id: '',
-  empty: false,
-};
-
 class ArticleEdit extends React.Component {
+  static propTypes = {
+    id: PropTypes.string,
+    empty: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    id: '',
+    empty: false,
+  };
+
+  static defaultArticle = {
+    title: '',
+    topic: { name: '' },
+    sub_topic: { name: '' },
+    order: 1,
+    content: '',
+  };
+
   state = {
     edit: 0,
-    article: {
-      title: '',
-      topic: { name: '' },
-      sub_topic: { name: '' },
-    },
+    article: ArticleEdit.defaultArticle,
     horizontal: 'right',
     vertical: 'top',
     message: { show: false, error: false, text: '' },
   };
 
   componentDidMount = () => {
+    console.log('article edit mounted props:', this.props.id);
     if (this.props.id) {
       actions
         .get(this.props.id)
@@ -134,14 +139,19 @@ class ArticleEdit extends React.Component {
 
   handleClose = () => {
     this.setState(() => ({
-      message: { show: false },
+      message: { ...this.state.message, show: false },
     }));
   };
 
   render() {
-    const { edit, article, message, horizontal, vertical, mobile } = this.state;
+    const { edit, message, horizontal, vertical, mobile } = this.state;
+    let { article } = this.state;
     const { empty } = this.props;
-
+    if (!article) {
+      console.error('render article is null and props:', this.props);
+      article = ArticleEdit.defaultArticle;
+    }
+console.log('article edit render:', article);
     return (
       <Wrapper mobile={mobile}>
         <EditorWrapper>
@@ -158,21 +168,21 @@ class ArticleEdit extends React.Component {
               mobile={mobile}
               label="Order"
               name="order"
-              value={article.order || ''}
+              value={`${article.order || 0}`}
               onChange={this.handleFieldChange}
             />
             <ListItemInput
               mobile={mobile}
               label="Topic"
               name="topic"
-              value={article.topic.name || ''}
+              value={empty ? '' : article.topic.name || ''}
               onChange={this.handleFieldChange}
             />
             <ListItemInput
               mobile={mobile}
               label="Sub Topic"
               name="sub_topic"
-              value={article.sub_topic.name || ''}
+              value={empty ? '' : article.sub_topic.name || ''}
               onChange={this.handleFieldChange}
             />
           </List>
@@ -210,26 +220,14 @@ class ArticleEdit extends React.Component {
             Save
           </Button>
         </div>
-        <Snackbar
-          anchorOrigin={{ vertical, horizontal }}
-          open={message.show}
-          onClose={this.handleClose}
-          autoHideDuration={message.error ? null : 3000}
-          SnackbarContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={
-            <span id="message-id">
-              {message.text || 'Something went wrong :('}
-            </span>
-          }
+        <MessageBar
+          anchor={{ vertical, horizontal }}
+          message={message}
+          handleClose={this.handleClose}
         />
       </Wrapper>
     );
   }
 }
-
-ArticleEdit.propTypes = propTypes;
-ArticleEdit.defaultProps = defaultProps;
 
 export default ArticleEdit;

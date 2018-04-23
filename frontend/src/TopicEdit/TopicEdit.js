@@ -38,19 +38,26 @@ export default class TopicEdit extends React.Component {
   }
 
   componentDidMount() {
+    this.loadTopics();
+    this.loadSubTopics();
+
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  }
+  // eslint-disable-next-line react/sort-comp
+  loadTopics() {
     getTopics()
       .then(topics => {
         this.setState({ topics, selectedTopic: topics[0] });
       })
       // eslint-disable-next-line no-console
       .catch(e => console.error('mounted get topics failed:', e));
+  }
+  loadSubTopics() {
     getSubTopics()
       .then(sub_topics => this.setState({ sub_topics }))
       // eslint-disable-next-line no-console
       .catch(e => console.error('mounted get sub topics failed:', e));
-
-    window.addEventListener('resize', this.handleResize);
-    this.handleResize();
   }
 
   componentWillUnmount() {
@@ -145,6 +152,7 @@ export default class TopicEdit extends React.Component {
     const sub_topic_rows = this.state.sub_topics.reduce((acc, sub) => {
       if (selectedTopic.isDirty || sub.isDirty) isDirty = true;
       if (sub.parent !== selectedTopic._id) return acc;
+      console.log('sub topic row order value:', sub.order);
       return acc.concat(
         <TableRow key={sub._id}>
           <TableCell>{sub.name}</TableCell>
@@ -152,7 +160,7 @@ export default class TopicEdit extends React.Component {
             <TextField
               id={sub._id}
               name="order"
-              value={sub.order}
+              value={`${sub.order}`}
               onChange={this.orderSubTopicChange}
             />
           </TableCell>
