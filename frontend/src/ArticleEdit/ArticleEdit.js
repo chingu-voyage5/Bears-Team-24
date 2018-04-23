@@ -53,7 +53,6 @@ class ArticleEdit extends React.Component {
   };
 
   componentDidMount = () => {
-    console.log('article edit mounted props:', this.props.id);
     if (this.props.id) {
       actions
         .get(this.props.id)
@@ -145,13 +144,13 @@ class ArticleEdit extends React.Component {
 
   render() {
     const { edit, message, horizontal, vertical, mobile } = this.state;
+    // FIXME: we have an issue with test, last render called with null article
+    // This doesn't seem to happen running the app
     let { article } = this.state;
     const { empty } = this.props;
     if (!article) {
-      console.error('render article is null and props:', this.props);
       article = ArticleEdit.defaultArticle;
     }
-console.log('article edit render:', article);
     return (
       <Wrapper mobile={mobile}>
         <EditorWrapper>

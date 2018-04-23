@@ -36,6 +36,14 @@ ShallowWrapper {
                     />
                     <ListItemInput
                               disabled={false}
+                              label="Order"
+                              mobile={false}
+                              name="order"
+                              onChange={[Function]}
+                              value=""
+                    />
+                    <ListItemInput
+                              disabled={false}
                               label="Topic"
                               mobile={false}
                               name="topic"
@@ -44,7 +52,7 @@ ShallowWrapper {
                     />
                     <ListItemInput
                               disabled={false}
-                              label="Sub topic"
+                              label="Sub Topic"
                               mobile={false}
                               name="sub_topic"
                               onChange={[Function]}
@@ -91,28 +99,21 @@ ShallowWrapper {
                     Save
           </WithStyles(Button)>
 </div>,
-        <WithStyles(Snackbar)
-          SnackbarContentProps={
-                    Object {
-                              "aria-describedby": "message-id",
-                            }
-          }
-          anchorOrigin={
+        <MessageBar
+          anchor={
                     Object {
                               "horizontal": "right",
                               "vertical": "top",
                             }
           }
-          autoHideDuration={3000}
+          handleClose={[Function]}
           message={
-                    <span
-                              id="message-id"
-                    >
-                              Something went wrong :(
-                    </span>
+                    Object {
+                              "error": false,
+                              "show": false,
+                              "text": "",
+                            }
           }
-          onClose={[Function]}
-          open={false}
 />,
       ],
       "mobile": false,
@@ -139,6 +140,14 @@ ShallowWrapper {
               />
               <ListItemInput
                             disabled={false}
+                            label="Order"
+                            mobile={false}
+                            name="order"
+                            onChange={[Function]}
+                            value=""
+              />
+              <ListItemInput
+                            disabled={false}
                             label="Topic"
                             mobile={false}
                             name="topic"
@@ -147,7 +156,7 @@ ShallowWrapper {
               />
               <ListItemInput
                             disabled={false}
-                            label="Sub topic"
+                            label="Sub Topic"
                             mobile={false}
                             name="sub_topic"
                             onChange={[Function]}
@@ -215,6 +224,14 @@ ShallowWrapper {
 />,
                 <ListItemInput
                   disabled={false}
+                  label="Order"
+                  mobile={false}
+                  name="order"
+                  onChange={[Function]}
+                  value=""
+/>,
+                <ListItemInput
+                  disabled={false}
                   label="Topic"
                   mobile={false}
                   name="topic"
@@ -223,7 +240,7 @@ ShallowWrapper {
 />,
                 <ListItemInput
                   disabled={false}
-                  label="Sub topic"
+                  label="Sub Topic"
                   mobile={false}
                   name="sub_topic"
                   onChange={[Function]}
@@ -255,6 +272,22 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "disabled": false,
+                  "label": "Order",
+                  "mobile": false,
+                  "name": "order",
+                  "onChange": [Function],
+                  "value": "",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "disabled": false,
                   "label": "Topic",
                   "mobile": false,
                   "name": "topic",
@@ -271,7 +304,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "disabled": false,
-                  "label": "Sub topic",
+                  "label": "Sub Topic",
                   "mobile": false,
                   "name": "sub_topic",
                   "onChange": [Function],
@@ -466,23 +499,18 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "SnackbarContentProps": Object {
-            "aria-describedby": "message-id",
-          },
-          "anchorOrigin": Object {
+          "anchor": Object {
             "horizontal": "right",
             "vertical": "top",
           },
-          "autoHideDuration": 3000,
-          "message": <span
-            id="message-id"
->
-            Something went wrong :(
-</span>,
-          "onClose": [Function],
-          "open": false,
+          "handleClose": [Function],
+          "message": Object {
+            "error": false,
+            "show": false,
+            "text": "",
+          },
         },
         "ref": null,
         "rendered": null,
@@ -513,6 +541,14 @@ ShallowWrapper {
                         />
                         <ListItemInput
                                     disabled={false}
+                                    label="Order"
+                                    mobile={false}
+                                    name="order"
+                                    onChange={[Function]}
+                                    value=""
+                        />
+                        <ListItemInput
+                                    disabled={false}
                                     label="Topic"
                                     mobile={false}
                                     name="topic"
@@ -521,7 +557,7 @@ ShallowWrapper {
                         />
                         <ListItemInput
                                     disabled={false}
-                                    label="Sub topic"
+                                    label="Sub Topic"
                                     mobile={false}
                                     name="sub_topic"
                                     onChange={[Function]}
@@ -568,28 +604,21 @@ ShallowWrapper {
                         Save
             </WithStyles(Button)>
 </div>,
-          <WithStyles(Snackbar)
-            SnackbarContentProps={
-                        Object {
-                                    "aria-describedby": "message-id",
-                                  }
-            }
-            anchorOrigin={
+          <MessageBar
+            anchor={
                         Object {
                                     "horizontal": "right",
                                     "vertical": "top",
                                   }
             }
-            autoHideDuration={3000}
+            handleClose={[Function]}
             message={
-                        <span
-                                    id="message-id"
-                        >
-                                    Something went wrong :(
-                        </span>
+                        Object {
+                                    "error": false,
+                                    "show": false,
+                                    "text": "",
+                                  }
             }
-            onClose={[Function]}
-            open={false}
 />,
         ],
         "mobile": false,
@@ -616,6 +645,14 @@ ShallowWrapper {
                 />
                 <ListItemInput
                                 disabled={false}
+                                label="Order"
+                                mobile={false}
+                                name="order"
+                                onChange={[Function]}
+                                value=""
+                />
+                <ListItemInput
+                                disabled={false}
                                 label="Topic"
                                 mobile={false}
                                 name="topic"
@@ -624,7 +661,7 @@ ShallowWrapper {
                 />
                 <ListItemInput
                                 disabled={false}
-                                label="Sub topic"
+                                label="Sub Topic"
                                 mobile={false}
                                 name="sub_topic"
                                 onChange={[Function]}
@@ -692,6 +729,14 @@ ShallowWrapper {
 />,
                   <ListItemInput
                     disabled={false}
+                    label="Order"
+                    mobile={false}
+                    name="order"
+                    onChange={[Function]}
+                    value=""
+/>,
+                  <ListItemInput
+                    disabled={false}
                     label="Topic"
                     mobile={false}
                     name="topic"
@@ -700,7 +745,7 @@ ShallowWrapper {
 />,
                   <ListItemInput
                     disabled={false}
-                    label="Sub topic"
+                    label="Sub Topic"
                     mobile={false}
                     name="sub_topic"
                     onChange={[Function]}
@@ -732,6 +777,22 @@ ShallowWrapper {
                   "nodeType": "function",
                   "props": Object {
                     "disabled": false,
+                    "label": "Order",
+                    "mobile": false,
+                    "name": "order",
+                    "onChange": [Function],
+                    "value": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "disabled": false,
                     "label": "Topic",
                     "mobile": false,
                     "name": "topic",
@@ -748,7 +809,7 @@ ShallowWrapper {
                   "nodeType": "function",
                   "props": Object {
                     "disabled": false,
-                    "label": "Sub topic",
+                    "label": "Sub Topic",
                     "mobile": false,
                     "name": "sub_topic",
                     "onChange": [Function],
@@ -943,23 +1004,18 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "SnackbarContentProps": Object {
-              "aria-describedby": "message-id",
-            },
-            "anchorOrigin": Object {
+            "anchor": Object {
               "horizontal": "right",
               "vertical": "top",
             },
-            "autoHideDuration": 3000,
-            "message": <span
-              id="message-id"
->
-              Something went wrong :(
-</span>,
-            "onClose": [Function],
-            "open": false,
+            "handleClose": [Function],
+            "message": Object {
+              "error": false,
+              "show": false,
+              "text": "",
+            },
           },
           "ref": null,
           "rendered": null,
@@ -985,7 +1041,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ArticleEdit
     empty={false}
-    id="123abc"
+    id="43039ac8d0a244719d9d31e0731bcbe8"
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -1015,6 +1071,14 @@ ShallowWrapper {
                     />
                     <ListItemInput
                               disabled={false}
+                              label="Order"
+                              mobile={false}
+                              name="order"
+                              onChange={[Function]}
+                              value="1"
+                    />
+                    <ListItemInput
+                              disabled={false}
                               label="Topic"
                               mobile={false}
                               name="topic"
@@ -1023,7 +1087,7 @@ ShallowWrapper {
                     />
                     <ListItemInput
                               disabled={false}
-                              label="Sub topic"
+                              label="Sub Topic"
                               mobile={false}
                               name="sub_topic"
                               onChange={[Function]}
@@ -1056,7 +1120,7 @@ ShallowWrapper {
                                         name="content"
                                         onChange={[Function]}
                                         placeholder="Markdown flavored content here..."
-                                        value={undefined}
+                                        value=""
                               />
                     </WithStyles(Paper)>
           </styled.div>
@@ -1070,28 +1134,21 @@ ShallowWrapper {
                     Save
           </WithStyles(Button)>
 </div>,
-        <WithStyles(Snackbar)
-          SnackbarContentProps={
-                    Object {
-                              "aria-describedby": "message-id",
-                            }
-          }
-          anchorOrigin={
+        <MessageBar
+          anchor={
                     Object {
                               "horizontal": "right",
                               "vertical": "top",
                             }
           }
-          autoHideDuration={3000}
+          handleClose={[Function]}
           message={
-                    <span
-                              id="message-id"
-                    >
-                              Something went wrong :(
-                    </span>
+                    Object {
+                              "error": false,
+                              "show": false,
+                              "text": "",
+                            }
           }
-          onClose={[Function]}
-          open={false}
 />,
       ],
       "mobile": false,
@@ -1118,6 +1175,14 @@ ShallowWrapper {
               />
               <ListItemInput
                             disabled={false}
+                            label="Order"
+                            mobile={false}
+                            name="order"
+                            onChange={[Function]}
+                            value="1"
+              />
+              <ListItemInput
+                            disabled={false}
                             label="Topic"
                             mobile={false}
                             name="topic"
@@ -1126,7 +1191,7 @@ ShallowWrapper {
               />
               <ListItemInput
                             disabled={false}
-                            label="Sub topic"
+                            label="Sub Topic"
                             mobile={false}
                             name="sub_topic"
                             onChange={[Function]}
@@ -1159,7 +1224,7 @@ ShallowWrapper {
                                           name="content"
                                           onChange={[Function]}
                                           placeholder="Markdown flavored content here..."
-                                          value={undefined}
+                                          value=""
                             />
               </WithStyles(Paper)>
 </styled.div>,
@@ -1194,6 +1259,14 @@ ShallowWrapper {
 />,
                 <ListItemInput
                   disabled={false}
+                  label="Order"
+                  mobile={false}
+                  name="order"
+                  onChange={[Function]}
+                  value="1"
+/>,
+                <ListItemInput
+                  disabled={false}
                   label="Topic"
                   mobile={false}
                   name="topic"
@@ -1202,7 +1275,7 @@ ShallowWrapper {
 />,
                 <ListItemInput
                   disabled={false}
-                  label="Sub topic"
+                  label="Sub Topic"
                   mobile={false}
                   name="sub_topic"
                   onChange={[Function]}
@@ -1234,6 +1307,22 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "disabled": false,
+                  "label": "Order",
+                  "mobile": false,
+                  "name": "order",
+                  "onChange": [Function],
+                  "value": "1",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "disabled": false,
                   "label": "Topic",
                   "mobile": false,
                   "name": "topic",
@@ -1250,7 +1339,7 @@ ShallowWrapper {
                 "nodeType": "function",
                 "props": Object {
                   "disabled": false,
-                  "label": "Sub topic",
+                  "label": "Sub Topic",
                   "mobile": false,
                   "name": "sub_topic",
                   "onChange": [Function],
@@ -1294,7 +1383,7 @@ ShallowWrapper {
                                     name="content"
                                     onChange={[Function]}
                                     placeholder="Markdown flavored content here..."
-                                    value={undefined}
+                                    value=""
                   />
 </WithStyles(Paper)>,
               ],
@@ -1385,7 +1474,7 @@ ShallowWrapper {
                     name="content"
                     onChange={[Function]}
                     placeholder="Markdown flavored content here..."
-                    value={undefined}
+                    value=""
 />,
                 },
                 "ref": null,
@@ -1398,7 +1487,7 @@ ShallowWrapper {
                     "name": "content",
                     "onChange": [Function],
                     "placeholder": "Markdown flavored content here...",
-                    "value": undefined,
+                    "value": "",
                   },
                   "ref": null,
                   "rendered": null,
@@ -1445,23 +1534,18 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "SnackbarContentProps": Object {
-            "aria-describedby": "message-id",
-          },
-          "anchorOrigin": Object {
+          "anchor": Object {
             "horizontal": "right",
             "vertical": "top",
           },
-          "autoHideDuration": 3000,
-          "message": <span
-            id="message-id"
->
-            Something went wrong :(
-</span>,
-          "onClose": [Function],
-          "open": false,
+          "handleClose": [Function],
+          "message": Object {
+            "error": false,
+            "show": false,
+            "text": "",
+          },
         },
         "ref": null,
         "rendered": null,
@@ -1492,6 +1576,14 @@ ShallowWrapper {
                         />
                         <ListItemInput
                                     disabled={false}
+                                    label="Order"
+                                    mobile={false}
+                                    name="order"
+                                    onChange={[Function]}
+                                    value="1"
+                        />
+                        <ListItemInput
+                                    disabled={false}
                                     label="Topic"
                                     mobile={false}
                                     name="topic"
@@ -1500,7 +1592,7 @@ ShallowWrapper {
                         />
                         <ListItemInput
                                     disabled={false}
-                                    label="Sub topic"
+                                    label="Sub Topic"
                                     mobile={false}
                                     name="sub_topic"
                                     onChange={[Function]}
@@ -1533,7 +1625,7 @@ ShallowWrapper {
                                                 name="content"
                                                 onChange={[Function]}
                                                 placeholder="Markdown flavored content here..."
-                                                value={undefined}
+                                                value=""
                                     />
                         </WithStyles(Paper)>
             </styled.div>
@@ -1547,28 +1639,21 @@ ShallowWrapper {
                         Save
             </WithStyles(Button)>
 </div>,
-          <WithStyles(Snackbar)
-            SnackbarContentProps={
-                        Object {
-                                    "aria-describedby": "message-id",
-                                  }
-            }
-            anchorOrigin={
+          <MessageBar
+            anchor={
                         Object {
                                     "horizontal": "right",
                                     "vertical": "top",
                                   }
             }
-            autoHideDuration={3000}
+            handleClose={[Function]}
             message={
-                        <span
-                                    id="message-id"
-                        >
-                                    Something went wrong :(
-                        </span>
+                        Object {
+                                    "error": false,
+                                    "show": false,
+                                    "text": "",
+                                  }
             }
-            onClose={[Function]}
-            open={false}
 />,
         ],
         "mobile": false,
@@ -1595,6 +1680,14 @@ ShallowWrapper {
                 />
                 <ListItemInput
                                 disabled={false}
+                                label="Order"
+                                mobile={false}
+                                name="order"
+                                onChange={[Function]}
+                                value="1"
+                />
+                <ListItemInput
+                                disabled={false}
                                 label="Topic"
                                 mobile={false}
                                 name="topic"
@@ -1603,7 +1696,7 @@ ShallowWrapper {
                 />
                 <ListItemInput
                                 disabled={false}
-                                label="Sub topic"
+                                label="Sub Topic"
                                 mobile={false}
                                 name="sub_topic"
                                 onChange={[Function]}
@@ -1636,7 +1729,7 @@ ShallowWrapper {
                                                 name="content"
                                                 onChange={[Function]}
                                                 placeholder="Markdown flavored content here..."
-                                                value={undefined}
+                                                value=""
                                 />
                 </WithStyles(Paper)>
 </styled.div>,
@@ -1671,6 +1764,14 @@ ShallowWrapper {
 />,
                   <ListItemInput
                     disabled={false}
+                    label="Order"
+                    mobile={false}
+                    name="order"
+                    onChange={[Function]}
+                    value="1"
+/>,
+                  <ListItemInput
+                    disabled={false}
                     label="Topic"
                     mobile={false}
                     name="topic"
@@ -1679,7 +1780,7 @@ ShallowWrapper {
 />,
                   <ListItemInput
                     disabled={false}
-                    label="Sub topic"
+                    label="Sub Topic"
                     mobile={false}
                     name="sub_topic"
                     onChange={[Function]}
@@ -1711,6 +1812,22 @@ ShallowWrapper {
                   "nodeType": "function",
                   "props": Object {
                     "disabled": false,
+                    "label": "Order",
+                    "mobile": false,
+                    "name": "order",
+                    "onChange": [Function],
+                    "value": "1",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "disabled": false,
                     "label": "Topic",
                     "mobile": false,
                     "name": "topic",
@@ -1727,7 +1844,7 @@ ShallowWrapper {
                   "nodeType": "function",
                   "props": Object {
                     "disabled": false,
-                    "label": "Sub topic",
+                    "label": "Sub Topic",
                     "mobile": false,
                     "name": "sub_topic",
                     "onChange": [Function],
@@ -1771,7 +1888,7 @@ ShallowWrapper {
                                         name="content"
                                         onChange={[Function]}
                                         placeholder="Markdown flavored content here..."
-                                        value={undefined}
+                                        value=""
                     />
 </WithStyles(Paper)>,
                 ],
@@ -1862,7 +1979,7 @@ ShallowWrapper {
                       name="content"
                       onChange={[Function]}
                       placeholder="Markdown flavored content here..."
-                      value={undefined}
+                      value=""
 />,
                   },
                   "ref": null,
@@ -1875,7 +1992,7 @@ ShallowWrapper {
                       "name": "content",
                       "onChange": [Function],
                       "placeholder": "Markdown flavored content here...",
-                      "value": undefined,
+                      "value": "",
                     },
                     "ref": null,
                     "rendered": null,
@@ -1922,23 +2039,18 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "SnackbarContentProps": Object {
-              "aria-describedby": "message-id",
-            },
-            "anchorOrigin": Object {
+            "anchor": Object {
               "horizontal": "right",
               "vertical": "top",
             },
-            "autoHideDuration": 3000,
-            "message": <span
-              id="message-id"
->
-              Something went wrong :(
-</span>,
-            "onClose": [Function],
-            "open": false,
+            "handleClose": [Function],
+            "message": Object {
+              "error": false,
+              "show": false,
+              "text": "",
+            },
           },
           "ref": null,
           "rendered": null,

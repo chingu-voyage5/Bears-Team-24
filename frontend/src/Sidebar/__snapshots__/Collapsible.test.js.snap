@@ -2,29 +2,21 @@
 
 exports[`creating tree should create elements 1`] = `
 <details
+  className="sc-bdVaJa bLWtbN"
   open={true}
-  style={
-    Object {
-      "marginLeft": "1rem",
-    }
-  }
 >
   <summary>
     Voyage
   </summary>
   <details
-    open={false}
-    style={
-      Object {
-        "marginLeft": "1rem",
-      }
-    }
+    className="sc-bdVaJa bLWtbN"
+    open={true}
   >
     <summary>
       About this wiki
     </summary>
     <li
-      className="sc-bwzfXH dqTlWx"
+      className="sc-htpNat eokGni"
     >
       <a
         href="/cms/1"
@@ -34,7 +26,7 @@ exports[`creating tree should create elements 1`] = `
       </a>
     </li>
     <li
-      className="sc-bwzfXH dqTlWx"
+      className="sc-htpNat eokGni"
     >
       <a
         href="/cms/2"
@@ -45,18 +37,14 @@ exports[`creating tree should create elements 1`] = `
     </li>
   </details>
   <details
+    className="sc-bdVaJa bLWtbN"
     open={false}
-    style={
-      Object {
-        "marginLeft": "1rem",
-      }
-    }
   >
     <summary>
       About Voyages
     </summary>
     <li
-      className="sc-bwzfXH dqTlWx"
+      className="sc-htpNat eokGni"
     >
       <a
         href="/cms/3"
@@ -67,44 +55,4 @@ exports[`creating tree should create elements 1`] = `
     </li>
   </details>
 </details>
-`;
-
-exports[`creating tree should create elements 2`] = `
-<BrowserRouter>
-  <Unknown>
-    <Collapsible
-      open={true}
-      title="Voyage"
-    >
-      <Collapsible
-        open={true}
-        title="About this wiki"
-      >
-        <Link
-          replace={false}
-          to="/cms/1"
-        >
-          Home
-        </Link>
-        <Link
-          replace={false}
-          to="/cms/2"
-        >
-          How to Contribute
-        </Link>
-      </Collapsible>
-      <Collapsible
-        open={false}
-        title="About Voyages"
-      >
-        <Link
-          replace={false}
-          to="/cms/3"
-        >
-          About Voyages
-        </Link>
-      </Collapsible>
-    </Collapsible>
-  </Unknown>
-</BrowserRouter>
 `;
