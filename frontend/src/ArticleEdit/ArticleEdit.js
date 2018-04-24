@@ -93,7 +93,33 @@ class ArticleEdit extends React.Component {
     });
   };
 
+  validateArticle = () => {
+    const { article } = this.state;
+    let message = '';
+    if (!article.title) {
+      message = 'Please enter a title';
+    }
+    if (!article.topic) {
+      message = 'Please enter a topic';
+    }
+    if (!article.content) {
+      message = 'Please enter some content';
+    }
+    return { success: !message, message };
+  };
+
   handleSave = () => {
+    const valid = this.validateArticle();
+    if (valid.success === false) {
+      this.setState({
+        message: {
+          show: true,
+          error: true,
+          text: valid.message,
+        },
+      });
+      return;
+    }
     actions
       .save(this.state.article)
       .then(json => {
@@ -184,7 +210,9 @@ class ArticleEdit extends React.Component {
               </Paper>
             ) : (
               <Preview
-                dangerouslySetInnerHTML={{ __html: marked(article.content) }}
+                dangerouslySetInnerHTML={{
+                  __html: marked(article.content || ''),
+                }}
               />
             )}
           </ContentWrapper>
