@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import TopicItem from './TopicItem';
 import MenuItem from 'material-ui/Menu/MenuItem';
 import TextField from 'material-ui/TextField';
 import { TableCell, TableRow } from 'material-ui/Table';
@@ -32,8 +31,8 @@ export default class TopicEdit extends React.Component {
       horizontal: 'right',
       vertical: 'top',
     };
-    this.orderTopicChange = this.orderTopicChange.bind(this);
-    this.orderSubTopicChange = this.orderSubTopicChange.bind(this);
+    this.onTopicChange = this.onTopicChange.bind(this);
+    this.onSubTopicChange = this.onSubTopicChange.bind(this);
     this.handleTopicSelect = this.handleTopicSelect.bind(this);
   }
 
@@ -64,28 +63,40 @@ export default class TopicEdit extends React.Component {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  orderTopicChange(e) {
-    const { value: order, id } = e.target;
+  onTopicChange(e) {
+    const { name, value, id } = e.target;
     const topics = this.state.topics.map(topic => {
-      if (topics._id === id) {
-        return { ...topic, order, isDirty: true };
+      if (topic._id === id) {
+        return { ...topic, [name]: value, isDirty: true };
       }
       return topic;
     });
-    this.setState({ topics });
+    const selectedTopic = topics.reduce((acc, topic) => {
+      if (topic._id === id) {
+        return topic;
+      }
+      return acc;
+    }, {});
+    this.setState({ topics, selectedTopic });
   }
-  orderSubTopicChange(e) {
-    const { value: order, id } = e.target;
+  onSubTopicChange(e) {
+    const { name, value, id } = e.target;
     const sub_topics = this.state.sub_topics.map(sub_topic => {
       if (sub_topic._id === id) {
-        return { ...sub_topic, order, isDirty: true };
+        return { ...sub_topic, [name]: value, isDirty: true };
       }
       return sub_topic;
     });
     this.setState({ sub_topics });
   }
   handleTopicSelect(event) {
-    this.setState({ selectedTopic: event.target.value });
+    const selectedTopic = this.state.topics.reduce((acc, topic) => {
+      if (topic._id === event.target.value) {
+        return topic;
+      }
+      return acc;
+    }, {});
+    this.setState({ selectedTopic });
   }
 
   handleResize = () => {
@@ -103,7 +114,9 @@ export default class TopicEdit extends React.Component {
   handleSave = () => {
     saveTopicUpdates(this.state.topics).then(result => {
       if (result) {
+        const topics = this.state.topics.slice().sort(orderCompareAsc);
         this.setState({
+          topics,
           message: { show: true, error: false, text: 'Save Successful' },
         });
       } else {
@@ -142,26 +155,33 @@ export default class TopicEdit extends React.Component {
       this.state.sub_topics.length === 0 ||
       selectedTopic === null
     ) {
-      return null;
+      return <div>Loading ...</div>;
     }
+    console.log('topic edit render selected topic:', selectedTopic);
     const topicList = this.state.topics.map(topic => (
-      <MenuItem key={topic._id} value={topic}>
+      <MenuItem key={topic._id} value={topic._id}>
         {topic.name}
       </MenuItem>
     ));
     const sub_topic_rows = this.state.sub_topics.reduce((acc, sub) => {
       if (selectedTopic.isDirty || sub.isDirty) isDirty = true;
       if (sub.parent !== selectedTopic._id) return acc;
-      console.log('sub topic row order value:', sub.order);
       return acc.concat(
         <TableRow key={sub._id}>
-          <TableCell>{sub.name}</TableCell>
+          <TableCell>
+            <TextField
+              id={sub._id}
+              name="name"
+              value={sub.name}
+              onChange={this.onSubTopicChange}
+            />
+          </TableCell>
           <TableCell>
             <TextField
               id={sub._id}
               name="order"
               value={`${sub.order}`}
-              onChange={this.orderSubTopicChange}
+              onChange={this.onSubTopicChange}
             />
           </TableCell>
         </TableRow>
@@ -173,7 +193,7 @@ export default class TopicEdit extends React.Component {
         <TopicWrapper>
           1. Select a Topic:&nbsp;
           <TopicSelector
-            selectedTopic={selectedTopic}
+            selectedTopic={selectedTopic._id}
             onSelect={this.handleTopicSelect}
             topicList={topicList}
           />
@@ -184,7 +204,7 @@ export default class TopicEdit extends React.Component {
         </p>
         <TopicOrderTable
           selectedTopic={selectedTopic}
-          onTopicOrderChange={this.orderTopicChange}
+          onTopicChange={this.onTopicChange}
           subTopicRows={sub_topic_rows}
         />
         <ButtonWrapper>
