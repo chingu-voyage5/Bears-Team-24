@@ -10,20 +10,28 @@ import { TableHeadWrapper } from './styled';
 const propTypes = {
   selectedTopic: PropTypes.object.isRequired,
   subTopicRows: PropTypes.array.isRequired,
+  onTopicChange: PropTypes.func.isRequired,
 };
 
-const TopicOrderTable = ({ selectedTopic, subTopicRows }) => (
+const TopicOrderTable = ({ selectedTopic, onTopicChange, subTopicRows }) => (
   <Paper>
     <Table>
       <TableHeadWrapper>
         <TableRow key={selectedTopic._id}>
-          <TableCell>{selectedTopic.name}</TableCell>
           <TableCell>
             <TextField
               id={selectedTopic._id}
-              name="topic"
+              name="name"
+              value={selectedTopic.name}
+              onChange={onTopicChange}
+            />
+          </TableCell>
+          <TableCell>
+            <TextField
+              id={selectedTopic._id}
+              name="order"
               value={`${selectedTopic.order}`}
-              onChange={this.orderTopicChange}
+              onChange={onTopicChange}
             />
           </TableCell>
         </TableRow>
