@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { SelectWrapper } from './styled';
 
 const propTypes = {
-  selectedTopic: PropTypes.object.isRequired,
+  selectedTopic: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
   topicList: PropTypes.array.isRequired,
 };
