@@ -10,6 +10,8 @@ const sub_topics = { _id: '1', parent: '1', name: 'About this wiki', order: 1 };
 
 describe('TopicEdit', () => {
   it('should match snapshot', () => {
+    // FIXME: test passes but it's rendering "Loading ..."
+    // not the topics/sub-topics
     jest
       .spyOn(TopicEdit.prototype, 'loadTopics')
       .mockImplementation(() => new Promise(resolve => resolve(topic)));
