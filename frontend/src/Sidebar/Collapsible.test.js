@@ -9,15 +9,19 @@ import { getTree, getChildren } from './utils';
 
 describe('creating tree', () => {
   let tree;
-  const topics = [
-    { _id: '1', name: 'Voyage', order: 1 }
-  ];
+  const topics = [{ _id: '1', name: 'Voyage', order: 1 }];
   const sub_topics = [
     { _id: '1', parent: '0', name: 'About this wiki', order: 1 },
     { _id: '2', parent: '0', name: 'About Voyages', order: 2 },
   ];
   const articles = [
-    { _id: '1', topic: topics[0], sub_topic: sub_topics[0], title: 'Home', order: 1 },
+    {
+      _id: '1',
+      topic: topics[0],
+      sub_topic: sub_topics[0],
+      title: 'Home',
+      order: 1,
+    },
     {
       _id: '2',
       topic: topics[0],
@@ -63,28 +67,28 @@ describe('creating tree', () => {
   });
 });
 
-  // const expectedElements = (
-  //   <BrowserRouter>
-  //     <React.Fragment>
-  //       <Collapsible key="Voyage" title="Voyage" open={true}>
-  //         <Collapsible
-  //           key="About this wiki"
-  //           title="About this wiki"
-  //           open={true}
-  //         >
-  //           <Link key="Home" to={'/cms/1'}>
-  //             Home
-  //           </Link>
-  //           <Link key="How to Contribute" to={'/cms/2'}>
-  //             How to Contribute
-  //           </Link>
-  //         </Collapsible>
-  //         <Collapsible key="About Voyages" title="About Voyages" open={false}>
-  //           <Link key="About Voyages" to={'/cms/3'}>
-  //             About Voyages
-  //           </Link>
-  //         </Collapsible>
-  //       </Collapsible>
-  //     </React.Fragment>
-  //   </BrowserRouter>
-  // );
+// const expectedElements = (
+//   <BrowserRouter>
+//     <React.Fragment>
+//       <Collapsible key="Voyage" title="Voyage" open={true}>
+//         <Collapsible
+//           key="About this wiki"
+//           title="About this wiki"
+//           open={true}
+//         >
+//           <Link key="Home" to={'/cms/1'}>
+//             Home
+//           </Link>
+//           <Link key="How to Contribute" to={'/cms/2'}>
+//             How to Contribute
+//           </Link>
+//         </Collapsible>
+//         <Collapsible key="About Voyages" title="About Voyages" open={false}>
+//           <Link key="About Voyages" to={'/cms/3'}>
+//             About Voyages
+//           </Link>
+//         </Collapsible>
+//       </Collapsible>
+//     </React.Fragment>
+//   </BrowserRouter>
+// );

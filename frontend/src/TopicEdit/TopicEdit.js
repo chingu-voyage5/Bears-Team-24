@@ -157,7 +157,6 @@ export default class TopicEdit extends React.Component {
     ) {
       return <div>Loading ...</div>;
     }
-    console.log('topic edit render selected topic:', selectedTopic);
     const topicList = this.state.topics.map(topic => (
       <MenuItem key={topic._id} value={topic._id}>
         {topic.name}
