@@ -52,6 +52,18 @@ class ArticleEdit extends React.Component {
     content: '',
   };
 
+  // static because - eslint-disable class-methods-use-this
+  static fetchData(id) {
+    return actions.get(id);
+  }
+
+  static getAllTopics() {
+    return getTopics();
+  }
+  static getAllSubTopics() {
+    return getSubTopics();
+  }
+
   state = {
     edit: 0,
     article: ArticleEdit.defaultArticle,
@@ -66,11 +78,13 @@ class ArticleEdit extends React.Component {
 
   componentDidMount = () => {
     const promises = [];
-    promises.push(new Promise(resolve => resolve(getTopics())));
-    promises.push(new Promise(resolve => resolve(getSubTopics())));
+    promises.push(new Promise(resolve => resolve(ArticleEdit.getAllTopics())));
+    promises.push(
+      new Promise(resolve => resolve(ArticleEdit.getAllSubTopics()))
+    );
     if (this.props.id) {
       promises.push(
-        new Promise(resolve => resolve(actions.get(this.props.id)))
+        new Promise(resolve => resolve(ArticleEdit.fetchData(this.props.id)))
       );
     }
     Promise.all(promises).then(results => {
@@ -121,11 +135,6 @@ class ArticleEdit extends React.Component {
       mobile: window.innerWidth <= SMALL_WINDOW,
     }));
   };
-
-  // eslint-disable-next-line
-  fetchData(id) {
-    return actions.get(id);
-  }
 
   handleTabSwitch = (e, value) => {
     this.setState(() => ({
