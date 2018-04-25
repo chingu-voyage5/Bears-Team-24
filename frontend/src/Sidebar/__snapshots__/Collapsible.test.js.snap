@@ -5,18 +5,22 @@ exports[`creating tree should create elements 1`] = `
   className="sc-bdVaJa bLWtbN"
   open={true}
 >
-  <summary>
+  <summary
+    className="sc-bwzfXH jvlMsP"
+  >
     Voyage
   </summary>
   <details
     className="sc-bdVaJa bLWtbN"
     open={true}
   >
-    <summary>
+    <summary
+      className="sc-bwzfXH jvlMsP"
+    >
       About this wiki
     </summary>
     <li
-      className="sc-htpNat eokGni"
+      className="sc-bxivhb iXnkAE"
     >
       <a
         href="/cms/1"
@@ -26,7 +30,7 @@ exports[`creating tree should create elements 1`] = `
       </a>
     </li>
     <li
-      className="sc-htpNat eokGni"
+      className="sc-bxivhb iXnkAE"
     >
       <a
         href="/cms/2"
@@ -40,11 +44,13 @@ exports[`creating tree should create elements 1`] = `
     className="sc-bdVaJa bLWtbN"
     open={false}
   >
-    <summary>
+    <summary
+      className="sc-bwzfXH jvlMsP"
+    >
       About Voyages
     </summary>
     <li
-      className="sc-htpNat eokGni"
+      className="sc-bxivhb iXnkAE"
     >
       <a
         href="/cms/3"
