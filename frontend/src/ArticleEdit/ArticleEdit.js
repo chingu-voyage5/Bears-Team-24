@@ -74,7 +74,6 @@ class ArticleEdit extends React.Component {
       );
     }
     Promise.all(promises).then(results => {
-      console.log('article edit mounted data:', results);
       const topics = results[0];
       const sub_topics = results[1];
       let selectedTopic = topics[0];
@@ -101,8 +100,11 @@ class ArticleEdit extends React.Component {
         }
       }
       this.setState({
-        // eslint-disable-next-line prettier/prettier
-        article, topics, sub_topics, selectedTopic, selectedSubTopic
+        article,
+        topics,
+        sub_topics,
+        selectedTopic,
+        selectedSubTopic,
       });
     });
 

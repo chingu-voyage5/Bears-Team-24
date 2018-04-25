@@ -8,18 +8,14 @@ const upsertTopics = async (req, res) => {
     const p = new Promise(async resolve => {
       let topic;
       let sizePre = 0;
-      let log = `req topic id [${reqTopic._id}]`;
       // FIXME: we create topics now so we'll always have valid topic._id
       // that's the plan anyway :rolling-eyes:
       if (mongoose.Types.ObjectId.isValid(reqTopic._id)) {
-        log += ' is valid';
         topic = await Topic.findById(reqTopic._id);
         sizePre = topic.name.length;
       } else {
-        log += 'is not valid';
         topic = new Topic();
       }
-      console.log(log);
       topic.name = reqTopic.name;
       topic.order = reqTopic.order;
       try {
