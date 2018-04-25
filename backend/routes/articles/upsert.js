@@ -1,47 +1,39 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable camelcase */
 const Article = require('../../models/article');
-const { Topic, SubTopic } = require('../../models/topic');
 const History = require('../../models/history');
 
 const upsert = async (req, res) => {
-  let newArticle = false;
   let article;
-  let topic;
-  let sub_topic;
   let sizePre = 0;
   if (req.body._id) {
     article = await Article.findById(req.body._id)
       .populate('creator')
       .populate('topic')
       .populate('sub_topic');
-    topic = article.topic;
-    sub_topic = article.sub_topic;
     sizePre = article.content.length;
   } else {
-    newArticle = true;
     article = new Article();
-    topic = new Topic();
-    sub_topic = new SubTopic();
     article.creator = req.user._id;
   }
+  article.topic = req.body.topic;
+  article.sub_topic = req.body.sub_topic;
   article.title = req.body.title;
   article.order = req.body.order;
   article.content = req.body.content;
-  if (newArticle || article.topic.name !== req.body.topic.name) {
-    topic._id = req.body.topic._id;
-    topic.name = req.body.topic.name;
-    topic.order = req.body.topic.order || 1;
-    await topic.save();
-  }
-  if (newArticle || article.sub_topic.name !== req.body.sub_topic.name) {
-    sub_topic._id = req.body.sub_topic._id;
-    sub_topic.name = req.body.topic.name;
-    sub_topic.order = req.body.sub_topic.order || 1;
-    await sub_topic.save();
-  }
-  article.topic = topic._id;
-  article.sub_topic = sub_topic._id;
+  // FIXME: articles can no longer change topic/sub-topic name (or order)
+  // if (newArticle || article.topic.name !== req.body.topic.name) {
+  //   topic._id = req.body.topic._id;
+  //   topic.name = req.body.topic.name;
+  //   topic.order = req.body.topic.order || 1;
+  //   await topic.save();
+  // }
+  // if (newArticle || article.sub_topic.name !== req.body.sub_topic.name) {
+  //   sub_topic._id = req.body.sub_topic._id;
+  //   sub_topic.name = req.body.topic.name;
+  //   sub_topic.order = req.body.sub_topic.order || 1;
+  //   await sub_topic.save();
+  // }
   try {
     await article.save();
     const history = new History({
