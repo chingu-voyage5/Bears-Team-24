@@ -49,7 +49,7 @@ class Articles extends React.Component {
         const data = res.map(art => ({
           ...art,
           topic: art.topic.name,
-          sub_topic: art.sub_topic.name,
+          sub_topic: art.sub_topic ? art.sub_topic.name : '',
         }));
         this.setState({ data });
       })
