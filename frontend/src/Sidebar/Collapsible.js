@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Details } from './styled';
+import { Details, Summary } from './styled';
 
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
@@ -11,7 +11,7 @@ const propTypes = {
 
 const Collapsible = ({ title, children, open }) => (
   <Details open={open}>
-    <summary>{title}</summary>
+    <Summary>{title}</Summary>
     {children}
   </Details>
 );

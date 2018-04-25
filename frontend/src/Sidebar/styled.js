@@ -7,6 +7,10 @@ export const Details = styled.details`
   margin-left: 1rem;
 `;
 
+export const Summary = styled.summary`
+  outline: none;
+`;
+
 export const Wrapper = styled.nav`
   padding: 2em 2em;
   background-color: ${$sidebarBackground};
