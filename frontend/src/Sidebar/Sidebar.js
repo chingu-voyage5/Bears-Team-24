@@ -26,9 +26,13 @@ export default class Sidebar extends React.Component {
       if (selectedArticles.length) {
         // eslint-disable-next-line camelcase
         const { topic, sub_topic, title } = selectedArticles[0];
-        selectedArticlePath = [topic.name, title].concat(
-          sub_topic.name.split('>')
-        );
+        selectedArticlePath = [topic.name, title];
+        // eslint-disable-next-line camelcase
+        if (sub_topic) {
+          selectedArticlePath = selectedArticlePath.concat(
+            sub_topic.name.split('>')
+          );
+        }
       }
     }
     const tree = getTree(articles);
