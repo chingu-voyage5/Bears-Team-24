@@ -9,10 +9,24 @@ const articleCompare = (a, b) => {
   if (a.topic.order > b.topic.order) {
     return 1;
   }
-  if (a.sub_topic.order < b.sub_topic.order) {
-    return -1;
-  }
-  if (a.sub_topic.order > b.sub_topic.order) {
+  // not every article has a sub_topic
+  // so order these articles against the sub_topic order
+  if (a.sub_topic && b.sub_topic) {
+    if (a.sub_topic.order < b.sub_topic.order) {
+      return -1;
+    }
+    if (a.sub_topic.order > b.sub_topic.order) {
+      return 1;
+    }
+  } else if (a.sub_topic) {
+    if (a.sub_topic.order < b.order) {
+      return -1;
+    }
+    return 1;
+  } else if (b.sub_topic) {
+    if (a.order < b.sub_topic.order) {
+      return -1;
+    }
     return 1;
   }
   if (a.order < b.order) {
