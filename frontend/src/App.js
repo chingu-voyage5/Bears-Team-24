@@ -13,7 +13,7 @@ import Assets from './Assets';
 import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';
 import TopicEdit from './TopicEdit';
-import { UserList, UserPage } from './UserList';
+import { UserList, UserPage } from './User';
 
 import theme from './theme';
 
