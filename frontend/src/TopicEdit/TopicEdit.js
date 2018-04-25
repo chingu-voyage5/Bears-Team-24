@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import { TableCell, TableRow } from 'material-ui/Table';
 
 import MessageBar from '../common/MessageBar';
+import PrimaryButton from '../common/PrimaryButton';
 import SaveButton from '../common/SaveButton';
 import TopicSelector from './TopicSelector';
 import TopicOrderTable from './TopicOrderTable';
@@ -14,7 +15,7 @@ import Wrapper, { ButtonWrapper, TopicWrapper } from './styled';
 import saveTopicUpdates from './topicActions';
 import saveSubTopicUpdates from './subTopicActions';
 import orderCompareAsc from '../common/orderCompare';
-import { getTopics, getSubTopics } from './api';
+import { getTopics, createTopic, getSubTopics } from './api';
 
 import { SMALL_WINDOW } from '../config';
 
@@ -31,6 +32,8 @@ export default class TopicEdit extends React.Component {
       horizontal: 'right',
       vertical: 'top',
     };
+    this.onNewTopic = this.onNewTopic.bind(this);
+    this.onNewSubTopic = this.onNewSubTopic.bind(this);
     this.onTopicChange = this.onTopicChange.bind(this);
     this.onSubTopicChange = this.onSubTopicChange.bind(this);
     this.handleTopicSelect = this.handleTopicSelect.bind(this);
@@ -62,7 +65,48 @@ export default class TopicEdit extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
   }
-
+  onNewTopic() {
+    const selectedTopic = {
+      name: 'Topic Name',
+      order: this.state.topics.length + 1,
+    };
+    // we have to create a topic to get an _id
+    createTopic(selectedTopic).then(result => {
+      if (result.success) {
+        selectedTopic._id = result._id;
+        this.setState({
+          topics: [...this.state.topics, selectedTopic],
+          selectedTopic,
+          message: { show: true, error: false, text: 'Topic Created' },
+        });
+      } else {
+        this.setState({
+          message: {
+            show: true,
+            error: true,
+            text: 'Topic create failed - please refresh',
+          },
+        });
+      }
+    });
+  }
+  onNewSubTopic() {
+    const { selectedTopic } = this.state;
+    const nextOrder = this.state.sub_topics.reduce((acc, sub) => {
+      if (sub.parent === selectedTopic._id) {
+        return acc + 1;
+      }
+      return acc;
+    }, 1); // order is one based
+    this.setState({
+      sub_topics: this.state.sub_topics.concat({
+        _id: `${nextOrder}`,
+        parent: this.state.selectedTopic._id,
+        name: 'Sub Topic Name',
+        order: nextOrder,
+      }),
+    });
+  }
   onTopicChange(e) {
     const { name, value, id } = e.target;
     const topics = this.state.topics.map(topic => {
@@ -114,7 +158,11 @@ export default class TopicEdit extends React.Component {
   handleSave = () => {
     saveTopicUpdates(this.state.topics).then(result => {
       if (result) {
-        const topics = this.state.topics.slice().sort(orderCompareAsc);
+        const topicList = this.state.topics.slice().sort(orderCompareAsc);
+        const topics = topicList.map(topic => {
+          const { isDirty, ...rest } = topic;
+          return rest;
+        });
         this.setState({
           topics,
           message: { show: true, error: false, text: 'Save Successful' },
@@ -131,7 +179,11 @@ export default class TopicEdit extends React.Component {
     });
     saveSubTopicUpdates(this.state.sub_topics).then(result => {
       if (result) {
-        const sub_topics = this.state.sub_topics.slice().sort(orderCompareAsc);
+        const subList = this.state.sub_topics.slice().sort(orderCompareAsc);
+        const sub_topics = subList.map(sub => {
+          const { isDirty, ...rest } = sub;
+          return rest;
+        });
         this.setState({
           sub_topics,
           message: { show: true, error: false, text: 'Save Successful' },
@@ -188,6 +240,12 @@ export default class TopicEdit extends React.Component {
     }, []);
     return (
       <Wrapper mobile={mobile}>
+        <ButtonWrapper>
+          <PrimaryButton onClick={this.onNewTopic}>New Topic</PrimaryButton>
+          <PrimaryButton onClick={this.onNewSubTopic}>
+            New SubTopic
+          </PrimaryButton>
+        </ButtonWrapper>
         <h3>Topic and SubTopic ordering</h3>
         <TopicWrapper>
           1. Select a Topic:&nbsp;

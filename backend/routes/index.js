@@ -43,6 +43,11 @@ router.get(
   catchAsyncErrors(topics.getTopics)
 );
 router.post(
+  '/api/v1/topics/new',
+  auth.isLoggedIn,
+  catchAsyncErrors(topics.createTopic)
+);
+router.post(
   '/api/v1/topics',
   auth.isLoggedIn,
   catchAsyncErrors(topics.upsertTopics)

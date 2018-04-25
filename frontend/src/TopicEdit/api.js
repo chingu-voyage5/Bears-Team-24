@@ -10,6 +10,14 @@ export const saveTopics = payload =>
     body: JSON.stringify(payload),
   }).then(handleResponse);
 
+export const createTopic = payload =>
+  fetch('/api/v1/topics/new', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    credentials: 'same-origin',
+    body: JSON.stringify(payload),
+  }).then(handleResponse);
+
 export const saveSubTopics = payload =>
   fetch('/api/v1/subtopics', {
     method: 'POST',

@@ -1,5 +1,6 @@
 const { SubTopic } = require('../../models/topic');
 const History = require('../../models/history');
+const mongoose = require('mongoose');
 
 /* eslint-disable camelcase */
 
@@ -9,7 +10,7 @@ const upsertSubTopics = async (req, res) => {
     const p = new Promise(async resolve => {
       let sub_topic;
       let sizePre = 0;
-      if (sub._id) {
+      if (mongoose.Types.ObjectId.isValid(sub._id)) {
         sub_topic = await SubTopic.findById(sub._id);
         sizePre = sub_topic.name.length;
       } else {

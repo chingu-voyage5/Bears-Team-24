@@ -3,6 +3,8 @@ import Select from 'material-ui/Select';
 import { TableHead } from 'material-ui/Table';
 
 export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: 'flex-start';
   margin: 1rem auto;
 `;
 
