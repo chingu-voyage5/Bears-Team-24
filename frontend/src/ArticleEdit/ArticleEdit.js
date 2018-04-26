@@ -102,15 +102,15 @@ class ArticleEdit extends React.Component {
           }
           return acc;
         }, null);
-        if (article.sub_topic === null) {
-          selectedSubTopic = ArticleEdit.nullSubTopic;
-        } else {
+        if (article.sub_topic) {
           selectedSubTopic = sub_topics.reduce((acc, sub) => {
             if (sub._id === article.sub_topic._id) {
               return sub;
             }
             return acc;
           }, ArticleEdit.nullSubTopic);
+        } else {
+          selectedSubTopic = ArticleEdit.nullSubTopic;
         }
       }
       this.setState({
@@ -143,22 +143,12 @@ class ArticleEdit extends React.Component {
   };
 
   handleFieldChange = e => {
+    const { name, value } = e.target;
     const { message, article } = this.state;
-    const na = { ...article };
-    switch (e.target.name) {
-      case 'topic':
-        na.topic = { ...article.topic, name: e.target.value };
-        break;
-      case 'sub_topic':
-        na.sub_topic = { ...article.sub_topic, name: e.target.value };
-        break;
-      default:
-        na[e.target.name] = e.target.value;
-        break;
-    }
+    article[name] = value;
     this.setState({
       message: { ...message, show: false },
-      article: na,
+      article,
     });
   };
 
@@ -242,13 +232,13 @@ class ArticleEdit extends React.Component {
 
   handleSubTopicSelect = e => {
     const { article } = this.state;
-    article.sub_topic = e.target.value;
     const selectedSubTopic = this.state.sub_topics.reduce((acc, sub) => {
       if (sub._id === e.target.value) {
         return sub;
       }
       return acc;
     }, ArticleEdit.nullSubTopic);
+    article.sub_topic = selectedSubTopic;
     this.setState({ article, selectedSubTopic });
   };
 
