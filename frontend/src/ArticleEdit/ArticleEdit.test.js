@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import 'jest-styled-components';
 
 import ArticleEdit from '.';
-import actions from './actions';
 
 const topics = [{ _id: '1', name: 'Pilosa', order: 1 }];
 // eslint-disable-next-line camelcase
