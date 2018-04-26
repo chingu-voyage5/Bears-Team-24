@@ -162,8 +162,33 @@ class ArticleEdit extends React.Component {
     });
   };
 
+  validateArticle = article => {
+    let message = '';
+    if (!article.title) {
+      message = 'Please enter a title';
+    }
+    if (!article.topic) {
+      message = 'Please enter a topic';
+    }
+    if (!article.content) {
+      message = 'Please enter some content';
+    }
+    return { success: !message, message };
+  };
+
   handleSave = () => {
     const { article } = this.state;
+    const valid = this.validateArticle(article);
+    if (valid.success === false) {
+      this.setState({
+        message: {
+          show: true,
+          error: true,
+          text: valid.message,
+        },
+      });
+      return;
+    }
     if (article.sub_topic === ArticleEdit.nullSubTopic) {
       delete article.sub_topic;
     }
@@ -331,7 +356,9 @@ class ArticleEdit extends React.Component {
               </Paper>
             ) : (
               <Preview
-                dangerouslySetInnerHTML={{ __html: marked(article.content) }}
+                dangerouslySetInnerHTML={{
+                  __html: marked(article.content || ''),
+                }}
               />
             )}
           </ContentWrapper>
