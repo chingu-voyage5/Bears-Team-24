@@ -9,6 +9,7 @@ const History = require('../backend/models/history');
 const { Topic, SubTopic} = require('../backend/models/topic');
 const seedVoyage = require('./seedVoyage');
 const seedPmrok = require('./seedPmrok');
+const seedHelp = require('./seedHelp');
 
 connect = async () => {
   try {
@@ -52,6 +53,7 @@ seeder = async () => {
   console.log('sys user _id:', sys_id);
   await seedVoyage(sys_id);
   await seedPmrok(sys_id);
+  await seedHelp(sys_id);
   process.exit(0);
 };
 
