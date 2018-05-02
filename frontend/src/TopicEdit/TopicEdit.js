@@ -15,7 +15,6 @@ import Wrapper, { ButtonWrapper, TopicWrapper } from './styled';
 import saveTopicUpdates from './topicActions';
 import saveSubTopicUpdates from './subTopicActions';
 import orderCompareAsc from '../common/orderCompare';
-import handleResponse from '../common/ErrorHandler';
 import { getTopics, createTopic, getSubTopics } from './api';
 
 import { SMALL_WINDOW } from '../config';
@@ -41,28 +40,19 @@ export default class TopicEdit extends React.Component {
   }
 
   componentDidMount() {
-    this.loadTopics();
-    this.loadSubTopics();
-
-    window.addEventListener('resize', this.handleResize);
-    this.handleResize();
-  }
-  // eslint-disable-next-line react/sort-comp
-  loadTopics() {
     getTopics()
-      .then(handleResponse)
       .then(topics => {
         this.setState({ topics, selectedTopic: topics[0] });
       })
       // eslint-disable-next-line no-console
       .catch(e => console.error('mounted get topics failed:', e));
-  }
-  loadSubTopics() {
     getSubTopics()
-      .then(handleResponse)
       .then(sub_topics => this.setState({ sub_topics }))
       // eslint-disable-next-line no-console
       .catch(e => console.error('mounted get sub topics failed:', e));
+
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
   }
 
   componentWillUnmount() {

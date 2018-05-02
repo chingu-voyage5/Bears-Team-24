@@ -4,22 +4,55 @@ import 'jest-styled-components';
 
 import TopicEdit from './TopicEdit';
 
-const topic = { _id: '1', name: 'Voyage', order: 1 };
-// eslint-disable-next-line camelcase
-const sub_topics = { _id: '1', parent: '1', name: 'About this wiki', order: 1 };
+jest.mock('./api');
+
+let wrapper;
 
 describe('TopicEdit', () => {
-  it('should match snapshot', () => {
-    // FIXME: test passes but it's rendering "Loading ..."
-    // not the topics/sub-topics
-    jest
-      .spyOn(TopicEdit.prototype, 'loadTopics')
-      .mockImplementation(() => new Promise(resolve => resolve(topic)));
-    jest
-      .spyOn(TopicEdit.prototype, 'loadSubTopics')
-      .mockImplementation(() => new Promise(resolve => resolve(sub_topics)));
-
-    const comp = shallow(<TopicEdit />);
-    expect(comp).toMatchSnapshot();
+  beforeEach(() => {
+    wrapper = shallow(<TopicEdit />);
   });
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+  it('should display new topic and sub-topic buttons', () =>
+    Promise.resolve().then(() => {
+      wrapper.update();
+      expect(wrapper.find('PrimaryButton').length).toBe(2);
+      expect(
+        wrapper
+          .find('PrimaryButton')
+          .at(0)
+          .childAt(0)
+          .text()
+      ).toBe('New Topic');
+      expect(
+        wrapper
+          .find('PrimaryButton')
+          .at(1)
+          .childAt(0)
+          .text()
+      ).toBe('New SubTopic');
+    }));
+  it('should display save button', () =>
+    Promise.resolve().then(() => {
+      wrapper.update();
+      expect(wrapper.find('SaveButton').length).toBe(1);
+      expect(wrapper.find('SaveButton').text()).toBe('<SaveButton />');
+    }));
+  it('should display topic selector', () =>
+    Promise.resolve().then(() => {
+      wrapper.update();
+      expect(wrapper.find('TopicSelector').length).toBe(1);
+    }));
+  it('should display message bar', () =>
+    Promise.resolve().then(() => {
+      wrapper.update();
+      expect(wrapper.find('MessageBar').length).toBe(1);
+    }));
+  it('should display sub topic rows', () =>
+    Promise.resolve().then(() => {
+      wrapper.update();
+      expect(wrapper.find('TopicOrderTable').length).toBe(1);
+    }));
 });
