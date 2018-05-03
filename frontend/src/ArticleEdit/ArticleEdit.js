@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Material-UI components
-import Button from 'material-ui/Button';
-
+import SaveButton from '../common/SaveButton';
 import MessageBar from '../common/MessageBar';
 import Form from './Form';
 import ContentEdit from './ContentEdit';
 
-import handleResponse from '../common/ErrorHandler';
 import { getTopics, getSubTopics } from '../TopicEdit/api';
 import actions from './actions';
 
@@ -38,7 +35,7 @@ class ArticleEdit extends React.Component {
   };
 
   state = {
-    edit: 0,
+    isDirty: false,
     article: { ...ArticleEdit.defaultArticle },
     topics: [],
     sub_topics: [],
@@ -47,41 +44,33 @@ class ArticleEdit extends React.Component {
     message: { show: false, error: false, text: '' },
   };
 
-  componentDidMount = () => {
-    const promises = [];
-    promises.push(
-      new Promise(resolve => resolve(getTopics().then(handleResponse)))
-    );
-    promises.push(
-      new Promise(resolve => resolve(getSubTopics().then(handleResponse)))
-    );
-    if (this.props.id) {
-      promises.push(
-        new Promise(resolve =>
-          resolve(actions.get(this.props.id).then(handleResponse))
-        )
-      );
-    }
-    Promise.all(promises).then(results => {
-      const topics = results[0];
-      const sub_topics = results[1];
-      let article = { ...ArticleEdit.defaultArticle };
-      if (results.length === 3) {
-        // eslint-disable-next-line prefer-destructuring
-        article = results[2];
+  componentDidMount() {
+    this.loadData().then(results => {
+      const [topics, sub_topics, last] = results;
+      let article;
+      if (last) {
+        article = last;
       } else {
-        [article.topic] = topics;
+        article = { ...ArticleEdit.defaultArticle, topic: topics[0] };
       }
-      this.setState({
-        article,
-        topics,
-        sub_topics,
-      });
+      this.setState({ topics, sub_topics, article });
     });
 
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
-  };
+  }
+  // eslint-disable-next-line react/sort-comp
+  loadData() {
+    const promises = [];
+    promises.push(new Promise(resolve => resolve(getTopics())));
+    promises.push(new Promise(resolve => resolve(getSubTopics())));
+    if (this.props.id) {
+      promises.push(
+        new Promise(resolve => resolve(actions.get(this.props.id)))
+      );
+    }
+    return Promise.all(promises);
+  }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
@@ -99,6 +88,7 @@ class ArticleEdit extends React.Component {
     const { message, article } = this.state;
     article[name] = value;
     this.setState({
+      isDirty: true,
       message: { ...message, show: false },
       article,
     });
@@ -131,8 +121,9 @@ class ArticleEdit extends React.Component {
       });
       return;
     }
+    console.log('save article with sub topic:', article.sub_topic);
     // FIXME: remove
-    // if (article.sub_topic === ArticleEdit.nullSubTopic) {
+    // if (article.sub_topic === null) {
     //   delete article.sub_topic;
     // }
     actions
@@ -140,6 +131,7 @@ class ArticleEdit extends React.Component {
       .then(json => {
         if (json.success) {
           this.setState({
+            isDirty: false,
             message: {
               show: true,
               error: false,
@@ -174,23 +166,24 @@ class ArticleEdit extends React.Component {
     const { article } = this.state;
     article.topic = selectedTopic;
     article.sub_topic = selectedSubTopic;
-    this.setState({ article });
+    this.setState({ isDirty: true, article });
   };
 
   render() {
-    const { edit, message, horizontal, vertical, mobile } = this.state;
+    const { isDirty, message, horizontal, vertical, mobile } = this.state;
     const { empty } = this.props;
     const { topics, sub_topics } = this.state;
-    let { article } = this.state;
+    const { article } = this.state;
     // if we have an id but no topics we're not ready
     if ((article.topic === null && !empty) || topics.length === 0) {
       return <div>Loading ...</div>;
     }
-    // FIXME: we have an issue with test, last render called with null article
+    // FIXME: test fixed remove
+    // we have an issue with test, last render called with null article
     // This doesn't seem to happen running the app
-    if (!article) {
-      article = { ...ArticleEdit.defaultArticle };
-    }
+    // if (!article) {
+    //   article = { ...ArticleEdit.defaultArticle };
+    // }
     return (
       <Wrapper mobile={mobile}>
         <EditorWrapper>
@@ -207,15 +200,14 @@ class ArticleEdit extends React.Component {
             setTopics={this.setTopics}
           />
           <ContentEdit
-            edit={edit}
             content={article.content || ''}
             handleFieldChange={this.handleFieldChange}
           />
         </EditorWrapper>
         <div>
-          <Button variant="raised" color="primary" onClick={this.handleSave}>
+          <SaveButton disabled={!isDirty} onClick={this.handleSave}>
             Save
-          </Button>
+          </SaveButton>
         </div>
         <MessageBar
           anchor={{ vertical, horizontal }}

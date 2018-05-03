@@ -10,10 +10,10 @@ import { AppBar, ContentWrapper, Preview, Textarea } from './styled';
 
 export default class ContentEdit extends React.Component {
   static propTypes = {
-    edit: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired,
     handleFieldChange: PropTypes.func.isRequired,
   };
+  state = { edit: 0 };
 
   handleTabSwitch = (e, value) => {
     this.setState(() => ({
@@ -22,7 +22,8 @@ export default class ContentEdit extends React.Component {
   };
 
   render = () => {
-    const { content, edit, handleFieldChange } = this.props;
+    const { content, handleFieldChange } = this.props;
+    const { edit } = this.state;
     return (
       <ContentWrapper>
         <AppBar position="static">

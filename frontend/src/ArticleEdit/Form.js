@@ -19,13 +19,15 @@ export default class Form extends React.Component {
     topics: PropTypes.array.isRequired,
     sub_topics: PropTypes.array.isRequired,
     selectedTopic: PropTypes.object.isRequired,
-    selectedSubTopic: PropTypes.object,
+    selectedSubTopic: PropTypes.any,
     handleFieldChange: PropTypes.func.isRequired,
     setTopics: PropTypes.func.isRequired,
   };
+
   static defaultProps = {
     selectedSubTopic: Form.nullSubTopic,
   };
+
   static nullSubTopic = { _id: '0' };
 
   handleTopicSelect = e => {
@@ -35,7 +37,7 @@ export default class Form extends React.Component {
       }
       return acc;
     }, {});
-    const selectedSubTopic = Form.nullSubTopic;
+    const selectedSubTopic = null;
     this.props.setTopics(selectedTopic, selectedSubTopic);
   };
 
@@ -59,9 +61,10 @@ export default class Form extends React.Component {
       selectedTopic,
       selectedSubTopic,
     } = this.props;
-    if (topics === null || sub_topics === null) {
-      return <div>Loading ...</div>;
-    }
+    // FIXME: remove
+    // if (topics === null || sub_topics === null) {
+    //   return <div>Loading ...</div>;
+    // }
     const topicList = topics.map(topic => (
       <MenuItem key={topic._id} value={topic._id}>
         {topic.name}
@@ -85,6 +88,7 @@ export default class Form extends React.Component {
       }
       return acc;
     }, []);
+    const fixedSelectedSubTopic = selectedSubTopic || Form.nullSubTopic;
     return (
       <List>
         <ListItemInput
@@ -116,7 +120,7 @@ export default class Form extends React.Component {
             <Typography variant="title">Sub Topic:</Typography>
           </Label>
           <TopicSelector
-            selectedTopic={selectedSubTopic ? selectedSubTopic._id : '0'}
+            selectedTopic={fixedSelectedSubTopic._id}
             onSelect={this.handleSubTopicSelect}
             topicList={subTopicList}
           />
