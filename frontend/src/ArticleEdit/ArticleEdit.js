@@ -25,7 +25,6 @@ class ArticleEdit extends React.Component {
     empty: false,
   };
 
-  // FIXME: we only use this to fix a test case, use empty
   static defaultArticle = {
     title: '',
     topic: null,
@@ -121,11 +120,6 @@ class ArticleEdit extends React.Component {
       });
       return;
     }
-    console.log('save article with sub topic:', article.sub_topic);
-    // FIXME: remove
-    // if (article.sub_topic === null) {
-    //   delete article.sub_topic;
-    // }
     actions
       .save(this.state.article)
       .then(json => {
@@ -178,12 +172,6 @@ class ArticleEdit extends React.Component {
     if ((article.topic === null && !empty) || topics.length === 0) {
       return <div>Loading ...</div>;
     }
-    // FIXME: test fixed remove
-    // we have an issue with test, last render called with null article
-    // This doesn't seem to happen running the app
-    // if (!article) {
-    //   article = { ...ArticleEdit.defaultArticle };
-    // }
     return (
       <Wrapper mobile={mobile}>
         <EditorWrapper>

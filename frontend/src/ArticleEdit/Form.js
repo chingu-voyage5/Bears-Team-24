@@ -61,10 +61,6 @@ export default class Form extends React.Component {
       selectedTopic,
       selectedSubTopic,
     } = this.props;
-    // FIXME: remove
-    // if (topics === null || sub_topics === null) {
-    //   return <div>Loading ...</div>;
-    // }
     const topicList = topics.map(topic => (
       <MenuItem key={topic._id} value={topic._id}>
         {topic.name}
