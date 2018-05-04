@@ -27,6 +27,10 @@ export default class CMSContainer extends React.Component {
     this.handleResize();
   };
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
   handleResize = () => {
     const { mobile } = this.state;
     const windowWidth = window.innerWidth;

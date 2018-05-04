@@ -36,13 +36,9 @@ export const Heading1 = styled(Typography).attrs({
 Heading1.displayName = 'Heading1';
 
 export const Label = styled.div`
-  font-weight: bold;
   min-width: 20%;
-
-  @media (max-width: 768px) {
-    min-width: 25%;
-  }
 `;
+Label.displayName = 'Label';
 
 export const Preview = styled(PaperMUI)`
   padding: 1rem;

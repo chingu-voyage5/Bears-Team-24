@@ -3,14 +3,18 @@ import marked from 'marked';
 import PropTypes from 'prop-types';
 
 // Material-UI components
+import MenuItem from 'material-ui/Menu/MenuItem';
+import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import List from 'material-ui/List';
+import List, { ListItem } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
-import Snackbar from 'material-ui/Snackbar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
 import ListItemInput from '../ListItemInput';
+import TopicSelector from '../TopicEdit/TopicSelector';
+import MessageBar from '../common/MessageBar';
 
+import { getTopics, getSubTopics } from '../TopicEdit/api';
 import actions from './actions';
 
 import {
@@ -21,41 +25,102 @@ import {
   Preview,
   Textarea,
   Wrapper,
+  Label,
 } from './styled';
 
 import { SMALL_WINDOW } from '../config';
 
-const propTypes = {
-  id: PropTypes.string,
-  empty: PropTypes.bool,
-};
-
-const defaultProps = {
-  id: '',
-  empty: false,
-};
+/* eslint-disable camelcase */
 
 class ArticleEdit extends React.Component {
+  static propTypes = {
+    id: PropTypes.string,
+    empty: PropTypes.bool,
+  };
+  static nullSubTopic = { _id: '0' };
+  static defaultProps = {
+    id: '',
+    empty: false,
+  };
+
+  // FIXME: we only use this to fix a test case, use empty
+  static defaultArticle = {
+    title: '',
+    topic: null,
+    sub_topic: null,
+    order: 1,
+    content: '',
+  };
+
+  // static because - eslint-disable class-methods-use-this
+  static fetchData(id) {
+    return actions.get(id);
+  }
+
+  static getAllTopics() {
+    return getTopics();
+  }
+  static getAllSubTopics() {
+    return getSubTopics();
+  }
+
   state = {
     edit: 0,
-    article: {
-      title: '',
-      topic: '',
-      sub_topic: '',
-    },
+    article: ArticleEdit.defaultArticle,
+    topics: [],
+    sub_topics: [],
+    selectedTopic: null,
+    selectedSubTopic: ArticleEdit.nullSubTopic,
     horizontal: 'right',
     vertical: 'top',
     message: { show: false, error: false, text: '' },
   };
 
   componentDidMount = () => {
+    const promises = [];
+    promises.push(new Promise(resolve => resolve(ArticleEdit.getAllTopics())));
+    promises.push(
+      new Promise(resolve => resolve(ArticleEdit.getAllSubTopics()))
+    );
     if (this.props.id) {
-      actions
-        .get(this.props.id)
-        .then(article => this.setState({ article }))
-        // eslint-disable-next-line no-console
-        .catch(e => console.error('get article for edit failed:', e));
+      promises.push(
+        new Promise(resolve => resolve(ArticleEdit.fetchData(this.props.id)))
+      );
     }
+    Promise.all(promises).then(results => {
+      const topics = results[0];
+      const sub_topics = results[1];
+      let selectedTopic = topics[0];
+      let selectedSubTopic = ArticleEdit.nullSubTopic;
+      let article = ArticleEdit.defaultArticle;
+      if (results.length === 3) {
+        // eslint-disable-next-line prefer-destructuring
+        article = results[2];
+        selectedTopic = topics.reduce((acc, topic) => {
+          if (topic._id === article.topic._id) {
+            return topic;
+          }
+          return acc;
+        }, null);
+        if (article.sub_topic) {
+          selectedSubTopic = sub_topics.reduce((acc, sub) => {
+            if (sub._id === article.sub_topic._id) {
+              return sub;
+            }
+            return acc;
+          }, ArticleEdit.nullSubTopic);
+        } else {
+          selectedSubTopic = ArticleEdit.nullSubTopic;
+        }
+      }
+      this.setState({
+        article,
+        topics,
+        sub_topics,
+        selectedTopic,
+        selectedSubTopic,
+      });
+    });
 
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
@@ -71,11 +136,6 @@ class ArticleEdit extends React.Component {
     }));
   };
 
-  // eslint-disable-next-line
-  fetchData(id) {
-    return actions.get(id);
-  }
-
   handleTabSwitch = (e, value) => {
     this.setState(() => ({
       edit: value,
@@ -83,18 +143,16 @@ class ArticleEdit extends React.Component {
   };
 
   handleFieldChange = e => {
+    const { name, value } = e.target;
     const { message, article } = this.state;
+    article[name] = value;
     this.setState({
       message: { ...message, show: false },
-      article: {
-        ...article,
-        [e.target.name]: e.target.value,
-      },
+      article,
     });
   };
 
-  validateArticle = () => {
-    const { article } = this.state;
+  validateArticle = article => {
     let message = '';
     if (!article.title) {
       message = 'Please enter a title';
@@ -109,7 +167,8 @@ class ArticleEdit extends React.Component {
   };
 
   handleSave = () => {
-    const valid = this.validateArticle();
+    const { article } = this.state;
+    const valid = this.validateArticle(article);
     if (valid.success === false) {
       this.setState({
         message: {
@@ -120,18 +179,21 @@ class ArticleEdit extends React.Component {
       });
       return;
     }
+    if (article.sub_topic === ArticleEdit.nullSubTopic) {
+      delete article.sub_topic;
+    }
     actions
       .save(this.state.article)
       .then(json => {
         if (json.success) {
-          this.setState(({ article }) => ({
+          this.setState({
             message: {
               show: true,
               error: false,
               text: 'Saved Successfully',
             },
             article: { ...article, _id: json._id },
-          }));
+          });
         } else {
           this.setState({
             message: { show: true, error: true, text: json.error },
@@ -155,10 +217,71 @@ class ArticleEdit extends React.Component {
     }));
   };
 
-  render() {
-    const { edit, article, message, horizontal, vertical, mobile } = this.state;
-    const { empty } = this.props;
+  handleTopicSelect = e => {
+    const { article } = this.state;
+    article.topic = e.target.value;
+    const selectedTopic = this.state.topics.reduce((acc, topic) => {
+      if (topic._id === e.target.value) {
+        return topic;
+      }
+      return acc;
+    }, {});
+    const selectedSubTopic = ArticleEdit.nullSubTopic;
+    this.setState({ article, selectedTopic, selectedSubTopic });
+  };
 
+  handleSubTopicSelect = e => {
+    const { article } = this.state;
+    const selectedSubTopic = this.state.sub_topics.reduce((acc, sub) => {
+      if (sub._id === e.target.value) {
+        return sub;
+      }
+      return acc;
+    }, ArticleEdit.nullSubTopic);
+    article.sub_topic = selectedSubTopic;
+    this.setState({ article, selectedSubTopic });
+  };
+
+  render() {
+    const { edit, message, horizontal, vertical, mobile } = this.state;
+    const { empty } = this.props;
+    const { topics, sub_topics, selectedTopic, selectedSubTopic } = this.state;
+    let { article } = this.state;
+    // if we have an id but no topics we're not ready
+    if (
+      (selectedTopic === null && !empty) ||
+      (topics.length === 0 || sub_topics.length === 0)
+    ) {
+      return <div>Loading ...</div>;
+    }
+    // FIXME: we have an issue with test, last render called with null article
+    // This doesn't seem to happen running the app
+    if (!article) {
+      article = ArticleEdit.defaultArticle;
+    }
+    const topicList = this.state.topics.map(topic => (
+      <MenuItem key={topic._id} value={topic._id}>
+        {topic.name}
+      </MenuItem>
+    ));
+    const subTopicList = this.state.sub_topics.reduce((acc, sub) => {
+      let cac = [...acc];
+      if (acc.length === 0) {
+        cac = acc.concat(
+          <MenuItem key={0} value="0">
+            None
+          </MenuItem>
+        );
+      }
+      if (sub.parent === selectedTopic._id) {
+        return cac.concat(
+          <MenuItem key={sub._id} value={sub._id}>
+            {sub.name}
+          </MenuItem>
+        );
+      }
+      return acc;
+    }, []);
     return (
       <Wrapper mobile={mobile}>
         <EditorWrapper>
@@ -173,18 +296,31 @@ class ArticleEdit extends React.Component {
             />
             <ListItemInput
               mobile={mobile}
-              label="Topic"
-              name="topic"
-              value={article.topic || ''}
+              label="Order"
+              name="order"
+              value={`${article.order || 0}`}
               onChange={this.handleFieldChange}
             />
-            <ListItemInput
-              mobile={mobile}
-              label="Sub topic"
-              name="sub_topic"
-              value={article.sub_topic || ''}
-              onChange={this.handleFieldChange}
-            />
+            <ListItem>
+              <Label>
+                <Typography variant="title">Topic:</Typography>
+              </Label>
+              <TopicSelector
+                selectedTopic={selectedTopic._id}
+                onSelect={this.handleTopicSelect}
+                topicList={topicList}
+              />
+            </ListItem>
+            <ListItem>
+              <Label>
+                <Typography variant="title">Sub Topic:</Typography>
+              </Label>
+              <TopicSelector
+                selectedTopic={selectedSubTopic._id}
+                onSelect={this.handleSubTopicSelect}
+                topicList={subTopicList}
+              />
+            </ListItem>
           </List>
           <ContentWrapper>
             <AppBar position="static">
@@ -222,26 +358,14 @@ class ArticleEdit extends React.Component {
             Save
           </Button>
         </div>
-        <Snackbar
-          anchorOrigin={{ vertical, horizontal }}
-          open={message.show}
-          onClose={this.handleClose}
-          autoHideDuration={message.error ? null : 3000}
-          SnackbarContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={
-            <span id="message-id">
-              {message.text || 'Something went wrong :('}
-            </span>
-          }
+        <MessageBar
+          anchor={{ vertical, horizontal }}
+          message={message}
+          handleClose={this.handleClose}
         />
       </Wrapper>
     );
   }
 }
-
-ArticleEdit.propTypes = propTypes;
-ArticleEdit.defaultProps = defaultProps;
 
 export default ArticleEdit;

@@ -8,6 +8,7 @@ const users = require('./users');
 const assets = require('./assets');
 const cms = require('./cms');
 const articles = require('./articles');
+const topics = require('./topics');
 
 const passport = require('passport');
 
@@ -36,6 +37,33 @@ router.get(
   }
 );
 
+router.get(
+  '/api/v1/topics',
+  auth.isLoggedIn,
+  catchAsyncErrors(topics.getTopics)
+);
+router.post(
+  '/api/v1/topics/new',
+  auth.isLoggedIn,
+  catchAsyncErrors(topics.createTopic)
+);
+router.post(
+  '/api/v1/topics',
+  auth.isLoggedIn,
+  catchAsyncErrors(topics.upsertTopics)
+);
+
+router.get(
+  '/api/v1/subtopics',
+  auth.isLoggedIn,
+  catchAsyncErrors(topics.getSubTopics)
+);
+router.post(
+  '/api/v1/subtopics',
+  auth.isLoggedIn,
+  catchAsyncErrors(topics.upsertSubTopics)
+);
+
 router.get('/api/v0/articles', catchAsyncErrors(articles.getAll));
 router.get('/api/v0/articles/:id', articles.getDetail);
 router.post(
@@ -54,6 +82,7 @@ router.post(
   catchAsyncErrors(assets.upsert)
 );
 
+router.get('/api/v1/articles', catchAsyncErrors(articles.getAll));
 router.get('/api/v1/articles/:id*?', cms.getArticleJSON);
 
 router.post(

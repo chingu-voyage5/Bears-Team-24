@@ -5,8 +5,11 @@ console.info('use db:', process.env.MONGO_URI);
 const { db } = require('../backend/models');
 const User = require('../backend/models/user');
 const Article = require('../backend/models/article');
+const History = require('../backend/models/history');
+const { Topic, SubTopic} = require('../backend/models/topic');
 const seedVoyage = require('./seedVoyage');
 const seedPmrok = require('./seedPmrok');
+const seedHelp = require('./seedHelp');
 
 connect = async () => {
   try {
@@ -20,6 +23,9 @@ tearDown = async () => {
   try {
     await Article.remove({});
     await User.remove({});
+    await Topic.remove({});
+    await SubTopic.remove({});
+    await History.remove({});
   } catch (e) {
     console.error('teardown db failed:', e);
     process.exit(1);
@@ -47,6 +53,7 @@ seeder = async () => {
   console.log('sys user _id:', sys_id);
   await seedVoyage(sys_id);
   await seedPmrok(sys_id);
+  await seedHelp(sys_id);
   process.exit(0);
 };
 

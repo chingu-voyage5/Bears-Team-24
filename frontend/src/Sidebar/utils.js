@@ -7,12 +7,12 @@ import { LI } from './styled';
 const getTree = articles => {
   const tree = {};
   articles.forEach(article => {
-    if (!tree[article.topic]) {
-      tree[article.topic] = {};
+    if (!tree[article.topic.name]) {
+      tree[article.topic.name] = {};
     }
-    let topic = tree[article.topic];
+    let topic = tree[article.topic.name];
     if (article.sub_topic) {
-      const list = article.sub_topic.split('>');
+      const list = article.sub_topic.name.split('>');
       list.forEach(sub => {
         if (!topic[sub]) {
           topic[sub] = {};

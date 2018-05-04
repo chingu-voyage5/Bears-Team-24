@@ -19,7 +19,7 @@ describe('Navbar', () => {
       </MemoryRouter>
     );
 
-    expect(wrapper.find('a')).toHaveLength(6);
+    expect(wrapper.find('a')).toHaveLength(7);
   });
   const guestProps = {
     isLoggedIn: false,
