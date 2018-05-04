@@ -5,5 +5,5 @@ export const topics = [
 export const subTopics = [
   { _id: '10', parent: '1', name: 'About wiki', order: 1 },
   { _id: '11', parent: '1', name: 'About Voyages', order: 2 },
-  { _id: '12', parent: '1', name: 'About PMRoK', order: 1 },
+  { _id: '12', parent: '2', name: 'About PMRoK', order: 1 },
 ];
