@@ -1,0 +1,495 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ArticleEdit Form 1`] = `
+<ul
+  className="MuiList-root-1 MuiList-padding-2"
+>
+  <li
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
+    disabled={false}
+  >
+    <div
+      className="sc-bdVaJa drcPZX"
+    >
+      <h2
+        className="MuiTypography-root-15 MuiTypography-title-21"
+      >
+        Title
+        :
+      </h2>
+    </div>
+    <div
+      className="MuiListItemText-root-39"
+    >
+      <h3
+        className="MuiTypography-root-15 MuiTypography-subheading-22 MuiListItemText-primary-42"
+      >
+        <div
+          aria-describedby={undefined}
+          className="MuiFormControl-root-45 MuiFormControl-fullWidth-48"
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
+          <div
+            className="MuiInput-root-49 MuiInput-fullWidth-56 MuiInput-formControl-50 MuiInput-underline-53"
+          >
+            <input
+              aria-invalid={false}
+              aria-required={false}
+              autoComplete={undefined}
+              autoFocus={undefined}
+              className="MuiInput-input-57"
+              defaultValue={undefined}
+              disabled={false}
+              id={undefined}
+              name="title"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={undefined}
+              onKeyUp={undefined}
+              placeholder={undefined}
+              readOnly={undefined}
+              required={undefined}
+              rows={undefined}
+              type="text"
+              value="title"
+            />
+          </div>
+        </div>
+      </h3>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
+    disabled={false}
+  >
+    <div
+      className="sc-bdVaJa drcPZX"
+    >
+      <h2
+        className="MuiTypography-root-15 MuiTypography-title-21"
+      >
+        Order
+        :
+      </h2>
+    </div>
+    <div
+      className="MuiListItemText-root-39"
+    >
+      <h3
+        className="MuiTypography-root-15 MuiTypography-subheading-22 MuiListItemText-primary-42"
+      >
+        <div
+          aria-describedby={undefined}
+          className="MuiFormControl-root-45 MuiFormControl-fullWidth-48"
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
+          <div
+            className="MuiInput-root-49 MuiInput-fullWidth-56 MuiInput-formControl-50 MuiInput-underline-53"
+          >
+            <input
+              aria-invalid={false}
+              aria-required={false}
+              autoComplete={undefined}
+              autoFocus={undefined}
+              className="MuiInput-input-57"
+              defaultValue={undefined}
+              disabled={false}
+              id={undefined}
+              name="order"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={undefined}
+              onKeyUp={undefined}
+              placeholder={undefined}
+              readOnly={undefined}
+              required={undefined}
+              rows={undefined}
+              type="text"
+              value="1"
+            />
+          </div>
+        </div>
+      </h3>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
+    disabled={false}
+  >
+    <div
+      className="sc-iwsKbI jmYMFI"
+    >
+      <h2
+        className="MuiTypography-root-15 MuiTypography-title-21"
+      >
+        Topic:
+      </h2>
+    </div>
+    <div
+      className="MuiInput-root-49 MuiInput-underline-53 sc-ifAKCX dUasrT"
+    >
+      <div
+        className="MuiSelect-root-63"
+      >
+        <div
+          aria-haspopup="true"
+          aria-owns={null}
+          aria-pressed="false"
+          className="MuiSelect-select-64 MuiSelect-selectMenu-65 MuiInput-input-57"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          Voyage
+        </div>
+        <input
+          aria-invalid={undefined}
+          aria-required={undefined}
+          autoComplete={undefined}
+          autoFocus={undefined}
+          defaultValue={undefined}
+          id={undefined}
+          name={undefined}
+          onKeyDown={undefined}
+          onKeyUp={undefined}
+          placeholder={undefined}
+          readOnly={undefined}
+          required={undefined}
+          rows={undefined}
+          type="hidden"
+          value="1"
+        />
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root-68 MuiSelect-icon-67"
+          color={undefined}
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </div>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
+    disabled={false}
+  >
+    <div
+      className="sc-iwsKbI jmYMFI"
+    >
+      <h2
+        className="MuiTypography-root-15 MuiTypography-title-21"
+      >
+        Sub Topic:
+      </h2>
+    </div>
+    <div
+      className="MuiInput-root-49 MuiInput-underline-53 sc-ifAKCX dUasrT"
+    >
+      <div
+        className="MuiSelect-root-63"
+      >
+        <div
+          aria-haspopup="true"
+          aria-owns={null}
+          aria-pressed="false"
+          className="MuiSelect-select-64 MuiSelect-selectMenu-65 MuiInput-input-57"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          About wiki
+        </div>
+        <input
+          aria-invalid={undefined}
+          aria-required={undefined}
+          autoComplete={undefined}
+          autoFocus={undefined}
+          defaultValue={undefined}
+          id={undefined}
+          name={undefined}
+          onKeyDown={undefined}
+          onKeyUp={undefined}
+          placeholder={undefined}
+          readOnly={undefined}
+          required={undefined}
+          rows={undefined}
+          type="hidden"
+          value="10"
+        />
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root-68 MuiSelect-icon-67"
+          color={undefined}
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </div>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`renders ArticleEdit Form 2`] = `
+<ul
+  className="MuiList-root-1 MuiList-padding-2"
+>
+  <li
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
+    disabled={false}
+  >
+    <div
+      className="sc-bdVaJa drcPZX"
+    >
+      <h2
+        className="MuiTypography-root-15 MuiTypography-title-21"
+      >
+        Title
+        :
+      </h2>
+    </div>
+    <div
+      className="MuiListItemText-root-39"
+    >
+      <h3
+        className="MuiTypography-root-15 MuiTypography-subheading-22 MuiListItemText-primary-42"
+      >
+        <div
+          aria-describedby={undefined}
+          className="MuiFormControl-root-45 MuiFormControl-fullWidth-48"
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
+          <div
+            className="MuiInput-root-49 MuiInput-fullWidth-56 MuiInput-formControl-50 MuiInput-underline-53"
+          >
+            <input
+              aria-invalid={false}
+              aria-required={false}
+              autoComplete={undefined}
+              autoFocus={undefined}
+              className="MuiInput-input-57"
+              defaultValue={undefined}
+              disabled={false}
+              id={undefined}
+              name="title"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={undefined}
+              onKeyUp={undefined}
+              placeholder={undefined}
+              readOnly={undefined}
+              required={undefined}
+              rows={undefined}
+              type="text"
+              value="title"
+            />
+          </div>
+        </div>
+      </h3>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
+    disabled={false}
+  >
+    <div
+      className="sc-bdVaJa drcPZX"
+    >
+      <h2
+        className="MuiTypography-root-15 MuiTypography-title-21"
+      >
+        Order
+        :
+      </h2>
+    </div>
+    <div
+      className="MuiListItemText-root-39"
+    >
+      <h3
+        className="MuiTypography-root-15 MuiTypography-subheading-22 MuiListItemText-primary-42"
+      >
+        <div
+          aria-describedby={undefined}
+          className="MuiFormControl-root-45 MuiFormControl-fullWidth-48"
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
+          <div
+            className="MuiInput-root-49 MuiInput-fullWidth-56 MuiInput-formControl-50 MuiInput-underline-53"
+          >
+            <input
+              aria-invalid={false}
+              aria-required={false}
+              autoComplete={undefined}
+              autoFocus={undefined}
+              className="MuiInput-input-57"
+              defaultValue={undefined}
+              disabled={false}
+              id={undefined}
+              name="order"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={undefined}
+              onKeyUp={undefined}
+              placeholder={undefined}
+              readOnly={undefined}
+              required={undefined}
+              rows={undefined}
+              type="text"
+              value="1"
+            />
+          </div>
+        </div>
+      </h3>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
+    disabled={false}
+  >
+    <div
+      className="sc-iwsKbI jmYMFI"
+    >
+      <h2
+        className="MuiTypography-root-15 MuiTypography-title-21"
+      >
+        Topic:
+      </h2>
+    </div>
+    <div
+      className="MuiInput-root-49 MuiInput-underline-53 sc-ifAKCX dUasrT"
+    >
+      <div
+        className="MuiSelect-root-63"
+      >
+        <div
+          aria-haspopup="true"
+          aria-owns={null}
+          aria-pressed="false"
+          className="MuiSelect-select-64 MuiSelect-selectMenu-65 MuiInput-input-57"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          Voyage
+        </div>
+        <input
+          aria-invalid={undefined}
+          aria-required={undefined}
+          autoComplete={undefined}
+          autoFocus={undefined}
+          defaultValue={undefined}
+          id={undefined}
+          name={undefined}
+          onKeyDown={undefined}
+          onKeyUp={undefined}
+          placeholder={undefined}
+          readOnly={undefined}
+          required={undefined}
+          rows={undefined}
+          type="hidden"
+          value="1"
+        />
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root-68 MuiSelect-icon-67"
+          color={undefined}
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </div>
+    </div>
+  </li>
+  <li
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
+    disabled={false}
+  >
+    <div
+      className="sc-iwsKbI jmYMFI"
+    >
+      <h2
+        className="MuiTypography-root-15 MuiTypography-title-21"
+      >
+        Sub Topic:
+      </h2>
+    </div>
+    <div
+      className="MuiInput-root-49 MuiInput-underline-53 sc-ifAKCX dUasrT"
+    >
+      <div
+        className="MuiSelect-root-63"
+      >
+        <div
+          aria-haspopup="true"
+          aria-owns={null}
+          aria-pressed="false"
+          className="MuiSelect-select-64 MuiSelect-selectMenu-65 MuiInput-input-57"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          None
+        </div>
+        <input
+          aria-invalid={undefined}
+          aria-required={undefined}
+          autoComplete={undefined}
+          autoFocus={undefined}
+          defaultValue={undefined}
+          id={undefined}
+          name={undefined}
+          onKeyDown={undefined}
+          onKeyUp={undefined}
+          placeholder={undefined}
+          readOnly={undefined}
+          required={undefined}
+          rows={undefined}
+          type="hidden"
+          value="0"
+        />
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root-68 MuiSelect-icon-67"
+          color={undefined}
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </div>
+    </div>
+  </li>
+</ul>
+`;
