@@ -3,16 +3,7 @@ import { shallow } from 'enzyme';
 import 'jest-styled-components';
 
 import ArticleEdit from './ArticleEdit';
-
-const topics = [
-  { _id: '1', name: 'Voyage', order: 1 },
-  { _id: '2', name: 'PMRoK', order: 2 },
-];
-const subTopics = [
-  { _id: '10', parent: '1', name: 'About wiki', order: 1 },
-  { _id: '11', parent: '1', name: 'About Voyages', order: 2 },
-  { _id: '12', parent: '1', name: 'About PMRoK', order: 1 },
-];
+import { topics, subTopics, article as mockArticle } from './__mocks__/data';
 
 let wrapper;
 
@@ -98,6 +89,25 @@ describe('ArticleEdit validation', () => {
       content: 'test',
     });
     expect(res.success).toBeTruthy();
+  });
+});
+
+it('should load article', () => {
+  jest
+    .spyOn(ArticleEdit.prototype, 'loadData')
+    .mockImplementation(
+      () => new Promise(resolve => resolve([topics, subTopics, mockArticle]))
+    );
+  expect.hasAssertions();
+  wrapper = shallow(<ArticleEdit id="43039ac8d0a244719d9d31e0731bcbe8" />);
+  return Promise.resolve().then(() => {
+    wrapper.update();
+    const { article } = wrapper.instance().state;
+    expect(article.title).toBe('About this wiki');
+    expect(article.order).toBe(1);
+    expect(article.topic).toEqual(topics[0]);
+    expect(article.sub_topic).toEqual(subTopics[0]);
+    expect(article.content).toBe('test content');
   });
 });
 
