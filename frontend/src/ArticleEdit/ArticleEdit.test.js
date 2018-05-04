@@ -3,9 +3,21 @@ import { shallow } from 'enzyme';
 import 'jest-styled-components';
 
 import ArticleEdit from './ArticleEdit';
-import { topics, subTopics, article as mockArticle } from './__mocks__/data';
+import actions from './actions';
+
+import { topics, subTopics } from '../TopicEdit/__mocks__/topicData';
+import mockArticle from './__mocks__/articleData';
+
+jest.mock('./actions');
+jest.mock('../TopicEdit/api');
 
 let wrapper;
+
+// we use this to prevent multiple return Promise constructs in
+// should display error message if save rejected
+function flushPromises() {
+  return new Promise(resolve => setImmediate(resolve));
+}
 
 it('should set article topic and subtopic', () => {
   wrapper = shallow(<ArticleEdit empty />);
@@ -92,15 +104,11 @@ describe('ArticleEdit validation', () => {
   });
 });
 
+// uses TopicEdit mocks (and ArticleEdit)
 it('should load article', () => {
-  jest
-    .spyOn(ArticleEdit.prototype, 'loadData')
-    .mockImplementation(
-      () => new Promise(resolve => resolve([topics, subTopics, mockArticle]))
-    );
   expect.hasAssertions();
   wrapper = shallow(<ArticleEdit id="43039ac8d0a244719d9d31e0731bcbe8" />);
-  return Promise.resolve().then(() => {
+  return flushPromises().then(() => {
     wrapper.update();
     const { article } = wrapper.instance().state;
     expect(article.title).toBe('About this wiki');
@@ -108,6 +116,112 @@ it('should load article', () => {
     expect(article.topic).toEqual(topics[0]);
     expect(article.sub_topic).toEqual(subTopics[0]);
     expect(article.content).toBe('test content');
+  });
+});
+
+// FIXME: unmount crashes (warning setState on unmounted using mount instead of shallow)
+// it.only('should remove resize event listener on unmount', () => {
+//   const adder = jest
+//     .spyOn(global, 'addEventListener')
+//     .mockImplementation(() => {});
+//   const remover = jest
+//     .spyOn(global, 'removeEventListener')
+//     .mockImplementation(() => {});
+//   wrapper = shallow(<ArticleEdit />);
+//   expect(adder).toHaveBeenCalled();
+//   wrapper.unmount();
+//   expect(remover).toHaveBeenCalled();
+// });
+
+it('should save article', () => {
+  const article = { ...mockArticle, _id: null };
+  jest
+    .spyOn(ArticleEdit.prototype, 'loadData')
+    .mockImplementation(
+      () => new Promise(resolve => resolve([topics, subTopics, article]))
+    );
+  expect.hasAssertions();
+  wrapper = shallow(<ArticleEdit />);
+  return Promise.resolve().then(() => {
+    wrapper.instance().handleSave();
+    return Promise.resolve().then(() => {
+      expect(wrapper.instance().state.article._id).toBe(
+        '43039ac8d0a244719d9d31e0731bcbe8'
+      );
+    });
+  });
+});
+it('should display message for invalid article before save', () => {
+  jest
+    .spyOn(ArticleEdit.prototype, 'loadData')
+    .mockImplementation(
+      () => new Promise(resolve => resolve([topics, subTopics]))
+    );
+  expect.hasAssertions();
+  wrapper = shallow(<ArticleEdit />);
+  return Promise.resolve().then(() => {
+    wrapper.instance().handleSave();
+    return Promise.resolve().then(() => {
+      expect(wrapper.instance().state.message.show).toBeTruthy();
+      expect(wrapper.instance().state.message.error).toBeTruthy();
+      expect(wrapper.instance().state.message.text).toBe(
+        'Please enter some content'
+      );
+    });
+  });
+});
+it('should display error message if save fails', () => {
+  const article = { ...mockArticle };
+  jest.spyOn(actions, 'save').mockImplementation(
+    () =>
+      new Promise(resolve =>
+        resolve({
+          success: false,
+          error: 'Not Authorised',
+        })
+      )
+  );
+  jest
+    .spyOn(ArticleEdit.prototype, 'loadData')
+    .mockImplementation(
+      () => new Promise(resolve => resolve([topics, subTopics, article]))
+    );
+  expect.hasAssertions();
+  wrapper = shallow(<ArticleEdit />);
+  return Promise.resolve().then(() => {
+    wrapper.instance().handleSave();
+    return Promise.resolve().then(() => {
+      expect(wrapper.instance().state.message.show).toBeTruthy();
+      expect(wrapper.instance().state.message.error).toBeTruthy();
+      expect(wrapper.instance().state.message.text).toBe('Not Authorised');
+    });
+  });
+});
+
+it('should display error message if save rejected', () => {
+  const article = { ...mockArticle };
+  jest
+    .spyOn(actions, 'save')
+    .mockImplementation(
+      () =>
+        new Promise((resolve, reject) =>
+          reject(new Error('Internal Server Error'))
+        )
+    );
+  jest
+    .spyOn(ArticleEdit.prototype, 'loadData')
+    .mockImplementation(
+      () => new Promise(resolve => resolve([topics, subTopics, article]))
+    );
+  expect.hasAssertions();
+  wrapper = shallow(<ArticleEdit />);
+  return Promise.resolve().then(() => {
+    wrapper.instance().handleSave();
+    return flushPromises().then(() => {
+      expect(wrapper.instance().state.message.show).toBeTruthy();
+      expect(wrapper.instance().state.message.error).toBeTruthy();
+      expect(wrapper.instance().state.message.text).toBe('Save Unsuccessful');
+    });
   });
 });
 
