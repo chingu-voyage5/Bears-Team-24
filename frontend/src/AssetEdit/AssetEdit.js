@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import List from 'material-ui/List';
 import Paper from 'material-ui/Paper';
-import Snackbar from 'material-ui/Snackbar';
 
+import MessageBar from '../common/MessageBar';
 import ListItemInput from '../ListItemInput';
 
 import {
@@ -45,9 +45,7 @@ class AssetEdit extends React.Component {
     localUrl: null,
     _id: null,
     creator: {},
-    message: {
-      show: false,
-    },
+    message: { show: false, error: false, text: '' },
     horizontal: 'right',
     vertical: 'top',
   };
@@ -180,13 +178,21 @@ class AssetEdit extends React.Component {
   handleSave = () => {
     const payload = packageData({ ...this.state });
     actions.save(payload).then(json => {
-      this.setState({ _id: json._id, creator: json.creator });
+      this.setState({
+        _id: json._id,
+        creator: json.creator,
+        message: {
+          show: true,
+          error: false,
+          text: 'Save Successful',
+        },
+      });
     });
   };
 
   handleClose = () => {
     this.setState(() => ({
-      message: { show: false, text: '' },
+      message: { show: false, error: false, text: '' },
     }));
   };
 
@@ -288,19 +294,10 @@ class AssetEdit extends React.Component {
             Save
           </Button>
         </ButtonWrapper>
-        <Snackbar
-          anchorOrigin={{ vertical, horizontal }}
-          open={message.show}
-          onClose={this.handleClose}
-          autoHideDuration={message.error ? null : 3000}
-          SnackbarContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={
-            <span id="message-id">
-              {message.text || 'Something went wrong :('}
-            </span>
-          }
+        <MessageBar
+          anchor={{ vertical, horizontal }}
+          message={message}
+          handleClose={this.handleClose}
         />
       </Wrapper>
     );
