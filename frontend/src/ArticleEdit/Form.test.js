@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import { topics, subTopics } from '../TopicEdit/__mocks__/topicData';
 import Form from './Form';
 
-it('renders ArticleEdit Form', () => {
+it('renders ArticleEdit Form with sub-topic', () => {
   const handleFieldChange = jest.fn();
   const setTopics = jest.fn();
   const comp = renderer.create(
@@ -25,7 +25,7 @@ it('renders ArticleEdit Form', () => {
   expect(tree).toMatchSnapshot();
 });
 
-it('renders ArticleEdit Form', () => {
+it('renders ArticleEdit Form passed a null sub-topic', () => {
   const handleFieldChange = jest.fn();
   const setTopics = jest.fn();
   const comp = renderer.create(
@@ -68,10 +68,12 @@ describe('Form ops', () => {
     );
     inst = comp.instance();
   });
+
   it('handles change of topic', () => {
     inst.handleTopicSelect({ target: { value: topics[1]._id } });
     expect(setTopics).toHaveBeenCalledWith(topics[1], null);
   });
+
   it('handles change of sub-topic', () => {
     inst.handleSubTopicSelect({ target: { value: subTopics[0]._id } });
     expect(setTopics).toHaveBeenCalledWith(topics[0], subTopics[0]);
