@@ -14,6 +14,8 @@ import { Wrapper } from './styled';
 const BREAK_MOBILE = 900;
 
 export default class CMSContainer extends React.Component {
+  static nop = () => {};
+
   state = {
     articleList: [],
   };
@@ -89,9 +91,20 @@ export default class CMSContainer extends React.Component {
           path="/cms/:id?"
           render={p =>
             mobile ? (
-              this.renderDrawer(<Sidebar {...p} articles={articleList} />, open)
+              this.renderDrawer(
+                <Sidebar
+                  {...p}
+                  onArticleSelect={this.closeDrawer}
+                  articles={articleList}
+                />,
+                open
+              )
             ) : (
-              <Sidebar {...p} articles={articleList} />
+              <Sidebar
+                {...p}
+                articles={articleList}
+                onArticleSelect={CMSContainer.nop}
+              />
             )
           }
         />

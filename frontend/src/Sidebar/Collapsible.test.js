@@ -43,6 +43,7 @@ describe('creating tree', () => {
       'About Voyages': { 'About Voyages': '3' },
     },
   };
+  const nop = () => {};
 
   it('should create article tree', () => {
     tree = getTree(articles);
@@ -51,7 +52,7 @@ describe('creating tree', () => {
 
   it('should create elements', () => {
     const path = ['Voyage', 'About this wiki', 'Home'];
-    const elements = getChildren(tree, path);
+    const elements = getChildren(tree, path, nop);
 
     // expect(elements).toEqual(expectedElements);
 

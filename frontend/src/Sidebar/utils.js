@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Collapsible from './Collapsible';
-import { LI } from './styled';
+import { LI, DrawerLink } from './styled';
 
-const getTree = articles => {
+export const getTree = articles => {
   const tree = {};
   articles.forEach(article => {
     if (!tree[article.topic.name]) {
@@ -20,7 +19,6 @@ const getTree = articles => {
         topic = topic[sub];
       });
     }
-    // topic.article = { title: article.title, _id : article._id };
     topic[article.title] = article._id;
   });
   return tree;
@@ -28,7 +26,7 @@ const getTree = articles => {
 
 let ndx = 0;
 /* eslint-disable no-plusplus */
-const getChildren = (sub, path) => {
+export const getChildren = (sub, path, onArticleSelect) => {
   const keys = Object.keys(sub);
   return keys.map(key => {
     const s = sub[key];
@@ -36,12 +34,12 @@ const getChildren = (sub, path) => {
       // TODO: great idea but keeping it updated will be fun
       // const displayed = path.includes(key) ? ' >' : '';
       return (
-        <LI key={ndx++}>
-          <Link to={`/cms/${s}`}>{`${key}`}</Link>
+        <LI key={ndx++} onClick={onArticleSelect}>
+          <DrawerLink to={`/cms/${s}`}>{`${key}`}</DrawerLink>
         </LI>
       );
     }
-    const children = getChildren(sub[key], path);
+    const children = getChildren(sub[key], path, onArticleSelect);
     const open = path.includes(key);
     return (
       <Collapsible key={ndx++} title={key} open={open}>
@@ -52,4 +50,25 @@ const getChildren = (sub, path) => {
 };
 /* eslint-enable no-plusplus */
 
-export { getTree, getChildren };
+const buildTree = (articles, id, onArticleSelect) => {
+  let selectedArticlePath = [];
+  if (id) {
+    const selectedArticles = articles.filter(article => article._id === id);
+    if (selectedArticles.length) {
+      /* eslint-disable camelcase */
+      const { topic, sub_topic, title } = selectedArticles[0];
+      selectedArticlePath = [topic.name, title];
+      if (sub_topic) {
+        selectedArticlePath = selectedArticlePath.concat(
+          sub_topic.name.split('>')
+        );
+      }
+      /* eslint-enalbe camelcase */
+    }
+  }
+  const tree = getTree(articles);
+  const articlesHtml = getChildren(tree, selectedArticlePath, onArticleSelect);
+  return articlesHtml;
+};
+
+export default buildTree;
