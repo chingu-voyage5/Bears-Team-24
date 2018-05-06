@@ -13,6 +13,7 @@ const propTypes = {
 
 const TabMod = ({ classes, value, ...props }) => (
   <Tab
+    style={{ minWidth: '80px' }}
     component={NavLinkStyled}
     disableRipple
     to={paths[value].to}
