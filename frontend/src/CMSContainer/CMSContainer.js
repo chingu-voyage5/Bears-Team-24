@@ -66,8 +66,9 @@ export default class CMSContainer extends React.Component {
         role="button"
         onClick={this.closeDrawer}
         onKeyDown={this.closeDrawer}
-      />
-      {component}
+      >
+        {component}
+      </div>
     </Drawer>
   );
 

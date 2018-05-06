@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Collapsible from './Collapsible';
-import { LI } from './styled';
+import { LI, DrawerLink } from './styled';
 
 const getTree = articles => {
   const tree = {};
@@ -37,7 +36,7 @@ const getChildren = (sub, path) => {
       // const displayed = path.includes(key) ? ' >' : '';
       return (
         <LI key={ndx++}>
-          <Link to={`/cms/${s}`}>{`${key}`}</Link>
+          <DrawerLink to={`/cms/${s}`}>{`${key}`}</DrawerLink>
         </LI>
       );
     }

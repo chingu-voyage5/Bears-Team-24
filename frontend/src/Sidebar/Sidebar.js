@@ -18,14 +18,20 @@ export default class Sidebar extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.buildTree(this.props.articles, this.props.match.params.id);
+  }
+
   componentWillReceiveProps(nextProps) {
     const { articles } = nextProps;
+    this.buildTree(articles, nextProps.match.params.id);
+  }
+  buildTree(articles, id) {
     let selectedArticlePath = [];
     // only build the sidebar tree once on startup, otherwise the tree is
     // collapsed everytime an article is selected/viewed
     if (this.state.articlesHtml.length === 0) {
-      if (nextProps.match.params.id) {
-        const { id } = nextProps.match.params;
+      if (id) {
         const selectedArticles = articles.filter(article => article._id === id);
         if (selectedArticles.length) {
           const { topic, sub_topic, title } = selectedArticles[0];
