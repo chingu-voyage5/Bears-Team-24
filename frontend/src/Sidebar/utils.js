@@ -27,7 +27,7 @@ const getTree = articles => {
 
 let ndx = 0;
 /* eslint-disable no-plusplus */
-const getChildren = (sub, path) => {
+const getChildren = (sub, path, onArticleSelect) => {
   const keys = Object.keys(sub);
   return keys.map(key => {
     const s = sub[key];
@@ -35,12 +35,12 @@ const getChildren = (sub, path) => {
       // TODO: great idea but keeping it updated will be fun
       // const displayed = path.includes(key) ? ' >' : '';
       return (
-        <LI key={ndx++}>
+        <LI key={ndx++} onClick={onArticleSelect}>
           <DrawerLink to={`/cms/${s}`}>{`${key}`}</DrawerLink>
         </LI>
       );
     }
-    const children = getChildren(sub[key], path);
+    const children = getChildren(sub[key], path, onArticleSelect);
     const open = path.includes(key);
     return (
       <Collapsible key={ndx++} title={key} open={open}>

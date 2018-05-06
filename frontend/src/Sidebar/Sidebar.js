@@ -9,6 +9,11 @@ export default class Sidebar extends React.Component {
   static propTypes = {
     articles: PropTypes.array.isRequired,
     match: PropTypes.object.isRequired,
+    onArticleSelect: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onArticleSelect: () => {},
   };
 
   constructor(props) {
@@ -28,6 +33,7 @@ export default class Sidebar extends React.Component {
   }
   buildTree(articles, id) {
     let selectedArticlePath = [];
+    const { onArticleSelect } = this.props;
     // only build the sidebar tree once on startup, otherwise the tree is
     // collapsed everytime an article is selected/viewed
     if (this.state.articlesHtml.length === 0) {
@@ -45,7 +51,11 @@ export default class Sidebar extends React.Component {
         }
       }
       const tree = getTree(articles);
-      const articlesHtml = getChildren(tree, selectedArticlePath);
+      const articlesHtml = getChildren(
+        tree,
+        selectedArticlePath,
+        onArticleSelect
+      );
       this.setState({ articlesHtml });
     }
   }
