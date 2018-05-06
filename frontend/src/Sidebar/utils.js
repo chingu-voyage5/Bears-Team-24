@@ -19,7 +19,6 @@ const getTree = articles => {
         topic = topic[sub];
       });
     }
-    // topic.article = { title: article.title, _id : article._id };
     topic[article.title] = article._id;
   });
   return tree;
@@ -51,4 +50,25 @@ const getChildren = (sub, path, onArticleSelect) => {
 };
 /* eslint-enable no-plusplus */
 
-export { getTree, getChildren };
+const buildTree = (articles, id, onArticleSelect) => {
+  let selectedArticlePath = [];
+  if (id) {
+    const selectedArticles = articles.filter(article => article._id === id);
+    if (selectedArticles.length) {
+      /* eslint-disable camelcase */
+      const { topic, sub_topic, title } = selectedArticles[0];
+      selectedArticlePath = [topic.name, title];
+      if (sub_topic) {
+        selectedArticlePath = selectedArticlePath.concat(
+          sub_topic.name.split('>')
+        );
+      }
+      /* eslint-enalbe camelcase */
+    }
+  }
+  const tree = getTree(articles);
+  const articlesHtml = getChildren(tree, selectedArticlePath, onArticleSelect);
+  return articlesHtml;
+};
+
+export default buildTree;
