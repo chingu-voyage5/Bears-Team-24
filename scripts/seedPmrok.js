@@ -741,11 +741,14 @@ The Sprint Retrospective is conducted by and for the Project Team to promote con
 
 This is an inward look by the team at how they performed during the last sprint and an opportunity to identify changes for the next sprint. This isn’t just about technology and tools, but also about procedures, interactions between people and roles, and successes and failures. The goal is to improve by implementing “midstream” corrections at the point they are needed.
       `},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Managing a Project", title: 'Conducting an MVP',
+    { creator: sys_id, topic: topic._id, sub_topic: manage._id, title: 'Conducting an MVP',
+      order: 3,
       content: `TBD`},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Managing a Project", title: 'Project Closure',
+    { creator: sys_id, topic: topic._id, sub_topic: manage._id, title: 'Project Closure',
+      order: 4,
       content: `TBD`},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Managing a Project", title: 'Using the Wizard',
+    { creator: sys_id, topic: topic._id, sub_topic: manage._id, title: 'Using the Wizard',
+      order: 5,
       content: `## Using the Wizard
 
 **_This section is under development_**
@@ -1233,24 +1236,14 @@ This is a question only you can answer.  However, if you've read through this wi
 ### What do I do if I need help?
 Everyone needs help sometimes. Be prepared to ask for it when you need it.  First, look back over this wiki and see if the answer is here. We will be adding to it often as questions arise.  Additionally, you can head to the PM slack and ask the other PMs.  Possibly one of us will have stumbled across that same issue and have the answer.
       `},
-<<<<<<< HEAD
     { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Your Team',
-      order: 2,
-      content: `TBD
-      `},
+      order: 1,
+      content: `TBD`},
     { creator: sys_id, topic: topic._id, sub_topic: faq._id, title: 'Git & Github',
-      order: 3,
-      content: `TBD
-      `},
-    { creator: sys_id, topic: topic._id, sub_topic: resources._id, title: 'Glossary',
       order: 2,
-=======
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Resources>PM FAQ", title: 'Your Team',
       content: `TBD`},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Resources>PM FAQ", title: 'Git & Github',
-      content: `TBD`},
-    { creator: sys_id, topic: "PMRoK", sub_topic: "Resources", title: 'Glossary',
->>>>>>> fix/seed-content
+    { creator: sys_id, topic: topic._id, sub_topic: resources._id, title: 'Glossary',
+      order: 3,
       content: `**_backlog_** - The main source of information about the project is the _Product Backlog_, which defines requirements the application must meet in order to be successful. Requirements are expressed as user stories of the format: “As a: <role> I want to: <function-description> So I can: <value-statement>”
 
 **_blocker_** - Any issue or task that is preventing the project from moving forward or is preventing another task from being able to be started.
