@@ -16,11 +16,7 @@ const Sidebar = ({ articles, match, onArticleSelect }) => {
 Sidebar.propTypes = {
   articles: PropTypes.array.isRequired,
   match: PropTypes.object.isRequired,
-  onArticleSelect: PropTypes.func,
-};
-
-Sidebar.defaultProps = {
-  onArticleSelect: () => {},
+  onArticleSelect: PropTypes.func.isRequired,
 };
 
 export default Sidebar;
