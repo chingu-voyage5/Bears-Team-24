@@ -3,7 +3,7 @@ import React from 'react';
 import Collapsible from './Collapsible';
 import { LI, DrawerLink } from './styled';
 
-const getTree = articles => {
+export const getTree = articles => {
   const tree = {};
   articles.forEach(article => {
     if (!tree[article.topic.name]) {
@@ -26,7 +26,7 @@ const getTree = articles => {
 
 let ndx = 0;
 /* eslint-disable no-plusplus */
-const getChildren = (sub, path, onArticleSelect) => {
+export const getChildren = (sub, path, onArticleSelect) => {
   const keys = Object.keys(sub);
   return keys.map(key => {
     const s = sub[key];
