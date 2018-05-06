@@ -119,19 +119,25 @@ it('should load article', () => {
   });
 });
 
-// FIXME: unmount crashes (warning setState on unmounted using mount instead of shallow)
-// it.only('should remove resize event listener on unmount', () => {
-//   const adder = jest
-//     .spyOn(global, 'addEventListener')
-//     .mockImplementation(() => {});
-//   const remover = jest
-//     .spyOn(global, 'removeEventListener')
-//     .mockImplementation(() => {});
-//   wrapper = shallow(<ArticleEdit />);
-//   expect(adder).toHaveBeenCalled();
-//   wrapper.unmount();
-//   expect(remover).toHaveBeenCalled();
-// });
+it('should remove resize event listener on unmount', () => {
+  jest
+    .spyOn(ArticleEdit.prototype, 'loadData')
+    .mockImplementation(
+      () => new Promise(resolve => resolve([topics, subTopics]))
+    );
+  const adder = jest
+    .spyOn(global, 'addEventListener')
+    .mockImplementation(() => {});
+  const remover = jest
+    .spyOn(global, 'removeEventListener')
+    .mockImplementation(() => {});
+  wrapper = shallow(<ArticleEdit />);
+  expect(adder).toHaveBeenCalled();
+  return Promise.resolve().then(() => {
+    wrapper.unmount();
+    expect(remover).toHaveBeenCalled();
+  });
+});
 
 it('should save article', () => {
   const article = { ...mockArticle, _id: null };
