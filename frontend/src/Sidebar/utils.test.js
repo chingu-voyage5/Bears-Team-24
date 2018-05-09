@@ -9,10 +9,34 @@ const sub_topics = [
 
 /* eslint-disable prettier/prettier */
 const articles = [
-  { _id: '100', topic: topics[0], sub_topic: sub_topics[0], title: 'Home', order: 1 },
-  { _id: '101', topic: topics[0], sub_topic: sub_topics[0], title: 'How to Contribute', order: 2 },
-  { _id: '102', topic: topics[0], sub_topic: sub_topics[1], title: 'Voyage Roadmap', order: 1 },
-  { _id: '103', topic: topics[0], sub_topic: null, title: 'Introduction', order: 1 },
+  {
+    _id: '100',
+    topic: topics[0],
+    sub_topic: sub_topics[0],
+    title: 'Home',
+    order: 1,
+  },
+  {
+    _id: '101',
+    topic: topics[0],
+    sub_topic: sub_topics[0],
+    title: 'How to Contribute',
+    order: 2,
+  },
+  {
+    _id: '102',
+    topic: topics[0],
+    sub_topic: sub_topics[1],
+    title: 'Voyage Roadmap',
+    order: 1,
+  },
+  {
+    _id: '103',
+    topic: topics[0],
+    sub_topic: null,
+    title: 'Introduction',
+    order: 1,
+  },
 ];
 const expectedTree = {
   Voyage: {

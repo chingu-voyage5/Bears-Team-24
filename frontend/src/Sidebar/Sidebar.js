@@ -130,11 +130,11 @@ export default class Sidebar extends React.Component {
             <MenuIcon />
           </IconButton>
         )}
-        {/* eslint-disable prettier/prettier */
-          mobile
-            ? this.renderDrawer(articlesHtml, open)
-            : <Wrapper>{articlesHtml}</Wrapper>
-        }
+        {mobile ? (
+          this.renderDrawer(articlesHtml, open)
+        ) : (
+          <Wrapper>{articlesHtml}</Wrapper>
+        )}
       </div>
     );
   }
