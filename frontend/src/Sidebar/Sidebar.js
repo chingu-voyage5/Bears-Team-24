@@ -57,12 +57,14 @@ export default class Sidebar extends React.Component {
   }
 
   onExpanded = (_id, expanded) => {
-    console.log('@onExpanded for _id, expanded:', _id, expanded);
     const articleTree = expandTree(this.state.articleTree, _id, expanded);
+    console.log('@onExpanded:', articleTree);
     this.setState({ articleTree });
   };
 
-  nop = () => {};
+  nop = e => {
+    e.stopPropagation();
+  };
 
   handleResize = () => {
     const mobile = this.checkMobile();
@@ -82,7 +84,17 @@ export default class Sidebar extends React.Component {
   };
 
   openDrawer = () => {
+    const { articles, match } = this.props;
+    const { articleTree } = this.state;
+    const articlesHtml = buildHtml(
+      articles,
+      articleTree,
+      match.params.id,
+      this.closeDrawer,
+      this.onExpanded
+    );
     this.setState(() => ({
+      articlesHtml,
       open: true,
     }));
   };

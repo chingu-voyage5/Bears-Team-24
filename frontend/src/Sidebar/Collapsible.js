@@ -12,16 +12,27 @@ export default class Collapsible extends React.Component {
     open: PropTypes.bool.isRequired,
     expanded: PropTypes.func.isRequired,
   };
-  onClick = () => {
-    this.props.expanded(this.props.id, !this.props.open);
+  static getDerivedStateFromProps(nextProps) {
+    console.log('@getDerivedStateFromProps open:', nextProps.open);
+    return { open: nextProps.open };
+  }
+  state = {
+    open: false,
+  };
+  onClick = e => {
+    e.stopPropagation();
+    const { open } = this.state;
+    this.props.expanded(this.props.id, !open);
+    this.setState({ open: !open });
   };
   render() {
-    const { title, children, open } = this.props;
+    const { title, children } = this.props;
+    const { open } = this.state;
     return (
-      <Details open={open} onClick={this.onClick}>
-        <Summary>{title}</Summary>
-        {children}
-      </Details>
+      <div style={{cursor: 'default', marginLeft: '1rem'}} onClick={this.onClick}>
+        <div>{title}</div>
+        {open && children}
+      </div>
     );
   }
 }
