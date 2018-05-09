@@ -1,64 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`creating tree should create elements 1`] = `
-<details
+exports[`should create elements 1`] = `
+<div
   className="sc-bdVaJa bLWtbN"
-  open={true}
+  onClick={[Function]}
 >
-  <summary
-    className="sc-bwzfXH jvlMsP"
+  <div
+    className="sc-bwzfXH bpFyCA"
   >
-    Voyage
-  </summary>
-  <details
-    className="sc-bdVaJa bLWtbN"
-    open={true}
-  >
-    <summary
-      className="sc-bwzfXH jvlMsP"
-    >
-      About this wiki
-    </summary>
-    <li
-      className="sc-bxivhb iXnkAE"
-    >
-      <a
-        href="/cms/1"
-        onClick={[Function]}
-      >
-        Home
-      </a>
-    </li>
-    <li
-      className="sc-bxivhb iXnkAE"
-    >
-      <a
-        href="/cms/2"
-        onClick={[Function]}
-      >
-        How to Contribute
-      </a>
-    </li>
-  </details>
-  <details
-    className="sc-bdVaJa bLWtbN"
-    open={false}
-  >
-    <summary
-      className="sc-bwzfXH jvlMsP"
-    >
-      About Voyages
-    </summary>
-    <li
-      className="sc-bxivhb iXnkAE"
-    >
-      <a
-        href="/cms/3"
-        onClick={[Function]}
-      >
-        About Voyages
-      </a>
-    </li>
-  </details>
-</details>
+    ▶
+     
+    test title
+  </div>
+</div>
 `;
