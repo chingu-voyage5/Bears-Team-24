@@ -51,7 +51,7 @@ export const getTree = articles => {
     if (!tree[article.topic.name]) {
       tree[article.topic.name] = {
         _id: article.topic._id,
-        expanded: article.topic.expanded,
+        expanded: false,
       };
     }
     let topic = tree[article.topic.name];
@@ -61,7 +61,7 @@ export const getTree = articles => {
         if (!topic[sub]) {
           topic[sub] = {
             _id: article.sub_topic._id,
-            expanded: article.sub_topic.expanded,
+            expanded: false,
           };
         }
         topic = topic[sub];
