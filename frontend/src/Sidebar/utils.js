@@ -91,7 +91,6 @@ export const getChildren = (sub, path, onArticleSelect, onExpand) => {
     const children = getChildren(sub[key], path, onArticleSelect, onExpand);
 
     const open = sub[key].expanded || path.includes(key);
-    console.log('open expanded, path, key:', open, sub[key].expanded, path, key);
     return acc.concat(
       <Collapsible
         key={ndx++}
@@ -111,7 +110,6 @@ const buildHtml = (articles, articleTree, id, onArticleSelect, onExpand) => {
   let selectedArticlePath = [];
   if (id) {
     const selectedArticles = articles.filter(article => article._id === id);
-    console.log('article list, selected article id, found:', articles, id, selectedArticles);
     if (selectedArticles.length) {
       /* eslint-disable camelcase */
       const { topic, sub_topic, title } = selectedArticles[0];
