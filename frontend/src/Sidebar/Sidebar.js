@@ -58,7 +58,6 @@ export default class Sidebar extends React.Component {
 
   onExpanded = (_id, expanded) => {
     const articleTree = expandTree(this.state.articleTree, _id, expanded);
-    console.log('@onExpanded:', articleTree);
     this.setState({ articleTree });
   };
 
@@ -108,7 +107,7 @@ export default class Sidebar extends React.Component {
   renderDrawer = (component, open) => (
     <Drawer open={open} onClose={this.closeDrawer}>
       <div
-        style={{ width: 250 }}
+        style={{ paddingTop: '1rem', width: 250 }}
         tabIndex={0}
         role="button"
         onClick={this.closeDrawer}

@@ -9,11 +9,11 @@ export default class Collapsible extends React.Component {
     children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
       .isRequired,
     title: PropTypes.string.isRequired,
+    // eslint-disable-next-line react/no-unused-prop-types
     open: PropTypes.bool.isRequired,
     expanded: PropTypes.func.isRequired,
   };
   static getDerivedStateFromProps(nextProps) {
-    console.log('@getDerivedStateFromProps open:', nextProps.open);
     return { open: nextProps.open };
   }
   state = {
@@ -28,11 +28,15 @@ export default class Collapsible extends React.Component {
   render() {
     const { title, children } = this.props;
     const { open } = this.state;
+    const rightArrow = String.fromCharCode(9654);
+    const downArrow = String.fromCharCode(9660);
     return (
-      <div style={{cursor: 'default', marginLeft: '1rem'}} onClick={this.onClick}>
-        <div>{title}</div>
+      <Details onClick={this.onClick}>
+        <Summary>
+          {open ? downArrow : rightArrow} {title}
+        </Summary>
         {open && children}
-      </div>
+      </Details>
     );
   }
 }
