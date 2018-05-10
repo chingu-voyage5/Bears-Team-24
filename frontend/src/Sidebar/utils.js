@@ -122,7 +122,6 @@ const buildHtml = (articles, articleTree, id, onArticleSelect, onExpand) => {
       /* eslint-enalbe camelcase */
     }
   }
-  // const tree = getTree(articles);
   const articlesHtml = getChildren(
     articleTree,
     selectedArticlePath,
