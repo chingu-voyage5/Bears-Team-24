@@ -14,3 +14,117 @@ exports[`should create elements 1`] = `
   </div>
 </div>
 `;
+
+exports[`should expand on click 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Collapsible
+    expanded={[Function]}
+    id=""
+    open={false}
+    title="test title"
+>
+    Object {
+        "_id": "1",
+        "title": "Some article title",
+      }
+</Collapsible>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <styled.div>
+          ►
+           
+          test title
+</styled.div>,
+        false,
+      ],
+      "onClick": [Function],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            "►",
+            " ",
+            "test title",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          "►",
+          " ",
+          "test title",
+        ],
+        "type": [Function],
+      },
+      false,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <styled.div>
+            ►
+             
+            test title
+</styled.div>,
+          false,
+        ],
+        "onClick": [Function],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              "►",
+              " ",
+              "test title",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            "►",
+            " ",
+            "test title",
+          ],
+          "type": [Function],
+        },
+        false,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
