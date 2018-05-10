@@ -1,0 +1,1070 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should initialise Sidebar correctly 1`] = `
+Array [
+  <Collapsible
+    expanded={[Function]}
+    id="1"
+    open={false}
+    title="Voyage"
+>
+    <Collapsible
+        expanded={[Function]}
+        id="10"
+        open={false}
+        title="About this Wiki"
+    >
+        <styled.li
+            onClick={[Function]}
+        >
+            <Styled(NavLink)
+                to="/cms/100"
+            >
+                Home
+            </Styled(NavLink)>
+        </styled.li>
+        <styled.li
+            onClick={[Function]}
+        >
+            <Styled(NavLink)
+                to="/cms/101"
+            >
+                How to Contribute
+            </Styled(NavLink)>
+        </styled.li>
+    </Collapsible>
+    <Collapsible
+        expanded={[Function]}
+        id="11"
+        open={false}
+        title="About Voyages"
+    >
+        <styled.li
+            onClick={[Function]}
+        >
+            <Styled(NavLink)
+                to="/cms/102"
+            >
+                Voyage Roadmap
+            </Styled(NavLink)>
+        </styled.li>
+    </Collapsible>
+    <styled.li
+        onClick={[Function]}
+    >
+        <Styled(NavLink)
+            to="/cms/103"
+        >
+            Introduction
+        </Styled(NavLink)>
+    </styled.li>
+</Collapsible>,
+]
+`;
+
+exports[`should show mobile drawer 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Sidebar
+    articles={
+        Array [
+            Object {
+              "_id": "100",
+              "order": 1,
+              "sub_topic": Object {
+                "_id": "10",
+                "name": "About this Wiki",
+                "order": 1,
+                "parent": "1",
+              },
+              "title": "Home",
+              "topic": Object {
+                "_id": "1",
+                "name": "Voyage",
+                "order": 1,
+              },
+            },
+            Object {
+              "_id": "101",
+              "order": 2,
+              "sub_topic": Object {
+                "_id": "10",
+                "name": "About this Wiki",
+                "order": 1,
+                "parent": "1",
+              },
+              "title": "How to Contribute",
+              "topic": Object {
+                "_id": "1",
+                "name": "Voyage",
+                "order": 1,
+              },
+            },
+            Object {
+              "_id": "102",
+              "order": 1,
+              "sub_topic": Object {
+                "_id": "11",
+                "name": "About Voyages",
+                "order": 2,
+                "parent": "1",
+              },
+              "title": "Voyage Roadmap",
+              "topic": Object {
+                "_id": "1",
+                "name": "Voyage",
+                "order": 1,
+              },
+            },
+            Object {
+              "_id": "103",
+              "order": 1,
+              "sub_topic": null,
+              "title": "Introduction",
+              "topic": Object {
+                "_id": "1",
+                "name": "Voyage",
+                "order": 1,
+              },
+            },
+          ]
+    }
+    match={
+        Object {
+            "params": Object {
+              "id": "",
+            },
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <WithStyles(IconButton)
+          aria-label="Menu"
+          colors="inherit"
+          onClick={[Function]}
+>
+          <pure(Menu) />
+</WithStyles(IconButton)>,
+        <WithStyles(Drawer)
+          onClose={[Function]}
+          open={true}
+>
+          <div
+                    onClick={[Function]}
+                    onKeyDown={[Function]}
+                    role="button"
+                    style={
+                              Object {
+                                        "paddingTop": "1rem",
+                                        "width": 250,
+                                      }
+                    }
+                    tabIndex={0}
+          />
+          <Collapsible
+                    expanded={[Function]}
+                    id="1"
+                    open={false}
+                    title="Voyage"
+          >
+                    <Collapsible
+                              expanded={[Function]}
+                              id="10"
+                              open={false}
+                              title="About this Wiki"
+                    >
+                              <styled.li
+                                        onClick={[Function]}
+                              >
+                                        <Styled(NavLink)
+                                                  to="/cms/100"
+                                        >
+                                                  Home
+                                        </Styled(NavLink)>
+                              </styled.li>
+                              <styled.li
+                                        onClick={[Function]}
+                              >
+                                        <Styled(NavLink)
+                                                  to="/cms/101"
+                                        >
+                                                  How to Contribute
+                                        </Styled(NavLink)>
+                              </styled.li>
+                    </Collapsible>
+                    <Collapsible
+                              expanded={[Function]}
+                              id="11"
+                              open={false}
+                              title="About Voyages"
+                    >
+                              <styled.li
+                                        onClick={[Function]}
+                              >
+                                        <Styled(NavLink)
+                                                  to="/cms/102"
+                                        >
+                                                  Voyage Roadmap
+                                        </Styled(NavLink)>
+                              </styled.li>
+                    </Collapsible>
+                    <styled.li
+                              onClick={[Function]}
+                    >
+                              <Styled(NavLink)
+                                        to="/cms/103"
+                              >
+                                        Introduction
+                              </Styled(NavLink)>
+                    </styled.li>
+          </Collapsible>
+</WithStyles(Drawer)>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "aria-label": "Menu",
+          "children": <pure(Menu) />,
+          "colors": "inherit",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <div
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              style={
+                            Object {
+                                          "paddingTop": "1rem",
+                                          "width": 250,
+                                        }
+              }
+              tabIndex={0}
+/>,
+            Array [
+              <Collapsible
+                expanded={[Function]}
+                id="1"
+                open={false}
+                title="Voyage"
+>
+                <Collapsible
+                                expanded={[Function]}
+                                id="10"
+                                open={false}
+                                title="About this Wiki"
+                >
+                                <styled.li
+                                                onClick={[Function]}
+                                >
+                                                <Styled(NavLink)
+                                                                to="/cms/100"
+                                                >
+                                                                Home
+                                                </Styled(NavLink)>
+                                </styled.li>
+                                <styled.li
+                                                onClick={[Function]}
+                                >
+                                                <Styled(NavLink)
+                                                                to="/cms/101"
+                                                >
+                                                                How to Contribute
+                                                </Styled(NavLink)>
+                                </styled.li>
+                </Collapsible>
+                <Collapsible
+                                expanded={[Function]}
+                                id="11"
+                                open={false}
+                                title="About Voyages"
+                >
+                                <styled.li
+                                                onClick={[Function]}
+                                >
+                                                <Styled(NavLink)
+                                                                to="/cms/102"
+                                                >
+                                                                Voyage Roadmap
+                                                </Styled(NavLink)>
+                                </styled.li>
+                </Collapsible>
+                <styled.li
+                                onClick={[Function]}
+                >
+                                <Styled(NavLink)
+                                                to="/cms/103"
+                                >
+                                                Introduction
+                                </Styled(NavLink)>
+                </styled.li>
+</Collapsible>,
+            ],
+          ],
+          "onClose": [Function],
+          "open": true,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "onClick": [Function],
+              "onKeyDown": [Function],
+              "role": "button",
+              "style": Object {
+                "paddingTop": "1rem",
+                "width": 250,
+              },
+              "tabIndex": 0,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": "13",
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <Collapsible
+                  expanded={[Function]}
+                  id="10"
+                  open={false}
+                  title="About this Wiki"
+>
+                  <styled.li
+                                    onClick={[Function]}
+                  >
+                                    <Styled(NavLink)
+                                                      to="/cms/100"
+                                    >
+                                                      Home
+                                    </Styled(NavLink)>
+                  </styled.li>
+                  <styled.li
+                                    onClick={[Function]}
+                  >
+                                    <Styled(NavLink)
+                                                      to="/cms/101"
+                                    >
+                                                      How to Contribute
+                                    </Styled(NavLink)>
+                  </styled.li>
+</Collapsible>,
+                <Collapsible
+                  expanded={[Function]}
+                  id="11"
+                  open={false}
+                  title="About Voyages"
+>
+                  <styled.li
+                                    onClick={[Function]}
+                  >
+                                    <Styled(NavLink)
+                                                      to="/cms/102"
+                                    >
+                                                      Voyage Roadmap
+                                    </Styled(NavLink)>
+                  </styled.li>
+</Collapsible>,
+                <styled.li
+                  onClick={[Function]}
+>
+                  <Styled(NavLink)
+                                    to="/cms/103"
+                  >
+                                    Introduction
+                  </Styled(NavLink)>
+</styled.li>,
+              ],
+              "expanded": [Function],
+              "id": "1",
+              "open": false,
+              "title": "Voyage",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": "9",
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <styled.li
+                      onClick={[Function]}
+>
+                      <Styled(NavLink)
+                                            to="/cms/100"
+                      >
+                                            Home
+                      </Styled(NavLink)>
+</styled.li>,
+                    <styled.li
+                      onClick={[Function]}
+>
+                      <Styled(NavLink)
+                                            to="/cms/101"
+                      >
+                                            How to Contribute
+                      </Styled(NavLink)>
+</styled.li>,
+                  ],
+                  "expanded": [Function],
+                  "id": "10",
+                  "open": false,
+                  "title": "About this Wiki",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": "7",
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <Styled(NavLink)
+                        to="/cms/100"
+>
+                        Home
+</Styled(NavLink)>,
+                      "onClick": [Function],
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "Home",
+                        "to": "/cms/100",
+                      },
+                      "ref": null,
+                      "rendered": "Home",
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": "8",
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <Styled(NavLink)
+                        to="/cms/101"
+>
+                        How to Contribute
+</Styled(NavLink)>,
+                      "onClick": [Function],
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "How to Contribute",
+                        "to": "/cms/101",
+                      },
+                      "ref": null,
+                      "rendered": "How to Contribute",
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "11",
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <styled.li
+                      onClick={[Function]}
+>
+                      <Styled(NavLink)
+                                            to="/cms/102"
+                      >
+                                            Voyage Roadmap
+                      </Styled(NavLink)>
+</styled.li>,
+                  ],
+                  "expanded": [Function],
+                  "id": "11",
+                  "open": false,
+                  "title": "About Voyages",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": "10",
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <Styled(NavLink)
+                        to="/cms/102"
+>
+                        Voyage Roadmap
+</Styled(NavLink)>,
+                      "onClick": [Function],
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "Voyage Roadmap",
+                        "to": "/cms/102",
+                      },
+                      "ref": null,
+                      "rendered": "Voyage Roadmap",
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "12",
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Styled(NavLink)
+                    to="/cms/103"
+>
+                    Introduction
+</Styled(NavLink)>,
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Introduction",
+                    "to": "/cms/103",
+                  },
+                  "ref": null,
+                  "rendered": "Introduction",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <WithStyles(IconButton)
+            aria-label="Menu"
+            colors="inherit"
+            onClick={[Function]}
+>
+            <pure(Menu) />
+</WithStyles(IconButton)>,
+          <WithStyles(Drawer)
+            onClose={[Function]}
+            open={true}
+>
+            <div
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        role="button"
+                        style={
+                                    Object {
+                                                "paddingTop": "1rem",
+                                                "width": 250,
+                                              }
+                        }
+                        tabIndex={0}
+            />
+            <Collapsible
+                        expanded={[Function]}
+                        id="1"
+                        open={false}
+                        title="Voyage"
+            >
+                        <Collapsible
+                                    expanded={[Function]}
+                                    id="10"
+                                    open={false}
+                                    title="About this Wiki"
+                        >
+                                    <styled.li
+                                                onClick={[Function]}
+                                    >
+                                                <Styled(NavLink)
+                                                            to="/cms/100"
+                                                >
+                                                            Home
+                                                </Styled(NavLink)>
+                                    </styled.li>
+                                    <styled.li
+                                                onClick={[Function]}
+                                    >
+                                                <Styled(NavLink)
+                                                            to="/cms/101"
+                                                >
+                                                            How to Contribute
+                                                </Styled(NavLink)>
+                                    </styled.li>
+                        </Collapsible>
+                        <Collapsible
+                                    expanded={[Function]}
+                                    id="11"
+                                    open={false}
+                                    title="About Voyages"
+                        >
+                                    <styled.li
+                                                onClick={[Function]}
+                                    >
+                                                <Styled(NavLink)
+                                                            to="/cms/102"
+                                                >
+                                                            Voyage Roadmap
+                                                </Styled(NavLink)>
+                                    </styled.li>
+                        </Collapsible>
+                        <styled.li
+                                    onClick={[Function]}
+                        >
+                                    <Styled(NavLink)
+                                                to="/cms/103"
+                                    >
+                                                Introduction
+                                    </Styled(NavLink)>
+                        </styled.li>
+            </Collapsible>
+</WithStyles(Drawer)>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "aria-label": "Menu",
+            "children": <pure(Menu) />,
+            "colors": "inherit",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <div
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="button"
+                style={
+                                Object {
+                                                "paddingTop": "1rem",
+                                                "width": 250,
+                                              }
+                }
+                tabIndex={0}
+/>,
+              Array [
+                <Collapsible
+                  expanded={[Function]}
+                  id="1"
+                  open={false}
+                  title="Voyage"
+>
+                  <Collapsible
+                                    expanded={[Function]}
+                                    id="10"
+                                    open={false}
+                                    title="About this Wiki"
+                  >
+                                    <styled.li
+                                                      onClick={[Function]}
+                                    >
+                                                      <Styled(NavLink)
+                                                                        to="/cms/100"
+                                                      >
+                                                                        Home
+                                                      </Styled(NavLink)>
+                                    </styled.li>
+                                    <styled.li
+                                                      onClick={[Function]}
+                                    >
+                                                      <Styled(NavLink)
+                                                                        to="/cms/101"
+                                                      >
+                                                                        How to Contribute
+                                                      </Styled(NavLink)>
+                                    </styled.li>
+                  </Collapsible>
+                  <Collapsible
+                                    expanded={[Function]}
+                                    id="11"
+                                    open={false}
+                                    title="About Voyages"
+                  >
+                                    <styled.li
+                                                      onClick={[Function]}
+                                    >
+                                                      <Styled(NavLink)
+                                                                        to="/cms/102"
+                                                      >
+                                                                        Voyage Roadmap
+                                                      </Styled(NavLink)>
+                                    </styled.li>
+                  </Collapsible>
+                  <styled.li
+                                    onClick={[Function]}
+                  >
+                                    <Styled(NavLink)
+                                                      to="/cms/103"
+                                    >
+                                                      Introduction
+                                    </Styled(NavLink)>
+                  </styled.li>
+</Collapsible>,
+              ],
+            ],
+            "onClose": [Function],
+            "open": true,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "onClick": [Function],
+                "onKeyDown": [Function],
+                "role": "button",
+                "style": Object {
+                  "paddingTop": "1rem",
+                  "width": 250,
+                },
+                "tabIndex": 0,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": "13",
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Collapsible
+                    expanded={[Function]}
+                    id="10"
+                    open={false}
+                    title="About this Wiki"
+>
+                    <styled.li
+                                        onClick={[Function]}
+                    >
+                                        <Styled(NavLink)
+                                                            to="/cms/100"
+                                        >
+                                                            Home
+                                        </Styled(NavLink)>
+                    </styled.li>
+                    <styled.li
+                                        onClick={[Function]}
+                    >
+                                        <Styled(NavLink)
+                                                            to="/cms/101"
+                                        >
+                                                            How to Contribute
+                                        </Styled(NavLink)>
+                    </styled.li>
+</Collapsible>,
+                  <Collapsible
+                    expanded={[Function]}
+                    id="11"
+                    open={false}
+                    title="About Voyages"
+>
+                    <styled.li
+                                        onClick={[Function]}
+                    >
+                                        <Styled(NavLink)
+                                                            to="/cms/102"
+                                        >
+                                                            Voyage Roadmap
+                                        </Styled(NavLink)>
+                    </styled.li>
+</Collapsible>,
+                  <styled.li
+                    onClick={[Function]}
+>
+                    <Styled(NavLink)
+                                        to="/cms/103"
+                    >
+                                        Introduction
+                    </Styled(NavLink)>
+</styled.li>,
+                ],
+                "expanded": [Function],
+                "id": "1",
+                "open": false,
+                "title": "Voyage",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": "9",
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <styled.li
+                        onClick={[Function]}
+>
+                        <Styled(NavLink)
+                                                to="/cms/100"
+                        >
+                                                Home
+                        </Styled(NavLink)>
+</styled.li>,
+                      <styled.li
+                        onClick={[Function]}
+>
+                        <Styled(NavLink)
+                                                to="/cms/101"
+                        >
+                                                How to Contribute
+                        </Styled(NavLink)>
+</styled.li>,
+                    ],
+                    "expanded": [Function],
+                    "id": "10",
+                    "open": false,
+                    "title": "About this Wiki",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": "7",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <Styled(NavLink)
+                          to="/cms/100"
+>
+                          Home
+</Styled(NavLink)>,
+                        "onClick": [Function],
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": "Home",
+                          "to": "/cms/100",
+                        },
+                        "ref": null,
+                        "rendered": "Home",
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": "8",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <Styled(NavLink)
+                          to="/cms/101"
+>
+                          How to Contribute
+</Styled(NavLink)>,
+                        "onClick": [Function],
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": "How to Contribute",
+                          "to": "/cms/101",
+                        },
+                        "ref": null,
+                        "rendered": "How to Contribute",
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "11",
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [
+                      <styled.li
+                        onClick={[Function]}
+>
+                        <Styled(NavLink)
+                                                to="/cms/102"
+                        >
+                                                Voyage Roadmap
+                        </Styled(NavLink)>
+</styled.li>,
+                    ],
+                    "expanded": [Function],
+                    "id": "11",
+                    "open": false,
+                    "title": "About Voyages",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": "10",
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <Styled(NavLink)
+                          to="/cms/102"
+>
+                          Voyage Roadmap
+</Styled(NavLink)>,
+                        "onClick": [Function],
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": "Voyage Roadmap",
+                          "to": "/cms/102",
+                        },
+                        "ref": null,
+                        "rendered": "Voyage Roadmap",
+                        "type": [Function],
+                      },
+                      "type": [Function],
+                    },
+                  ],
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "12",
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <Styled(NavLink)
+                      to="/cms/103"
+>
+                      Introduction
+</Styled(NavLink)>,
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Introduction",
+                      "to": "/cms/103",
+                    },
+                    "ref": null,
+                    "rendered": "Introduction",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
