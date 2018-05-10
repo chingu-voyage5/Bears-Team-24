@@ -70,3 +70,9 @@ it('should create html tree from articles', () => {
   const html = buildHtml(articles, articleTree, '', onArticleSelect, onExpand);
   expect(html).toMatchSnapshot();
 });
+
+it('should create expanded tree if id present', () => {
+  const articleTree = getTree(articles);
+  const html = buildHtml(articles, articleTree, '101', onArticleSelect, onExpand);
+  expect(html).toMatchSnapshot();
+});
