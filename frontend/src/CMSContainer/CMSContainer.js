@@ -12,10 +12,14 @@ export default class CMSContainer extends React.Component {
   };
 
   componentDidMount = () => {
-    getArticleList().then(articleList => {
+    this.getArticles().then(articleList => {
       this.setState({ articleList });
     });
   };
+  // eslint-disable-next-line
+  getArticles() {
+    return getArticleList();
+  }
 
   render() {
     const { articleList } = this.state;
