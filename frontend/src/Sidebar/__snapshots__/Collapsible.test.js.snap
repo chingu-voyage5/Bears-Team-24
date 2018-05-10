@@ -8,7 +8,7 @@ exports[`should create elements 1`] = `
   <div
     className="sc-bwzfXH bpFyCA"
   >
-    ▶
+    ►
      
     test title
   </div>
