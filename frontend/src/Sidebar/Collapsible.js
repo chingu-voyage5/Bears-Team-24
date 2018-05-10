@@ -28,7 +28,7 @@ export default class Collapsible extends React.Component {
   render() {
     const { title, children } = this.props;
     const { open } = this.state;
-    const rightArrow = String.fromCharCode(9654);
+    const rightArrow = String.fromCharCode(9658);
     const downArrow = String.fromCharCode(9660);
     return (
       <Details onClick={this.onClick}>
