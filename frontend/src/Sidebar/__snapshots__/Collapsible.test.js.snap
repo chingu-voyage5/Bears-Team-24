@@ -3,10 +3,10 @@
 exports[`should create elements 1`] = `
 <div
   className="sc-bdVaJa bLWtbN"
-  onClick={[Function]}
 >
   <div
     className="sc-bwzfXH bpFyCA"
+    onClick={[Function]}
   >
     ►
      
@@ -43,14 +43,15 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <styled.div>
+        <styled.div
+          onClick={[Function]}
+>
           ►
            
           test title
 </styled.div>,
         false,
       ],
-      "onClick": [Function],
     },
     "ref": null,
     "rendered": Array [
@@ -64,6 +65,7 @@ ShallowWrapper {
             " ",
             "test title",
           ],
+          "onClick": [Function],
         },
         "ref": null,
         "rendered": Array [
@@ -84,14 +86,15 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <styled.div>
+          <styled.div
+            onClick={[Function]}
+>
             ►
              
             test title
 </styled.div>,
           false,
         ],
-        "onClick": [Function],
       },
       "ref": null,
       "rendered": Array [
@@ -105,6 +108,7 @@ ShallowWrapper {
               " ",
               "test title",
             ],
+            "onClick": [Function],
           },
           "ref": null,
           "rendered": Array [
