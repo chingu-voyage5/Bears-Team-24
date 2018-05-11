@@ -83,17 +83,16 @@ const match = {
   params: { id: '' },
 };
 
-function flushPromises() {
-  return new Promise(resolve => setImmediate(resolve));
-}
-
 let comp;
 let inst;
 
-it('should initialise Sidebar correctly', () => {
+beforeEach(() => {
   comp = shallow(<Sidebar articles={articles} match={match} />);
-  inst = comp.instance();
   comp.setProps({ articles });
+  inst = comp.instance();
+});
+
+it('should initialise Sidebar correctly', () => {
   expect(inst.state.open).toBe(false);
   expect(inst.state.articleTree).toEqual(expectedTree);
   expect(inst.state.articlesHtml).toMatchSnapshot();
@@ -118,17 +117,6 @@ it('should close mobile drawer', () => {
 it('should expand tree', () => {
   inst.onExpanded('1', true);
   expect(inst.state.articleTree).toEqual(expectedExpandedTree);
-});
-
-it('should check mobile', () => {
-  const mobile = inst.checkMobile();
-  expect(mobile).toBe(false);
-});
-
-it('should set mobile if innerWidth < 900', () => {
-  window.innerWidth = 400;
-  const mobile = inst.checkMobile();
-  expect(mobile).toBe(true);
 });
 
 it('should remove resize event listener', () => {

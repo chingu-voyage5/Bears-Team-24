@@ -7,11 +7,9 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import expandTree from './expandTree';
-import buildHtml, { getTree } from './utils';
+import buildHtml, { getTree, checkMobile } from './utils';
 
 import { Wrapper } from './styled';
-
-const BREAK_MOBILE = 900;
 
 export default class Sidebar extends React.Component {
   static propTypes = {
@@ -28,7 +26,7 @@ export default class Sidebar extends React.Component {
   };
 
   componentDidMount() {
-    const mobile = this.checkMobile();
+    const mobile = checkMobile(false, window.innerWidth);
     // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({ mobile });
     window.addEventListener('resize', this.handleResize);
@@ -66,20 +64,8 @@ export default class Sidebar extends React.Component {
   };
 
   handleResize = () => {
-    const mobile = this.checkMobile();
+    const mobile = checkMobile(this.state.mobile, window.innerWidth);
     this.setState({ mobile });
-  };
-
-  checkMobile = () => {
-    let { mobile } = this.state;
-    const windowWidth = window.innerWidth;
-
-    if (mobile && windowWidth > BREAK_MOBILE) {
-      mobile = false;
-    } else if (!mobile && windowWidth <= BREAK_MOBILE) {
-      mobile = true;
-    }
-    return mobile;
   };
 
   openDrawer = () => {

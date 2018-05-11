@@ -4,6 +4,19 @@ import Collapsible from './Collapsible';
 
 import { LI, DrawerLink } from './styled';
 
+export const checkMobile = (mobile, windowWidth) => {
+  const BREAK_MOBILE = 900;
+
+  if (
+    (mobile && windowWidth > BREAK_MOBILE) ||
+    (!mobile && windowWidth <= BREAK_MOBILE)
+  ) {
+    return !mobile;
+  }
+
+  return mobile;
+};
+
 /* eslint-disable spaced-comment */
 /******************************************************************************
 

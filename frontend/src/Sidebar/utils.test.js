@@ -1,4 +1,4 @@
-import buildHtml, { getTree } from './utils';
+import buildHtml, { getTree, checkMobile } from './utils';
 
 const topics = [{ _id: '1', name: 'Voyage', order: 1 }];
 // eslint-disable-next-line camelcase
@@ -73,6 +73,31 @@ it('should create html tree from articles', () => {
 
 it('should create expanded tree if id present', () => {
   const articleTree = getTree(articles);
-  const html = buildHtml(articles, articleTree, '101', onArticleSelect, onExpand);
+  const html = buildHtml(
+    articles,
+    articleTree,
+    '101',
+    onArticleSelect,
+    onExpand
+  );
   expect(html).toMatchSnapshot();
 });
+
+describe('mobile checks', () => {
+  it('should set mobile for with < 900', () => {
+    const mobile = checkMobile(false, 400);
+    expect(mobile).toBe(true);
+  });
+  it('should set mobile if mobile is already set', () => {
+    const mobile = checkMobile(true, 400);
+    expect(mobile).toBe(true);
+  });
+  it('should set not mobile for width > 900', () => {
+    const mobile = checkMobile(false, 1000);
+    expect(mobile).toBe(false);
+  });
+  it('should set not mobile when mobile is set and width > 900', () => {
+    const mobile = checkMobile(true, 1000);
+    expect(mobile).toBe(false);
+  });
+})

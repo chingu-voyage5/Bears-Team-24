@@ -24,7 +24,7 @@ it('should expand on click', () => {
       {{ _id: '1', title: 'Some article title' }}
     </Collapsible>
   );
-  comp.instance().onClick({ stopPropagation: () => {}});
+  comp.instance().onClick({ stopPropagation: () => {} });
   expect(comp).toMatchSnapshot();
   expect(expand).toHaveBeenCalled();
   expect(comp.instance().state.open).toBe(true);
