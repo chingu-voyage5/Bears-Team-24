@@ -1,64 +1,134 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`creating tree should create elements 1`] = `
-<details
+exports[`should create elements 1`] = `
+<div
   className="sc-bdVaJa bLWtbN"
-  open={true}
 >
-  <summary
-    className="sc-bwzfXH jvlMsP"
+  <div
+    className="sc-bwzfXH bpFyCA"
+    onClick={[Function]}
   >
-    Voyage
-  </summary>
-  <details
-    className="sc-bdVaJa bLWtbN"
-    open={true}
-  >
-    <summary
-      className="sc-bwzfXH jvlMsP"
-    >
-      About this wiki
-    </summary>
-    <li
-      className="sc-bxivhb iXnkAE"
-    >
-      <a
-        href="/cms/1"
-        onClick={[Function]}
-      >
-        Home
-      </a>
-    </li>
-    <li
-      className="sc-bxivhb iXnkAE"
-    >
-      <a
-        href="/cms/2"
-        onClick={[Function]}
-      >
-        How to Contribute
-      </a>
-    </li>
-  </details>
-  <details
-    className="sc-bdVaJa bLWtbN"
+    ►
+     
+    test title
+  </div>
+</div>
+`;
+
+exports[`should expand on click 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Collapsible
+    expanded={[Function]}
+    id=""
     open={false}
-  >
-    <summary
-      className="sc-bwzfXH jvlMsP"
-    >
-      About Voyages
-    </summary>
-    <li
-      className="sc-bxivhb iXnkAE"
-    >
-      <a
-        href="/cms/3"
-        onClick={[Function]}
-      >
-        About Voyages
-      </a>
-    </li>
-  </details>
-</details>
+    title="test title"
+>
+    Object {
+        "_id": "1",
+        "title": "Some article title",
+      }
+</Collapsible>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <styled.div
+          onClick={[Function]}
+>
+          ►
+           
+          test title
+</styled.div>,
+        false,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            "►",
+            " ",
+            "test title",
+          ],
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": Array [
+          "►",
+          " ",
+          "test title",
+        ],
+        "type": [Function],
+      },
+      false,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <styled.div
+            onClick={[Function]}
+>
+            ►
+             
+            test title
+</styled.div>,
+          false,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              "►",
+              " ",
+              "test title",
+            ],
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": Array [
+            "►",
+            " ",
+            "test title",
+          ],
+          "type": [Function],
+        },
+        false,
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
 `;
