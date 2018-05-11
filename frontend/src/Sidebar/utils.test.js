@@ -100,4 +100,4 @@ describe('mobile checks', () => {
     const mobile = checkMobile(true, 1000);
     expect(mobile).toBe(false);
   });
-})
+});
