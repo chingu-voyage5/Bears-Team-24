@@ -61,12 +61,10 @@ class ArticleEdit extends React.Component {
   // eslint-disable-next-line react/sort-comp
   loadData() {
     const promises = [];
-    promises.push(new Promise(resolve => resolve(getTopics())));
-    promises.push(new Promise(resolve => resolve(getSubTopics())));
+    promises.push(getTopics());
+    promises.push(getSubTopics());
     if (this.props.id) {
-      promises.push(
-        new Promise(resolve => resolve(actions.get(this.props.id)))
-      );
+      promises.push(actions.get(this.props.id));
     }
     return Promise.all(promises);
   }
