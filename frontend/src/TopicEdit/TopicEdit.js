@@ -40,26 +40,19 @@ export default class TopicEdit extends React.Component {
   }
 
   componentDidMount() {
-    this.loadTopics();
-    this.loadSubTopics();
-
-    window.addEventListener('resize', this.handleResize);
-    this.handleResize();
-  }
-  // eslint-disable-next-line react/sort-comp
-  loadTopics() {
     getTopics()
       .then(topics => {
         this.setState({ topics, selectedTopic: topics[0] });
       })
       // eslint-disable-next-line no-console
       .catch(e => console.error('mounted get topics failed:', e));
-  }
-  loadSubTopics() {
     getSubTopics()
       .then(sub_topics => this.setState({ sub_topics }))
       // eslint-disable-next-line no-console
       .catch(e => console.error('mounted get sub topics failed:', e));
+
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
   }
 
   componentWillUnmount() {

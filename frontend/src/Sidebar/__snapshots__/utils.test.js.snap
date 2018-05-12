@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should create expanded tree if id present 1`] = `
+Array [
+  <Collapsible
+    expanded={[Function]}
+    id="1"
+    open={true}
+    title="Voyage"
+>
+    <Collapsible
+        expanded={[Function]}
+        id="10"
+        open={true}
+        title="About this Wiki"
+    >
+        <styled.li
+            onClick={[Function]}
+        >
+            <Styled(NavLink)
+                to="/cms/100"
+            >
+                Home
+            </Styled(NavLink)>
+        </styled.li>
+        <styled.li
+            onClick={[Function]}
+        >
+            <Styled(NavLink)
+                to="/cms/101"
+            >
+                How to Contribute
+            </Styled(NavLink)>
+        </styled.li>
+    </Collapsible>
+    <Collapsible
+        expanded={[Function]}
+        id="11"
+        open={false}
+        title="About Voyages"
+    >
+        <styled.li
+            onClick={[Function]}
+        >
+            <Styled(NavLink)
+                to="/cms/102"
+            >
+                Voyage Roadmap
+            </Styled(NavLink)>
+        </styled.li>
+    </Collapsible>
+    <styled.li
+        onClick={[Function]}
+    >
+        <Styled(NavLink)
+            to="/cms/103"
+        >
+            Introduction
+        </Styled(NavLink)>
+    </styled.li>
+</Collapsible>,
+]
+`;
+
+exports[`should create html tree from articles 1`] = `
+Array [
+  <Collapsible
+    expanded={[Function]}
+    id="1"
+    open={false}
+    title="Voyage"
+>
+    <Collapsible
+        expanded={[Function]}
+        id="10"
+        open={false}
+        title="About this Wiki"
+    >
+        <styled.li
+            onClick={[Function]}
+        >
+            <Styled(NavLink)
+                to="/cms/100"
+            >
+                Home
+            </Styled(NavLink)>
+        </styled.li>
+        <styled.li
+            onClick={[Function]}
+        >
+            <Styled(NavLink)
+                to="/cms/101"
+            >
+                How to Contribute
+            </Styled(NavLink)>
+        </styled.li>
+    </Collapsible>
+    <Collapsible
+        expanded={[Function]}
+        id="11"
+        open={false}
+        title="About Voyages"
+    >
+        <styled.li
+            onClick={[Function]}
+        >
+            <Styled(NavLink)
+                to="/cms/102"
+            >
+                Voyage Roadmap
+            </Styled(NavLink)>
+        </styled.li>
+    </Collapsible>
+    <styled.li
+        onClick={[Function]}
+    >
+        <Styled(NavLink)
+            to="/cms/103"
+        >
+            Introduction
+        </Styled(NavLink)>
+    </styled.li>
+</Collapsible>,
+]
+`;
