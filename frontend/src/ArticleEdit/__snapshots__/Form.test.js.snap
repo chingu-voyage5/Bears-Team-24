@@ -5,40 +5,40 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
   className="MuiList-root-1 MuiList-padding-2"
 >
   <li
-    className="MuiListItem-root-1 MuiListItem-default-4 MuiListItem-gutters-8"
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
     disabled={false}
   >
     <div
       className="sc-bdVaJa drcPZX"
     >
       <h2
-        className="MuiTypography-root-11 MuiTypography-title-17"
+        className="MuiTypography-root-15 MuiTypography-title-21"
       >
         Title
         :
       </h2>
     </div>
     <div
-      className="MuiListItemText-root-35"
+      className="MuiListItemText-root-39"
     >
       <h3
-        className="MuiTypography-root-11 MuiTypography-subheading-18 MuiListItemText-primary-38"
+        className="MuiTypography-root-15 MuiTypography-subheading-22 MuiListItemText-primary-42"
       >
         <div
           aria-describedby={undefined}
-          className="MuiFormControl-root-41 MuiFormControl-fullWidth-44"
+          className="MuiFormControl-root-45 MuiFormControl-fullWidth-48"
           onBlur={[Function]}
           onFocus={[Function]}
         >
           <div
-            className="MuiInput-root-45 MuiInput-fullWidth-52 MuiInput-formControl-46 MuiInput-underline-49"
+            className="MuiInput-root-49 MuiInput-fullWidth-56 MuiInput-formControl-50 MuiInput-underline-53"
           >
             <input
               aria-invalid={false}
               aria-required={false}
               autoComplete={undefined}
               autoFocus={undefined}
-              className="MuiInput-input-53"
+              className="MuiInput-input-57"
               defaultValue={undefined}
               disabled={false}
               id={undefined}
@@ -61,40 +61,40 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
     </div>
   </li>
   <li
-    className="MuiListItem-root-1 MuiListItem-default-4 MuiListItem-gutters-8"
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
     disabled={false}
   >
     <div
       className="sc-bdVaJa drcPZX"
     >
       <h2
-        className="MuiTypography-root-11 MuiTypography-title-17"
+        className="MuiTypography-root-15 MuiTypography-title-21"
       >
         Order
         :
       </h2>
     </div>
     <div
-      className="MuiListItemText-root-35"
+      className="MuiListItemText-root-39"
     >
       <h3
-        className="MuiTypography-root-11 MuiTypography-subheading-18 MuiListItemText-primary-38"
+        className="MuiTypography-root-15 MuiTypography-subheading-22 MuiListItemText-primary-42"
       >
         <div
           aria-describedby={undefined}
-          className="MuiFormControl-root-41 MuiFormControl-fullWidth-44"
+          className="MuiFormControl-root-45 MuiFormControl-fullWidth-48"
           onBlur={[Function]}
           onFocus={[Function]}
         >
           <div
-            className="MuiInput-root-45 MuiInput-fullWidth-52 MuiInput-formControl-46 MuiInput-underline-49"
+            className="MuiInput-root-49 MuiInput-fullWidth-56 MuiInput-formControl-50 MuiInput-underline-53"
           >
             <input
               aria-invalid={false}
               aria-required={false}
               autoComplete={undefined}
               autoFocus={undefined}
-              className="MuiInput-input-53"
+              className="MuiInput-input-57"
               defaultValue={undefined}
               disabled={false}
               id={undefined}
@@ -130,16 +130,16 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
       </h2>
     </div>
     <div
-      className="MuiInput-root-45 MuiInput-underline-49 sc-ifAKCX dUasrT"
+      className="MuiInput-root-6 MuiInput-underline-10 sc-ifAKCX dUasrT"
     >
       <div
-        className="MuiSelect-root-59"
+        className="MuiSelect-root-1"
       >
         <div
           aria-haspopup="true"
           aria-owns={null}
           aria-pressed="false"
-          className="MuiSelect-select-60 MuiSelect-selectMenu-61 MuiInput-input-53"
+          className="MuiSelect-select-2 MuiSelect-selectMenu-3 MuiInput-input-14"
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -168,7 +168,7 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
         />
         <svg
           aria-hidden="true"
-          className="MuiSvgIcon-root-64 MuiSelect-icon-63"
+          className="MuiSvgIcon-root-20 MuiSelect-icon-5"
           color={undefined}
           focusable="false"
           viewBox="0 0 24 24"
@@ -194,16 +194,16 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
       </h2>
     </div>
     <div
-      className="MuiInput-root-45 MuiInput-underline-49 sc-ifAKCX dUasrT"
+      className="MuiInput-root-6 MuiInput-underline-10 sc-ifAKCX dUasrT"
     >
       <div
-        className="MuiSelect-root-59"
+        className="MuiSelect-root-1"
       >
         <div
           aria-haspopup="true"
           aria-owns={null}
           aria-pressed="false"
-          className="MuiSelect-select-60 MuiSelect-selectMenu-61 MuiInput-input-53"
+          className="MuiSelect-select-2 MuiSelect-selectMenu-3 MuiInput-input-14"
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -232,7 +232,7 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
         />
         <svg
           aria-hidden="true"
-          className="MuiSvgIcon-root-64 MuiSelect-icon-63"
+          className="MuiSvgIcon-root-20 MuiSelect-icon-5"
           color={undefined}
           focusable="false"
           viewBox="0 0 24 24"
@@ -252,40 +252,40 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
   className="MuiList-root-1 MuiList-padding-2"
 >
   <li
-    className="MuiListItem-root-1 MuiListItem-default-4 MuiListItem-gutters-8"
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
     disabled={false}
   >
     <div
       className="sc-bdVaJa drcPZX"
     >
       <h2
-        className="MuiTypography-root-11 MuiTypography-title-17"
+        className="MuiTypography-root-15 MuiTypography-title-21"
       >
         Title
         :
       </h2>
     </div>
     <div
-      className="MuiListItemText-root-35"
+      className="MuiListItemText-root-39"
     >
       <h3
-        className="MuiTypography-root-11 MuiTypography-subheading-18 MuiListItemText-primary-38"
+        className="MuiTypography-root-15 MuiTypography-subheading-22 MuiListItemText-primary-42"
       >
         <div
           aria-describedby={undefined}
-          className="MuiFormControl-root-41 MuiFormControl-fullWidth-44"
+          className="MuiFormControl-root-45 MuiFormControl-fullWidth-48"
           onBlur={[Function]}
           onFocus={[Function]}
         >
           <div
-            className="MuiInput-root-45 MuiInput-fullWidth-52 MuiInput-formControl-46 MuiInput-underline-49"
+            className="MuiInput-root-49 MuiInput-fullWidth-56 MuiInput-formControl-50 MuiInput-underline-53"
           >
             <input
               aria-invalid={false}
               aria-required={false}
               autoComplete={undefined}
               autoFocus={undefined}
-              className="MuiInput-input-53"
+              className="MuiInput-input-57"
               defaultValue={undefined}
               disabled={false}
               id={undefined}
@@ -308,40 +308,40 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
     </div>
   </li>
   <li
-    className="MuiListItem-root-1 MuiListItem-default-4 MuiListItem-gutters-8"
+    className="MuiListItem-root-5 MuiListItem-default-8 MuiListItem-gutters-12"
     disabled={false}
   >
     <div
       className="sc-bdVaJa drcPZX"
     >
       <h2
-        className="MuiTypography-root-11 MuiTypography-title-17"
+        className="MuiTypography-root-15 MuiTypography-title-21"
       >
         Order
         :
       </h2>
     </div>
     <div
-      className="MuiListItemText-root-35"
+      className="MuiListItemText-root-39"
     >
       <h3
-        className="MuiTypography-root-11 MuiTypography-subheading-18 MuiListItemText-primary-38"
+        className="MuiTypography-root-15 MuiTypography-subheading-22 MuiListItemText-primary-42"
       >
         <div
           aria-describedby={undefined}
-          className="MuiFormControl-root-41 MuiFormControl-fullWidth-44"
+          className="MuiFormControl-root-45 MuiFormControl-fullWidth-48"
           onBlur={[Function]}
           onFocus={[Function]}
         >
           <div
-            className="MuiInput-root-45 MuiInput-fullWidth-52 MuiInput-formControl-46 MuiInput-underline-49"
+            className="MuiInput-root-49 MuiInput-fullWidth-56 MuiInput-formControl-50 MuiInput-underline-53"
           >
             <input
               aria-invalid={false}
               aria-required={false}
               autoComplete={undefined}
               autoFocus={undefined}
-              className="MuiInput-input-53"
+              className="MuiInput-input-57"
               defaultValue={undefined}
               disabled={false}
               id={undefined}
@@ -377,16 +377,16 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
       </h2>
     </div>
     <div
-      className="MuiInput-root-45 MuiInput-underline-49 sc-ifAKCX dUasrT"
+      className="MuiInput-root-6 MuiInput-underline-10 sc-ifAKCX dUasrT"
     >
       <div
-        className="MuiSelect-root-59"
+        className="MuiSelect-root-1"
       >
         <div
           aria-haspopup="true"
           aria-owns={null}
           aria-pressed="false"
-          className="MuiSelect-select-60 MuiSelect-selectMenu-61 MuiInput-input-53"
+          className="MuiSelect-select-2 MuiSelect-selectMenu-3 MuiInput-input-14"
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -415,7 +415,7 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
         />
         <svg
           aria-hidden="true"
-          className="MuiSvgIcon-root-64 MuiSelect-icon-63"
+          className="MuiSvgIcon-root-20 MuiSelect-icon-5"
           color={undefined}
           focusable="false"
           viewBox="0 0 24 24"
@@ -441,16 +441,16 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
       </h2>
     </div>
     <div
-      className="MuiInput-root-45 MuiInput-underline-49 sc-ifAKCX dUasrT"
+      className="MuiInput-root-6 MuiInput-underline-10 sc-ifAKCX dUasrT"
     >
       <div
-        className="MuiSelect-root-59"
+        className="MuiSelect-root-1"
       >
         <div
           aria-haspopup="true"
           aria-owns={null}
           aria-pressed="false"
-          className="MuiSelect-select-60 MuiSelect-selectMenu-61 MuiInput-input-53"
+          className="MuiSelect-select-2 MuiSelect-selectMenu-3 MuiInput-input-14"
           onBlur={[Function]}
           onClick={[Function]}
           onFocus={[Function]}
@@ -479,7 +479,7 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
         />
         <svg
           aria-hidden="true"
-          className="MuiSvgIcon-root-64 MuiSelect-icon-63"
+          className="MuiSvgIcon-root-20 MuiSelect-icon-5"
           color={undefined}
           focusable="false"
           viewBox="0 0 24 24"
