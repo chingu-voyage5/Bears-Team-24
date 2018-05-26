@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import AvatarMUI from 'material-ui/Avatar';
-import Paper from 'material-ui/Paper';
+import AvatarMUI from '@material-ui/core/Avatar';
+import Paper from '@material-ui/core/Paper';
 
 export const Avatar = styled(AvatarMUI)`
   && {

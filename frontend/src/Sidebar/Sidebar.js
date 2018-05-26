@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Material UI components
-import Drawer from 'material-ui/Drawer';
-import IconButton from 'material-ui/IconButton';
+import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import expandTree from './expandTree';

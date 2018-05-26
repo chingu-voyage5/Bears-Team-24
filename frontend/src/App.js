@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { MuiThemeProvider } from 'material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import AuthRoute from './AuthRoute';
 import actions from './actions';

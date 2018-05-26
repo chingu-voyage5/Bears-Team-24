@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 // Material-UI components
-import Button from 'material-ui/Button';
-import { FormControl } from 'material-ui/Form';
-import IconButton from 'material-ui/IconButton';
-import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import Snackbar from 'material-ui/Snackbar';
-import TextField from 'material-ui/TextField';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Snackbar from '@material-ui/core/Snackbar';
+import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 

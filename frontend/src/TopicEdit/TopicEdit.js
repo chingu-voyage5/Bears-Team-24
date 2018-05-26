@@ -1,8 +1,9 @@
 import React from 'react';
 
-import MenuItem from 'material-ui/Menu/MenuItem';
-import TextField from 'material-ui/TextField';
-import { TableCell, TableRow } from 'material-ui/Table';
+import MenuItem from '@material-ui/core/MenuItem';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import TextField from '@material-ui/core/TextField';
 
 import MessageBar from '../common/MessageBar';
 import PrimaryButton from '../common/PrimaryButton';

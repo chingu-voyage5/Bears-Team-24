@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import Paper from 'material-ui/Paper';
-import { TableCell, TableRow as TableRowMUI } from 'material-ui/Table';
+import Paper from '@material-ui/core/Paper';
+import TableCell from '@material-ui/core/TableCell';
+import TableRowMUI from '@material-ui/core/TableRow';
 
 export const ButtonWrapper = styled.div`
   margin-bottom: 1rem;

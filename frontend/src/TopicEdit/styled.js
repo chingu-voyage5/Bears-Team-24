@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Select from 'material-ui/Select';
-import { TableHead } from 'material-ui/Table';
+import Select from '@material-ui/core/Select';
+import TableHead from '@material-ui/core/TableHead';
 
 export const ButtonWrapper = styled.div`
   display: flex;
