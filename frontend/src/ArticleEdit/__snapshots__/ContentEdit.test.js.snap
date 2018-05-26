@@ -28,7 +28,7 @@ exports[`renders ContentEdit Form 1`] = `
           >
             <button
               aria-selected={true}
-              className="MuiButtonBase-root-61 MuiTab-root-45 MuiTab-textColorInherit-47 MuiTab-textColorInheritSelected-54"
+              className="MuiButtonBase-root-57 MuiTab-root-45 MuiTab-textColorInherit-47 MuiTab-selected-50"
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
@@ -42,18 +42,17 @@ exports[`renders ContentEdit Form 1`] = `
               onTouchMove={[Function]}
               onTouchStart={[Function]}
               role="tab"
-              style={undefined}
               tabIndex="0"
               type="button"
             >
               <span
-                className="MuiTab-wrapper-57"
+                className="MuiTab-wrapper-53"
               >
                 <span
-                  className="MuiTab-labelContainer-58"
+                  className="MuiTab-labelContainer-54"
                 >
                   <span
-                    className="MuiTab-label-59"
+                    className="MuiTab-label-55"
                   >
                     Markdown
                   </span>
@@ -62,7 +61,7 @@ exports[`renders ContentEdit Form 1`] = `
             </button>
             <button
               aria-selected={false}
-              className="MuiButtonBase-root-61 MuiTab-root-45 MuiTab-textColorInherit-47"
+              className="MuiButtonBase-root-57 MuiTab-root-45 MuiTab-textColorInherit-47"
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
@@ -76,18 +75,17 @@ exports[`renders ContentEdit Form 1`] = `
               onTouchMove={[Function]}
               onTouchStart={[Function]}
               role="tab"
-              style={undefined}
               tabIndex="0"
               type="button"
             >
               <span
-                className="MuiTab-wrapper-57"
+                className="MuiTab-wrapper-53"
               >
                 <span
-                  className="MuiTab-labelContainer-58"
+                  className="MuiTab-labelContainer-54"
                 >
                   <span
-                    className="MuiTab-label-59"
+                    className="MuiTab-label-55"
                   >
                     Preview
                   </span>
@@ -96,7 +94,7 @@ exports[`renders ContentEdit Form 1`] = `
             </button>
           </div>
           <span
-            className="MuiTabIndicator-root-64 MuiTabIndicator-colorSecondary-66 MuiTabs-indicator-44"
+            className="TabIndicator-root-60 TabIndicator-colorSecondary-62 MuiTabs-indicator-44"
             style={
               Object {
                 "left": 0,
@@ -113,15 +111,15 @@ exports[`renders ContentEdit Form 1`] = `
   >
     <div
       aria-describedby={undefined}
-      className="MuiFormControl-root-67 sc-bZQynM dYcFeC"
+      className="MuiFormControl-root-63 sc-bZQynM dYcFeC"
       onBlur={[Function]}
       onFocus={[Function]}
     >
       <div
-        className="MuiInput-root-71 MuiInput-formControl-72 MuiInput-multiline-77 MuiInput-underline-75"
+        className="MuiInput-root-67 MuiInput-formControl-68 MuiInput-multiline-73 MuiInput-underline-71"
       >
         <div
-          className="MuiTextarea-root-85"
+          className="Textarea-root-80"
           style={
             Object {
               "height": 19,
@@ -130,7 +128,7 @@ exports[`renders ContentEdit Form 1`] = `
         >
           <textarea
             aria-hidden="true"
-            className="MuiTextarea-shadow-87 MuiTextarea-textarea-86"
+            className="Textarea-shadow-82 Textarea-textarea-81"
             readOnly={true}
             rows="1"
             tabIndex={-1}
@@ -138,7 +136,7 @@ exports[`renders ContentEdit Form 1`] = `
           />
           <textarea
             aria-hidden="true"
-            className="MuiTextarea-shadow-87 MuiTextarea-textarea-86"
+            className="Textarea-shadow-82 Textarea-textarea-81"
             defaultValue={undefined}
             readOnly={true}
             rows={1}
@@ -150,7 +148,7 @@ exports[`renders ContentEdit Form 1`] = `
             aria-required={false}
             autoComplete={undefined}
             autoFocus={undefined}
-            className="MuiTextarea-textarea-86 MuiInput-input-79 MuiInput-inputMultiline-82"
+            className="Textarea-textarea-81 MuiInput-input-75 MuiInput-inputMultiline-77"
             defaultValue={undefined}
             disabled={false}
             id={undefined}
