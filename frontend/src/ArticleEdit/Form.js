@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Typography from 'material-ui/Typography';
-import MenuItem from 'material-ui/Menu/MenuItem';
-import List, { ListItem } from 'material-ui/List';
+import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 import ListItemInput from '../ListItemInput';
 import TopicSelector from '../TopicEdit/TopicSelector';

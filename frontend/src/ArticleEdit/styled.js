@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import PaperMUI from 'material-ui/Paper';
-import TextFieldMUI from 'material-ui/TextField';
-import AppBarMUI from 'material-ui/AppBar';
-import Typography from 'material-ui/Typography';
+import PaperMUI from '@material-ui/core/Paper';
+import TextFieldMUI from '@material-ui/core/TextField';
+import AppBarMUI from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
 
 export const AppBar = styled(AppBarMUI)`
   && {
