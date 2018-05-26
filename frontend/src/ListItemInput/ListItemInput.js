@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Material-UI components
-import { ListItem, ListItemText } from 'material-ui/List';
-import TextField from 'material-ui/TextField';
-import Typography from 'material-ui/Typography';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 import { Label } from './styled';
 
