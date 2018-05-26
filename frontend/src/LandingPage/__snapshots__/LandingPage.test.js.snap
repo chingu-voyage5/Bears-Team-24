@@ -56,13 +56,13 @@ exports[`renders LandingPage 1`] = `
     Features
   </h1>
   <div
-    className="MuiGrid-typeContainer-25 MuiGrid-spacing-xs-16-47"
+    className="MuiGrid-container-25 MuiGrid-spacing-xs-16-47"
   >
     <div
-      className="MuiGrid-typeItem-26 MuiGrid-grid-xs-12-62 MuiGrid-grid-sm-6-69"
+      className="MuiGrid-item-26 MuiGrid-grid-xs-12-63 MuiGrid-grid-sm-6-70"
     >
       <div
-        className="MuiPaper-root-115 MuiPaper-elevation2-119 MuiPaper-rounded-116 c3"
+        className="MuiPaper-root-116 MuiPaper-elevation2-120 MuiPaper-rounded-117 c3"
       >
         <h1
           className="MuiTypography-root-1 MuiTypography-headline-6 c4"
@@ -77,10 +77,10 @@ exports[`renders LandingPage 1`] = `
       </div>
     </div>
     <div
-      className="MuiGrid-typeItem-26 MuiGrid-grid-xs-12-62 MuiGrid-grid-sm-6-69"
+      className="MuiGrid-item-26 MuiGrid-grid-xs-12-63 MuiGrid-grid-sm-6-70"
     >
       <div
-        className="MuiPaper-root-115 MuiPaper-elevation2-119 MuiPaper-rounded-116 c3"
+        className="MuiPaper-root-116 MuiPaper-elevation2-120 MuiPaper-rounded-117 c3"
       >
         <h1
           className="MuiTypography-root-1 MuiTypography-headline-6 c4"
@@ -95,10 +95,10 @@ exports[`renders LandingPage 1`] = `
       </div>
     </div>
     <div
-      className="MuiGrid-typeItem-26 MuiGrid-grid-xs-12-62 MuiGrid-grid-sm-6-69"
+      className="MuiGrid-item-26 MuiGrid-grid-xs-12-63 MuiGrid-grid-sm-6-70"
     >
       <div
-        className="MuiPaper-root-115 MuiPaper-elevation2-119 MuiPaper-rounded-116 c3"
+        className="MuiPaper-root-116 MuiPaper-elevation2-120 MuiPaper-rounded-117 c3"
       >
         <h1
           className="MuiTypography-root-1 MuiTypography-headline-6 c4"
@@ -113,10 +113,10 @@ exports[`renders LandingPage 1`] = `
       </div>
     </div>
     <div
-      className="MuiGrid-typeItem-26 MuiGrid-grid-xs-12-62 MuiGrid-grid-sm-6-69"
+      className="MuiGrid-item-26 MuiGrid-grid-xs-12-63 MuiGrid-grid-sm-6-70"
     >
       <div
-        className="MuiPaper-root-115 MuiPaper-elevation2-119 MuiPaper-rounded-116 c3"
+        className="MuiPaper-root-116 MuiPaper-elevation2-120 MuiPaper-rounded-117 c3"
       >
         <h1
           className="MuiTypography-root-1 MuiTypography-headline-6 c4"

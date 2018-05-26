@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Material UI components
-import Grid from 'material-ui/Grid';
+import Grid from '@material-ui/core/Grid';
 
 import { Heading1, Heading2, Heading3, P, Paper, Wrapper } from './styled';
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import PaperMUI from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
+import PaperMUI from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 export const Heading1 = styled(Typography).attrs({
   variant: 'display2',
