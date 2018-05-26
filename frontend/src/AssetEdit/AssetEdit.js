@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Material-UI components
-import Button from 'material-ui/Button';
-import List from 'material-ui/List';
-import Paper from 'material-ui/Paper';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Paper from '@material-ui/core/Paper';
 
 import MessageBar from '../common/MessageBar';
 import ListItemInput from '../ListItemInput';

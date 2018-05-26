@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 export const ButtonWrapper = styled.div`
   margin-top: 1rem;
