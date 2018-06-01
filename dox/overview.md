@@ -4,7 +4,23 @@
 
 This CMS is organised around the idea of articles grouped together in books and chapters. Navigation is performed using a tree which can be expanded to reveal the different sub-topics and articles contained therein.
 
-Registered users will be able to update the CMS content using a dashboard. There will be trust levels to prevent a visitor registering and then trashing the content! Currently there are two trust levels, member and moderator. Members can update content but this only generates change requests which can be accepted or rejected by users with the moderator trust level. 
+Registered users will be able to update the CMS content using an extended menu.
+
+### Content Updates
+
+We need to control changes to content to prevent malicious damage. To implement this we will create a change request mechanism and a new user role, moderator.
+
+Changes made on the front end will be sent to the backend as they are currently. The backend will check the user role and will update the article as is currently done for moderators. For members, a change request will be created in a new table, say "requests".
+
+Moderators will be able to fetch a list of pending requests. Selecting an item in the list will navigate to a detail page, showing the change diff and accept and reject buttons. Clicking the accept and reject buttons will post to the backend which will perform the following actions:
+
+* Accept will cause the article to be updated, the request table status updated to accepted and an entry in the history table.
+* Reject will cause the request table status updated to rejected.
+
+Let's not delete the requests for now, this will give us an insight into members accept/reject ratio and perhaps trigger trust level increase to moderator or in extreme cases, the boot!
+
+*It would be nice to have a preview frame showing the requested updates, similar to what we have in the article edit/view page.*
+
 
 ## Articles
 
@@ -55,6 +71,12 @@ Topics and sub-topics will be created separately rather than on an ad-hoc basis 
 
 This page facilitates the creation and update of articles. There are two droplists for selecting topic and sub-topics and an order field to set the position of the article within the cms navigation tree.
 
+### Assets
+
+  * images/audio/video
+  * list view
+  * crud ops
+
 ### Users
 
 There will be four levels of users. Visitor, member, moderator and admin.
@@ -85,12 +107,6 @@ This page facilitates the updates to articles by the member role. When a member 
 
   * list of requested changes
   * view a specific change request allowing accept/reject ops
-
-### Assets
-
-  * images/audio/video
-  * list view
-  * crud ops
 
 # wireframes
 

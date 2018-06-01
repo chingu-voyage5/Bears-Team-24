@@ -66,3 +66,13 @@ article         |Articles._id   |
 asset           |Assets._id     |
 sizePre         |Number         |
 sizePost        |Number         |
+
+## RequestChanges
+
+name            |type           |enum
+----            |----           |---
+_id             |mongo_id       |
+creator         |User._id       |
+status          |string         |pending/accepted/rejected
+article         |Article._id    |
+diff            |[{count:number, value:string, added: true&#124;undefined, removed: true&#124;undefined}] |
