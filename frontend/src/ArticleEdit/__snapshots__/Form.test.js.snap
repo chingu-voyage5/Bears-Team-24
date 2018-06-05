@@ -121,7 +121,7 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
     disabled={false}
   >
     <div
-      className="sc-iwsKbI jmYMFI"
+      className="sc-gqjmRU cclISH"
     >
       <h2
         className="MuiTypography-root-15 MuiTypography-title-21"
@@ -185,7 +185,7 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
     disabled={false}
   >
     <div
-      className="sc-iwsKbI jmYMFI"
+      className="sc-gqjmRU cclISH"
     >
       <h2
         className="MuiTypography-root-15 MuiTypography-title-21"
@@ -368,7 +368,7 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
     disabled={false}
   >
     <div
-      className="sc-iwsKbI jmYMFI"
+      className="sc-gqjmRU cclISH"
     >
       <h2
         className="MuiTypography-root-15 MuiTypography-title-21"
@@ -432,7 +432,7 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
     disabled={false}
   >
     <div
-      className="sc-iwsKbI jmYMFI"
+      className="sc-gqjmRU cclISH"
     >
       <h2
         className="MuiTypography-root-15 MuiTypography-title-21"
