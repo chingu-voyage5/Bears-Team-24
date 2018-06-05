@@ -1,12 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Paper from '@material-ui/core/Paper';
+
 import PrimaryButton from '../common/PrimaryButton';
 import MessageBar from '../common/MessageBar';
 
 import actions from './actions';
 
-import { Heading1, Wrapper } from './styled';
+import {
+  Heading1,
+  Wrapper,
+  ButtonWrapper,
+  DiffWrapper,
+  Label,
+} from './styled';
 
 // import { SMALL_WINDOW } from '../config';
 
@@ -70,36 +81,60 @@ export default class ArticleChangeEdit extends React.Component {
     if (changeRequest.length === 0) {
       return <div>Loading ...</div>;
     }
+    const { article } = changeRequest[0];
     return (
       <Wrapper mobile={mobile}>
         <Heading1>Content Moderation</Heading1>
-        <div>
-          <div>Title: {changeRequest[0].article.title}</div>
-          <div>Topic: {changeRequest[0].article.topic.name}</div>
-          <div>SubTopic: {changeRequest[0].article.sub_topic.name}</div>
-        </div>
-        <div>
-          {changeRequest[0].diff.map((part, ndx) => {
-            const style = {
-              // eslint-disable-next-line no-nested-ternary
-              color: part.added ? 'green' : part.removed ? 'red' : 'grey',
-            };
-            return (
-              // eslint-disable-next-line react/no-array-index-key
-              <span key={ndx} style={style}>
-                {part.value}
-              </span>
-            );
-          })}
-        </div>
-        <div>
+        <List>
+          <ListItem>
+            <Label>
+              <Typography variant="title">Title:</Typography>
+            </Label>
+            <Label>
+              <Typography variant="subheading">{article.title}</Typography>
+            </Label>
+          </ListItem>
+          <ListItem>
+            <Label>
+              <Typography variant="title">Topic:</Typography>
+            </Label>
+            <Label>
+              <Typography variant="subheading">{article.topic.name}</Typography>
+            </Label>
+          </ListItem>
+          <ListItem>
+            <Label>
+              <Typography variant="title">Sub Topic:</Typography>
+            </Label>
+            <Label>
+              <Typography variant="subheading">{article.sub_topic.name}</Typography>
+            </Label>
+          </ListItem>
+        </List>
+        <DiffWrapper>
+          <Paper>
+            {changeRequest[0].diff.map((part, ndx) => {
+              const style = {
+                // eslint-disable-next-line no-nested-ternary
+                color: part.added ? 'green' : part.removed ? 'red' : 'grey',
+              };
+              return (
+                // eslint-disable-next-line react/no-array-index-key
+                <span key={ndx} style={style}>
+                  {part.value}
+                </span>
+              );
+            })}
+          </Paper>
+        </DiffWrapper>
+        <ButtonWrapper>
           <PrimaryButton name="accept" onClick={this.handleSave}>
             Accept
           </PrimaryButton>
           <PrimaryButton name="reject" onClick={this.handleSave}>
             Reject
           </PrimaryButton>
-        </div>
+        </ButtonWrapper>
         <MessageBar
           anchor={{ vertical, horizontal }}
           message={message}
