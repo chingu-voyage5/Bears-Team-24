@@ -156,7 +156,8 @@ class Navbar extends React.Component {
                 {isLoggedIn && <TabMod value={2} classes={classes} />}
                 {isLoggedIn && <TabMod value={3} classes={classes} />}
                 {isLoggedIn && <TabMod value={4} classes={classes} />}
-                <TabMod value={5} classes={classes} />
+                {isLoggedIn && <TabMod value={5} classes={classes} />}
+                <TabMod value={6} classes={classes} />
               </Tabs>
             )}
             <Greeting>Hi,&nbsp;{username}</Greeting>

@@ -7,8 +7,8 @@ import actions from './actions';
 import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
-import Articles from './Articles';
-import ArticleEdit from './ArticleEdit';
+import Articles, { ArticleChangeList } from './Articles';
+import ArticleEdit, {ArticleChangeEdit} from './ArticleEdit';
 import Assets from './Assets';
 import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';
@@ -131,6 +131,19 @@ class App extends Component {
                 isLoggedIn={isLoggedIn}
                 path="/articles/:id"
                 render={props => <ArticleEdit id={props.match.params.id} />}
+              />
+              <AuthRoute
+                exact
+                isLoggedIn={isLoggedIn}
+                path="/requests"
+                render={r => <ArticleChangeList {...r} />}
+              />
+              <AuthRoute
+                isLoggedIn={isLoggedIn}
+                path="/requests/:id"
+                render={props => (
+                  <ArticleChangeEdit id={props.match.params.id} />
+                )}
               />
               <AuthRoute
                 exact
