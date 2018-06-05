@@ -38,7 +38,6 @@ export default class ArticleChangeList extends React.Component {
   componentDidMount = () => {
     this.fetchData()
       .then(res => {
-        console.log('article change list response:', res);
         const data = res.map(request => ({
           ...request,
           title: request.article.title,
