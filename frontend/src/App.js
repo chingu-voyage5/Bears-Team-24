@@ -8,7 +8,7 @@ import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
 import Articles, { ArticleChangeList } from './Articles';
-import ArticleEdit, {ArticleChangeEdit} from './ArticleEdit';
+import ArticleEdit, { ArticleChangeEdit } from './ArticleEdit';
 import Assets from './Assets';
 import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';

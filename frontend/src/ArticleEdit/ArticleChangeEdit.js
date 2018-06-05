@@ -11,13 +11,7 @@ import MessageBar from '../common/MessageBar';
 
 import actions from './actions';
 
-import {
-  Heading1,
-  Wrapper,
-  ButtonWrapper,
-  DiffWrapper,
-  Label,
-} from './styled';
+import { Heading1, Wrapper, ButtonWrapper, DiffWrapper, Label } from './styled';
 
 // import { SMALL_WINDOW } from '../config';
 
@@ -107,7 +101,9 @@ export default class ArticleChangeEdit extends React.Component {
               <Typography variant="title">Sub Topic:</Typography>
             </Label>
             <Label>
-              <Typography variant="subheading">{article.sub_topic.name}</Typography>
+              <Typography variant="subheading">
+                {article.sub_topic.name}
+              </Typography>
             </Label>
           </ListItem>
         </List>
