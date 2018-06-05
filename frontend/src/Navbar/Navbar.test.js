@@ -2,7 +2,11 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { mount } from 'enzyme';
 
+import paths from './config';
 import Navbar from '.';
+
+// login/out nav item added programmatically
+const extraNavItemCount = 1;
 
 describe('Navbar', () => {
   it('should render full Navbar for a logged-in user', () => {
@@ -19,7 +23,7 @@ describe('Navbar', () => {
       </MemoryRouter>
     );
 
-    expect(wrapper.find('a')).toHaveLength(7);
+    expect(wrapper.find('a')).toHaveLength(paths.length + extraNavItemCount);
   });
   const guestProps = {
     isLoggedIn: false,
