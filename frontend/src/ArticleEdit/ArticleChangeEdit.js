@@ -20,6 +20,9 @@ import { Heading1, Wrapper, ButtonWrapper, DiffWrapper, Label } from './styled';
 export default class ArticleChangeEdit extends React.Component {
   static propTypes = {
     id: PropTypes.string,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
   };
   static defaultProps = {
     id: '',
@@ -44,12 +47,22 @@ export default class ArticleChangeEdit extends React.Component {
   }
 
   handleSave = e => {
-    const id = this.state.changeRequest[0]._id;
+    const id = this.state.changeRequest[0].article._id;
     const accept = e.target.name === 'accept';
     actions
       .saveArticleChangeRequest({ id, accept })
       .then(json => {
-        console.log('redirect to change list?', json);
+        if (json.success) {
+          this.props.history.push('/requests');
+        } else {
+          this.setState({
+            message: {
+              show: true,
+              error: true,
+              text: json.error,
+            },
+          });
+        }
       })
       .catch(() => {
         this.setState({

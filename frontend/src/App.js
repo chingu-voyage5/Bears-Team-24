@@ -142,7 +142,7 @@ class App extends Component {
                 isLoggedIn={isLoggedIn}
                 path="/requests/:id"
                 render={props => (
-                  <ArticleChangeEdit id={props.match.params.id} />
+                  <ArticleChangeEdit {...props} id={props.match.params.id} />
                 )}
               />
               <AuthRoute
