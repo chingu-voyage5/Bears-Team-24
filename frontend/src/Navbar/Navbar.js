@@ -26,6 +26,7 @@ const propTypes = {
     }),
   }),
   isLoggedIn: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
 };
 
