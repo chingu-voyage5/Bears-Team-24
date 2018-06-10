@@ -20,6 +20,24 @@ function catchAsyncErrors(middleware) {
 }
 
 router.get(
+  '/api/v0/articleChangeRequestList',
+  // auth.isLoggedIn,
+  catchAsyncErrors(articles.getAllChangeRequests)
+);
+
+router.get(
+  '/api/v0/articleChangeRequest',
+  // auth.isLoggedIn,
+  catchAsyncErrors(articles.getChangeRequest)
+);
+
+router.post(
+  '/api/v0/articleChangeRequest',
+  // auth.isLoggedIn,
+  catchAsyncErrors(articles.processChangeRequest)
+);
+
+router.get(
   '/api/v1/user/:id*?',
   auth.isLoggedIn,
   catchAsyncErrors(users.getDetail)
