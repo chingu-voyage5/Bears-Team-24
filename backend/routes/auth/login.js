@@ -15,8 +15,8 @@ function login(req, res, next) {
       if (err) {
         return next(err);
       }
-      const { _id, username } = user;
-      res.send({ _id, username });
+      const { _id, username, role } = user;
+      res.send({ _id, username, role });
     });
   })(req, res, next);
 }
