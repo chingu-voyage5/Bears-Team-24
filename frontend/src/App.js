@@ -17,6 +17,8 @@ import { UserList, UserPage } from './User';
 
 import theme from './theme';
 
+const ADMIN = 'admin';
+
 /**
  * authing routes entered into address bar.
     1. We can't go to auth route whilst we're waiting for auto login. If we do
@@ -31,6 +33,7 @@ class App extends Component {
   state = {
     startup: true,
     isLoggedIn: false,
+    isAdmin: false,
     waitingForLogin: false,
     user: this.guestUser,
   };
@@ -47,6 +50,7 @@ class App extends Component {
             startup: false,
             waitingForLogin: false,
             isLoggedIn: true,
+            isAdmin: res.user.role === ADMIN,
             user: res.user,
           });
         } else {
@@ -54,6 +58,7 @@ class App extends Component {
             startup: false,
             waitingForLogin: false,
             isLoggedIn: false,
+            isAdmin: false,
             user: this.guestUser,
           });
         }
@@ -92,6 +97,7 @@ class App extends Component {
   render() {
     const {
       isLoggedIn,
+      isAdmin,
       startup,
       waitingForLogin,
       user = this.guestUser,
@@ -107,6 +113,7 @@ class App extends Component {
               render={r => (
                 <Navbar
                   isLoggedIn={isLoggedIn}
+                  isAdmin={isAdmin}
                   userId={user._id}
                   username={user.username}
                   {...r}
@@ -134,9 +141,9 @@ class App extends Component {
               />
               <AuthRoute
                 exact
-                isLoggedIn={isLoggedIn}
+                isLoggedIn={isAdmin}
                 path="/users"
-                render={() => <UserList />}
+                render={r => <UserList {...r} />}
               />
               <Route
                 path="/users/:id"
