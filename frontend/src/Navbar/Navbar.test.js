@@ -41,6 +41,7 @@ describe('Navbar', () => {
   });
   const guestProps = {
     isLoggedIn: false,
+    isAdmin: false,
     username: 'Guest',
     userId: '0',
   };
