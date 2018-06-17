@@ -46,41 +46,35 @@ class App extends Component {
       .getUser()
       .then(res => {
         if (res.success) {
-          this.setState({
-            startup: false,
-            waitingForLogin: false,
-            isLoggedIn: true,
-            isAdmin: res.user.role === ADMIN,
-            user: res.user,
-          });
+          this.setUser(res.user);
         } else {
-          this.setState({
-            startup: false,
-            waitingForLogin: false,
-            isLoggedIn: false,
-            isAdmin: false,
-            user: this.guestUser,
-          });
+          this.setUser(null);
         }
       })
       .catch(e => {
         // eslint-disable-next-line no-console
         console.log('auto login error:', e);
-        this.setState({
-          startup: false,
-          waitingForLogin: false,
-          isLoggedIn: false,
-          isAdmin: false,
-          user: this.guestUser,
-        });
+        this.setUser(null);
       });
   };
 
   setUser = user => {
     if (user === null) {
-      this.setState({ user: this.guestUser, isLoggedIn: false });
+      this.setState({
+        user: this.guestUser,
+        isLoggedIn: false,
+        isAdmin: false,
+        startup: false,
+        waitingForLogin: false,
+      });
     } else {
-      this.setState({ user, isLoggedIn: true });
+      this.setState({
+        user,
+        isLoggedIn: true,
+        isAdmin: user.role === ADMIN,
+        startup: false,
+        waitingForLogin: false,
+      });
     }
   };
 
@@ -88,10 +82,13 @@ class App extends Component {
     actions
       .logout()
       .then(() => {
-        this.setState({ isLoggedIn: false, user: this.guestUser });
+        this.setUser(null);
       })
-      // eslint-disable-next-line no-console
-      .catch(err => console.log(err));
+      .catch(err => {
+        // eslint-disable-next-line no-console
+        console.error(err);
+        this.setUser(null);
+      });
     return <Redirect to="/" />;
   };
 
