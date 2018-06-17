@@ -70,6 +70,7 @@ class App extends Component {
           startup: false,
           waitingForLogin: false,
           isLoggedIn: false,
+          isAdmin: false,
           user: this.guestUser,
         });
       });
