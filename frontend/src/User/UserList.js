@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 // Material UI components
@@ -21,6 +22,11 @@ const columnData = [
 ];
 
 class UserList extends React.Component {
+  static propTypes = {
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
+  };
   state = {
     data: [],
     order: 'asc',
@@ -32,8 +38,9 @@ class UserList extends React.Component {
       .then(json => {
         this.setState({ data: json });
       })
-      // eslint-disable-next-line no-console
-      .catch(err => console.error(err));
+      .catch(() => {
+        this.props.history.push('/login');
+      });
   };
 
   handleSort = id => {

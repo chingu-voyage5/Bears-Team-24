@@ -26,6 +26,7 @@ const propTypes = {
     }),
   }),
   isLoggedIn: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
 };
 
@@ -124,7 +125,7 @@ class Navbar extends React.Component {
 
   render() {
     const { mobile, open, value } = this.state;
-    const { classes, isLoggedIn, location, username } = this.props;
+    const { classes, isLoggedIn, isAdmin, location, username } = this.props;
 
     return (
       <Wrapper>
@@ -153,7 +154,7 @@ class Navbar extends React.Component {
               >
                 <TabMod value={0} exact classes={classes} />
                 {isLoggedIn && <TabMod value={1} classes={classes} />}
-                {isLoggedIn && <TabMod value={2} classes={classes} />}
+                {isAdmin && <TabMod value={2} classes={classes} />}
                 {isLoggedIn && <TabMod value={3} classes={classes} />}
                 {isLoggedIn && <TabMod value={4} classes={classes} />}
                 <TabMod value={5} classes={classes} />
@@ -181,6 +182,9 @@ class Navbar extends React.Component {
               <List>
                 {paths.map((path, i) => {
                   if (i > 0 && i < paths.length - 1 && !isLoggedIn) {
+                    return null;
+                  }
+                  if (i === 2 && !isAdmin) {
                     return null;
                   }
                   return (
