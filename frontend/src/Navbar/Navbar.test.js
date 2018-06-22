@@ -14,6 +14,7 @@ describe('Navbar', () => {
       history: { location: { pathname: '' } },
       isLoggedIn: true,
       isAdmin: true,
+      isTrusted: true,
       username: 'foo',
       userId: '1',
     };
@@ -31,6 +32,7 @@ describe('Navbar', () => {
       history: { location: { pathname: '' } },
       isLoggedIn: true,
       isAdmin: false,
+      isTrusted: false,
       username: 'foo',
       userId: '1',
     };
@@ -46,6 +48,7 @@ describe('Navbar', () => {
   const guestProps = {
     isLoggedIn: false,
     isAdmin: false,
+    isTrusted: false,
     username: 'Guest',
     userId: '0',
   };
