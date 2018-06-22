@@ -12,6 +12,7 @@ const articleSchema = new Schema({
   title: String,
   order: Number,
   content: String,
+  edit_lock: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model('Article', articleSchema);
