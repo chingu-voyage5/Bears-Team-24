@@ -24,7 +24,11 @@ router.get(
   auth.isLoggedIn,
   catchAsyncErrors(users.getDetail)
 );
-router.get('/api/v1/users', auth.isLoggedIn, catchAsyncErrors(users.getAll));
+router.get(
+  '/api/v1/users',
+  auth.isLoggedInAdmin,
+  catchAsyncErrors(users.getAll)
+);
 
 router.get('/auth/github', passport.authenticate('github'));
 router.get(
