@@ -31,7 +31,7 @@ class ArticleEdit extends React.Component {
     sub_topic: null,
     order: 1,
     content: '',
-    edit_lock: true,
+    edit_lock: false,
   };
 
   state = {
