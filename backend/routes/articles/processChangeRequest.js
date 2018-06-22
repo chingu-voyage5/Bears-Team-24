@@ -5,7 +5,6 @@ const Request = require('../../models/request');
 
 const processChangeRequest = async (req, res) => {
   const { accept, request_id } = req.body;
-  console.log('process change request accept, id', accept, request_id);
   const status = accept ? 'accepted' : 'rejected';
   const request = await Request.findByIdAndUpdate(request_id, {
     status,
@@ -41,7 +40,6 @@ const processChangeRequest = async (req, res) => {
     }
   } else {
     try {
-      console.log('process change request rejected clearing edit_lock article:', request.article._id);
       await Article.findByIdAndUpdate(request.article._id, {
         edit_lock: false,
       });
