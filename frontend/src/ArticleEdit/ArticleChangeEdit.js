@@ -29,15 +29,15 @@ export default class ArticleChangeEdit extends React.Component {
   };
 
   state = {
-    changeRequest: [],
+    changeRequest: {},
     horizontal: 'right',
     vertical: 'top',
     message: { show: false, error: false, text: '' },
   };
 
   componentDidMount() {
-    this.fetchData(this.props.id).then(results => {
-      this.setState({ changeRequest: results });
+    this.fetchData(this.props.id).then(changeRequest => {
+      this.setState({ changeRequest });
     });
   }
 
@@ -47,10 +47,10 @@ export default class ArticleChangeEdit extends React.Component {
   }
 
   handleSave = e => {
-    const id = this.state.changeRequest[0].article._id;
-    const accept = e.target.name === 'accept';
+    const request_id = this.state.changeRequest._id;
+    const accept = e.currentTarget.name === 'accept';
     actions
-      .saveArticleChangeRequest({ id, accept })
+      .saveArticleChangeRequest({ request_id, accept })
       .then(json => {
         if (json.success) {
           this.props.history.push('/requests');
@@ -85,10 +85,9 @@ export default class ArticleChangeEdit extends React.Component {
     const { message, horizontal, vertical, mobile } = this.state;
     const { changeRequest } = this.state;
     // if we have an id but no topics we're not ready
-    if (changeRequest.length === 0) {
+    if (typeof changeRequest._id === 'undefined') {
       return <div>Loading ...</div>;
     }
-    const { article } = changeRequest[0];
     return (
       <Wrapper mobile={mobile}>
         <Heading1>Content Moderation</Heading1>
@@ -98,7 +97,9 @@ export default class ArticleChangeEdit extends React.Component {
               <Typography variant="title">Title:</Typography>
             </Label>
             <Label>
-              <Typography variant="subheading">{article.title}</Typography>
+              <Typography variant="subheading">
+                {changeRequest.title}
+              </Typography>
             </Label>
           </ListItem>
           <ListItem>
@@ -106,7 +107,9 @@ export default class ArticleChangeEdit extends React.Component {
               <Typography variant="title">Topic:</Typography>
             </Label>
             <Label>
-              <Typography variant="subheading">{article.topic.name}</Typography>
+              <Typography variant="subheading">
+                {changeRequest.topic.name}
+              </Typography>
             </Label>
           </ListItem>
           <ListItem>
@@ -115,14 +118,14 @@ export default class ArticleChangeEdit extends React.Component {
             </Label>
             <Label>
               <Typography variant="subheading">
-                {article.sub_topic.name}
+                {changeRequest.sub_topic.name}
               </Typography>
             </Label>
           </ListItem>
         </List>
         <DiffWrapper>
           <Paper>
-            {changeRequest[0].diff.map((part, ndx) => {
+            {changeRequest.diff.map((part, ndx) => {
               const style = {
                 // eslint-disable-next-line no-nested-ternary
                 color: part.added ? 'green' : part.removed ? 'red' : 'grey',
