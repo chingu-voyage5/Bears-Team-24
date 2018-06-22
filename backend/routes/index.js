@@ -6,7 +6,7 @@ const upload = multer({ dest: process.env.IMAGE_UPLOAD_DIR });
 const auth = require('./auth');
 const users = require('./users');
 const assets = require('./assets');
-const cms = require('./cms');
+// const cms = require('./cms');
 const articles = require('./articles');
 const topics = require('./topics');
 

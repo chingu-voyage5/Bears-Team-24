@@ -5,7 +5,6 @@ const Request = require('../../models/request');
 const History = require('../../models/history');
 
 const upsert = async (req, res) => {
-  console.log('article upsert user:', req.user);
   let article;
   let sizePre = 0;
   if (req.body._id) {
