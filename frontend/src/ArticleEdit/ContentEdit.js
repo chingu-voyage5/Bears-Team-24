@@ -13,6 +13,10 @@ export default class ContentEdit extends React.Component {
   static propTypes = {
     content: PropTypes.string.isRequired,
     handleFieldChange: PropTypes.func.isRequired,
+    canEdit: PropTypes.bool,
+  };
+  static defaultProps = {
+    canEdit: true,
   };
   state = { edit: 0 };
 
@@ -23,7 +27,7 @@ export default class ContentEdit extends React.Component {
   };
 
   render = () => {
-    const { content, handleFieldChange } = this.props;
+    const { content, handleFieldChange, canEdit } = this.props;
     const { edit } = this.state;
     return (
       <ContentWrapper>
@@ -46,6 +50,7 @@ export default class ContentEdit extends React.Component {
               name="content"
               value={content}
               onChange={handleFieldChange}
+              disabled={!canEdit}
             />
           </Paper>
         ) : (

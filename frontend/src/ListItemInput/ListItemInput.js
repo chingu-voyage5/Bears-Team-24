@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { Label } from './styled';
 
 const propTypes = {
-  disabled: PropTypes.bool,
+  canEdit: PropTypes.bool,
   label: PropTypes.string.isRequired,
   mobile: PropTypes.bool,
   name: PropTypes.string.isRequired,
@@ -19,12 +19,12 @@ const propTypes = {
 };
 
 const defaultProps = {
-  disabled: false,
+  canEdit: true,
   mobile: false,
   onChange: () => {},
 };
 
-const ListItemInput = ({ mobile, disabled, label, name, value, onChange }) => (
+const ListItemInput = ({ mobile, canEdit, label, name, value, onChange }) => (
   <ListItem>
     {mobile ? (
       <TextField
@@ -34,7 +34,7 @@ const ListItemInput = ({ mobile, disabled, label, name, value, onChange }) => (
         value={value}
         onChange={onChange}
         fullWidth
-        disabled={disabled}
+        disabled={!canEdit}
       />
     ) : (
       <React.Fragment>
@@ -47,7 +47,7 @@ const ListItemInput = ({ mobile, disabled, label, name, value, onChange }) => (
             value={value}
             name={name}
             onChange={onChange}
-            disabled={disabled}
+            disabled={!canEdit}
           />
         </ListItemText>
       </React.Fragment>

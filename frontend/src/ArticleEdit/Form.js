@@ -23,10 +23,12 @@ export default class Form extends React.Component {
     selectedSubTopic: PropTypes.any,
     handleFieldChange: PropTypes.func.isRequired,
     setTopics: PropTypes.func.isRequired,
+    canEdit: PropTypes.bool,
   };
 
   static defaultProps = {
     selectedSubTopic: Form.nullSubTopic,
+    canEdit: true,
   };
 
   static nullSubTopic = { _id: '0' };
@@ -61,6 +63,7 @@ export default class Form extends React.Component {
       sub_topics,
       selectedTopic,
       selectedSubTopic,
+      canEdit,
     } = this.props;
     const topicList = topics.map(topic => (
       <MenuItem key={topic._id} value={topic._id}>
@@ -94,6 +97,7 @@ export default class Form extends React.Component {
           name="title"
           value={title}
           onChange={handleFieldChange}
+          canEdit={canEdit}
         />
         <ListItemInput
           mobile={mobile}
@@ -101,6 +105,7 @@ export default class Form extends React.Component {
           name="order"
           value={order}
           onChange={handleFieldChange}
+          canEdit={canEdit}
         />
         <ListItem>
           <Label>
@@ -110,6 +115,7 @@ export default class Form extends React.Component {
             selectedTopic={selectedTopic._id}
             onSelect={this.handleTopicSelect}
             topicList={topicList}
+            canEdit={canEdit}
           />
         </ListItem>
         <ListItem>
@@ -120,6 +126,7 @@ export default class Form extends React.Component {
             selectedTopic={fixedSelectedSubTopic._id}
             onSelect={this.handleSubTopicSelect}
             topicList={subTopicList}
+            canEdit={canEdit}
           />
         </ListItem>
       </List>
