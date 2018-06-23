@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 // Material-UI components
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -11,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 
 import ListItemInput from '../ListItemInput';
+import SaveButton from '../common/SaveButton';
 
 import { Avatar, AvatarWrapper, Buttons, Label, Wrapper } from './styled';
 
@@ -161,22 +161,14 @@ class UserPage extends React.Component {
         </Paper>
         {isAdmin && (
           <Buttons>
-            <Button
+            <SaveButton
               variant="raised"
               color="primary"
               disabled={!edited}
               onClick={this.handleSave}
             >
               Save
-            </Button>
-            <Button
-              variant="flat"
-              color="default"
-              disabled={!edited}
-              onClick={this.handleCancel}
-            >
-              Discard
-            </Button>
+            </SaveButton>
           </Buttons>
         )}
       </Wrapper>
