@@ -1,1 +1,1 @@
-export default ['admin', 'member', 'visitor'];
+export default ['admin', 'moderator', 'member'];
