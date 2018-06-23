@@ -24,7 +24,11 @@ const userSchema = new Schema({
     required: 'Please supply a username',
     trim: true,
   },
-  role: { type: String, enum: ['admin', 'member'], default: 'member' },
+  role: {
+    type: String,
+    enum: ['admin', 'moderator', 'member'],
+    default: 'member',
+  },
   bio: String,
 });
 
