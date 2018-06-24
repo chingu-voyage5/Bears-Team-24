@@ -30,6 +30,12 @@ router.get(
   catchAsyncErrors(users.getAll)
 );
 
+router.put(
+  '/api/v1/user',
+  auth.isLoggedInAdmin,
+  catchAsyncErrors(users.update)
+);
+
 router.get('/auth/github', passport.authenticate('github'));
 router.get(
   '/auth/github/callback',
