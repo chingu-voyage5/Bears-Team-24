@@ -15,7 +15,7 @@ const MessageBar = ({ anchor, message, handleClose }) => (
     open={message.show}
     onClose={handleClose}
     autoHideDuration={message.error ? null : 3000}
-    SnackbarContentProps={{
+    ContentProps={{
       'aria-describedby': 'message-id',
     }}
     message={
