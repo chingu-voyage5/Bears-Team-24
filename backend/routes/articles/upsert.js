@@ -8,9 +8,13 @@ const upsert = async (req, res) => {
   let article;
   let sizePre = 0;
   if (req.body._id) {
-    article = await Article.findByIdAndUpdate(req.body._id, {
-      $set: { edit_lock: true },
-    })
+    // Having problems resetting edit_lock for non member role, so only
+    // set it for members
+    const update = {};
+    if (req.user.role === 'member') {
+      update.edit_lock = true;
+    }
+    article = await Article.findByIdAndUpdate(req.body._id, update)
       .populate('creator')
       .populate('topic')
       .populate('sub_topic');
