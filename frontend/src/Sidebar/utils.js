@@ -145,7 +145,7 @@ const buildHtml = ({ articles, id, ...rest }) => {
           sub_topic.name.split('>')
         );
       }
-      /* eslint-enalbe camelcase */
+      /* eslint-enable camelcase */
     }
   }
 
