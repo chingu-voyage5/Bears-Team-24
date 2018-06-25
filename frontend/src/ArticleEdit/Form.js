@@ -13,6 +13,8 @@ import { Label } from './styled';
 
 /* eslint-disable camelcase */
 export default class Form extends React.Component {
+  static nullSubTopic = { _id: '0' };
+
   static propTypes = {
     mobile: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
@@ -30,8 +32,6 @@ export default class Form extends React.Component {
     selectedSubTopic: Form.nullSubTopic,
     canEdit: true,
   };
-
-  static nullSubTopic = { _id: '0' };
 
   handleTopicSelect = e => {
     const selectedTopic = this.props.topics.reduce((acc, topic) => {

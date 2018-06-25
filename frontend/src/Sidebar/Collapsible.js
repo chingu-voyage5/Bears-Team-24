@@ -13,12 +13,13 @@ export default class Collapsible extends React.Component {
     open: PropTypes.bool.isRequired,
     expanded: PropTypes.func.isRequired,
   };
-  static getDerivedStateFromProps(nextProps) {
-    return { open: nextProps.open };
-  }
+  // eslint-disable-next-line
   state = {
     open: false,
   };
+  static getDerivedStateFromProps(nextProps) {
+    return { open: nextProps.open };
+  }
   onClick = e => {
     e.stopPropagation();
     const { open } = this.state;
