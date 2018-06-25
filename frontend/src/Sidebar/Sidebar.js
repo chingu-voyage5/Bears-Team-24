@@ -39,13 +39,13 @@ export default class Sidebar extends React.Component {
       const { match } = this.props;
       const { mobile } = this.state;
       const selFn = mobile ? this.closeDrawer : this.nop;
-      const articlesHtml = buildHtml(
+      const articlesHtml = buildHtml({
         articles,
         articleTree,
-        match.params.id,
-        selFn,
-        this.onExpanded
-      );
+        id: match.params.id,
+        onArticleSelect: selFn,
+        onExpand: this.onExpanded,
+      });
       this.setState({ articleTree, articlesHtml });
     }
   }
@@ -71,13 +71,13 @@ export default class Sidebar extends React.Component {
   openDrawer = () => {
     const { articles, match } = this.props;
     const { articleTree } = this.state;
-    const articlesHtml = buildHtml(
+    const articlesHtml = buildHtml({
       articles,
       articleTree,
-      match.params.id,
-      this.closeDrawer,
-      this.onExpanded
-    );
+      id: match.params.id,
+      onArticleSelect: this.closeDrawer,
+      onExpand: this.onExpanded,
+    });
     this.setState(() => ({
       articlesHtml,
       open: true,

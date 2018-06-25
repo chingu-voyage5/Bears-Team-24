@@ -130,10 +130,10 @@ export const getChildren = ({
     );
   }, []);
 };
-/* eslint-enable no-plusplus */
 
-const buildHtml = (articles, articleTree, id, onArticleSelect, onExpand) => {
+const buildHtml = ({ articles, id, ...rest }) => {
   let selectedArticlePath = [];
+
   if (id) {
     const selectedArticles = articles.filter(article => article._id === id);
     if (selectedArticles.length) {
@@ -148,12 +148,12 @@ const buildHtml = (articles, articleTree, id, onArticleSelect, onExpand) => {
       /* eslint-enalbe camelcase */
     }
   }
-  const articlesHtml = getChildren(
-    articleTree,
-    selectedArticlePath,
-    onArticleSelect,
-    onExpand
-  );
+
+  const articlesHtml = getChildren({
+    activePath: selectedArticlePath,
+    ...rest,
+  });
+
   return articlesHtml;
 };
 

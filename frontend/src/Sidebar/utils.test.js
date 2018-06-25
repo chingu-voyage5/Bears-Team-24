@@ -67,19 +67,25 @@ const onExpand = () => {};
 
 it('should create html tree from articles', () => {
   const articleTree = getTree(articles);
-  const html = buildHtml(articles, articleTree, '', onArticleSelect, onExpand);
+  const html = buildHtml({
+    articles,
+    articleTree,
+    id: '',
+    onArticleSelect,
+    onExpand,
+  });
   expect(html).toMatchSnapshot();
 });
 
 it('should create expanded tree if id present', () => {
   const articleTree = getTree(articles);
-  const html = buildHtml(
+  const html = buildHtml({
     articles,
     articleTree,
-    '101',
+    id: '101',
     onArticleSelect,
-    onExpand
-  );
+    onExpand,
+  });
   expect(html).toMatchSnapshot();
 });
 
@@ -95,12 +101,6 @@ describe('mobile checks', () => {
   it('should set not mobile for width > 900', () => {
     const mobile = checkMobile(false, 1000);
     expect(mobile).toBe(false);
-  });
-  it('should set not mobile when mobile is set and width > 900', () => {
-    const mobile = checkMobile(true, 1000);
-    expect(mobile).toBe(false);
-  });
-});
   });
   it('should set not mobile when mobile is set and width > 900', () => {
     const mobile = checkMobile(true, 1000);
