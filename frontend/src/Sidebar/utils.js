@@ -85,30 +85,43 @@ export const getTree = articles => {
   return tree;
 };
 
-let ndx = 0;
-/* eslint-disable no-plusplus */
-export const getChildren = (sub, path, onArticleSelect, onExpand) => {
-  const keys = Object.keys(sub);
+export const getChildren = ({
+  articleTree,
+  activePath,
+  onArticleSelect,
+  onExpand,
+}) => {
+  const keys = Object.keys(articleTree);
+
   return keys.reduce((acc, key) => {
     if (key === '_id' || key === 'expanded') return acc;
-    const s = sub[key];
+
+    const s = articleTree[key];
+
     if (typeof s === 'string') {
       // TODO: great idea but keeping it updated will be fun
       // const displayed = path.includes(key) ? ' >' : '';
       return acc.concat(
-        <LI key={ndx++} onClick={onArticleSelect}>
+        <LI key={s} onClick={onArticleSelect}>
           <DrawerLink to={`/cms/${s}`}>{`${key}`}</DrawerLink>
         </LI>
       );
     }
-    const children = getChildren(sub[key], path, onArticleSelect, onExpand);
 
-    const open = sub[key].expanded || path.includes(key);
+    const children = getChildren({
+      articleTree: articleTree[key],
+      activePath,
+      onArticleSelect,
+      onExpand,
+    });
+
+    const open = articleTree[key].expanded || activePath.includes(key);
+
     return acc.concat(
       <Collapsible
-        key={ndx++}
+        key={articleTree[key]._id}
         title={key}
-        id={sub[key]._id}
+        id={articleTree[key]._id}
         open={open}
         expanded={onExpand}
       >
@@ -117,10 +130,10 @@ export const getChildren = (sub, path, onArticleSelect, onExpand) => {
     );
   }, []);
 };
-/* eslint-enable no-plusplus */
 
-const buildHtml = (articles, articleTree, id, onArticleSelect, onExpand) => {
+const buildHtml = ({ articles, id, ...rest }) => {
   let selectedArticlePath = [];
+
   if (id) {
     const selectedArticles = articles.filter(article => article._id === id);
     if (selectedArticles.length) {
@@ -132,15 +145,15 @@ const buildHtml = (articles, articleTree, id, onArticleSelect, onExpand) => {
           sub_topic.name.split('>')
         );
       }
-      /* eslint-enalbe camelcase */
+      /* eslint-enable camelcase */
     }
   }
-  const articlesHtml = getChildren(
-    articleTree,
-    selectedArticlePath,
-    onArticleSelect,
-    onExpand
-  );
+
+  const articlesHtml = getChildren({
+    activePath: selectedArticlePath,
+    ...rest,
+  });
+
   return articlesHtml;
 };
 
