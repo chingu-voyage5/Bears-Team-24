@@ -4,4 +4,5 @@ module.exports = {
   logout: require('./logout'),
   isLoggedIn: require('./isLoggedIn'),
   isLoggedInAdmin: require('./isLoggedInAdmin'),
+  isLoggedInTrusted: require('./isLoggedInTrusted'),
 };

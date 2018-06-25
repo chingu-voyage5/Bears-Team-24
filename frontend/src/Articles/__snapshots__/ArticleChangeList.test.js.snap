@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Article change request list should match snapshot 1`] = `
+<Wrapper>
+  <Styled(WithStyles(Paper))>
+    <WithStyles(Table)>
+      <WithStyles(TableHead)>
+        <Styled(WithStyles(TableRow))>
+          <WithStyles(TableCell)
+            key="topic"
+            numeric={false}
+          >
+            <WithStyles(TableSortLabel)
+              active={false}
+              direction="asc"
+              onClick={[Function]}
+            >
+              Topic
+            </WithStyles(TableSortLabel)>
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            key="sub_topic"
+            numeric={false}
+          >
+            <WithStyles(TableSortLabel)
+              active={false}
+              direction="asc"
+              onClick={[Function]}
+            >
+              Sub Topic
+            </WithStyles(TableSortLabel)>
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            key="title"
+            numeric={false}
+          >
+            <WithStyles(TableSortLabel)
+              active={false}
+              direction="asc"
+              onClick={[Function]}
+            >
+              Title
+            </WithStyles(TableSortLabel)>
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            key="requester"
+            numeric={false}
+          >
+            <WithStyles(TableSortLabel)
+              active={false}
+              direction="asc"
+              onClick={[Function]}
+            >
+              Requester
+            </WithStyles(TableSortLabel)>
+          </WithStyles(TableCell)>
+        </Styled(WithStyles(TableRow))>
+      </WithStyles(TableHead)>
+      <WithStyles(TableBody)>
+        <Styled(WithStyles(TableRow))
+          key="5b133cf0ebd521b1d4a5144a"
+          onClick={[Function]}
+        >
+          <WithStyles(TableCell)>
+            test topic
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)>
+            test sub topic
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)>
+            test article
+          </WithStyles(TableCell)>
+          <Styled(WithStyles(TableCell))
+            data-name="requester"
+          >
+            test user
+          </Styled(WithStyles(TableCell))>
+        </Styled(WithStyles(TableRow))>
+      </WithStyles(TableBody)>
+    </WithStyles(Table)>
+  </Styled(WithStyles(Paper))>
+</Wrapper>
+`;

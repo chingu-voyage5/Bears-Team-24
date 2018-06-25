@@ -25,6 +25,11 @@ export default [
     label: 'Topics',
   },
   {
+    to: '/requests',
+    stem: 'requests',
+    label: 'Requests',
+  },
+  {
     to: '/cms',
     stem: 'cms',
     label: 'CMS',

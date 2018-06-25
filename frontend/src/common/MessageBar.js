@@ -10,6 +10,8 @@ const propTypes = {
 };
 
 const MessageBar = ({ anchor, message, handleClose }) => (
+  // snackbarcontentprops has to be all lowercase or we get a warning
+  // React does not recognize the `snackbarcontentProps` prop on a DOM element.
   <Snackbar
     anchorOrigin={anchor}
     open={message.show}

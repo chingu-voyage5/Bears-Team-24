@@ -6,7 +6,7 @@ const upload = multer({ dest: process.env.IMAGE_UPLOAD_DIR });
 const auth = require('./auth');
 const users = require('./users');
 const assets = require('./assets');
-const cms = require('./cms');
+// const cms = require('./cms');
 const articles = require('./articles');
 const topics = require('./topics');
 
@@ -74,12 +74,33 @@ router.post(
   catchAsyncErrors(topics.upsertSubTopics)
 );
 
+router.get('/api/v1/articles', catchAsyncErrors(articles.getAll));
+// router.get('/api/v1/articles/:id*?', cms.getArticleJSON);
+
 router.get('/api/v0/articles', catchAsyncErrors(articles.getAll));
 router.get('/api/v0/articles/:id', articles.getDetail);
 router.post(
   '/api/v0/articles/:id*?',
   auth.isLoggedIn,
   catchAsyncErrors(articles.upsert)
+);
+
+router.get(
+  '/api/v0/articleChangeRequestList',
+  auth.isLoggedInTrusted,
+  catchAsyncErrors(articles.getAllChangeRequests)
+);
+
+router.get(
+  '/api/v0/articleChangeRequest',
+  auth.isLoggedInTrusted,
+  catchAsyncErrors(articles.getChangeRequest)
+);
+
+router.post(
+  '/api/v0/articleChangeRequest',
+  auth.isLoggedInTrusted,
+  catchAsyncErrors(articles.processChangeRequest)
 );
 
 router.get('/api/v1/assets', auth.isLoggedIn, catchAsyncErrors(assets.getAll));
@@ -91,9 +112,6 @@ router.post(
   upload.single('blob'),
   catchAsyncErrors(assets.upsert)
 );
-
-router.get('/api/v1/articles', catchAsyncErrors(articles.getAll));
-router.get('/api/v1/articles/:id*?', cms.getArticleJSON);
 
 router.post(
   '/api/v1/register',

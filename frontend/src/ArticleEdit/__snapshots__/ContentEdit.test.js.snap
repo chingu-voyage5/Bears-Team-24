@@ -2,7 +2,7 @@
 
 exports[`renders ContentEdit Form 1`] = `
 <div
-  className="sc-bwzfXH eSEIus"
+  className="sc-htpNat cOJNcn"
 >
   <header
     className="MuiPaper-root-9 MuiPaper-elevation4-15 MuiAppBar-root-1 MuiAppBar-positionStatic-5 MuiAppBar-colorPrimary-7 sc-bdVaJa kIJbcR"
@@ -111,7 +111,7 @@ exports[`renders ContentEdit Form 1`] = `
   >
     <div
       aria-describedby={undefined}
-      className="MuiFormControl-root-63 sc-bZQynM dYcFeC"
+      className="MuiFormControl-root-63 sc-htoDjs flJTfe"
       onBlur={[Function]}
       onFocus={[Function]}
     >

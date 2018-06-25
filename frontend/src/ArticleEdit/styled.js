@@ -20,8 +20,16 @@ export const AppBar = styled(AppBarMUI)`
   }
 `;
 
+export const ButtonWrapper = styled.div`
+  margin: 1rem;
+`;
 export const ContentWrapper = styled.div`
   margin-top: 2rem;
+`;
+
+export const DiffWrapper = styled(PaperMUI)`
+  margin-top: 2rem;
+  padding: 1rem;
 `;
 
 export const EditorWrapper = styled(PaperMUI)`

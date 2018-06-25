@@ -7,8 +7,8 @@ import actions from './actions';
 import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
-import Articles from './Articles';
-import ArticleEdit from './ArticleEdit';
+import Articles, { ArticleChangeList } from './Articles';
+import ArticleEdit, { ArticleChangeEdit } from './ArticleEdit';
 import Assets from './Assets';
 import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';
@@ -18,6 +18,8 @@ import { UserList, UserPage } from './User';
 import theme from './theme';
 
 const ADMIN = 'admin';
+// we need to consolidate trust levels
+const TRUSTED = 'moderator';
 
 /**
  * authing routes entered into address bar.
@@ -34,6 +36,7 @@ class App extends Component {
     startup: true,
     isLoggedIn: false,
     isAdmin: false,
+    isTrusted: false,
     waitingForLogin: false,
     user: this.guestUser,
   };
@@ -64,6 +67,7 @@ class App extends Component {
         user: this.guestUser,
         isLoggedIn: false,
         isAdmin: false,
+        isTrusted: false,
         startup: false,
         waitingForLogin: false,
       });
@@ -72,6 +76,7 @@ class App extends Component {
         user,
         isLoggedIn: true,
         isAdmin: user.role === ADMIN,
+        isTrusted: user.role === ADMIN || user.role === TRUSTED,
         startup: false,
         waitingForLogin: false,
       });
@@ -96,6 +101,7 @@ class App extends Component {
     const {
       isLoggedIn,
       isAdmin,
+      isTrusted,
       startup,
       waitingForLogin,
       user = this.guestUser,
@@ -112,6 +118,7 @@ class App extends Component {
                 <Navbar
                   isLoggedIn={isLoggedIn}
                   isAdmin={isAdmin}
+                  isTrusted={isTrusted}
                   userId={user._id}
                   username={user.username}
                   {...r}
@@ -136,6 +143,19 @@ class App extends Component {
                 isLoggedIn={isLoggedIn}
                 path="/articles/:id"
                 render={props => <ArticleEdit id={props.match.params.id} />}
+              />
+              <AuthRoute
+                exact
+                isLoggedIn={isTrusted}
+                path="/requests"
+                render={r => <ArticleChangeList {...r} />}
+              />
+              <AuthRoute
+                isLoggedIn={isTrusted}
+                path="/requests/:id"
+                render={props => (
+                  <ArticleChangeEdit {...props} id={props.match.params.id} />
+                )}
               />
               <AuthRoute
                 exact
