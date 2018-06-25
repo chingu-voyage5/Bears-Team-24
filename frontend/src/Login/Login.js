@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Snackbar from '@material-ui/core/Snackbar';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -17,6 +16,8 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 // FontAwesome Icons
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faGithub from '@fortawesome/fontawesome-free-brands/faGithub';
+
+import MessageBar from '../common/MessageBar';
 
 import {
   Fields,
@@ -146,7 +147,7 @@ class Login extends React.Component {
 
   handleClose = () => {
     this.setState(() => ({
-      message: { show: false, text: '' },
+      message: { ...this.state.message, show: false },
     }));
   };
 
@@ -249,19 +250,10 @@ class Login extends React.Component {
             ? 'Click to register new user'
             : 'Click to login as an existing user'}
         </Register>
-        <Snackbar
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          open={message.show}
-          onClose={this.handleClose}
-          autoHideDuration={3000}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={
-            <span id="message-id">
-              {message.text || 'Something went wrong :('}
-            </span>
-          }
+        <MessageBar
+          anchor={{ vertical: 'top', horizontal: 'center' }}
+          message={message}
+          handleClose={this.handleClose}
         />
       </Wrapper>
     );
