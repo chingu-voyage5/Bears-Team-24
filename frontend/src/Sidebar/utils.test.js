@@ -1,4 +1,4 @@
-import buildHtml, { getTree, checkMobile } from './utils';
+import buildHtml, { getChildren, getTree, checkMobile } from './utils';
 
 const topics = [{ _id: '1', name: 'Voyage', order: 1 }];
 // eslint-disable-next-line camelcase
@@ -99,5 +99,27 @@ describe('mobile checks', () => {
   it('should set not mobile when mobile is set and width > 900', () => {
     const mobile = checkMobile(true, 1000);
     expect(mobile).toBe(false);
+  });
+});
+  });
+  it('should set not mobile when mobile is set and width > 900', () => {
+    const mobile = checkMobile(true, 1000);
+    expect(mobile).toBe(false);
+  });
+});
+
+describe('getChildren', () => {
+  it('should return array of components from article tree', () => {
+    const articleTree = { Voyage: 'Voyage', _id: '1c', expanded: false };
+    const activePath = ['Voyage'];
+
+    const children = getChildren({
+      articleTree,
+      activePath,
+      onArticleSelect,
+      onExpand,
+    });
+
+    expect(children).toMatchSnapshot();
   });
 });
