@@ -38,12 +38,16 @@ cd ..
 npm install
 ```
 
+3. create dotenv file `cp sample.env .env`
+
 4. seed db `npm run seed`
 
 4. npm run dev
 
 
 ## Running the tests
+
+create .env.test file `cp sample.env .env.test`
 
 `npm run test`
 or

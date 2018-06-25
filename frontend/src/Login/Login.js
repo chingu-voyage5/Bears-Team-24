@@ -254,7 +254,7 @@ class Login extends React.Component {
           open={message.show}
           onClose={this.handleClose}
           autoHideDuration={3000}
-          SnackbarContentProps={{
+          ContentProps={{
             'aria-describedby': 'message-id',
           }}
           message={

@@ -19,6 +19,8 @@ Moderators will be able to fetch a list of pending requests. Selecting an item i
 
 Let's not delete the requests for now, this will give us an insight into members accept/reject ratio and perhaps trigger trust level increase to moderator or in extreme cases, the boot!
 
+To implement this we have an edit_lock flag on articles. The flag will be set to true when a change request is logged for member role. The article will then be uneditable until a moderator (or admin) role user accepts or rejects the change.
+
 *It would be nice to have a preview frame showing the requested updates, similar to what we have in the article edit/view page.*
 
 
