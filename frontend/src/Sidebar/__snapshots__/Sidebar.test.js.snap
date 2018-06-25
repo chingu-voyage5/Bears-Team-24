@@ -361,7 +361,7 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "20",
+            "key": "1",
             "nodeType": "class",
             "props": Object {
               "children": Array [
@@ -425,7 +425,7 @@ ShallowWrapper {
             "rendered": Array [
               Object {
                 "instance": null,
-                "key": "16",
+                "key": "10",
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
@@ -457,7 +457,7 @@ ShallowWrapper {
                 "rendered": Array [
                   Object {
                     "instance": null,
-                    "key": "14",
+                    "key": "100",
                     "nodeType": "class",
                     "props": Object {
                       "children": <Styled(NavLink)
@@ -484,7 +484,7 @@ ShallowWrapper {
                   },
                   Object {
                     "instance": null,
-                    "key": "15",
+                    "key": "101",
                     "nodeType": "class",
                     "props": Object {
                       "children": <Styled(NavLink)
@@ -514,7 +514,7 @@ ShallowWrapper {
               },
               Object {
                 "instance": null,
-                "key": "18",
+                "key": "11",
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
@@ -537,7 +537,7 @@ ShallowWrapper {
                 "rendered": Array [
                   Object {
                     "instance": null,
-                    "key": "17",
+                    "key": "102",
                     "nodeType": "class",
                     "props": Object {
                       "children": <Styled(NavLink)
@@ -567,7 +567,7 @@ ShallowWrapper {
               },
               Object {
                 "instance": null,
-                "key": "19",
+                "key": "103",
                 "nodeType": "class",
                 "props": Object {
                   "children": <Styled(NavLink)
@@ -818,7 +818,7 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "20",
+              "key": "1",
               "nodeType": "class",
               "props": Object {
                 "children": Array [
@@ -882,7 +882,7 @@ ShallowWrapper {
               "rendered": Array [
                 Object {
                   "instance": null,
-                  "key": "16",
+                  "key": "10",
                   "nodeType": "class",
                   "props": Object {
                     "children": Array [
@@ -914,7 +914,7 @@ ShallowWrapper {
                   "rendered": Array [
                     Object {
                       "instance": null,
-                      "key": "14",
+                      "key": "100",
                       "nodeType": "class",
                       "props": Object {
                         "children": <Styled(NavLink)
@@ -941,7 +941,7 @@ ShallowWrapper {
                     },
                     Object {
                       "instance": null,
-                      "key": "15",
+                      "key": "101",
                       "nodeType": "class",
                       "props": Object {
                         "children": <Styled(NavLink)
@@ -971,7 +971,7 @@ ShallowWrapper {
                 },
                 Object {
                   "instance": null,
-                  "key": "18",
+                  "key": "11",
                   "nodeType": "class",
                   "props": Object {
                     "children": Array [
@@ -994,7 +994,7 @@ ShallowWrapper {
                   "rendered": Array [
                     Object {
                       "instance": null,
-                      "key": "17",
+                      "key": "102",
                       "nodeType": "class",
                       "props": Object {
                         "children": <Styled(NavLink)
@@ -1024,7 +1024,7 @@ ShallowWrapper {
                 },
                 Object {
                   "instance": null,
-                  "key": "19",
+                  "key": "103",
                   "nodeType": "class",
                   "props": Object {
                     "children": <Styled(NavLink)
