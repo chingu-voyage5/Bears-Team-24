@@ -16,15 +16,6 @@ import { SMALL_WINDOW } from '../config';
 /* eslint-disable camelcase */
 
 class ArticleEdit extends React.Component {
-  static propTypes = {
-    id: PropTypes.string,
-    empty: PropTypes.bool,
-  };
-  static defaultProps = {
-    id: '',
-    empty: false,
-  };
-
   static defaultArticle = {
     title: '',
     topic: null,
@@ -32,6 +23,14 @@ class ArticleEdit extends React.Component {
     order: 1,
     content: '',
     edit_lock: false,
+  };
+  static propTypes = {
+    id: PropTypes.string,
+    empty: PropTypes.bool,
+  };
+  static defaultProps = {
+    id: '',
+    empty: false,
   };
 
   state = {
