@@ -202,7 +202,7 @@ class ArticleEdit extends React.Component {
         </EditorWrapper>
         <div>
           <SaveButton
-            disabled={!isDirty && article.edit_lock}
+            disabled={!isDirty || article.edit_lock}
             onClick={this.handleSave}
           >
             Save
