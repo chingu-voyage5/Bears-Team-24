@@ -16,6 +16,14 @@ import { SMALL_WINDOW } from '../config';
 /* eslint-disable camelcase */
 
 class ArticleEdit extends React.Component {
+  static defaultArticle = {
+    title: '',
+    topic: null,
+    sub_topic: null,
+    order: 1,
+    content: '',
+    edit_lock: false,
+  };
   static propTypes = {
     id: PropTypes.string,
     empty: PropTypes.bool,
@@ -23,14 +31,6 @@ class ArticleEdit extends React.Component {
   static defaultProps = {
     id: '',
     empty: false,
-  };
-
-  static defaultArticle = {
-    title: '',
-    topic: null,
-    sub_topic: null,
-    order: 1,
-    content: '',
   };
 
   state = {
@@ -52,7 +52,15 @@ class ArticleEdit extends React.Component {
       } else {
         article = { ...ArticleEdit.defaultArticle, topic: topics[0] };
       }
-      this.setState({ topics, sub_topics, article });
+      let message = { ...this.state.message };
+      if (article.edit_lock) {
+        message = {
+          show: true,
+          error: true,
+          text: 'Article being edited and cannot be updated',
+        };
+      }
+      this.setState({ topics, sub_topics, article, message });
     });
 
     window.addEventListener('resize', this.handleResize);
@@ -184,14 +192,19 @@ class ArticleEdit extends React.Component {
             selectedTopic={article.topic}
             selectedSubTopic={article.sub_topic}
             setTopics={this.setTopics}
+            canEdit={!article.edit_lock}
           />
           <ContentEdit
             content={article.content || ''}
             handleFieldChange={this.handleFieldChange}
+            canEdit={!article.edit_lock}
           />
         </EditorWrapper>
         <div>
-          <SaveButton disabled={!isDirty} onClick={this.handleSave}>
+          <SaveButton
+            disabled={!isDirty || article.edit_lock}
+            onClick={this.handleSave}
+          >
             Save
           </SaveButton>
         </div>

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Typography from 'material-ui/Typography';
-import MenuItem from 'material-ui/Menu/MenuItem';
-import List, { ListItem } from 'material-ui/List';
+import Typography from '@material-ui/core/Typography';
+import MenuItem from '@material-ui/core/MenuItem';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 import ListItemInput from '../ListItemInput';
 import TopicSelector from '../TopicEdit/TopicSelector';
@@ -12,6 +13,8 @@ import { Label } from './styled';
 
 /* eslint-disable camelcase */
 export default class Form extends React.Component {
+  static nullSubTopic = { _id: '0' };
+
   static propTypes = {
     mobile: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
@@ -22,13 +25,13 @@ export default class Form extends React.Component {
     selectedSubTopic: PropTypes.any,
     handleFieldChange: PropTypes.func.isRequired,
     setTopics: PropTypes.func.isRequired,
+    canEdit: PropTypes.bool,
   };
 
   static defaultProps = {
     selectedSubTopic: Form.nullSubTopic,
+    canEdit: true,
   };
-
-  static nullSubTopic = { _id: '0' };
 
   handleTopicSelect = e => {
     const selectedTopic = this.props.topics.reduce((acc, topic) => {
@@ -60,6 +63,7 @@ export default class Form extends React.Component {
       sub_topics,
       selectedTopic,
       selectedSubTopic,
+      canEdit,
     } = this.props;
     const topicList = topics.map(topic => (
       <MenuItem key={topic._id} value={topic._id}>
@@ -93,6 +97,7 @@ export default class Form extends React.Component {
           name="title"
           value={title}
           onChange={handleFieldChange}
+          canEdit={canEdit}
         />
         <ListItemInput
           mobile={mobile}
@@ -100,6 +105,7 @@ export default class Form extends React.Component {
           name="order"
           value={order}
           onChange={handleFieldChange}
+          canEdit={canEdit}
         />
         <ListItem>
           <Label>
@@ -109,6 +115,7 @@ export default class Form extends React.Component {
             selectedTopic={selectedTopic._id}
             onSelect={this.handleTopicSelect}
             topicList={topicList}
+            canEdit={canEdit}
           />
         </ListItem>
         <ListItem>
@@ -119,6 +126,7 @@ export default class Form extends React.Component {
             selectedTopic={fixedSelectedSubTopic._id}
             onSelect={this.handleSubTopicSelect}
             topicList={subTopicList}
+            canEdit={canEdit}
           />
         </ListItem>
       </List>

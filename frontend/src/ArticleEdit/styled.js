@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import PaperMUI from 'material-ui/Paper';
-import TextFieldMUI from 'material-ui/TextField';
-import AppBarMUI from 'material-ui/AppBar';
-import Typography from 'material-ui/Typography';
+import PaperMUI from '@material-ui/core/Paper';
+import TextFieldMUI from '@material-ui/core/TextField';
+import AppBarMUI from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
 
 export const AppBar = styled(AppBarMUI)`
   && {
@@ -20,8 +20,16 @@ export const AppBar = styled(AppBarMUI)`
   }
 `;
 
+export const ButtonWrapper = styled.div`
+  margin: 1rem;
+`;
 export const ContentWrapper = styled.div`
   margin-top: 2rem;
+`;
+
+export const DiffWrapper = styled(PaperMUI)`
+  margin-top: 2rem;
+  padding: 1rem;
 `;
 
 export const EditorWrapper = styled(PaperMUI)`

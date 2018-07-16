@@ -13,6 +13,7 @@ const article = {
   topic: topics[0],
   sub_topic: subTopics[0],
   content: 'test content',
+  edit_lock: false,
 };
 
 export default article;

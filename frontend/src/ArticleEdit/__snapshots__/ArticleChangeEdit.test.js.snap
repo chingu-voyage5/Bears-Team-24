@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Article change request list should match snapshot 1`] = `
+<styled.div>
+  <Heading1>
+    Content Moderation
+  </Heading1>
+  <WithStyles(List)>
+    <WithStyles(ListItem)>
+      <Label>
+        <WithStyles(Typography)
+          variant="title"
+        >
+          Title:
+        </WithStyles(Typography)>
+      </Label>
+      <Label>
+        <WithStyles(Typography)
+          variant="subheading"
+        >
+          test article
+        </WithStyles(Typography)>
+      </Label>
+    </WithStyles(ListItem)>
+    <WithStyles(ListItem)>
+      <Label>
+        <WithStyles(Typography)
+          variant="title"
+        >
+          Topic:
+        </WithStyles(Typography)>
+      </Label>
+      <Label>
+        <WithStyles(Typography)
+          variant="subheading"
+        >
+          test topic
+        </WithStyles(Typography)>
+      </Label>
+    </WithStyles(ListItem)>
+    <WithStyles(ListItem)>
+      <Label>
+        <WithStyles(Typography)
+          variant="title"
+        >
+          Sub Topic:
+        </WithStyles(Typography)>
+      </Label>
+      <Label>
+        <WithStyles(Typography)
+          variant="subheading"
+        >
+          test sub topic
+        </WithStyles(Typography)>
+      </Label>
+    </WithStyles(ListItem)>
+  </WithStyles(List)>
+  <Styled(WithStyles(Paper))>
+    <WithStyles(Paper)>
+      <span
+        key="0"
+        style={
+          Object {
+            "color": "grey",
+          }
+        }
+      >
+        TBD
+      </span>
+      <span
+        key="1"
+        style={
+          Object {
+            "color": "green",
+          }
+        }
+      >
+         test
+      </span>
+    </WithStyles(Paper)>
+  </Styled(WithStyles(Paper))>
+  <styled.div>
+    <PrimaryButton
+      name="accept"
+      onClick={[Function]}
+    >
+      Accept
+    </PrimaryButton>
+    <PrimaryButton
+      name="reject"
+      onClick={[Function]}
+    >
+      Reject
+    </PrimaryButton>
+  </styled.div>
+  <MessageBar
+    anchor={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+    handleClose={[Function]}
+    message={
+      Object {
+        "error": false,
+        "show": false,
+        "text": "",
+      }
+    }
+  />
+</styled.div>
+`;

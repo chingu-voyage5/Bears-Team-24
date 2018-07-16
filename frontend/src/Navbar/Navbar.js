@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Material UI components
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import IconButton from 'material-ui/IconButton';
-import List, { ListItem } from 'material-ui/List';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import MenuIcon from '@material-ui/icons/Menu';
-import Tabs from 'material-ui/Tabs';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
+import Tabs from '@material-ui/core/Tabs';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 import TabMod from './TabMod';
 import { DrawerLink, Greeting, NavLinkStyled, Wrapper } from './styled';
@@ -25,6 +26,8 @@ const propTypes = {
     }),
   }),
   isLoggedIn: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
+  isTrusted: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
 };
 
@@ -123,7 +126,14 @@ class Navbar extends React.Component {
 
   render() {
     const { mobile, open, value } = this.state;
-    const { classes, isLoggedIn, location, username } = this.props;
+    const {
+      classes,
+      isLoggedIn,
+      isAdmin,
+      isTrusted,
+      location,
+      username,
+    } = this.props;
 
     return (
       <Wrapper>
@@ -152,10 +162,11 @@ class Navbar extends React.Component {
               >
                 <TabMod value={0} exact classes={classes} />
                 {isLoggedIn && <TabMod value={1} classes={classes} />}
-                {isLoggedIn && <TabMod value={2} classes={classes} />}
+                {isAdmin && <TabMod value={2} classes={classes} />}
                 {isLoggedIn && <TabMod value={3} classes={classes} />}
                 {isLoggedIn && <TabMod value={4} classes={classes} />}
-                <TabMod value={5} classes={classes} />
+                {isTrusted && <TabMod value={5} classes={classes} />}
+                <TabMod value={6} classes={classes} />
               </Tabs>
             )}
             <Greeting>Hi,&nbsp;{username}</Greeting>
@@ -180,6 +191,9 @@ class Navbar extends React.Component {
               <List>
                 {paths.map((path, i) => {
                   if (i > 0 && i < paths.length - 1 && !isLoggedIn) {
+                    return null;
+                  }
+                  if ((i === 2 && !isAdmin) || (i === 5 && !isTrusted)) {
                     return null;
                   }
                   return (

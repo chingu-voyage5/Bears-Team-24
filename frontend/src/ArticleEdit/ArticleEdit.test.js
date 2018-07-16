@@ -28,6 +28,7 @@ it('should set article topic and subtopic', () => {
     topic: topics[0],
     sub_topic: subTopics[0],
     content: '',
+    edit_lock: false,
   });
 });
 
@@ -51,6 +52,7 @@ describe('ArticleEdit article updates', () => {
     topic: topics[0],
     sub_topics: subTopics[0],
     content: 'test',
+    edit_lock: false,
   };
   beforeEach(() => {
     const comp = shallow(<ArticleEdit empty />);

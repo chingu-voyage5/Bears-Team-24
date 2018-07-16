@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Material-UI components
-import Button from 'material-ui/Button';
-import List from 'material-ui/List';
-import Paper from 'material-ui/Paper';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Paper from '@material-ui/core/Paper';
 
 import MessageBar from '../common/MessageBar';
 import ListItemInput from '../ListItemInput';
@@ -48,6 +48,7 @@ class AssetEdit extends React.Component {
     message: { show: false, error: false, text: '' },
     horizontal: 'right',
     vertical: 'top',
+    isDirty: false,
   };
   // eslint-disable-next-line react/sort-comp
   getAsset = id => {
@@ -75,6 +76,7 @@ class AssetEdit extends React.Component {
             localUrl,
             file: null,
             data64: null,
+            isDirty: false,
           });
         })
         // eslint-disable-next-line no-console
@@ -152,6 +154,7 @@ class AssetEdit extends React.Component {
     this.setState(() => ({
       fileType: getFileType(file, fileTypes),
       file,
+      isDirty: true,
     }));
     this.set64(file);
   };
@@ -172,7 +175,7 @@ class AssetEdit extends React.Component {
   };
 
   handleFieldChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value, isDirty: true });
   };
 
   handleSave = () => {
@@ -181,6 +184,7 @@ class AssetEdit extends React.Component {
       this.setState({
         _id: json._id,
         creator: json.creator,
+        isDirty: false,
         message: {
           show: true,
           error: false,
@@ -224,6 +228,7 @@ class AssetEdit extends React.Component {
       message,
       horizontal,
       vertical,
+      isDirty,
     } = this.state;
     const { username = '' } = creator;
     const embedUrl = _id ? `/api/v1/asset/content/${_id}` : '';
@@ -290,7 +295,12 @@ class AssetEdit extends React.Component {
           </DropArea>
         </DropAreaWrapper>
         <ButtonWrapper>
-          <Button variant="raised" color="primary" onClick={this.handleSave}>
+          <Button
+            variant="raised"
+            color="primary"
+            onClick={this.handleSave}
+            disabled={!isDirty}
+          >
             Save
           </Button>
         </ButtonWrapper>

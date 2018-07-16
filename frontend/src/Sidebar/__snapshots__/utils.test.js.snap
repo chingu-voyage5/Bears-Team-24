@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`getChildren should return array of components from article tree 1`] = `
+Array [
+  <styled.li
+    onClick={[Function]}
+>
+    <Styled(NavLink)
+        to="/cms/Voyage"
+    >
+        Voyage
+    </Styled(NavLink)>
+</styled.li>,
+]
+`;
+
 exports[`should create expanded tree if id present 1`] = `
 Array [
   <Collapsible

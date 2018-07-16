@@ -1,15 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 // Material UI components
-import Avatar from 'material-ui/Avatar';
-import Table, {
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  TableSortLabel,
-} from 'material-ui/Table';
+import Avatar from '@material-ui/core/Avatar';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
 
 import actions from './actions';
 import avatarPlaceholder from './avatar_placeholder.png';
@@ -22,6 +22,11 @@ const columnData = [
 ];
 
 class UserList extends React.Component {
+  static propTypes = {
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
+  };
   state = {
     data: [],
     order: 'asc',
@@ -33,8 +38,9 @@ class UserList extends React.Component {
       .then(json => {
         this.setState({ data: json });
       })
-      // eslint-disable-next-line no-console
-      .catch(err => console.error(err));
+      .catch(() => {
+        this.props.history.push('/login');
+      });
   };
 
   handleSort = id => {

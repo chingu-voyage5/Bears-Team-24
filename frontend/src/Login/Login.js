@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 // Material-UI components
-import Button from 'material-ui/Button';
-import { FormControl } from 'material-ui/Form';
-import IconButton from 'material-ui/IconButton';
-import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
-import Snackbar from 'material-ui/Snackbar';
-import TextField from 'material-ui/TextField';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 // FontAwesome Icons
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faGithub from '@fortawesome/fontawesome-free-brands/faGithub';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
+import MessageBar from '../common/MessageBar';
 
 import {
   Fields,
@@ -144,7 +147,7 @@ class Login extends React.Component {
 
   handleClose = () => {
     this.setState(() => ({
-      message: { show: false, text: '' },
+      message: { ...this.state.message, show: false },
     }));
   };
 
@@ -247,19 +250,10 @@ class Login extends React.Component {
             ? 'Click to register new user'
             : 'Click to login as an existing user'}
         </Register>
-        <Snackbar
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          open={message.show}
-          onClose={this.handleClose}
-          autoHideDuration={3000}
-          SnackbarContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={
-            <span id="message-id">
-              {message.text || 'Something went wrong :('}
-            </span>
-          }
+        <MessageBar
+          anchor={{ vertical: 'top', horizontal: 'center' }}
+          message={message}
+          handleClose={this.handleClose}
         />
       </Wrapper>
     );

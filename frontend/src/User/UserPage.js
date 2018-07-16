@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 // Material-UI components
-import Button from 'material-ui/Button';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Paper from 'material-ui/Paper';
-import Select from 'material-ui/Select';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Paper from '@material-ui/core/Paper';
+import Select from '@material-ui/core/Select';
 
 import ListItemInput from '../ListItemInput';
+import MessageBar from '../common/MessageBar';
+import SaveButton from '../common/SaveButton';
 
 import { Avatar, AvatarWrapper, Buttons, Label, Wrapper } from './styled';
 
@@ -31,6 +34,13 @@ class UserPage extends React.Component {
   state = {
     user: {},
     isAdmin: this.props.isAdmin,
+    message: {
+      show: false,
+      error: false,
+      text: '',
+    },
+    horizontal: 'right',
+    vertical: 'top',
   };
 
   componentDidMount = () => {
@@ -58,13 +68,22 @@ class UserPage extends React.Component {
 
   handleSave = () => {
     const { user } = this.state;
-    // eslint-disable-next-line
-    alert(`Saving edited user ${user.username}`);
+    const message = { ...this.state.message, show: true };
 
-    this.setState(() => ({
-      edited: false,
-      initUser: { ...user },
-    }));
+    actions.saveUser(user).then(res => {
+      if (res.success === false) {
+        message.error = true;
+        message.text = `Save failed: ${res.message.errors.name}`;
+      } else {
+        message.error = false;
+        message.text = 'Saved Successfully';
+      }
+      this.setState(() => ({
+        edited: false,
+        initUser: { ...user },
+        message,
+      }));
+    });
   };
 
   handleCancel = () => {
@@ -75,7 +94,7 @@ class UserPage extends React.Component {
   };
 
   handleChange = e => {
-    const { user, initUser } = this.state;
+    const { user, initUser, message } = this.state;
     const { name, value } = e.target;
     user[name] = value;
 
@@ -87,11 +106,26 @@ class UserPage extends React.Component {
     this.setState(() => ({
       user,
       edited,
+      message: { ...message, show: false },
+    }));
+  };
+
+  handleClose = () => {
+    this.setState(() => ({
+      message: { ...this.state.message, show: false },
     }));
   };
 
   render() {
-    const { isAdmin, edited, user, mobile } = this.state;
+    const {
+      isAdmin,
+      edited,
+      user,
+      mobile,
+      message,
+      horizontal,
+      vertical,
+    } = this.state;
     const { _id, avatar, role, username, email, bio } = user;
 
     return (
@@ -159,24 +193,21 @@ class UserPage extends React.Component {
         </Paper>
         {isAdmin && (
           <Buttons>
-            <Button
+            <SaveButton
               variant="raised"
               color="primary"
               disabled={!edited}
               onClick={this.handleSave}
             >
               Save
-            </Button>
-            <Button
-              variant="flat"
-              color="default"
-              disabled={!edited}
-              onClick={this.handleCancel}
-            >
-              Discard
-            </Button>
+            </SaveButton>
           </Buttons>
         )}
+        <MessageBar
+          anchor={{ vertical, horizontal }}
+          message={message}
+          handleClose={this.handleClose}
+        />
       </Wrapper>
     );
   }

@@ -1,4 +1,4 @@
-import buildHtml, { getTree, checkMobile } from './utils';
+import buildHtml, { getChildren, getTree, checkMobile } from './utils';
 
 const topics = [{ _id: '1', name: 'Voyage', order: 1 }];
 // eslint-disable-next-line camelcase
@@ -67,19 +67,25 @@ const onExpand = () => {};
 
 it('should create html tree from articles', () => {
   const articleTree = getTree(articles);
-  const html = buildHtml(articles, articleTree, '', onArticleSelect, onExpand);
+  const html = buildHtml({
+    articles,
+    articleTree,
+    id: '',
+    onArticleSelect,
+    onExpand,
+  });
   expect(html).toMatchSnapshot();
 });
 
 it('should create expanded tree if id present', () => {
   const articleTree = getTree(articles);
-  const html = buildHtml(
+  const html = buildHtml({
     articles,
     articleTree,
-    '101',
+    id: '101',
     onArticleSelect,
-    onExpand
-  );
+    onExpand,
+  });
   expect(html).toMatchSnapshot();
 });
 
@@ -99,5 +105,21 @@ describe('mobile checks', () => {
   it('should set not mobile when mobile is set and width > 900', () => {
     const mobile = checkMobile(true, 1000);
     expect(mobile).toBe(false);
+  });
+});
+
+describe('getChildren', () => {
+  it('should return array of components from article tree', () => {
+    const articleTree = { Voyage: 'Voyage', _id: '1c', expanded: false };
+    const activePath = ['Voyage'];
+
+    const children = getChildren({
+      articleTree,
+      activePath,
+      onArticleSelect,
+      onExpand,
+    });
+
+    expect(children).toMatchSnapshot();
   });
 });

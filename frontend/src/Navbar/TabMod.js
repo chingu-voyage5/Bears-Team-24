@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Tab } from 'material-ui/Tabs';
+import Tab from '@material-ui/core/Tab';
 import { NavLinkStyled } from './styled';
 
 import paths from './config';

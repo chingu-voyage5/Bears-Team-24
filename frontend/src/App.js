@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { MuiThemeProvider } from 'material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import AuthRoute from './AuthRoute';
 import actions from './actions';
 import LandingPage from './LandingPage';
 import Login from './Login';
 import Navbar from './Navbar';
-import Articles from './Articles';
-import ArticleEdit from './ArticleEdit';
+import Articles, { ArticleChangeList } from './Articles';
+import ArticleEdit, { ArticleChangeEdit } from './ArticleEdit';
 import Assets from './Assets';
 import AssetEdit from './AssetEdit';
 import CMSContainer from './CMSContainer';
@@ -16,6 +16,10 @@ import TopicEdit from './TopicEdit';
 import { UserList, UserPage } from './User';
 
 import theme from './theme';
+
+const ADMIN = 'admin';
+// we need to consolidate trust levels
+const TRUSTED = 'moderator';
 
 /**
  * authing routes entered into address bar.
@@ -31,6 +35,8 @@ class App extends Component {
   state = {
     startup: true,
     isLoggedIn: false,
+    isAdmin: false,
+    isTrusted: false,
     waitingForLogin: false,
     user: this.guestUser,
   };
@@ -43,38 +49,37 @@ class App extends Component {
       .getUser()
       .then(res => {
         if (res.success) {
-          this.setState({
-            startup: false,
-            waitingForLogin: false,
-            isLoggedIn: true,
-            user: res.user,
-          });
+          this.setUser(res.user);
         } else {
-          this.setState({
-            startup: false,
-            waitingForLogin: false,
-            isLoggedIn: false,
-            user: this.guestUser,
-          });
+          this.setUser(null);
         }
       })
       .catch(e => {
         // eslint-disable-next-line no-console
         console.log('auto login error:', e);
-        this.setState({
-          startup: false,
-          waitingForLogin: false,
-          isLoggedIn: false,
-          user: this.guestUser,
-        });
+        this.setUser(null);
       });
   };
 
   setUser = user => {
     if (user === null) {
-      this.setState({ user: this.guestUser, isLoggedIn: false });
+      this.setState({
+        user: this.guestUser,
+        isLoggedIn: false,
+        isAdmin: false,
+        isTrusted: false,
+        startup: false,
+        waitingForLogin: false,
+      });
     } else {
-      this.setState({ user, isLoggedIn: true });
+      this.setState({
+        user,
+        isLoggedIn: true,
+        isAdmin: user.role === ADMIN,
+        isTrusted: user.role === ADMIN || user.role === TRUSTED,
+        startup: false,
+        waitingForLogin: false,
+      });
     }
   };
 
@@ -82,16 +87,21 @@ class App extends Component {
     actions
       .logout()
       .then(() => {
-        this.setState({ isLoggedIn: false, user: this.guestUser });
+        this.setUser(null);
       })
-      // eslint-disable-next-line no-console
-      .catch(err => console.log(err));
+      .catch(err => {
+        // eslint-disable-next-line no-console
+        console.error(err);
+        this.setUser(null);
+      });
     return <Redirect to="/" />;
   };
 
   render() {
     const {
       isLoggedIn,
+      isAdmin,
+      isTrusted,
       startup,
       waitingForLogin,
       user = this.guestUser,
@@ -107,6 +117,8 @@ class App extends Component {
               render={r => (
                 <Navbar
                   isLoggedIn={isLoggedIn}
+                  isAdmin={isAdmin}
+                  isTrusted={isTrusted}
                   userId={user._id}
                   username={user.username}
                   {...r}
@@ -134,9 +146,22 @@ class App extends Component {
               />
               <AuthRoute
                 exact
-                isLoggedIn={isLoggedIn}
+                isLoggedIn={isTrusted}
+                path="/requests"
+                render={r => <ArticleChangeList {...r} />}
+              />
+              <AuthRoute
+                isLoggedIn={isTrusted}
+                path="/requests/:id"
+                render={props => (
+                  <ArticleChangeEdit {...props} id={props.match.params.id} />
+                )}
+              />
+              <AuthRoute
+                exact
+                isLoggedIn={isAdmin}
                 path="/users"
-                render={() => <UserList />}
+                render={r => <UserList {...r} />}
               />
               <Route
                 path="/users/:id"

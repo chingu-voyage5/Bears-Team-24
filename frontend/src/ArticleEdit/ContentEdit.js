@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 import marked from 'marked';
 
-import Paper from 'material-ui/Paper';
-import Tabs, { Tab } from 'material-ui/Tabs';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 import { AppBar, ContentWrapper, Preview, Textarea } from './styled';
 
@@ -12,6 +13,10 @@ export default class ContentEdit extends React.Component {
   static propTypes = {
     content: PropTypes.string.isRequired,
     handleFieldChange: PropTypes.func.isRequired,
+    canEdit: PropTypes.bool,
+  };
+  static defaultProps = {
+    canEdit: true,
   };
   state = { edit: 0 };
 
@@ -22,7 +27,7 @@ export default class ContentEdit extends React.Component {
   };
 
   render = () => {
-    const { content, handleFieldChange } = this.props;
+    const { content, handleFieldChange, canEdit } = this.props;
     const { edit } = this.state;
     return (
       <ContentWrapper>
@@ -45,6 +50,7 @@ export default class ContentEdit extends React.Component {
               name="content"
               value={content}
               onChange={handleFieldChange}
+              disabled={!canEdit}
             />
           </Paper>
         ) : (

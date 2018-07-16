@@ -22,6 +22,7 @@ passport.use(
       };
       const updateOptions = {
         upsert: true,
+        new: true,
       };
       User.findOneAndUpdate(searchQuery, update, updateOptions, function(
         err,

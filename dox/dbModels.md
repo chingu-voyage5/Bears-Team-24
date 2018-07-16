@@ -6,7 +6,7 @@ name    |type       |enum
 _id     |mongo_id   |
 name    |string     |
 email   |string     |
-role    |string     | visitor,member,admin
+role    |string     | visitor,member,moderator,admin
 avatar  |asset._id  |
 bio     |string     |
 
@@ -18,7 +18,6 @@ _id               |mongo_id
 created           |date
 last_updated      |date
 creator           |user._id
-contributor_list  |[user._id]
 topic             |string
 sub_topic         |[string]
 title             |string
@@ -35,3 +34,45 @@ created         |date           |
 last_updated    |date           |
 creator         |user._id       |
 content         |base64 string  |
+
+
+## Topics
+
+name            |type           |enum
+----            |----           |---
+_id             |mongo_id       |
+name            |String         |
+order           |Number         |
+
+## SubTopics
+
+name            |type           |enum
+----            |----           |---
+_id             |mongo_id       |
+parent          |topic._id      |
+name            |String         |
+order           |Number         |
+
+## Histories
+
+name            |type           |enum
+----            |----           |---
+_id             |mongo_id       |
+contributor     |User._id       |
+created         |Date           |
+topic           |Topic._id      |
+sub_topic       |SubTopic._id   |
+article         |Articles._id   |
+asset           |Assets._id     |
+sizePre         |Number         |
+sizePost        |Number         |
+
+## RequestChanges
+
+name            |type           |enum
+----            |----           |---
+_id             |mongo_id       |
+creator         |User._id       |
+status          |string         |pending/accepted/rejected
+article         |Article._id    |
+diff            |[{count:number, value:string, added: true&#124;undefined, removed: true&#124;undefined}] |

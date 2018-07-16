@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Snackbar from 'material-ui/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar';
 
 const propTypes = {
   anchor: PropTypes.object.isRequired,
@@ -10,12 +10,14 @@ const propTypes = {
 };
 
 const MessageBar = ({ anchor, message, handleClose }) => (
+  // snackbarcontentprops has to be all lowercase or we get a warning
+  // React does not recognize the `snackbarcontentProps` prop on a DOM element.
   <Snackbar
     anchorOrigin={anchor}
     open={message.show}
     onClose={handleClose}
     autoHideDuration={message.error ? null : 3000}
-    SnackbarContentProps={{
+    ContentProps={{
       'aria-describedby': 'message-id',
     }}
     message={
