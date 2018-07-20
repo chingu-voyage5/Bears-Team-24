@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 require('dotenv').config();
 // console.info('use db:', process.env.MONGO_URI);
 
@@ -5,12 +6,14 @@ require('dotenv').config();
 
 const { db } = require('../backend/models');
 const Article = require('../backend/models/article');
+// eslint-disable-next-line no-unused-vars
 const { Topic } = require('../backend/models/topic');
 
 async function connect() {
   try {
     await db.init();
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error('db init failed:', e);
     process.exit(1);
   }
@@ -65,9 +68,12 @@ async function go() {
     let order = 0;
     let name = 'No SubTopic';
     if (typeof article.sub_topic !== 'undefined') {
+      /* eslint-disable prefer-destructuring */
       name = article.sub_topic.name;
       order = article.sub_topic.order;
+      /* eslint-enable prefer-destructuring */
     }
+    // eslint-disable-next-line no-console
     console.log(`${article.topic.name}[${article.topic.order}] : \
       ${name}[${order}] \
       ${article.title}[${article.order}]`);
@@ -76,4 +82,5 @@ async function go() {
 }
 
 go();
+// eslint-disable-next-line no-console
 console.log('finished');
