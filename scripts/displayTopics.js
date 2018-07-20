@@ -38,11 +38,13 @@ async function getAll() {
     if (a.topic.order > b.topic.order) {
       return 1;
     }
-    if (a.sub_topic.order < b.sub_topic.order) {
-      return -1;
-    }
-    if (a.sub_topic.order > b.sub_topic.order) {
-      return 1;
+    if (typeof a.sub_topic !== 'undefined') {
+      if (a.sub_topic.order < b.sub_topic.order) {
+        return -1;
+      }
+      if (a.sub_topic.order > b.sub_topic.order) {
+        return 1;
+      }
     }
     if (a.order < b.order) {
       return -1;
@@ -60,8 +62,14 @@ async function go() {
   const articles = await getAll();
   // console.log('articles:', articles);
   articles.forEach(article => {
+    let order = 0;
+    let name = 'No SubTopic';
+    if (typeof article.sub_topic !== 'undefined') {
+      name = article.sub_topic.name;
+      order = article.sub_topic.order;
+    }
     console.log(`${article.topic.name}[${article.topic.order}] : \
-      ${article.sub_topic.name}[${article.sub_topic.order}] \
+      ${name}[${order}] \
       ${article.title}[${article.order}]`);
   });
   process.exit(0);
