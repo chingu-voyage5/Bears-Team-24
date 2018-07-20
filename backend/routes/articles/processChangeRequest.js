@@ -27,7 +27,7 @@ const processChangeRequest = async (req, res) => {
     }
     try {
       const history = new History({
-        contributor: req.user._id,
+        contributor: request.requester,
         article: article._id,
         sizePre,
         sizePost: article.content.length,
