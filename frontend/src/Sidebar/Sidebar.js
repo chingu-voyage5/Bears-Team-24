@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import expandTree from './expandTree';
 import buildHtml, { getTree, checkMobile } from './utils';
 
-import { Wrapper } from './styled';
+import { Dummy, Wrapper } from './styled';
 
 export default class Sidebar extends React.Component {
   static propTypes = {
@@ -92,8 +92,7 @@ export default class Sidebar extends React.Component {
 
   renderDrawer = (component, open) => (
     <Drawer open={open} onClose={this.closeDrawer}>
-      <div
-        style={{ paddingTop: '1rem', width: 250 }}
+      <Dummy
         tabIndex={0}
         role="button"
         onClick={this.closeDrawer}

@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const activeClassName = 'selected';
+const sidebarWidth = 320;
 
 const $sidebarBackground = '#e2e2e2';
 
@@ -10,9 +11,9 @@ export const Details = styled.div`
   margin-left: 1rem;
 `;
 
-export const Summary = styled.div`
-  outline: none;
-  margin-top: 0.3rem;
+export const Dummy = styled.div`
+  padding-top: 1rem;
+  width: ${sidebarWidth}px;
 `;
 
 export const MenuSection = styled.div`
