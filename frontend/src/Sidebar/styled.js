@@ -15,6 +15,14 @@ export const Summary = styled.div`
   margin-top: 0.3rem;
 `;
 
+export const MenuSection = styled.div`
+  background-color: #eee;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-top: 0.2rem;
+  padding: 0.5rem;
+`;
+
 export const Wrapper = styled.nav`
   padding: 1em 1em;
   background-color: ${$sidebarBackground};
