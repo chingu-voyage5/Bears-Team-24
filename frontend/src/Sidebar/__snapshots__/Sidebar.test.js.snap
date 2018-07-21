@@ -14,7 +14,7 @@ Array [
         open={false}
         title="About this Wiki"
     >
-        <styled.li
+        <styled.div
             onClick={[Function]}
         >
             <Styled(NavLink)
@@ -22,8 +22,8 @@ Array [
             >
                 Home
             </Styled(NavLink)>
-        </styled.li>
-        <styled.li
+        </styled.div>
+        <styled.div
             onClick={[Function]}
         >
             <Styled(NavLink)
@@ -31,7 +31,7 @@ Array [
             >
                 How to Contribute
             </Styled(NavLink)>
-        </styled.li>
+        </styled.div>
     </Collapsible>
     <Collapsible
         expanded={[Function]}
@@ -39,7 +39,7 @@ Array [
         open={false}
         title="About Voyages"
     >
-        <styled.li
+        <styled.div
             onClick={[Function]}
         >
             <Styled(NavLink)
@@ -47,9 +47,9 @@ Array [
             >
                 Voyage Roadmap
             </Styled(NavLink)>
-        </styled.li>
+        </styled.div>
     </Collapsible>
-    <styled.li
+    <styled.div
         onClick={[Function]}
     >
         <Styled(NavLink)
@@ -57,7 +57,7 @@ Array [
         >
             Introduction
         </Styled(NavLink)>
-    </styled.li>
+    </styled.div>
 </Collapsible>,
 ]
 `;
@@ -162,16 +162,10 @@ ShallowWrapper {
           onClose={[Function]}
           open={true}
 >
-          <div
+          <styled.div
                     onClick={[Function]}
                     onKeyDown={[Function]}
                     role="button"
-                    style={
-                              Object {
-                                        "paddingTop": "1rem",
-                                        "width": 250,
-                                      }
-                    }
                     tabIndex={0}
           />
           <Collapsible
@@ -186,7 +180,7 @@ ShallowWrapper {
                               open={false}
                               title="About this Wiki"
                     >
-                              <styled.li
+                              <styled.div
                                         onClick={[Function]}
                               >
                                         <Styled(NavLink)
@@ -194,8 +188,8 @@ ShallowWrapper {
                                         >
                                                   Home
                                         </Styled(NavLink)>
-                              </styled.li>
-                              <styled.li
+                              </styled.div>
+                              <styled.div
                                         onClick={[Function]}
                               >
                                         <Styled(NavLink)
@@ -203,7 +197,7 @@ ShallowWrapper {
                                         >
                                                   How to Contribute
                                         </Styled(NavLink)>
-                              </styled.li>
+                              </styled.div>
                     </Collapsible>
                     <Collapsible
                               expanded={[Function]}
@@ -211,7 +205,7 @@ ShallowWrapper {
                               open={false}
                               title="About Voyages"
                     >
-                              <styled.li
+                              <styled.div
                                         onClick={[Function]}
                               >
                                         <Styled(NavLink)
@@ -219,9 +213,9 @@ ShallowWrapper {
                                         >
                                                   Voyage Roadmap
                                         </Styled(NavLink)>
-                              </styled.li>
+                              </styled.div>
                     </Collapsible>
-                    <styled.li
+                    <styled.div
                               onClick={[Function]}
                     >
                               <Styled(NavLink)
@@ -229,7 +223,7 @@ ShallowWrapper {
                               >
                                         Introduction
                               </Styled(NavLink)>
-                    </styled.li>
+                    </styled.div>
           </Collapsible>
 </WithStyles(Drawer)>,
       ],
@@ -264,16 +258,10 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <div
+            <styled.div
               onClick={[Function]}
               onKeyDown={[Function]}
               role="button"
-              style={
-                            Object {
-                                          "paddingTop": "1rem",
-                                          "width": 250,
-                                        }
-              }
               tabIndex={0}
 />,
             Array [
@@ -289,7 +277,7 @@ ShallowWrapper {
                                 open={false}
                                 title="About this Wiki"
                 >
-                                <styled.li
+                                <styled.div
                                                 onClick={[Function]}
                                 >
                                                 <Styled(NavLink)
@@ -297,8 +285,8 @@ ShallowWrapper {
                                                 >
                                                                 Home
                                                 </Styled(NavLink)>
-                                </styled.li>
-                                <styled.li
+                                </styled.div>
+                                <styled.div
                                                 onClick={[Function]}
                                 >
                                                 <Styled(NavLink)
@@ -306,7 +294,7 @@ ShallowWrapper {
                                                 >
                                                                 How to Contribute
                                                 </Styled(NavLink)>
-                                </styled.li>
+                                </styled.div>
                 </Collapsible>
                 <Collapsible
                                 expanded={[Function]}
@@ -314,7 +302,7 @@ ShallowWrapper {
                                 open={false}
                                 title="About Voyages"
                 >
-                                <styled.li
+                                <styled.div
                                                 onClick={[Function]}
                                 >
                                                 <Styled(NavLink)
@@ -322,9 +310,9 @@ ShallowWrapper {
                                                 >
                                                                 Voyage Roadmap
                                                 </Styled(NavLink)>
-                                </styled.li>
+                                </styled.div>
                 </Collapsible>
-                <styled.li
+                <styled.div
                                 onClick={[Function]}
                 >
                                 <Styled(NavLink)
@@ -332,7 +320,7 @@ ShallowWrapper {
                                 >
                                                 Introduction
                                 </Styled(NavLink)>
-                </styled.li>
+                </styled.div>
 </Collapsible>,
             ],
           ],
@@ -344,20 +332,16 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "class",
             "props": Object {
               "onClick": [Function],
               "onKeyDown": [Function],
               "role": "button",
-              "style": Object {
-                "paddingTop": "1rem",
-                "width": 250,
-              },
               "tabIndex": 0,
             },
             "ref": null,
             "rendered": null,
-            "type": "div",
+            "type": [Function],
           },
           Object {
             "instance": null,
@@ -371,7 +355,7 @@ ShallowWrapper {
                   open={false}
                   title="About this Wiki"
 >
-                  <styled.li
+                  <styled.div
                                     onClick={[Function]}
                   >
                                     <Styled(NavLink)
@@ -379,8 +363,8 @@ ShallowWrapper {
                                     >
                                                       Home
                                     </Styled(NavLink)>
-                  </styled.li>
-                  <styled.li
+                  </styled.div>
+                  <styled.div
                                     onClick={[Function]}
                   >
                                     <Styled(NavLink)
@@ -388,7 +372,7 @@ ShallowWrapper {
                                     >
                                                       How to Contribute
                                     </Styled(NavLink)>
-                  </styled.li>
+                  </styled.div>
 </Collapsible>,
                 <Collapsible
                   expanded={[Function]}
@@ -396,7 +380,7 @@ ShallowWrapper {
                   open={false}
                   title="About Voyages"
 >
-                  <styled.li
+                  <styled.div
                                     onClick={[Function]}
                   >
                                     <Styled(NavLink)
@@ -404,9 +388,9 @@ ShallowWrapper {
                                     >
                                                       Voyage Roadmap
                                     </Styled(NavLink)>
-                  </styled.li>
+                  </styled.div>
 </Collapsible>,
-                <styled.li
+                <styled.div
                   onClick={[Function]}
 >
                   <Styled(NavLink)
@@ -414,7 +398,7 @@ ShallowWrapper {
                   >
                                     Introduction
                   </Styled(NavLink)>
-</styled.li>,
+</styled.div>,
               ],
               "expanded": [Function],
               "id": "1",
@@ -429,7 +413,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    <styled.li
+                    <styled.div
                       onClick={[Function]}
 >
                       <Styled(NavLink)
@@ -437,8 +421,8 @@ ShallowWrapper {
                       >
                                             Home
                       </Styled(NavLink)>
-</styled.li>,
-                    <styled.li
+</styled.div>,
+                    <styled.div
                       onClick={[Function]}
 >
                       <Styled(NavLink)
@@ -446,7 +430,7 @@ ShallowWrapper {
                       >
                                             How to Contribute
                       </Styled(NavLink)>
-</styled.li>,
+</styled.div>,
                   ],
                   "expanded": [Function],
                   "id": "10",
@@ -518,7 +502,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    <styled.li
+                    <styled.div
                       onClick={[Function]}
 >
                       <Styled(NavLink)
@@ -526,7 +510,7 @@ ShallowWrapper {
                       >
                                             Voyage Roadmap
                       </Styled(NavLink)>
-</styled.li>,
+</styled.div>,
                   ],
                   "expanded": [Function],
                   "id": "11",
@@ -619,16 +603,10 @@ ShallowWrapper {
             onClose={[Function]}
             open={true}
 >
-            <div
+            <styled.div
                         onClick={[Function]}
                         onKeyDown={[Function]}
                         role="button"
-                        style={
-                                    Object {
-                                                "paddingTop": "1rem",
-                                                "width": 250,
-                                              }
-                        }
                         tabIndex={0}
             />
             <Collapsible
@@ -643,7 +621,7 @@ ShallowWrapper {
                                     open={false}
                                     title="About this Wiki"
                         >
-                                    <styled.li
+                                    <styled.div
                                                 onClick={[Function]}
                                     >
                                                 <Styled(NavLink)
@@ -651,8 +629,8 @@ ShallowWrapper {
                                                 >
                                                             Home
                                                 </Styled(NavLink)>
-                                    </styled.li>
-                                    <styled.li
+                                    </styled.div>
+                                    <styled.div
                                                 onClick={[Function]}
                                     >
                                                 <Styled(NavLink)
@@ -660,7 +638,7 @@ ShallowWrapper {
                                                 >
                                                             How to Contribute
                                                 </Styled(NavLink)>
-                                    </styled.li>
+                                    </styled.div>
                         </Collapsible>
                         <Collapsible
                                     expanded={[Function]}
@@ -668,7 +646,7 @@ ShallowWrapper {
                                     open={false}
                                     title="About Voyages"
                         >
-                                    <styled.li
+                                    <styled.div
                                                 onClick={[Function]}
                                     >
                                                 <Styled(NavLink)
@@ -676,9 +654,9 @@ ShallowWrapper {
                                                 >
                                                             Voyage Roadmap
                                                 </Styled(NavLink)>
-                                    </styled.li>
+                                    </styled.div>
                         </Collapsible>
-                        <styled.li
+                        <styled.div
                                     onClick={[Function]}
                         >
                                     <Styled(NavLink)
@@ -686,7 +664,7 @@ ShallowWrapper {
                                     >
                                                 Introduction
                                     </Styled(NavLink)>
-                        </styled.li>
+                        </styled.div>
             </Collapsible>
 </WithStyles(Drawer)>,
         ],
@@ -721,16 +699,10 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <div
+              <styled.div
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 role="button"
-                style={
-                                Object {
-                                                "paddingTop": "1rem",
-                                                "width": 250,
-                                              }
-                }
                 tabIndex={0}
 />,
               Array [
@@ -746,7 +718,7 @@ ShallowWrapper {
                                     open={false}
                                     title="About this Wiki"
                   >
-                                    <styled.li
+                                    <styled.div
                                                       onClick={[Function]}
                                     >
                                                       <Styled(NavLink)
@@ -754,8 +726,8 @@ ShallowWrapper {
                                                       >
                                                                         Home
                                                       </Styled(NavLink)>
-                                    </styled.li>
-                                    <styled.li
+                                    </styled.div>
+                                    <styled.div
                                                       onClick={[Function]}
                                     >
                                                       <Styled(NavLink)
@@ -763,7 +735,7 @@ ShallowWrapper {
                                                       >
                                                                         How to Contribute
                                                       </Styled(NavLink)>
-                                    </styled.li>
+                                    </styled.div>
                   </Collapsible>
                   <Collapsible
                                     expanded={[Function]}
@@ -771,7 +743,7 @@ ShallowWrapper {
                                     open={false}
                                     title="About Voyages"
                   >
-                                    <styled.li
+                                    <styled.div
                                                       onClick={[Function]}
                                     >
                                                       <Styled(NavLink)
@@ -779,9 +751,9 @@ ShallowWrapper {
                                                       >
                                                                         Voyage Roadmap
                                                       </Styled(NavLink)>
-                                    </styled.li>
+                                    </styled.div>
                   </Collapsible>
-                  <styled.li
+                  <styled.div
                                     onClick={[Function]}
                   >
                                     <Styled(NavLink)
@@ -789,7 +761,7 @@ ShallowWrapper {
                                     >
                                                       Introduction
                                     </Styled(NavLink)>
-                  </styled.li>
+                  </styled.div>
 </Collapsible>,
               ],
             ],
@@ -801,20 +773,16 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "class",
               "props": Object {
                 "onClick": [Function],
                 "onKeyDown": [Function],
                 "role": "button",
-                "style": Object {
-                  "paddingTop": "1rem",
-                  "width": 250,
-                },
                 "tabIndex": 0,
               },
               "ref": null,
               "rendered": null,
-              "type": "div",
+              "type": [Function],
             },
             Object {
               "instance": null,
@@ -828,7 +796,7 @@ ShallowWrapper {
                     open={false}
                     title="About this Wiki"
 >
-                    <styled.li
+                    <styled.div
                                         onClick={[Function]}
                     >
                                         <Styled(NavLink)
@@ -836,8 +804,8 @@ ShallowWrapper {
                                         >
                                                             Home
                                         </Styled(NavLink)>
-                    </styled.li>
-                    <styled.li
+                    </styled.div>
+                    <styled.div
                                         onClick={[Function]}
                     >
                                         <Styled(NavLink)
@@ -845,7 +813,7 @@ ShallowWrapper {
                                         >
                                                             How to Contribute
                                         </Styled(NavLink)>
-                    </styled.li>
+                    </styled.div>
 </Collapsible>,
                   <Collapsible
                     expanded={[Function]}
@@ -853,7 +821,7 @@ ShallowWrapper {
                     open={false}
                     title="About Voyages"
 >
-                    <styled.li
+                    <styled.div
                                         onClick={[Function]}
                     >
                                         <Styled(NavLink)
@@ -861,9 +829,9 @@ ShallowWrapper {
                                         >
                                                             Voyage Roadmap
                                         </Styled(NavLink)>
-                    </styled.li>
+                    </styled.div>
 </Collapsible>,
-                  <styled.li
+                  <styled.div
                     onClick={[Function]}
 >
                     <Styled(NavLink)
@@ -871,7 +839,7 @@ ShallowWrapper {
                     >
                                         Introduction
                     </Styled(NavLink)>
-</styled.li>,
+</styled.div>,
                 ],
                 "expanded": [Function],
                 "id": "1",
@@ -886,7 +854,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": Array [
-                      <styled.li
+                      <styled.div
                         onClick={[Function]}
 >
                         <Styled(NavLink)
@@ -894,8 +862,8 @@ ShallowWrapper {
                         >
                                                 Home
                         </Styled(NavLink)>
-</styled.li>,
-                      <styled.li
+</styled.div>,
+                      <styled.div
                         onClick={[Function]}
 >
                         <Styled(NavLink)
@@ -903,7 +871,7 @@ ShallowWrapper {
                         >
                                                 How to Contribute
                         </Styled(NavLink)>
-</styled.li>,
+</styled.div>,
                     ],
                     "expanded": [Function],
                     "id": "10",
@@ -975,7 +943,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": Array [
-                      <styled.li
+                      <styled.div
                         onClick={[Function]}
 >
                         <Styled(NavLink)
@@ -983,7 +951,7 @@ ShallowWrapper {
                         >
                                                 Voyage Roadmap
                         </Styled(NavLink)>
-</styled.li>,
+</styled.div>,
                     ],
                     "expanded": [Function],
                     "id": "11",

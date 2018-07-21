@@ -2,7 +2,7 @@
 
 exports[`getChildren should return array of components from article tree 1`] = `
 Array [
-  <styled.li
+  <styled.div
     onClick={[Function]}
 >
     <Styled(NavLink)
@@ -10,7 +10,7 @@ Array [
     >
         Voyage
     </Styled(NavLink)>
-</styled.li>,
+</styled.div>,
 ]
 `;
 
@@ -28,7 +28,7 @@ Array [
         open={true}
         title="About this Wiki"
     >
-        <styled.li
+        <styled.div
             onClick={[Function]}
         >
             <Styled(NavLink)
@@ -36,8 +36,8 @@ Array [
             >
                 Home
             </Styled(NavLink)>
-        </styled.li>
-        <styled.li
+        </styled.div>
+        <styled.div
             onClick={[Function]}
         >
             <Styled(NavLink)
@@ -45,7 +45,7 @@ Array [
             >
                 How to Contribute
             </Styled(NavLink)>
-        </styled.li>
+        </styled.div>
     </Collapsible>
     <Collapsible
         expanded={[Function]}
@@ -53,7 +53,7 @@ Array [
         open={false}
         title="About Voyages"
     >
-        <styled.li
+        <styled.div
             onClick={[Function]}
         >
             <Styled(NavLink)
@@ -61,9 +61,9 @@ Array [
             >
                 Voyage Roadmap
             </Styled(NavLink)>
-        </styled.li>
+        </styled.div>
     </Collapsible>
-    <styled.li
+    <styled.div
         onClick={[Function]}
     >
         <Styled(NavLink)
@@ -71,7 +71,7 @@ Array [
         >
             Introduction
         </Styled(NavLink)>
-    </styled.li>
+    </styled.div>
 </Collapsible>,
 ]
 `;
@@ -90,7 +90,7 @@ Array [
         open={false}
         title="About this Wiki"
     >
-        <styled.li
+        <styled.div
             onClick={[Function]}
         >
             <Styled(NavLink)
@@ -98,8 +98,8 @@ Array [
             >
                 Home
             </Styled(NavLink)>
-        </styled.li>
-        <styled.li
+        </styled.div>
+        <styled.div
             onClick={[Function]}
         >
             <Styled(NavLink)
@@ -107,7 +107,7 @@ Array [
             >
                 How to Contribute
             </Styled(NavLink)>
-        </styled.li>
+        </styled.div>
     </Collapsible>
     <Collapsible
         expanded={[Function]}
@@ -115,7 +115,7 @@ Array [
         open={false}
         title="About Voyages"
     >
-        <styled.li
+        <styled.div
             onClick={[Function]}
         >
             <Styled(NavLink)
@@ -123,9 +123,9 @@ Array [
             >
                 Voyage Roadmap
             </Styled(NavLink)>
-        </styled.li>
+        </styled.div>
     </Collapsible>
-    <styled.li
+    <styled.div
         onClick={[Function]}
     >
         <Styled(NavLink)
@@ -133,7 +133,7 @@ Array [
         >
             Introduction
         </Styled(NavLink)>
-    </styled.li>
+    </styled.div>
 </Collapsible>,
 ]
 `;
