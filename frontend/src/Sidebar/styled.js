@@ -4,10 +4,7 @@ import styled from 'styled-components';
 const activeClassName = 'selected';
 const sidebarWidth = 320;
 
-const $sidebarBackground = '#e2e2e2';
-
 export const Details = styled.div`
-  cursor: default;
   margin-left: 1rem;
 `;
 
@@ -25,19 +22,24 @@ export const MenuSection = styled.div`
 `;
 
 export const Wrapper = styled.nav`
-  padding: 1em 1em;
-  background-color: ${$sidebarBackground};
   display: flex;
   flex-direction: column;
-  height: 100%;
   font-size: 14px;
-  min-width: 250px;
+  height: 100%;
+  min-width: ${sidebarWidth}px;
+  padding-top: 1rem;
 `;
 
-export const LI = styled.li`
-  list-style-type: none;
-  padding-top: 0.2rem;
+export const LI = styled.div`
+  &:before {
+    content: '\\2022';
+    margin-right: 0.5rem;
+  }
+  align-items: center;
+  display: flex;
   margin-left: 1rem;
+  margin-top: 0.2rem;
+  padding: 0.5rem;
 `;
 
 export const DrawerLink = styled(NavLink).attrs({
