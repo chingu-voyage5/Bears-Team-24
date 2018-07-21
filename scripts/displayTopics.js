@@ -65,14 +65,9 @@ async function go() {
   const articles = await getAll();
   // console.log('articles:', articles);
   articles.forEach(article => {
-    let order = 0;
-    let name = 'No SubTopic';
-    if (typeof article.sub_topic !== 'undefined') {
-      /* eslint-disable prefer-destructuring */
-      name = article.sub_topic.name;
-      order = article.sub_topic.order;
-      /* eslint-enable prefer-destructuring */
-    }
+    const hasSubTopic = typeof article.sub_topic !== 'undefined';
+    const { name = 'No SubTopic', order = 0 } =
+      hasSubTopic && article.sub_topic;
     // eslint-disable-next-line no-console
     console.log(`${article.topic.name}[${article.topic.order}] : \
       ${name}[${order}] \
