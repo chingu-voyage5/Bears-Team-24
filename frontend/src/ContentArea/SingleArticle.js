@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import marked from 'marked';
+
+import MarkdownParser from '../common/MarkdownParser';
 
 export default class SingleArticle extends React.Component {
   render() {
     const content = this.props.content || 'Empty article';
-    const options = { __html: marked(content) };
 
-    return <div dangerouslySetInnerHTML={options} />;
+    return <MarkdownParser content={content} />;
   }
 }
 
