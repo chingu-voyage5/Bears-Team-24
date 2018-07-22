@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import marked from 'marked';
-
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+
+import MarkdownParser from '../common/MarkdownParser';
 
 import { AppBar, ContentWrapper, Preview, Textarea } from './styled';
 
@@ -54,11 +54,9 @@ export default class ContentEdit extends React.Component {
             />
           </Paper>
         ) : (
-          <Preview
-            dangerouslySetInnerHTML={{
-              __html: marked(content || ''),
-            }}
-          />
+          <Preview>
+            <MarkdownParser content={content || ''} />
+          </Preview>
         )}
       </ContentWrapper>
     );
