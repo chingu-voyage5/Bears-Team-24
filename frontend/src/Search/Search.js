@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, TextField, Wrapper } from './styled';
+import { Button, Form, TextField, Wrapper } from './styled';
 
 class Search extends Component {
   static propTypes = {
@@ -38,7 +38,7 @@ class Search extends Component {
 
     return (
       <Wrapper>
-        <form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
           <TextField
             type="text"
             value={searchString}
@@ -53,7 +53,7 @@ class Search extends Component {
           >
             Search
           </Button>
-        </form>
+        </Form>
       </Wrapper>
     );
   }

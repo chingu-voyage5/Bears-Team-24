@@ -42,17 +42,17 @@ export default class CMSContainer extends React.Component {
           path="/cms/:id?"
           render={p => <Sidebar {...p} articles={articleList} />}
         />
-        <Route
-          exact
-          path="/cms"
-          render={() => (
-            <div>
-              <h1>Welcome</h1>
-            </div>
-          )}
-        />
         <ContentWrapper>
           <Search onSubmit={this.handleSearch} />
+          <Route
+            exact
+            path="/cms"
+            render={() => (
+              <div>
+                <h1>Welcome</h1>
+              </div>
+            )}
+          />
           <Route path="/cms/:id" component={ContentArea} />
         </ContentWrapper>
       </Wrapper>

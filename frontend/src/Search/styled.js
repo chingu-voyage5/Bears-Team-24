@@ -3,7 +3,17 @@ import ButtonMUI from '@material-ui/core/Button';
 
 export const Button = styled(ButtonMUI).attrs({
   disableRipple: true,
-})``;
+})`
+  display: inline-block;
+`;
+
+export const Form = styled.form`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-right: 0.5rem;
+  width: 100%;
+`;
 
 export const TextField = styled.input`
   border: none;
@@ -13,7 +23,9 @@ export const TextField = styled.input`
   font-size: 16px;
   height: 32px;
   margin-right: 1rem;
+  max-width: 250px;
   padding: 0.3rem 0.5rem;
+  width: 100%;
 `;
 
 export const Wrapper = styled.div`
