@@ -13,10 +13,15 @@ import { Dummy, Wrapper } from './styled';
 
 export default class Sidebar extends React.Component {
   static propTypes = {
+    onClick: PropTypes.func,
     /* eslint-disable react/no-unused-prop-types */
     articles: PropTypes.array.isRequired,
     match: PropTypes.object.isRequired,
     /* eslint-enable react/no-unused-prop-types */
+  };
+
+  static defaultProps = {
+    onClick: e => e.stopPropagation(),
   };
 
   state = {
@@ -33,16 +38,22 @@ export default class Sidebar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.articlesHtml.length === 0 && nextProps.articles.length) {
+    const idHasChanged =
+      this.props.match.params.id !== nextProps.match.params.id;
+
+    if (
+      (this.state.articlesHtml.length === 0 && nextProps.articles.length) ||
+      idHasChanged
+    ) {
       const { articles } = nextProps;
       const articleTree = getTree(articles);
       const { match } = this.props;
       const { mobile } = this.state;
-      const selFn = mobile ? this.closeDrawer : this.nop;
+      const selFn = mobile ? this.closeDrawer : this.props.onClick;
       const articlesHtml = buildHtml({
         articles,
         articleTree,
-        id: match.params.id,
+        id: idHasChanged ? nextProps.match.params.id : match.params.id,
         onArticleSelect: selFn,
         onExpand: this.onExpanded,
       });
@@ -57,10 +68,6 @@ export default class Sidebar extends React.Component {
   onExpanded = (_id, expanded) => {
     const articleTree = expandTree(this.state.articleTree, _id, expanded);
     this.setState({ articleTree });
-  };
-
-  nop = e => {
-    e.stopPropagation();
   };
 
   handleResize = () => {
@@ -104,8 +111,11 @@ export default class Sidebar extends React.Component {
 
   render() {
     const { articlesHtml, mobile, open } = this.state;
+    const { onClick } = this.props;
+
     return (
-      <div>
+      // eslint-disable-next-line
+      <div onClick={onClick}>
         {mobile && (
           <IconButton
             colors="inherit"
