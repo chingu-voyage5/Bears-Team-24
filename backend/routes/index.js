@@ -85,6 +85,9 @@ router.post(
   catchAsyncErrors(articles.upsert)
 );
 
+// query params: q - search string; match_case - if present search exact string
+router.get('/api/v1/search/', articles.search);
+
 router.get(
   '/api/v0/articleChangeRequestList',
   auth.isLoggedInTrusted,

@@ -6,4 +6,5 @@ module.exports = {
   getAllChangeRequests: require('./getAllChangeRequests'),
   getChangeRequest: require('./getChangeRequest'),
   processChangeRequest: require('./processChangeRequest'),
+  search: require('./search'),
 };
