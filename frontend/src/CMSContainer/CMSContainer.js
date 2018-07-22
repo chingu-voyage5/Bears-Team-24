@@ -3,8 +3,9 @@ import { Route } from 'react-router-dom';
 
 import { getArticleList, searchArticles } from './actions';
 import ContentArea from '../ContentArea';
+import Search from '../Search';
 import Sidebar from '../Sidebar';
-import { Wrapper } from './styled';
+import { ContentWrapper, Wrapper } from './styled';
 
 export default class CMSContainer extends React.Component {
   state = {
@@ -50,7 +51,10 @@ export default class CMSContainer extends React.Component {
             </div>
           )}
         />
-        <Route path="/cms/:id" component={ContentArea} />
+        <ContentWrapper>
+          <Search onSubmit={this.handleSearch} />
+          <Route path="/cms/:id" component={ContentArea} />
+        </ContentWrapper>
       </Wrapper>
     );
   }
