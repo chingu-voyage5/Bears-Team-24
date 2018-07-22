@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { getArticleList } from './actions';
+import { getArticleList, searchArticles } from './actions';
 import ContentArea from '../ContentArea';
 import Sidebar from '../Sidebar';
 import { Wrapper } from './styled';
@@ -9,6 +9,7 @@ import { Wrapper } from './styled';
 export default class CMSContainer extends React.Component {
   state = {
     articleList: [],
+    searchResults: [],
   };
 
   componentDidMount = () => {
@@ -21,8 +22,18 @@ export default class CMSContainer extends React.Component {
     return getArticleList();
   }
 
+  handleSearch = query => {
+    searchArticles(query).then(searchResults => {
+      this.setState(() => ({ searchResults, searchQuery: query }));
+    });
+  };
+
   render() {
-    const { articleList } = this.state;
+    const { articleList, searchResults } = this.state;
+
+    // TEMP log search results to the console.
+    // eslint-disable-next-line
+    console.log(searchResults);
 
     return (
       <Wrapper>
