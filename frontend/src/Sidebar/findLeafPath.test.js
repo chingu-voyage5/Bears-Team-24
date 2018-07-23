@@ -139,6 +139,10 @@ const tree = {
 /* eslint-enable */
 
 describe('find tree path for leaf', () => {
+  it('should not find non-existant path', () => {
+    const path = findLeafPath(tree, 'non-existant');
+    expect(path).toBeNull();
+  });
   it('should find path', () => {
     let path = findLeafPath(tree, '5b1983cfbb796d2be9f7cf0a');
     expect(path).toEqual([
