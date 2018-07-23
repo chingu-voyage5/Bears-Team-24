@@ -22,7 +22,7 @@ const SearchResults = ({ onClick, query, results }) => (
       const idxs = getIndexes(content, query);
 
       return (
-        idxs.length && (
+        !!idxs.length && (
           <Card key={res._id} onClick={() => onClick(res._id)}>
             <Title>{res.title}</Title>
             <Path>
