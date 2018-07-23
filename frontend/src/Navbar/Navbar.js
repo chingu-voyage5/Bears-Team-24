@@ -172,11 +172,15 @@ class Navbar extends React.Component {
             <Greeting>Hi,&nbsp;{username}</Greeting>
             {isLoggedIn ? (
               <NavLinkStyled to="/logout" onClick={this.hideIndicator}>
-                <Typography variant="button">Logout</Typography>
+                <Typography variant="button" color="inherit">
+                  Logout
+                </Typography>
               </NavLinkStyled>
             ) : (
               <NavLinkStyled to="/login" onClick={this.hideIndicator}>
-                <Typography variant="button">Login</Typography>
+                <Typography variant="button" color="inherit">
+                  Login
+                </Typography>
               </NavLinkStyled>
             )}
           </Toolbar>
