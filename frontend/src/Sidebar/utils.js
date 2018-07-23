@@ -1,5 +1,7 @@
 import React from 'react';
 
+import findLeafPath from './findLeafPath';
+
 import Collapsible from './Collapsible';
 
 import { LI, DrawerLink } from './styled';
@@ -99,8 +101,6 @@ export const getChildren = ({
     const s = articleTree[key];
 
     if (typeof s === 'string') {
-      // TODO: great idea but keeping it updated will be fun
-      // const displayed = path.includes(key) ? ' >' : '';
       return acc.concat(
         <LI key={s} onClick={onArticleSelect}>
           <DrawerLink to={`/cms/${s}`}>{`${key}`}</DrawerLink>
@@ -115,7 +115,8 @@ export const getChildren = ({
       onExpand,
     });
 
-    const open = articleTree[key].expanded || activePath.includes(key);
+    const open =
+      articleTree[key].expanded || activePath.includes(articleTree[key]._id);
 
     return acc.concat(
       <Collapsible
@@ -131,28 +132,10 @@ export const getChildren = ({
   }, []);
 };
 
-const buildHtml = ({ articles, id, ...rest }) => {
-  let selectedArticlePath = [];
+const buildHtml = ({ articles, id, articleTree, ...rest }) => {
+  const activePath = id ? findLeafPath(articleTree, id) : [];
 
-  if (id) {
-    const selectedArticles = articles.filter(article => article._id === id);
-    if (selectedArticles.length) {
-      /* eslint-disable camelcase */
-      const { topic, sub_topic, title } = selectedArticles[0];
-      selectedArticlePath = [topic.name, title];
-      if (sub_topic) {
-        selectedArticlePath = selectedArticlePath.concat(
-          sub_topic.name.split('>')
-        );
-      }
-      /* eslint-enable camelcase */
-    }
-  }
-
-  const articlesHtml = getChildren({
-    activePath: selectedArticlePath,
-    ...rest,
-  });
+  const articlesHtml = getChildren({ articleTree, activePath, ...rest });
 
   return articlesHtml;
 };
