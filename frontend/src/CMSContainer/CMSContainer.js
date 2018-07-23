@@ -73,6 +73,7 @@ export default class CMSContainer extends React.Component {
               {...p}
               articles={articleList}
               onClick={this.hideSearchResults}
+              visible={!showSearchResults}
             />
           )}
         />

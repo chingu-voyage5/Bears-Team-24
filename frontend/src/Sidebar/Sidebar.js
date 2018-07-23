@@ -18,10 +18,12 @@ export default class Sidebar extends React.Component {
     articles: PropTypes.array.isRequired,
     match: PropTypes.object.isRequired,
     /* eslint-enable react/no-unused-prop-types */
+    visible: PropTypes.bool,
   };
 
   static defaultProps = {
     onClick: e => e.stopPropagation(),
+    visible: true,
   };
 
   state = {
@@ -111,20 +113,21 @@ export default class Sidebar extends React.Component {
 
   render() {
     const { articlesHtml, mobile, open } = this.state;
-    const { onClick } = this.props;
+    const { onClick, visible } = this.props;
 
     return (
       // eslint-disable-next-line
       <div onClick={onClick}>
-        {mobile && (
-          <IconButton
-            colors="inherit"
-            aria-label="Menu"
-            onClick={this.openDrawer}
-          >
-            <MenuIcon />
-          </IconButton>
-        )}
+        {mobile &&
+          visible && (
+            <IconButton
+              colors="inherit"
+              aria-label="Menu"
+              onClick={this.openDrawer}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
         {mobile ? (
           this.renderDrawer(articlesHtml, open)
         ) : (
