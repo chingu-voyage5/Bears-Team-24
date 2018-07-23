@@ -8,7 +8,7 @@ import { Highlight } from '../SearchResults/styled';
 import Search from '../Search';
 import SearchResults from '../SearchResults';
 import Sidebar from '../Sidebar';
-import { ContentWrapper, SearchStatus, Wrapper } from './styled';
+import { CloseButton, ContentWrapper, SearchStatus, Wrapper } from './styled';
 
 export default class CMSContainer extends React.Component {
   static propTypes = {
@@ -87,6 +87,9 @@ export default class CMSContainer extends React.Component {
                   : `Nothing found for: `}
                 <Highlight bold>{searchQuery}</Highlight>
               </SearchStatus>
+              <CloseButton onClick={this.hideSearchResults}>
+                Close search results
+              </CloseButton>
               <SearchResults
                 results={searchResults}
                 query={searchQuery}
