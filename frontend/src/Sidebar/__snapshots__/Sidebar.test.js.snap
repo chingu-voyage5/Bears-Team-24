@@ -137,6 +137,8 @@ ShallowWrapper {
             },
           }
     }
+    onClick={[Function]}
+    visible={true}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -227,6 +229,7 @@ ShallowWrapper {
           </Collapsible>
 </WithStyles(Drawer)>,
       ],
+      "onClick": [Function],
     },
     "ref": null,
     "rendered": Array [
@@ -668,6 +671,7 @@ ShallowWrapper {
             </Collapsible>
 </WithStyles(Drawer)>,
         ],
+        "onClick": [Function],
       },
       "ref": null,
       "rendered": Array [
