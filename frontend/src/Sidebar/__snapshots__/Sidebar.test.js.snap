@@ -138,6 +138,7 @@ ShallowWrapper {
           }
     }
     onClick={[Function]}
+    visible={true}
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
