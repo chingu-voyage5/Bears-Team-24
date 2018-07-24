@@ -10,7 +10,7 @@ const props = {
   },
 };
 
-it('should render container', () => {
+xit('should render container', () => {
   const getArticleList = jest
     .spyOn(CMSContainer.prototype, 'getArticles')
     .mockImplementation(() => new Promise(resolve => resolve([])));
