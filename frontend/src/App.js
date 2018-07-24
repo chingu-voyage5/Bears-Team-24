@@ -39,8 +39,11 @@ class App extends Component {
     isTrusted: false,
     waitingForLogin: false,
     user: this.guestUser,
+    windowWidth: window.innerWidth,
   };
   componentDidMount = () => {
+    window.addEventListener('resize', this.handleResize);
+
     if (this.state.waitingForLogin) {
       return;
     }
@@ -59,6 +62,14 @@ class App extends Component {
         console.log('auto login error:', e);
         this.setUser(null);
       });
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    this.setState({ windowWidth: window.innerWidth });
   };
 
   setUser = user => {
