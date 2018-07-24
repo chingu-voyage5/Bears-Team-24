@@ -10,6 +10,8 @@ import SearchResults from '../SearchResults';
 import Sidebar from '../Sidebar';
 import { CloseButton, ContentWrapper, SearchStatus, Wrapper } from './styled';
 
+import { Context } from '../App';
+
 export default class CMSContainer extends React.Component {
   static propTypes = {
     history: PropTypes.shape({
@@ -65,6 +67,8 @@ export default class CMSContainer extends React.Component {
     } = this.state;
 
     return (
+      <Context.Consumer>
+        {({ windowWidth }) => (
       <Wrapper>
         <Route
           path="/cms/:id?"
@@ -112,6 +116,8 @@ export default class CMSContainer extends React.Component {
           )}
         </ContentWrapper>
       </Wrapper>
+        )}
+      </Context.Consumer>
     );
   }
 }
