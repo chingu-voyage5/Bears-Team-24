@@ -18,8 +18,12 @@ export default class Collapsible extends React.Component {
     open: false,
   };
 
-  static getDerivedStateFromProps(nextProps) {
-    return { open: nextProps.open };
+  componentDidMount() {
+    const isOpenUpdated = this.state.open !== this.props.open;
+
+    if (isOpenUpdated) {
+      this.setState(() => ({ open: this.props.open }));
+    }
   }
 
   onClick = e => {
