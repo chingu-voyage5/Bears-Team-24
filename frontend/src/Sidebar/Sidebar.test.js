@@ -86,8 +86,15 @@ const match = {
 let comp;
 let inst;
 
+const props = {
+  articles,
+  handleDrawerClose: () => {},
+  match,
+  windowWidth: 1200,
+};
+
 beforeEach(() => {
-  comp = shallow(<Sidebar articles={articles} match={match} />);
+  comp = shallow(<Sidebar {...props} />);
   comp.setProps({ articles });
   inst = comp.instance();
 });
