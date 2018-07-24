@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createContext } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
@@ -20,6 +20,8 @@ import theme from './theme';
 const ADMIN = 'admin';
 // we need to consolidate trust levels
 const TRUSTED = 'moderator';
+
+export const Context = createContext();
 
 /**
  * authing routes entered into address bar.
@@ -116,12 +118,14 @@ class App extends Component {
       startup,
       waitingForLogin,
       user = this.guestUser,
+      windowWidth,
     } = this.state;
     if (waitingForLogin || startup) {
       return <h1>Loading ...</h1>;
     }
     return (
       <BrowserRouter>
+        <Context.Provider value={windowWidth}>
         <MuiThemeProvider theme={theme}>
           <React.Fragment>
             <Route
@@ -209,6 +213,7 @@ class App extends Component {
             </Switch>
           </React.Fragment>
         </MuiThemeProvider>
+        </Context.Provider>
       </BrowserRouter>
     );
   }
