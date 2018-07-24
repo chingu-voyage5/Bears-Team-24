@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { BREAK_MOBILE } from '../Sidebar/utils';
+
 export const CloseButton = styled.button`
   align-self: center;
   background-color: transparent;
@@ -23,9 +25,17 @@ export const SearchStatus = styled.div`
   width: 100%;
 `;
 
+export const TopBar = styled.div`
+  display: flex;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   padding-top: 10px;
+
+  @media (max-width: ${BREAK_MOBILE}px) {
+    flex-direction: column;
+  }
 `;
 
 export default Wrapper;

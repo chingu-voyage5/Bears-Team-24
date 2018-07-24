@@ -2,15 +2,26 @@ import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+
 import { getArticleList, searchArticles } from './actions';
 import ContentArea from '../ContentArea';
 import { Highlight } from '../SearchResults/styled';
 import Search from '../Search';
 import SearchResults from '../SearchResults';
 import Sidebar from '../Sidebar';
-import { CloseButton, ContentWrapper, SearchStatus, Wrapper } from './styled';
+import {
+  CloseButton,
+  ContentWrapper,
+  SearchStatus,
+  TopBar,
+  Wrapper,
+} from './styled';
 
 import { Context } from '../App';
+
+import { BREAK_MOBILE } from '../Sidebar/utils';
 
 export default class CMSContainer extends React.Component {
   static propTypes = {
@@ -58,9 +69,18 @@ export default class CMSContainer extends React.Component {
     }));
   };
 
+  toggleDrawer = () => {
+    this.setState(({ isDrawerOpen }) => ({ isDrawerOpen: !isDrawerOpen }));
+  };
+
+  handleDrawerClose = () => {
+    this.setState(() => ({ isDrawerOpen: false }));
+  };
+
   render() {
     const {
       articleList,
+      isDrawerOpen,
       searchQuery,
       searchResults,
       showSearchResults,
@@ -69,53 +89,66 @@ export default class CMSContainer extends React.Component {
     return (
       <Context.Consumer>
         {({ windowWidth }) => (
-      <Wrapper>
-        <Route
-          path="/cms/:id?"
-          render={p => (
-            <Sidebar
-              {...p}
-              articles={articleList}
-              onClick={this.hideSearchResults}
-              visible={!showSearchResults}
+          <Wrapper>
+            <Route
+              path="/cms/:id?"
+              render={p => (
+                <Sidebar
+                  {...p}
+                  articles={articleList}
+                  onClick={this.hideSearchResults}
+                  windowWidth={windowWidth}
+                  isDrawerOpen={isDrawerOpen}
+                  handleDrawerClose={this.handleDrawerClose}
+                />
+              )}
             />
-          )}
-        />
-        <ContentWrapper>
-          <Search onSubmit={this.handleSearch} />
-          {showSearchResults ? (
-            <Fragment>
-              <SearchStatus>
-                {searchResults.length
-                  ? `Found ${searchResults.length} topics containing `
-                  : `Nothing found for: `}
-                <Highlight bold>{searchQuery}</Highlight>
-              </SearchStatus>
-              <CloseButton onClick={this.hideSearchResults}>
-                Close search results
-              </CloseButton>
-              <SearchResults
-                results={searchResults}
-                query={searchQuery}
-                onClick={this.handleSearchClick}
-              />
-            </Fragment>
-          ) : (
-            <Fragment>
-              <Route
-                exact
-                path="/cms"
-                render={() => (
-                  <div>
-                    <h1>Welcome</h1>
-                  </div>
+            <ContentWrapper>
+              <TopBar>
+                {windowWidth <= BREAK_MOBILE && (
+                  <IconButton
+                    colors="inherit"
+                    aria-label="Menu"
+                    onClick={this.toggleDrawer}
+                  >
+                    <MenuIcon />
+                  </IconButton>
                 )}
-              />
-              <Route path="/cms/:id" component={ContentArea} />
-            </Fragment>
-          )}
-        </ContentWrapper>
-      </Wrapper>
+                <Search onSubmit={this.handleSearch} />
+              </TopBar>
+              {showSearchResults ? (
+                <Fragment>
+                  <SearchStatus>
+                    {searchResults.length
+                      ? `Found ${searchResults.length} topics containing `
+                      : `Nothing found for: `}
+                    <Highlight bold>{searchQuery}</Highlight>
+                  </SearchStatus>
+                  <CloseButton onClick={this.hideSearchResults}>
+                    Close search results
+                  </CloseButton>
+                  <SearchResults
+                    results={searchResults}
+                    query={searchQuery}
+                    onClick={this.handleSearchClick}
+                  />
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <Route
+                    exact
+                    path="/cms"
+                    render={() => (
+                      <div>
+                        <h1>Welcome</h1>
+                      </div>
+                    )}
+                  />
+                  <Route path="/cms/:id" component={ContentArea} />
+                </Fragment>
+              )}
+            </ContentWrapper>
+          </Wrapper>
         )}
       </Context.Consumer>
     );
