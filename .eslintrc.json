@@ -14,6 +14,7 @@
     "react/jsx-filename-extension": "off",
     "react/no-danger": "off",
     "react/no-did-mount-set-state": "off",
+    "react/no-did-update-set-state": "off",
     "react/prefer-stateless-function": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
