@@ -128,7 +128,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <Context.Provider value={windowWidth}>
+        <Context.Provider value={{ windowWidth }}>
           <MuiThemeProvider theme={theme}>
             <React.Fragment>
               <Route
