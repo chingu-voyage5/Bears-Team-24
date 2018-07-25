@@ -129,7 +129,7 @@ export default class Sidebar extends React.Component {
         {mobile ? (
           this.renderDrawer(articlesHtml, open)
         ) : (
-          <Wrapper>{articlesHtml}</Wrapper>
+          <Wrapper data-testid="sidebar">{articlesHtml}</Wrapper>
         )}
       </div>
     );

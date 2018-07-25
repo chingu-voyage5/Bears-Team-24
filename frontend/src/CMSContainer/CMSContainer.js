@@ -110,6 +110,7 @@ export default class CMSContainer extends React.Component {
                     colors="inherit"
                     aria-label="Menu"
                     onClick={this.toggleDrawer}
+                    data-testid="hamburger"
                   >
                     <MenuIcon />
                   </IconButton>
