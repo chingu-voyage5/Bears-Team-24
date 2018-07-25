@@ -70,7 +70,7 @@ export default class CMSContainer extends React.Component {
   };
 
   toggleDrawer = () => {
-    this.setState(({ isDrawerOpen }) => ({ isDrawerOpen: !isDrawerOpen }));
+    this.setState(() => ({ isDrawerOpen: true }));
   };
 
   handleDrawerClose = () => {
