@@ -6,12 +6,16 @@ import Collapsible from './Collapsible';
 
 import { LI, DrawerLink } from './styled';
 
-export const checkMobile = (mobile, windowWidth) => {
-  const BREAK_MOBILE = 900;
+export const BREAK_MOBILE = 900;
 
+export const checkMobile = (
+  mobile,
+  windowWidth,
+  breakMobile = BREAK_MOBILE
+) => {
   if (
-    (mobile && windowWidth > BREAK_MOBILE) ||
-    (!mobile && windowWidth <= BREAK_MOBILE)
+    (mobile && windowWidth > breakMobile) ||
+    (!mobile && windowWidth <= breakMobile)
   ) {
     return !mobile;
   }

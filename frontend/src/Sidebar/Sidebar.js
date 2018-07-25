@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 // Material UI components
 import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
 import expandTree from './expandTree';
 import buildHtml, { getTree, checkMobile } from './utils';
@@ -14,16 +12,16 @@ import { Dummy, Wrapper } from './styled';
 export default class Sidebar extends React.Component {
   static propTypes = {
     onClick: PropTypes.func,
-    /* eslint-disable react/no-unused-prop-types */
     articles: PropTypes.array.isRequired,
+    handleDrawerClose: PropTypes.func.isRequired,
+    isDrawerOpen: PropTypes.bool,
     match: PropTypes.object.isRequired,
-    /* eslint-enable react/no-unused-prop-types */
-    visible: PropTypes.bool,
+    windowWidth: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
+    isDrawerOpen: false,
     onClick: e => e.stopPropagation(),
-    visible: true,
   };
 
   state = {
@@ -33,10 +31,8 @@ export default class Sidebar extends React.Component {
   };
 
   componentDidMount() {
-    const mobile = checkMobile(false, window.innerWidth);
-    // eslint-disable-next-line react/no-did-mount-set-state
+    const mobile = checkMobile(false, this.props.windowWidth);
     this.setState({ mobile });
-    window.addEventListener('resize', this.handleResize);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,18 +59,27 @@ export default class Sidebar extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+  componentDidUpdate(prevProps) {
+    const widthHasChanged = this.props.windowWidth !== prevProps.windowWidth;
+    const isDrawerToggled = this.props.isDrawerOpen !== prevProps.isDrawerOpen;
+
+    if (widthHasChanged) {
+      const mobile = checkMobile(this.state.mobile, this.props.windowWidth);
+      this.setState(() => ({ mobile }));
+    }
+
+    if (isDrawerToggled) {
+      if (this.props.isDrawerOpen) {
+        this.openDrawer();
+      } else {
+        this.closeDrawer();
+      }
+    }
   }
 
   onExpanded = (_id, expanded) => {
     const articleTree = expandTree(this.state.articleTree, _id, expanded);
     this.setState({ articleTree });
-  };
-
-  handleResize = () => {
-    const mobile = checkMobile(this.state.mobile, window.innerWidth);
-    this.setState({ mobile });
   };
 
   openDrawer = () => {
@@ -94,9 +99,12 @@ export default class Sidebar extends React.Component {
   };
 
   closeDrawer = () => {
-    this.setState(() => ({
-      open: false,
-    }));
+    this.setState(
+      () => ({
+        open: false,
+      }),
+      this.props.handleDrawerClose
+    );
   };
 
   renderDrawer = (component, open) => (
@@ -113,25 +121,15 @@ export default class Sidebar extends React.Component {
 
   render() {
     const { articlesHtml, mobile, open } = this.state;
-    const { onClick, visible } = this.props;
+    const { onClick } = this.props;
 
     return (
       // eslint-disable-next-line
       <div onClick={onClick}>
-        {mobile &&
-          visible && (
-            <IconButton
-              colors="inherit"
-              aria-label="Menu"
-              onClick={this.openDrawer}
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
         {mobile ? (
           this.renderDrawer(articlesHtml, open)
         ) : (
-          <Wrapper>{articlesHtml}</Wrapper>
+          <Wrapper data-testid="sidebar">{articlesHtml}</Wrapper>
         )}
       </div>
     );
