@@ -24,7 +24,12 @@ export const DrawerLink = styled(NavLink).attrs({
 `;
 
 export const Greeting = styled.span`
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 27px;
   margin-left: auto;
+  padding-top: 5px;
 `;
 
 export const NavLinkStyled = styled(NavLink).attrs({

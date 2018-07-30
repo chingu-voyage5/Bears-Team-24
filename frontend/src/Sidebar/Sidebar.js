@@ -3,20 +3,25 @@ import PropTypes from 'prop-types';
 
 // Material UI components
 import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
 import expandTree from './expandTree';
 import buildHtml, { getTree, checkMobile } from './utils';
 
-import { Wrapper } from './styled';
+import { Dummy, Wrapper } from './styled';
 
 export default class Sidebar extends React.Component {
   static propTypes = {
-    /* eslint-disable react/no-unused-prop-types */
+    onClick: PropTypes.func,
     articles: PropTypes.array.isRequired,
+    handleDrawerClose: PropTypes.func.isRequired,
+    isDrawerOpen: PropTypes.bool,
     match: PropTypes.object.isRequired,
-    /* eslint-enable react/no-unused-prop-types */
+    windowWidth: PropTypes.number.isRequired,
+  };
+
+  static defaultProps = {
+    isDrawerOpen: false,
+    onClick: e => e.stopPropagation(),
   };
 
   state = {
@@ -26,23 +31,27 @@ export default class Sidebar extends React.Component {
   };
 
   componentDidMount() {
-    const mobile = checkMobile(false, window.innerWidth);
-    // eslint-disable-next-line react/no-did-mount-set-state
+    const mobile = checkMobile(false, this.props.windowWidth);
     this.setState({ mobile });
-    window.addEventListener('resize', this.handleResize);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.articlesHtml.length === 0 && nextProps.articles.length) {
+    const idHasChanged =
+      this.props.match.params.id !== nextProps.match.params.id;
+
+    if (
+      (this.state.articlesHtml.length === 0 && nextProps.articles.length) ||
+      idHasChanged
+    ) {
       const { articles } = nextProps;
       const articleTree = getTree(articles);
       const { match } = this.props;
       const { mobile } = this.state;
-      const selFn = mobile ? this.closeDrawer : this.nop;
+      const selFn = mobile ? this.closeDrawer : this.props.onClick;
       const articlesHtml = buildHtml({
         articles,
         articleTree,
-        id: match.params.id,
+        id: idHasChanged ? nextProps.match.params.id : match.params.id,
         onArticleSelect: selFn,
         onExpand: this.onExpanded,
       });
@@ -50,22 +59,27 @@ export default class Sidebar extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+  componentDidUpdate(prevProps) {
+    const widthHasChanged = this.props.windowWidth !== prevProps.windowWidth;
+    const isDrawerToggled = this.props.isDrawerOpen !== prevProps.isDrawerOpen;
+
+    if (widthHasChanged) {
+      const mobile = checkMobile(this.state.mobile, this.props.windowWidth);
+      this.setState(() => ({ mobile }));
+    }
+
+    if (isDrawerToggled) {
+      if (this.props.isDrawerOpen) {
+        this.openDrawer();
+      } else {
+        this.closeDrawer();
+      }
+    }
   }
 
   onExpanded = (_id, expanded) => {
     const articleTree = expandTree(this.state.articleTree, _id, expanded);
     this.setState({ articleTree });
-  };
-
-  nop = e => {
-    e.stopPropagation();
-  };
-
-  handleResize = () => {
-    const mobile = checkMobile(this.state.mobile, window.innerWidth);
-    this.setState({ mobile });
   };
 
   openDrawer = () => {
@@ -85,15 +99,17 @@ export default class Sidebar extends React.Component {
   };
 
   closeDrawer = () => {
-    this.setState(() => ({
-      open: false,
-    }));
+    this.setState(
+      () => ({
+        open: false,
+      }),
+      this.props.handleDrawerClose
+    );
   };
 
   renderDrawer = (component, open) => (
     <Drawer open={open} onClose={this.closeDrawer}>
-      <div
-        style={{ paddingTop: '1rem', width: 250 }}
+      <Dummy
         tabIndex={0}
         role="button"
         onClick={this.closeDrawer}
@@ -105,21 +121,15 @@ export default class Sidebar extends React.Component {
 
   render() {
     const { articlesHtml, mobile, open } = this.state;
+    const { onClick } = this.props;
+
     return (
-      <div>
-        {mobile && (
-          <IconButton
-            colors="inherit"
-            aria-label="Menu"
-            onClick={this.openDrawer}
-          >
-            <MenuIcon />
-          </IconButton>
-        )}
+      // eslint-disable-next-line
+      <div onClick={onClick}>
         {mobile ? (
           this.renderDrawer(articlesHtml, open)
         ) : (
-          <Wrapper>{articlesHtml}</Wrapper>
+          <Wrapper data-testid="sidebar">{articlesHtml}</Wrapper>
         )}
       </div>
     );

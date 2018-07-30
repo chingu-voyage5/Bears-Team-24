@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Details, Summary } from './styled';
+import { Details, MenuSection } from './styled';
 
 export default class Collapsible extends React.Component {
   static propTypes = {
@@ -18,8 +18,12 @@ export default class Collapsible extends React.Component {
     open: false,
   };
 
-  static getDerivedStateFromProps(nextProps) {
-    return { open: nextProps.open };
+  componentDidMount() {
+    const isOpenUpdated = this.state.open !== this.props.open;
+
+    if (isOpenUpdated) {
+      this.setState(() => ({ open: this.props.open }));
+    }
   }
 
   onClick = e => {
@@ -37,9 +41,9 @@ export default class Collapsible extends React.Component {
 
     return (
       <Details>
-        <Summary onClick={this.onClick}>
+        <MenuSection onClick={this.onClick}>
           {open ? downArrow : rightArrow} {title}
-        </Summary>
+        </MenuSection>
         {open && children}
       </Details>
     );

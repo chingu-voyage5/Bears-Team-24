@@ -48,4 +48,7 @@ function getArticlesJSONBypass() {
 export const getArticleList = () =>
   fetch('/api/v0/articles').then(res => res.json());
 
+export const searchArticles = query =>
+  fetch(`/api/v1/search?q=${query}`).then(res => res.json());
+
 export default { checkLocalStorage, getArticlesJSONBypass };

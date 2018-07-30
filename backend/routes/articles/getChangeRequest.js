@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const Request = require('../../models/request');
-const { diffChars } = require('diff');
+const { diffLines } = require('diff');
 
 const getChangeRequest = async (req, res) => {
   const article_id = req.params.article_id || req.query.article_id;
@@ -16,7 +16,7 @@ const getChangeRequest = async (req, res) => {
     .populate('topic', 'name')
     .populate('sub_topic', 'name');
   const { _id, article, title, topic, sub_topic, order, content } = requests[0];
-  const diff = diffChars(article.content, content);
+  const diff = diffLines(article.content, content);
   const request = {
     _id,
     article: article._id,
