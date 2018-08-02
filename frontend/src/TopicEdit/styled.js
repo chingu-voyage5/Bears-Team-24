@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Select from '@material-ui/core/Select';
-import TableHead from '@material-ui/core/TableHead';
+import TextFieldMUI from '@material-ui/core/TextField';
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -8,19 +8,47 @@ export const ButtonWrapper = styled.div`
   margin: 1rem auto;
 `;
 
-export const TableHeadWrapper = styled(TableHead)`
-  background: #eee;
+export const DragHandle = styled.div`
+  background-color: orange;
+  width: 100px;
+
+  &:hover {
+    background-color: darkorange;
+  }
 `;
 
+export const TextField = styled(TextFieldMUI).attrs({
+  fullWidth: true,
+  margin: 'none',
+})``;
+
 export const TopicWrapper = styled.div`
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+  padding: 0 8px;
+`;
+
+export const SubTopicWrapper = styled.div`
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1px;
+  margin-left: 10px;
+  max-width: 500px;
+  padding: 0;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
 `;
 
 export const SelectWrapper = styled(Select)`
   width: 200px;
-  bottom-margin: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const Wrapper = styled.div`

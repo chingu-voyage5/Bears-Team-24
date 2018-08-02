@@ -1,34 +1,44 @@
 import React from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
-import MenuItem from '@material-ui/core/MenuItem';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import TextField from '@material-ui/core/TextField';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import RootRef from '@material-ui/core/RootRef';
+// import TableCell from '@material-ui/core/TableCell';
+// import TableRow from '@material-ui/core/TableRow';
+// import TextField from '@material-ui/core/TextField'
 
 import MessageBar from '../common/MessageBar';
 import PrimaryButton from '../common/PrimaryButton';
 import SaveButton from '../common/SaveButton';
-import TopicSelector from './TopicSelector';
-import TopicOrderTable from './TopicOrderTable';
 
-import Wrapper, { ButtonWrapper, TopicWrapper } from './styled';
+import Wrapper, {
+  ButtonWrapper,
+  DragHandle,
+  SubTopicWrapper,
+  TextField,
+  TopicWrapper,
+} from './styled';
 
 import saveTopicUpdates from './topicActions';
 import saveSubTopicUpdates from './subTopicActions';
-import orderCompareAsc from '../common/orderCompare';
 import { getTopics, createTopic, getSubTopics } from './api';
 
 import { SMALL_WINDOW } from '../config';
 
-/* eslint-disable camelcase */
+import {
+  normalizeChildren,
+  prepareChildren,
+  prepareParents,
+  sortByOrder,
+} from './utils';
 
 export default class TopicEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isDirty: false,
       topics: [],
-      sub_topics: [],
-      selectedTopic: null,
+      subTopics: {},
       message: { show: false, error: false, text: '' },
       horizontal: 'right',
       vertical: 'top',
@@ -37,20 +47,15 @@ export default class TopicEdit extends React.Component {
     this.onNewSubTopic = this.onNewSubTopic.bind(this);
     this.onTopicChange = this.onTopicChange.bind(this);
     this.onSubTopicChange = this.onSubTopicChange.bind(this);
-    this.handleTopicSelect = this.handleTopicSelect.bind(this);
   }
 
   componentDidMount() {
-    getTopics()
-      .then(topics => {
-        this.setState({ topics, selectedTopic: topics[0] });
-      })
-      // eslint-disable-next-line no-console
-      .catch(e => console.error('mounted get topics failed:', e));
-    getSubTopics()
-      .then(sub_topics => this.setState({ sub_topics }))
-      // eslint-disable-next-line no-console
-      .catch(e => console.error('mounted get sub topics failed:', e));
+    Promise.all([getTopics(), getSubTopics()]).then(([topics, subTopics]) => {
+      this.setState(() => ({
+        topics: sortByOrder(topics),
+        subTopics: normalizeChildren(subTopics),
+      }));
+    });
 
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
@@ -59,8 +64,10 @@ export default class TopicEdit extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
   }
+
   onNewTopic() {
     const selectedTopic = {
+      _id: `${this.state.topics.length + 1}`,
       name: 'Topic Name',
       order: this.state.topics.length + 1,
     };
@@ -68,9 +75,10 @@ export default class TopicEdit extends React.Component {
     createTopic(selectedTopic).then(result => {
       if (result.success) {
         selectedTopic._id = result._id;
+
         this.setState({
           topics: [...this.state.topics, selectedTopic],
-          selectedTopic,
+          subTopics: { ...this.state.subTopics, [result._id]: [] },
           message: { show: true, error: false, text: 'Topic Created' },
         });
       } else {
@@ -84,57 +92,52 @@ export default class TopicEdit extends React.Component {
       }
     });
   }
-  onNewSubTopic() {
-    const { selectedTopic } = this.state;
-    const nextOrder = this.state.sub_topics.reduce((acc, sub) => {
-      if (sub.parent === selectedTopic._id) {
-        return acc + 1;
-      }
-      return acc;
-    }, 1); // order is one based
-    this.setState({
-      sub_topics: this.state.sub_topics.concat({
-        _id: `${nextOrder}`,
-        parent: this.state.selectedTopic._id,
-        name: 'Sub Topic Name',
-        order: nextOrder,
-      }),
+
+  onNewSubTopic(selectedTopic) {
+    const { subTopics } = this.state;
+    const nextOrder = subTopics[selectedTopic].length;
+
+    subTopics[selectedTopic].push({
+      _id: `${nextOrder}`,
+      parent: selectedTopic,
+      name: 'Sub Topic Name',
+      order: nextOrder,
     });
+
+    this.setState({ subTopics });
   }
+
   onTopicChange(e) {
-    const { name, value, id } = e.target;
-    const topics = this.state.topics.map(topic => {
-      if (topic._id === id) {
-        return { ...topic, [name]: value, isDirty: true };
-      }
-      return topic;
-    });
-    const selectedTopic = topics.reduce((acc, topic) => {
-      if (topic._id === id) {
-        return topic;
-      }
-      return acc;
-    }, {});
-    this.setState({ topics, selectedTopic });
+    const { value, id } = e.target;
+    const { topics } = this.state;
+
+    const idx = topics.findIndex(t => t._id === id);
+    topics[idx].name = value;
+
+    this.setState({ topics, isDirty: true });
   }
+
   onSubTopicChange(e) {
-    const { name, value, id } = e.target;
-    const sub_topics = this.state.sub_topics.map(sub_topic => {
-      if (sub_topic._id === id) {
-        return { ...sub_topic, [name]: value, isDirty: true };
-      }
-      return sub_topic;
-    });
-    this.setState({ sub_topics });
-  }
-  handleTopicSelect(event) {
-    const selectedTopic = this.state.topics.reduce((acc, topic) => {
-      if (topic._id === event.target.value) {
-        return topic;
+    const { value, id } = e.target;
+    const { subTopics } = this.state;
+
+    let idx;
+
+    const child = Object.values(subTopics).reduce((acc, children) => {
+      const cldrn = Object.values(children);
+      const chIdx = cldrn.findIndex(c => c._id === id);
+      if (chIdx !== -1) {
+        idx = chIdx;
+        return cldrn[chIdx];
       }
       return acc;
     }, {});
-    this.setState({ selectedTopic });
+
+    child.name = value;
+
+    subTopics[child.parent][idx] = child;
+
+    this.setState(() => ({ subTopics, isDirty: true }));
   }
 
   handleResize = () => {
@@ -150,16 +153,13 @@ export default class TopicEdit extends React.Component {
   };
 
   handleSave = () => {
-    saveTopicUpdates(this.state.topics).then(result => {
+    const { topics, subTopics } = this.state;
+
+    saveTopicUpdates(prepareParents(topics)).then(result => {
       if (result) {
-        const topicList = this.state.topics.slice().sort(orderCompareAsc);
-        const topics = topicList.map(topic => {
-          const { isDirty, ...rest } = topic;
-          return rest;
-        });
         this.setState({
-          topics,
           message: { show: true, error: false, text: 'Save Successful' },
+          isDirty: false,
         });
       } else {
         this.setState({
@@ -168,19 +168,19 @@ export default class TopicEdit extends React.Component {
             error: true,
             text: 'Save Failed - please refresh',
           },
+          isDirty: false,
         });
       }
     });
-    saveSubTopicUpdates(this.state.sub_topics).then(result => {
+
+    saveSubTopicUpdates(prepareChildren(subTopics)).then(result => {
       if (result) {
-        const subList = this.state.sub_topics.slice().sort(orderCompareAsc);
-        const sub_topics = subList.map(sub => {
-          const { isDirty, ...rest } = sub;
-          return rest;
-        });
         this.setState({
-          sub_topics,
-          message: { show: true, error: false, text: 'Save Successful' },
+          message: {
+            show: true,
+            error: false,
+            text: 'Save Successful',
+          },
         });
       } else {
         this.setState({
@@ -193,81 +193,172 @@ export default class TopicEdit extends React.Component {
       }
     });
   };
-  render() {
-    const { selectedTopic, message, horizontal, vertical, mobile } = this.state;
-    let isDirty = false;
+
+  handleDragEnd = result => {
+    const { destination, source } = result;
+    const { subTopics, topics } = this.state;
+
+    if (!destination) {
+      return;
+    }
+
     if (
-      this.state.topics.length === 0 ||
-      this.state.sub_topics.length === 0 ||
-      selectedTopic === null
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
     ) {
+      return;
+    }
+
+    // topic moved
+    if (destination.droppableId === 'main') {
+      const moved = topics[source.index];
+      const topicsCopy = [...topics];
+      topicsCopy.splice(source.index, 1);
+      topicsCopy.splice(destination.index, 0, moved);
+
+      this.setState(() => ({
+        topics: topicsCopy,
+        isDirty: true,
+      }));
+    }
+    // subtopic moved inside the same topic
+    else if (destination.droppableId === source.droppableId) {
+      const moved = subTopics[source.droppableId][source.index];
+      const subTopicCopy = [...subTopics[source.droppableId]];
+      subTopicCopy.splice(source.index, 1);
+      subTopicCopy.splice(destination.index, 0, moved);
+      subTopics[source.droppableId] = subTopicCopy;
+
+      this.setState(() => ({
+        subTopics,
+        isDirty: true,
+      }));
+    }
+    // subtopic moved to different topic
+    else if (destination.droppableId !== source.droppableId) {
+      const moved = subTopics[source.droppableId][source.index];
+      moved.parent = destination.droppableId;
+      const startSubTopicCopy = [...subTopics[source.droppableId]];
+      const endSubTopicCopy = [...subTopics[destination.droppableId]];
+      startSubTopicCopy.splice(source.index, 1);
+      endSubTopicCopy.splice(destination.index, 0, moved);
+
+      subTopics[source.droppableId] = startSubTopicCopy;
+      subTopics[destination.droppableId] = endSubTopicCopy;
+
+      this.setState(() => ({
+        subTopics,
+        isDirty: true,
+      }));
+    }
+  };
+
+  render() {
+    const {
+      topics,
+      subTopics,
+      message,
+      horizontal,
+      vertical,
+      mobile,
+      isDirty,
+    } = this.state;
+
+    if (!topics.length || !Object.keys(subTopics).length) {
       return <div>Loading ...</div>;
     }
-    const topicList = this.state.topics.map(topic => (
-      <MenuItem key={topic._id} value={topic._id}>
-        {topic.name}
-      </MenuItem>
-    ));
-    const sub_topic_rows = this.state.sub_topics.reduce((acc, sub) => {
-      if (selectedTopic.isDirty || sub.isDirty) isDirty = true;
-      if (sub.parent !== selectedTopic._id) return acc;
-      return acc.concat(
-        <TableRow key={sub._id}>
-          <TableCell>
-            <TextField
-              id={sub._id}
-              name="name"
-              value={sub.name}
-              onChange={this.onSubTopicChange}
-            />
-          </TableCell>
-          <TableCell>
-            <TextField
-              id={sub._id}
-              name="order"
-              value={`${sub.order}`}
-              onChange={this.onSubTopicChange}
-            />
-          </TableCell>
-        </TableRow>
-      );
-    }, []);
+
+    const subTopicsRows = (subs, id) =>
+      subs[id].map((sub, i) => (
+        <Draggable draggableId={sub._id} index={i} key={sub._id} type={id}>
+          {provided => (
+            <SubTopicWrapper
+              innerRef={provided.innerRef}
+              {...provided.draggableProps}
+            >
+              <TextField
+                id={sub._id}
+                name="name"
+                value={sub.name}
+                onChange={this.onSubTopicChange}
+              />
+              <DragHandle {...provided.dragHandleProps} />
+            </SubTopicWrapper>
+          )}
+        </Draggable>
+      ));
+
     return (
-      <Wrapper mobile={mobile}>
-        <ButtonWrapper>
-          <PrimaryButton onClick={this.onNewTopic}>New Topic</PrimaryButton>
-          <PrimaryButton onClick={this.onNewSubTopic}>
-            New SubTopic
-          </PrimaryButton>
-        </ButtonWrapper>
-        <h3>Topic and SubTopic ordering</h3>
-        <TopicWrapper>
-          1. Select a Topic:&nbsp;
-          <TopicSelector
-            selectedTopic={selectedTopic._id}
-            onSelect={this.handleTopicSelect}
-            topicList={topicList}
+      <DragDropContext onDragEnd={this.handleDragEnd}>
+        <Wrapper mobile={mobile}>
+          <h3>Topic and SubTopic ordering</h3>
+          <ButtonWrapper>
+            <PrimaryButton onClick={this.onNewTopic}>New Topic</PrimaryButton>
+          </ButtonWrapper>
+          {topics && (
+            <Droppable droppableId="main" type="TOPIC">
+              {provided => (
+                <div ref={provided.innerRef} {...provided.droppableProps}>
+                  {topics.map((topic, i) => (
+                    <Draggable
+                      draggableId={topic._id}
+                      index={i}
+                      key={topic._id}
+                      type="TOPIC"
+                    >
+                      {prov => (
+                        <div
+                          ref={prov.innerRef}
+                          {...prov.draggableProps}
+                          {...prov.dragHandleProps}
+                        >
+                          <Droppable droppableId={topic._id} type={topic._id}>
+                            {prov2 => (
+                              <TopicWrapper
+                                innerRef={prov2.innerRef}
+                                {...prov2.droppableProps}
+                              >
+                                <div>
+                                  <TextField
+                                    id={topic._id}
+                                    name="name"
+                                    value={topic.name}
+                                    onChange={this.onTopicChange}
+                                  />
+                                  <button
+                                    onClick={() =>
+                                      this.onNewSubTopic(topic._id)
+                                    }
+                                    title="Add subtopic"
+                                  >
+                                    +
+                                  </button>
+                                </div>
+                                {subTopics[topic._id] &&
+                                  subTopicsRows(subTopics, topic._id)}
+                                {prov2.placeholder}
+                              </TopicWrapper>
+                            )}
+                          </Droppable>
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          )}
+          <ButtonWrapper>
+            <SaveButton disabled={!isDirty} onClick={this.handleSave} />
+          </ButtonWrapper>
+          <MessageBar
+            anchor={{ vertical, horizontal }}
+            message={message}
+            handleClose={this.handleClose}
           />
-        </TopicWrapper>
-        <p>
-          2. Set the order that you want the topics and subtopics to appear in
-          the CMS sidebar view
-        </p>
-        <TopicOrderTable
-          selectedTopic={selectedTopic}
-          onTopicChange={this.onTopicChange}
-          subTopicRows={sub_topic_rows}
-        />
-        <ButtonWrapper>
-          <SaveButton disabled={!isDirty} onClick={this.handleSave} />
-        </ButtonWrapper>
-        <MessageBar
-          anchor={{ vertical, horizontal }}
-          message={message}
-          handleClose={this.handleClose}
-        />
-      </Wrapper>
+        </Wrapper>
+      </DragDropContext>
     );
   }
 }
-/* eslint-enable camelcase */
