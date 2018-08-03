@@ -3,6 +3,7 @@ import { saveTopics } from './api';
 const saveTopicUpdates = topicList => {
   const topicUpdates = topicList.reduce((acc, topic) => {
     // if (topic.isDirty) {
+    // eslint-disable-next-line
     if (true) {
       const { isDirty, ...updateTopic } = topic;
       return acc.concat(updateTopic);
