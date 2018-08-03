@@ -2,7 +2,8 @@ import { saveTopics } from './api';
 
 const saveTopicUpdates = topicList => {
   const topicUpdates = topicList.reduce((acc, topic) => {
-    if (topic.isDirty) {
+    // if (topic.isDirty) {
+    if (true) {
       const { isDirty, ...updateTopic } = topic;
       return acc.concat(updateTopic);
     }

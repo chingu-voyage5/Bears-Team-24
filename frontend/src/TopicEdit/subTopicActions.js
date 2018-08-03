@@ -2,7 +2,8 @@ import { saveSubTopics } from './api';
 
 const saveSubTopicUpdates = subTopicList => {
   const subUpdates = subTopicList.reduce((acc, sub) => {
-    if (sub.isDirty) {
+    // if (sub.isDirty) {
+    if (true) {
       const { isDirty, ...updateSub } = sub;
       return acc.concat(updateSub);
     }
