@@ -12,11 +12,18 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const DragHandle = styled.div`
-  background-color: orange;
-  width: 100px;
+  align-items: center;
+  border-right: 5px solid #aaa;
+  color: #666;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 50px;
 
-  &:hover {
-    background-color: darkorange;
+  &:hover,
+  &:active {
+    background-color: #ccc;
+    border-right: 5px solid darkorange;
   }
 `;
 

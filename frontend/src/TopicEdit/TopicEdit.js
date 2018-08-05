@@ -1,6 +1,8 @@
 import React from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
+import DragIcon from '@material-ui/icons/DragHandle';
+
 import MessageBar from '../common/MessageBar';
 import PrimaryButton from '../common/PrimaryButton';
 import SaveButton from '../common/SaveButton';
@@ -266,7 +268,9 @@ export default class TopicEdit extends React.Component {
                 value={sub.name}
                 onChange={this.onSubTopicChange}
               />
-              <DragHandle {...provided.dragHandleProps} />
+              <DragHandle {...provided.dragHandleProps}>
+                <DragIcon />
+              </DragHandle>
             </SubTopicWrapper>
           )}
         </Draggable>
