@@ -121,7 +121,7 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
     disabled={false}
   >
     <div
-      className="sc-gqjmRU cclISH"
+      className="sc-jTzLTM bZOwjH"
     >
       <h2
         className="MuiTypography-root-15 MuiTypography-title-21"
@@ -130,7 +130,7 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
       </h2>
     </div>
     <div
-      className="MuiInput-root-49 MuiInput-underline-53 sc-ifAKCX dUasrT"
+      className="MuiInput-root-49 MuiInput-underline-53 sc-bZQynM eVCXCA"
     >
       <div
         className="MuiSelect-root-62"
@@ -185,7 +185,7 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
     disabled={false}
   >
     <div
-      className="sc-gqjmRU cclISH"
+      className="sc-jTzLTM bZOwjH"
     >
       <h2
         className="MuiTypography-root-15 MuiTypography-title-21"
@@ -194,7 +194,7 @@ exports[`renders ArticleEdit Form passed a null sub-topic 1`] = `
       </h2>
     </div>
     <div
-      className="MuiInput-root-49 MuiInput-underline-53 sc-ifAKCX dUasrT"
+      className="MuiInput-root-49 MuiInput-underline-53 sc-bZQynM eVCXCA"
     >
       <div
         className="MuiSelect-root-62"
@@ -368,7 +368,7 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
     disabled={false}
   >
     <div
-      className="sc-gqjmRU cclISH"
+      className="sc-jTzLTM bZOwjH"
     >
       <h2
         className="MuiTypography-root-15 MuiTypography-title-21"
@@ -377,7 +377,7 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
       </h2>
     </div>
     <div
-      className="MuiInput-root-49 MuiInput-underline-53 sc-ifAKCX dUasrT"
+      className="MuiInput-root-49 MuiInput-underline-53 sc-bZQynM eVCXCA"
     >
       <div
         className="MuiSelect-root-62"
@@ -432,7 +432,7 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
     disabled={false}
   >
     <div
-      className="sc-gqjmRU cclISH"
+      className="sc-jTzLTM bZOwjH"
     >
       <h2
         className="MuiTypography-root-15 MuiTypography-title-21"
@@ -441,7 +441,7 @@ exports[`renders ArticleEdit Form with sub-topic 1`] = `
       </h2>
     </div>
     <div
-      className="MuiInput-root-49 MuiInput-underline-53 sc-ifAKCX dUasrT"
+      className="MuiInput-root-49 MuiInput-underline-53 sc-bZQynM eVCXCA"
     >
       <div
         className="MuiSelect-root-62"
